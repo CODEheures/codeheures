@@ -1,0 +1,356 @@
+@import "reset";
+/*@import "ionicons/ionicons";*/
+
+$bg-color1: #fff;
+$color1: #ffee7b;
+$color2: #000;
+$color3: #fff;
+$color4: #2E4C4C;
+$color5: #222;
+$color6: rgba(34, 34, 34, 0.5);
+$color7: #12ad9b;
+$color8: #3880aa;
+$color9: rgba(56, 128, 170, 0.1);
+$color10: rgba(171, 161, 144, 0.3);
+$color11: #b5b5b5;
+$color12: rgba(34, 34, 34, 0.06);
+
+$color-success: rgba(44, 171, 63, 0.9);
+$color-info: rgba(26, 127, 171, 0.9);
+$color-error: rgba(215, 44, 35, 0.9);
+$color-status: rgba(171, 161, 144, 0.9);
+
+$height_nav_shrink: 60px;
+
+$ratio_w_h_card: 1.172;
+$card_width: 275px;
+$h1_height: 42px;
+
+body {
+  font-family: 'open sans','Helvetica Neue', Arial , sans-serif;
+  font-size: 16px;
+  line-height: 1.4em;
+  color: $color4;
+
+  background-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: $color4;
+}
+
+@import "web_styles/_table1";
+
+.clear {
+  clear: both;
+}
+
+.btn {
+  margin-left: 15px;
+  margin-right: 15px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition-property: all;
+  transition-duration: 0.5s;
+
+  & i {
+    padding-right: 10px;
+  }
+}
+
+div.specimen {
+  position:absolute;
+  display: block;
+
+  top: 0;
+  left: 0;
+
+
+
+  color: rgba(255,255,255,0.1);
+  text-shadow: 8px 8px 50px rgba(0,0,0,0.1);
+  font-size: 100px;
+
+  z-index: 2;
+}
+
+div.seller {
+  & div.from-seller {
+    float: left;
+    display: inline-block;
+    width: 180px;
+  }
+
+  & div.infos {
+    float: left;
+    padding-left:10px;
+    margin-left: 20px;
+    border-left: solid 1px $color2;
+  }
+}
+
+div.customer {
+  padding-top: 50px;
+  margin-left: 5cm;
+  & div.to-customer {
+    float: left;
+    display: inline-block;
+    width: 180px;
+  }
+
+  & div.infos {
+    float: left;
+    padding-left:10px;
+    margin-left: 20px;
+    border-left: 1px solid $color2;
+  }
+}
+
+p.indication {
+  margin-top: 1cm;
+}
+
+div.quotation-title {
+  margin-top: 20px;
+  line-height: 40px;
+
+  & h2 {
+    display: inline-block;
+    font-size: 22px;
+
+    & i {
+      font-size: 40px;
+      vertical-align: middle;
+      padding-right: 8px;
+    }
+  }
+
+  & div.price-quotation {
+    float: right;
+
+    & div.total-price-quotation-info {
+      width: 5cm;
+      float: right;
+      margin-right: 40px;
+      padding: 0px 15px;
+      border-radius: 8px;
+      border: 1px solid $color7;
+      background-color: $color7;
+      color: $color3;
+      text-align: center;
+    }
+  }
+
+}
+
+div.quotation {
+  padding-top: 20px;
+
+  & p {
+    padding: 0;
+    font-weight: bold;
+
+    & span.quotation-date {
+      font-weight: 100;
+    }
+    &.tva-info {
+      font-size: 12px;
+      font-weight: 100;
+    }
+
+    &.downPercentPayment {
+      text-align: center;
+      font-style: italic;
+      padding-top: 30px;
+      font-weight: 400;
+    }
+
+  }
+
+  & table {
+    margin: 0;
+    width: 100%;
+    //page-break-after:auto;
+
+    & tr {
+      page-break-inside:avoid;
+      page-break-after:auto;
+    }
+
+    & td {
+      page-break-inside:avoid;
+      page-break-after:auto;
+    }
+
+    & thead {
+      display:table-header-group;
+    }
+
+  }
+
+  & div.quotation-total {
+    & p:not(.ttc) {
+      font-weight: 100;
+    }
+
+    & p.ttc {
+      margin-top: 10px;
+      padding-top: 5px;
+    }
+
+    & div.quotation-total-title {
+      width: 60%;
+      display: inline-block;
+      float: left;
+      text-align: right;
+    }
+
+    & div.quotation-total-value {
+      text-align: right;
+      float: right;
+      width: 25%;
+      display: inline-block;
+      padding-right: 20px;
+
+      & p.ttc {
+        border-top: 2px solid $color2;
+      }
+    }
+  }
+
+  & div.mentions {
+    margin-top: 20px;
+    font-size: 0.8em;
+    & h2 {
+      font-weight: bold;
+    }
+
+    & ul {
+      padding-left: 6px;
+      & li {
+        list-style-type: square;
+        list-style-position: inside;
+      }
+    }
+  }
+}
+
+p.isOrdered {
+  display: inline-block;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: 400;
+  background-color: $color1;
+}
+
+p.sign {
+  text-align: right;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-weight: 400;
+  padding-right: 180px;
+}
+
+div.pdfHeader {
+  margin: 0;
+  padding-top: 0.3cm;
+  padding-left: 0.3cm;
+  padding-right: 0.3cm;
+
+  width: 100%;
+  height: 1.2cm;
+
+  //position: absolute;
+  //top: 0cm;
+  //left: 0cm;
+
+  line-height: 16px;
+  background: $color12;
+
+  border-bottom: solid 1px $color5;
+
+  font-family: 'open sans','Helvetica Neue', Arial , sans-serif;
+  font-size: 10px;
+  font-weight: 100;
+  & div.logo {
+    float: left;
+    vertical-align: middle;
+    width: 4cm;
+    & .navbar-logo {
+      & img {
+        width: 4cm;
+      }
+  }
+
+
+  }
+
+  & .navbar-menu {
+    float: right;
+    text-align: right;
+    overflow: hidden;
+
+    & a {
+      text-transform: uppercase;
+      font-size: 10px;
+      margin: 0px 10px;
+      position: relative;
+      color: $color5;
+      & span.created_at {
+        position: relative;
+        left:10px;
+      }
+    }
+  }
+}
+
+div.pdfFooter {
+  margin: 0;
+  padding-top: 0.3cm;
+  padding-left: 0.3cm;
+  padding-right: 0.3cm;
+
+  width: 100%;
+  height: 1.2cm;
+  font-size: 10px;
+  line-height: 10px;
+
+  background: $color12;
+  border-top: solid 1px $color5;
+
+  & .infos {
+    width: 30%;
+    float: left;
+
+    & i {
+      padding-right: 3px;
+    }
+    & i:not(:first-of-type){
+      padding-left: 10px;
+    }
+  }
+
+  & .copyright {
+    width: 40%;
+    float: right;
+    position: relative;
+    text-align: right;
+
+    & p.page {
+      padding-bottom: 0.5cm;
+    }
+    & div.logo {
+      float: right;
+      vertical-align: middle;
+      width: 0.85cm;
+    }
+    & div.suiteLogo {
+      float: right;
+      vertical-align: middle;
+      width: 2.5cm;
+    }
+  }
+}

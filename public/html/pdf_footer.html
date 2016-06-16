@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="CODEheures | Sylvain Gagnot">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="http://codeheures.dev/css/pdfFooter.css">
+    <script>
+        function subst() {
+            var vars={};
+            var x=window.location.search.substring(1).split('&');
+            for (var i in x) {
+                var z=x[i].split('=',2);
+                vars[z[0]] = unescape(z[1]);
+            }
+
+            var x=[
+                'frompage',
+                'topage',
+                'page',
+                'webpage',
+                'section',
+                'subsection',
+                'subsubsection'
+            ];
+
+            for (var i in x) {
+                var y = document.getElementsByClassName(x[i]);
+                for (var j=0; j<y.length; ++j) {
+                    y[j].textContent = vars[x[i]];
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="subst()">
+<footer>
+<div class="common_footer">
+    <div class="infos">
+        <address>CODEheures<br/>1 rue Milhaud<br/>37300 Joué-Lès-Tours</address>
+        <p class="phone"><i class="ion-ios-telephone-outline"> </i>06.95.02.20.10 <i class="ion-ios-email-outline"> </i>webmaster@codeheures.fr</p>
+    </div>
+    <div class="copyright">
+        <p>Page <span class="page"></span> sur <span class="topage"></span></p>
+        <p><img src="http://codeheures.dev/css/images/codeheures-court.svg" /><span class="htmlentity">&copy;</span>2015 CODEheures<span class="logo"></span></p>
+    </div>
+</div>
+</footer>
+</body>
+</html>
