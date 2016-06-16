@@ -162,8 +162,7 @@ class AuthController extends Controller
 
         $user = User::where('name', $request->get('name'))->orWhere('email', $request->get('name'))->first();
 
-
-        if (!$user->confirmed) {
+        if ($user && !$user->confirmed) {
             return redirect($this->loginPath())
                 ->withInput($request->only($this->loginUsername(), 'remember'))
                 ->with('info', "Veuillez d'abord confirmer votre compte");
