@@ -5,10 +5,15 @@
 {!! Form::hidden('routeReturn', json_encode($routeReturn)) !!}
 
     <div class="form-group">
-        {!! Form::label('phone', 'Numero de mobile') !!}
-        {!! Form::text('phone', ($user->phone != null  ? '0'.$user->phone:null), ['class' => 'form-control', 'placeholder' => 'Ex.: 0611223344']) !!}
+        <span class="input input--fumi">
+            {!! Form::text('phone', ($user->phone != null  ? '0'.$user->phone:null), ['class' => 'input__field input__field--fumi', 'placeholder' => 'Ex.: 0611223344']) !!}
+            <label for="phone" class="input__label input__label--fumi">
+                    <i class="fa fa-fw fa-mobile icon icon--fumi"></i>
+                    <span class="input__label-content input__label-content--fumi">Numéro de mobile</span>
+            </label>
+        </span>
     </div>
-    <div class="form-group">
+    <div class="form-submit">
         <div class="submit">
             <input type="submit" class="btn btn-yellow2" value="Valider" />
         </div>

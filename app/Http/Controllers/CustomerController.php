@@ -38,6 +38,7 @@ class CustomerController extends Controller
     public function update(UpdateAccountRequest $request){
 
         $updates = $request->only(['name', 'phone', 'firstName', 'lastName', 'enterprise', 'siret']);
+        $updates['phone'] = (str_replace('+33','0',str_replace('-','',filter_var($updates['phone'],FILTER_SANITIZE_NUMBER_INT))));
         if ($request->get('phone') == ""){
             $updates['phone']=null;
         }
@@ -52,6 +53,8 @@ class CustomerController extends Controller
      */
     public function updatePhoneOnly(PhoneAccountRequest $request){
         $updates = $request->only(['phone']);
+        $updates['phone'] = (str_replace('+33','0',str_replace('-','',filter_var($updates['phone'],FILTER_SANITIZE_NUMBER_INT))));
+
         if ($request->get('phone') == ""){
             $updates['phone']=null;
         }

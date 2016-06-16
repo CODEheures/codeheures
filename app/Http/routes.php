@@ -20,7 +20,7 @@ Route::group(['prefix' => 'customer'], function() {
     //customer quotations
     Route::get('/quotation', ['as' => 'customer.quotation.index', 'uses' => 'QuotationController@customerIndex']);
     Route::get('/quotation/{id}/order', ['as' => 'customer.quotation.order', 'uses' => 'QuotationController@order'])->where(['id'=>'[0-9]+']);
-    Route::get('/quotation/{id}/pdf', ['as' => 'customer.quotation.pdf', 'uses' => 'QuotationController@pdf2'])->where(['id'=>'[0-9]+']);
+    Route::get('/quotation/{id}/pdf', ['as' => 'customer.quotation.pdf', 'uses' => 'QuotationController@pdf'])->where(['id'=>'[0-9]+']);
     Route::post('/quotation/{id}/order', ['as' => 'customer.quotation.order.post', 'uses' => 'QuotationController@orderPost'])->where(['id'=>'[0-9]+']);
 });
 

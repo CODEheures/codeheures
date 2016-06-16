@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
-    <file url="file://$PROJECT_DIR$/app/Address.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/Http/Controllers/MainController.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/Http/Controllers/Test" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/Http/Middleware/Admin.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/database/migrations/2015_09_24_181810_create_addresses_table.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/assets/sass/bootwatch" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/lang/fr" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/views/Index" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/views/auth" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/views/default.blade.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/views/emails" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/views/error.blade.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/views/errors" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/views/flash.blade.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/views/layouts" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tests/ExampleTest.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tests/TestCase.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tests/UserTest.php" charset="UTF-8" />
+  <component name="Encoding">
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

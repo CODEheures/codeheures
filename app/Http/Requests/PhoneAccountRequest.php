@@ -25,7 +25,8 @@ class PhoneAccountRequest extends Request
     public function rules(Guard $auth)
     {
         return [
-            'phone' => 'numeric|min:0600000000|max:0799999999'
+            //'phone' => 'numeric|min:0600000000|max:0799999999'
+            'phone' => array('regex:/^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$/')
         ];
     }
 }

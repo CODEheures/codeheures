@@ -24,8 +24,8 @@ class QuotationController extends Controller
     public function __construct(Guard $auth) {
         $this->middleware('auth');
         $this->middleware('haveNewQuotation');
-        $this->middleware('fullProfile', ['only' => ['customerIndex', 'order', 'pdf', 'pdf2']]);
-        $this->middleware('admin', ['except' => ['customerIndex', 'order', 'orderPost', 'pdf', 'pdf2']]);
+        $this->middleware('fullProfile', ['only' => ['customerIndex', 'order', 'pdf']]);
+        $this->middleware('admin', ['except' => ['customerIndex', 'order', 'orderPost', 'pdf']]);
         $this->auth = $auth;
     }
 
@@ -73,7 +73,7 @@ class QuotationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function pdf($id)
+    public function pdfOLD($id)
     {
         $quotation = Quotation::findOrFail($id);
         if($quotation->user_id == $this->auth->user()->id) {
@@ -123,7 +123,7 @@ class QuotationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function pdf2($id)
+    public function pdf($id)
     {
         $quotation = Quotation::findOrFail($id);
         if($quotation->user_id == $this->auth->user()->id) {
@@ -154,8 +154,6 @@ class QuotationController extends Controller
             $mpdf->WriteHTML($css,1);
             $mpdf->WriteHTML($content,2);
             $mpdf->Output();
-
-            dd();
 
         } else {
             return redirect(route('home'));

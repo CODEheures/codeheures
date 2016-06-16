@@ -26,7 +26,8 @@ class UpdateAccountRequest extends Request
     {
         return [
             'name' => "required|min:3|max:255|alpha_num|unique:users,name, {$auth->user()->id}",
-            'phone' => 'numeric|min:0600000000|max:0799999999',
+            //'phone' => 'numeric|min:0600000000|max:0799999999',
+            'phone' => array('regex:/^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$/'),
             'firstName' => 'max:255',
             'lastName' => 'max:255',
             'address' => 'max:38',
