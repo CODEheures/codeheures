@@ -1,15 +1,23 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-//breakpoint 768px;
-//@import "compass";
-//@import "compass/reset";
-@import "reset";
-@import "../../../node_modules/susy/sass/susy";
-@import "animate/animate";
-@import "ionicons/ionicons";
-
 /*
-******** Vars *********
+CSS Flexbox Mobile First
 */
+@import "boxs-row";
+@import "boxs-column";
+@import "containers";
+
+
+//Variables
+@import "colors";
+$container-gutters: 1rem;
+$height_nav_shrink: 6rem;
+$pdfWidth: 110rem;
+
+$ratio_w_h_card: 1.172;
+$card_width: 27.5rem;
+$h1_height: 1.47;
+
+
+@import "../../../node_modules/susy/sass/susy";
 $susy: (
         container: 117rem,
         columns: 12,
@@ -34,39 +42,27 @@ $lm768: (
         column-width: 10rem,
 );
 
-$bg-color1: #fff;
-$color-logo: #d9703a;
-$color1: #ffee7b;
-$color2: #000;
-$color3: #fff;
-$color4: #2E4C4C;
-$color5: #222;
-$color6: rgba(34, 34, 34, 0.5);
-$color7: #12ad9b;
-$color8: #3880aa;
-$color9: rgba(56, 128, 170, 0.1);
-$color10: rgba(171, 161, 144, 0.3);
-$color11: #b5b5b5;
-$color12: rgba(34, 34, 34, 0.06);
 
-$color-success: rgba(44, 171, 63, 0.9);
-$color-info: rgba(26, 127, 171, 0.9);
-$color-error: rgba(215, 44, 35, 0.9);
-$color-status: rgba(171, 161, 144, 0.9);
 
-$height_nav_shrink: 6rem;
-$pdfWidth: 110rem;
+/*
+*********reset css *******
+*/
+@import "reset";
 
-$ratio_w_h_card: 1.172;
-$card_width: 27.5rem;
-$h1_height: 1.47;
+.clear:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+*, *:before, *:after {
+  box-sizing: border-box;
+  outline: none;
+}
+
 
 /*
 ****** General ******
 */
-
-@include border-box-sizing;
-
 html {
   font-size: 62.5%;
 }
@@ -77,14 +73,7 @@ body {
   line-height: 1.24;
   background: url('images/bg3.png') repeat fixed;
   background-color: $bg-color1;
-
   color: $color3;
-
-  &.pdf {
-    width: $pdfWidth;
-    background: none;
-  }
-
 }
 
 a {
@@ -96,15 +85,17 @@ input, textarea {
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
-  //margin: 0;
 }
 
 //Imports des styles exterieurs
 @import "web_styles/_checkbox";
 @import "web_styles/_table1";
+@import "animate/animate";
+@import "ionicons/ionicons";
 
 .container {
-  @include container;
+  $width: 100%;
+  @include mycontainer($width, $container-gutters);
 }
 
 .rot90 {
@@ -179,16 +170,11 @@ input, textarea {
   }
 }
 
-.clear {
-  @include susy-clearfix;
-}
-
 .space-top {
   margin-top: 3.2rem;
 }
 
-
-.btn {
+[class^="btn-"] {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
   padding: 1rem 1.5rem;
@@ -256,84 +242,53 @@ input, textarea {
   transition-duration: 0.8s;
   transition-property: all;
 
-  .navbar-logo {
-    @include span(4);
-    padding-right: 0.5rem;
+  & .container {
+    @include rwsbc;
+  }
 
+  .navbar-logo {
+    @include rnfsc;
+    padding-right: 0.5rem;
+    max-width: 75%;
     img {
-      vertical-align: middle;
+      max-height: 8rem;
+      width: auto;
       height: auto;
-      width: 100%;
+      min-width: 0;
+      min-height: 0;
     }
   }
 
   .hamburger {
-    display: none;
+    font-size: 3rem;
+    text-align: center;
+    cursor: pointer;
   }
 
   .navbar-menu {
-    @include span(8);
-    text-align: right;
-    overflow: hidden;
-    padding-left: 0.5rem;
-
-    a {
-      text-transform: uppercase;
-      font-size: 1.4rem;
-      margin: 0 0.8vw;
-      position: relative;
-
-      transition: background-color 0.5s;
-
-      &.active {
-        color: $color1;
-      }
-
-      & .activeplus {
-        position: absolute;
-        left: 0;
-        bottom: -0.4rem;
-        height: 0.2rem;
-        width: 0%;
-        background-color: $color1;
-      }
-
-      & .preactive {
-        position: absolute;
-        left: 0;
-        bottom: -0.4rem;
-        height: 0.2rem;
-        width: 0%;
-        background-color: $color3;
-      }
-
-      & span.newQuote {
-        z-index: 2;
-        position: relative;
-        top: 1rem;
-        left: -0.7rem;
-
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-
-        border-radius: 50%;
-        border-color: $color3;
-        border-width: 0.2rem;
-        border-style: outset;
-
-        color: $color3;
-        font-weight: 400;
-
-        background-color: $color8;
-
-
+    @include cnfsfs;
+    display: none;
+    width: calc(100% + #{2*$container-gutters});
+    background-color: $color5;
+    padding-bottom: 0.2rem;
+    margin-left: -$container-gutters;
+    margin-right: -$container-gutters;
+    & a {
+      @include rnfec;
+      width: 100%;
+      padding-right: 2.5rem;
+      font-size: 2.5rem;
+      line-height: 7rem;
+      border-bottom: solid 0.1rem black;
+      box-shadow: rgba(255, 255, 255, 0.3) 0.1rem 0 0.2rem;
+      &:hover {
+        background-color: lighten($color5, 10%);
       }
     }
   }
 
   &.full {
     height: 10rem;
-    line-height: 10rem;
   }
 
   &.shrink, &.shrink-force {
@@ -343,8 +298,7 @@ input, textarea {
 
     .navbar-logo {
       img {
-        height: 4rem;
-        width: auto;
+        max-height: 4rem;
       }
 
       span {
@@ -1308,157 +1262,98 @@ body > footer {
   }
 }
 
-@media screen and (max-width: 790px) {
-  @include with-layout($lm768) {
-    .navbar {
-      @include span(12);
-
-      & .container {
-
-        & .navbar-logo {
-          @include span(7);
-        }
-
-        & .hamburger {
-          @include span(2 last);
-          display: inline-block;
-          font-size: 3rem;
-          text-align: center;
-          cursor: pointer;
-        }
-
-        & .navbar-menu {
-          @include break();
-          @include span(12);
-          padding-left: 0;
-          padding-right: 0;
-          background-color: $color5;
-          padding-bottom: 0.2rem;
-
-          & a {
-            @include break();
-            @include span(12);
-            margin: 0;
-            padding-right: 2.5rem;
-            font-size: 2.5rem;
-            line-height: 7rem;
-            border-bottom: solid 0.1rem black;
-            box-shadow: rgba(255, 255, 255, 0.3) 0.1rem 0 0.2rem;
-
-            &:hover {
-              background-color: lighten($color5, 10%);
-            }
-          }
-
-        }
-      }
-
-    }
+@media screen and(min-width: 768px) {
+  .container {
+    $width: 117rem;
+    @include mycontainer($width, $container-gutters);
   }
-}
 
-@media screen and (max-width: 767px) {
+  .navbar {
+    @include rncc;
 
-  @include with-layout($lm768) {
-
-    .main {
-
-      & section {
-        & article {
-          @include span(12);
-
-          & div.card .card_description p {
-            font-size: 1.2rem;
-            padding-top: 4rem;
-          }
-          & .digest {
-            padding-top: $h1_height;
-          }
-        }
-
-        & form {
-          margin-top: 2rem;
-
-          & .form-group {
-            @include span(12);
-
-          }
-        }
-
-        & div.quotation-title {
-          & h2 {
-            display: block;
-          }
-
-          & div.cart-quotation,
-          & div.price-quotation {
-            display: inline-block;
-            @include span(12);
-            margin-top: 2rem;
-
-            & a,
-            & div.total-price-quotation-info {
-              float: left;
-              margin-left: 0;
-            }
-          }
-
-        }
-
-        &#user nav.quotation-get-pdf {
-          top: -15.7rem;
-        }
-
-        &#user div.quotation {
-          & table.quotation-table {
-            display: none;
-          }
-
-          & ul.quotation-list {
-            display: block;
-            list-style-type: disc;
-            list-style-position: inside;
-            @include span(12);
-          }
-
-          & p.tva-info {
-            text-align: right;
-            position: relative;
-            top: 10.5rem;
-            right: 1.5rem;
-          }
-
-          & div.quotation-total {
-            & div.quotation-total-title {
-              @include span(6);
-            }
-
-            & div.quotation-total-value {
-              @include span(6);
-            }
-          }
-        }
-      }
-
+    .navbar-logo {
+      max-width: 35%;
     }
 
-    body > footer {
-      & .common_footer {
-        & .infos {
-          @include span(6);
+    .hamburger {
+      display: none;
+    }
+    .navbar-menu {
+      @include rnfec;
+      padding-left: 0.5rem;
+      width: auto;
+      background-color: transparent;
+      padding-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+
+      a {
+        @include cnfsfs;
+        width: auto;
+        padding-right: 0;
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        line-height: 1.8;
+        margin: 0 0.8vw;
+        position: relative;
+        border-bottom: none;
+        box-shadow: none;
+
+        transition: background-color 0.5s;
+
+        & .activeplus {
+          height: 0.2rem;
+          width: 0%;
+          transition: width;
+          transition-duration: 800ms;
         }
-        & .legale {
-          @include span(6);
+
+        &[aria-selected="true"] {
+          color: $color1;
+          & .activeplus {
+            background-color: $color1;
+            width: 100%;
+          }
         }
-        & .copyright {
-          @include span(12);
+
+        &[aria-selected="false"], &:not([aria-selected]) {
+          & .activeplus {
+            background-color: $color3;
+          }
+          &:hover {
+            background-color: transparent;
+            & .activeplus {
+              width: 100%;
+            }
+          }
+
+        }
+
+        & span.newQuote {
+          z-index: 2;
+          position: relative;
+          top: 1rem;
+          left: -0.7rem;
+
+          padding-left: 0.5rem;
+          padding-right: 0.5rem;
+
+          border-radius: 50%;
+          border-color: $color3;
+          border-width: 0.2rem;
+          border-style: outset;
+
+          color: $color3;
+          font-weight: 400;
+
+          background-color: $color8;
+
+
         }
       }
     }
   }
-
 }
-
 
 @media screen and (min-width: 960px) {
   .main {
@@ -1479,4 +1374,108 @@ body > footer {
 
     }
   }
+}
+
+
+/*********************OLD *****************************/
+@media screen and (max-width: 767px) {
+
+  //@include with-layout($lm768) {
+  //
+  //  .main {
+  //
+  //    & section {
+  //      & article {
+  //        @include span(12);
+  //
+  //        & div.card .card_description p {
+  //          font-size: 1.2rem;
+  //          padding-top: 4rem;
+  //        }
+  //        & .digest {
+  //          padding-top: $h1_height;
+  //        }
+  //      }
+  //
+  //      & form {
+  //        margin-top: 2rem;
+  //
+  //        & .form-group {
+  //          @include span(12);
+  //
+  //        }
+  //      }
+  //
+  //      & div.quotation-title {
+  //        & h2 {
+  //          display: block;
+  //        }
+  //
+  //        & div.cart-quotation,
+  //        & div.price-quotation {
+  //          display: inline-block;
+  //          @include span(12);
+  //          margin-top: 2rem;
+  //
+  //          & a,
+  //          & div.total-price-quotation-info {
+  //            float: left;
+  //            margin-left: 0;
+  //          }
+  //        }
+  //
+  //      }
+  //
+  //      &#user nav.quotation-get-pdf {
+  //        top: -15.7rem;
+  //      }
+  //
+  //      &#user div.quotation {
+  //        & table.quotation-table {
+  //          display: none;
+  //        }
+  //
+  //        & ul.quotation-list {
+  //          display: block;
+  //          list-style-type: disc;
+  //          list-style-position: inside;
+  //          @include span(12);
+  //        }
+  //
+  //        & p.tva-info {
+  //          text-align: right;
+  //          position: relative;
+  //          top: 10.5rem;
+  //          right: 1.5rem;
+  //        }
+  //
+  //        & div.quotation-total {
+  //          & div.quotation-total-title {
+  //            @include span(6);
+  //          }
+  //
+  //          & div.quotation-total-value {
+  //            @include span(6);
+  //          }
+  //        }
+  //      }
+  //    }
+  //
+  //  }
+  //
+  //  body > footer {
+  //    & .common_footer {
+  //      & .infos {
+  //        @include span(6);
+  //      }
+  //      & .legale {
+  //        @include span(6);
+  //      }
+  //      & .copyright {
+  //        @include span(12);
+  //      }
+  //    }
+  //  }
+  //}
+
 }

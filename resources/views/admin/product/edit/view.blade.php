@@ -44,9 +44,9 @@
         <div class="form-group">
             <div class="submit">
                 @if($product->canEdit())
-                    <input type="submit" class="btn btn-yellow2" value="Modifier" />
+                    <input type="submit" class="btn-yellow2" value="Modifier" />
                 @else
-                    <input type="submit" class="btn btn-disable" value="Modifier" />
+                    <input type="submit" class="btn-disable" value="Modifier" />
                 @endif
             </div>
         </div>
@@ -69,13 +69,13 @@
 </div>
 <div class="product">
     @if($product->canEdit())
-        <a href="{{ route('admin.product.delete', ['id' => $product->id]) }}" class="btn btn-yellow2">Supprimer</a>
+        <a href="{{ route('admin.product.delete', ['id' => $product->id]) }}" class="btn-yellow2">Supprimer</a>
     @else
-        <a href="#" class="btn btn-disable">Supprimer</a>
+        <a href="#" class="btn-disable">Supprimer</a>
     @endif
     @if(!$product->isObsolete)
-        <a href="{{ route('admin.product.toObsolete', ['id' => $product->id]) }}" class="btn btn-yellow2">Rendre obsolete</a>
+        <a href="{{ route('admin.product.toObsolete', ['id' => $product->id]) }}" class="btn-yellow2">Rendre obsolete</a>
     @else
-        <a href="{{ route('admin.product.toNotObsolete', ['id' => $product->id]) }}" class="btn btn-yellow2">Rendre non-obsolete</a>
+        <a href="{{ route('admin.product.toNotObsolete', ['id' => $product->id]) }}" class="btn-yellow2">Rendre non-obsolete</a>
     @endif
 </div>

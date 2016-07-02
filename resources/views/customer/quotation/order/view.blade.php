@@ -49,7 +49,7 @@
 
         <div class="form-submit">
             <div class="submit">
-                <input type="submit" class="btn btn-yellow2" value="Signer" />
+                <input type="submit" class="btn-yellow2" value="Signer" />
             </div>
         </div>
 

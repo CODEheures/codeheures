@@ -32,11 +32,11 @@
                     <td>{{ $reste }}</td>
                     @if(auth()->user()->role == 'admin')
                         <td>
-                            <a href="{{ route('admin.consommation.delete', ['id'=> $consommation->id]) }}" class="btn btn-danger">
+                            <a href="{{ route('admin.consommation.delete', ['id'=> $consommation->id]) }}" class="btn-danger">
                                 <i class="ion-ios-close-outline"></i> Supprimer
                             </a>
                             <br />
-                            <a href="{{ route('admin.consommation.edit', ['id'=> $consommation->id]) }}" class="btn btn-danger">
+                            <a href="{{ route('admin.consommation.edit', ['id'=> $consommation->id]) }}" class="btn-danger">
                                 <i class="ion-edit"></i> Modifier
                             </a>
                         </td>
@@ -128,7 +128,7 @@
 
     <div class="form-submit">
         <div class="submit">
-            <input type="submit" class="btn btn-yellow2" value="Ajouter" />
+            <input type="submit" class="btn-yellow2" value="Ajouter" />
         </div>
     </div>
 

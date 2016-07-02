@@ -8,7 +8,6 @@ $(function() {
     var $navbarMenu = $('.navbar-menu');
     var $hamburger = $('.hamburger');
     var $alerts = $('.alert');
-    var $btn_header = $('.header-btn a');
     var $menu_links = $('.navbar-menu a');
     var $cardDescriptionP = $('.card_description p');
     var $tableaux = $('section#user div.purchase table.purchase-table, section#user div.quotation table.quotation-table');
@@ -59,34 +58,6 @@ $(function() {
         });
     }
 
-    function addActivePlusDiv($elem) {
-        if(window.innerWidth > $breakPoint1) {
-            var $newdiv = $('<div class="activeplus" />');
-            $elem.append($newdiv);
-            $newdiv.animate({width: "100%"});
-        } else {
-            removeActivePlusDiv($elem);
-        }
-    }
-
-    function removeActivePlusDiv($elem) {
-        var $activeplusdiv = $elem.children('.activeplus');
-        $activeplusdiv.remove();
-    }
-
-    function addPreActiveDiv($elem) {
-        if(window.innerWidth > $breakPoint1) {
-            var $newdiv = $('<div class="preactive" />');
-            $elem.prepend($newdiv);
-            $newdiv.animate({width: "100%"});
-        }
-    }
-
-    function removePreActiveDiv($elem) {
-        var $preactivediv = $elem.children('.preactive');
-        $preactivediv.remove();
-    }
-
     function defAncre($name) {
 
         var $obj = {};
@@ -103,14 +74,6 @@ $(function() {
         return $obj;
     }
 
-    function setNavBarMenuVisible() {
-        if(window.innerWidth <= $breakPoint1){
-            $navbarMenu.css({'display':'none'})
-        } else {
-            $navbarMenu.css({'display':'initial'})
-        }
-    }
-
     function setcardDescriptionPSizeAndPosition() {
 
         var $paddingTop =  $cardDescriptionP.parent().height()/3.5+'px';
@@ -124,20 +87,10 @@ $(function() {
         });
     }
 
-    //function tableConsoToogleUp(){
-    //    $tableauConso.children('thead').each(function(){
-    //        $(this).trigger('click', function() {
-    //            setFooterPosition();
-    //        });
-    //    });
-    //}
-
     function windowResize(){
         setHeightHeader();
         setFooterPosition();
-        setNavBarMenuVisible();
         setcardDescriptionPSizeAndPosition();
-        addActivePlusDiv($('.navbar-menu a[class="active"]'));
     }
 
 
@@ -145,9 +98,7 @@ $(function() {
         setHeightHeader();
         setHeightDivsFooter();
         setFooterPosition();
-        setNavBarMenuVisible();
         setcardDescriptionPSizeAndPosition();
-        addActivePlusDiv($('.navbar-menu a[class="active"]'));
     });
 
     $(window).resize(function() {
@@ -217,36 +168,19 @@ $(function() {
     //Gestion du menu principal
     $menu_links.on('click', function(e){
         $menu_links.each(function() {
-            $(this).removeClass('active');
-            removeActivePlusDiv($(this));
+            $(this).attr('aria-selected', 'false');
         });
-        $(this).addClass('active');
-        addActivePlusDiv($(this));
-    });
-
-    $menu_links.each(function(){
-        $(this).on('mouseenter', function(e){
-            addPreActiveDiv($(this));
-        });
-
-        $(this).on('mouseleave', function(e){
-            removePreActiveDiv($(this));
-        });
+        $(this).attr('aria-selected', 'true');
     });
 
     //Menu hamburger
     $hamburger.on('click', function(e){
         e.preventDefault();
-        $navbarMenu.slideToggle();
-    });
-
-
-    //Animation des 2 boutons header-btn
-    $btn_header.on('mouseenter', function(){
-        $(this).addClass('animated pulse');
-    });
-    $btn_header.on('mouseleave', function(){
-        $(this).removeClass('animated pulse');
+        if($navbarMenu.css('display')==='flex'){
+            $navbarMenu.css('display', '');
+        } else {
+            $navbarMenu.css('display','flex');
+        }
     });
 
     //Fermeture des alerts

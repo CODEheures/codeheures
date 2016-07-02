@@ -13,7 +13,7 @@
 
         <div class="form-group">
             <div class="submit">
-                <input type="submit" class="btn btn-yellow2" value="Ajouter" />
+                <input type="submit" class="btn-yellow2" value="Ajouter" />
             </div>
         </div>
     </div>

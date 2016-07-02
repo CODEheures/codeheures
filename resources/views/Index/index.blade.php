@@ -14,7 +14,6 @@
 @endsection
 
 @section('header')
-
     <header id="accueil" xmlns="http://www.w3.org/1999/html">
         <div class="bg-cover">
             <div class="header-content container">
@@ -26,8 +25,8 @@
                     <a href="{{ route('demo') }}" class="">Visitez l'espace client de démonstration</a> et retrouvez-y
                     tous les tarifs accréditifs.</p>
                 <div class="header-btn">
-                    <a href="#prestations" class="btn btn-transparent">En savoir plus</a>
-                    <a href="#contact" class="btn btn-yellow">Me contacter</a>
+                    <a href="#prestations" class="btn-transparent">En savoir plus</a>
+                    <a href="#contact" class="btn-yellow">Me contacter</a>
                 </div>
             </div>
             <div class="scroll-down">
@@ -85,7 +84,7 @@
                             dépannages<br/>
                             modération<br/>
                         </p>
-                        <a class="btn btn-transparent" href="{{ route('demo') }}">En savoir plus</a>
+                        <a class="btn-transparent" href="{{ route('demo') }}">En savoir plus</a>
                     </div>
                 </div>
             </article>
@@ -231,7 +230,7 @@
                     suivi de votre consommation horaire. Accedez à la démonstration en visitant l'espace client de
                     démonstration.
                 </p>
-                <a href="{{ route('demo') }}" class="btn btn-yellow2">Espace client de démonstration & tarifs</a>
+                <a href="{{ route('demo') }}" class="btn-yellow2">Espace client de démonstration & tarifs</a>
             </footer>
         </section>
 
@@ -249,7 +248,7 @@
                             e-commerce<br/>
                             professionnel<br/>
                         </p>
-                        <a class="btn btn-transparent" href="#">En savoir plus</a>
+                        <a class="btn-transparent" href="#">En savoir plus</a>
                     </div>
                 </div>
             </article>
@@ -346,7 +345,7 @@
                     disponibles sont nombreuses. Il convient donc d'adapter la réponse à chaque demande. Pour en savoir
                     plus visitez le "lab" CODEheures.
                 </p>
-                <a href="#" class="btn btn-yellow2">Voir les réalisations</a>
+                <a href="#" class="btn-yellow2">Voir les réalisations</a>
             </footer>
         </section>
 

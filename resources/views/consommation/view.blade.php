@@ -32,7 +32,7 @@
                         <td>{!! Form::text('value', null, ['class' => 'form-control', 'placeholder' => '2.4']) !!}</td>
                         <td>{{ $reste }}</td>
                         <td>
-                            <input type="submit" class="btn btn-yellow2" value="Modifier" />
+                            <input type="submit" class="btn-yellow2" value="Modifier" />
                         </td>
                     </tr>
                 @else
