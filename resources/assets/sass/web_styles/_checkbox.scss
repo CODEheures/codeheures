@@ -5,52 +5,52 @@ input[type=checkbox] {
 .check-style3 {
   display: inline-block;
   text-align: left;
-  width: 80px;
-  height: 26px;
+  width: 8rem;
+  height: 2.6rem;
   background: #333;
-  margin: 20px 10px;
+  margin: 2rem 1rem;
 
-  border-radius: 50px;
+  border-radius: 5rem;
   position: relative;
 
-  box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2);
+  box-shadow: inset 0 0.1rem 0.1rem rgba(0,0,0,0.5), 0 0.1rem 0 rgba(255,255,255,0.2);
 
   &:after {
     content: 'OFF';
-    font: 12px/26px Arial, sans-serif;
+    font: 1.2rem/2.6rem Arial, sans-serif;
     color: #000;
     position: absolute;
-    right: 10px;
+    right: 1rem;
     z-index: 0;
     font-weight: bold;
-    text-shadow: 1px 1px 0px rgba(255,255,255,.15);
+    text-shadow: 0.1rem 0.1rem 0 rgba(255,255,255,.15);
   }
 
   &:before {
     content: 'ON';
-    font: 12px/26px Arial, sans-serif;
+    font: 1.2rem/2.6rem Arial, sans-serif;
     color: $color1;
     position: absolute;
-    left: 10px;
+    left: 1rem;
     z-index: 0;
     font-weight: bold;
   }
 
   & label {
     display: block;
-    width: 34px;
-    height: 20px;
+    width: 3.4rem;
+    height: 2rem;
 
-    border-radius: 50px;
+    border-radius: 5rem;
 
     transition: all .4s ease;
     cursor: pointer;
     position: absolute;
-    top: 3px;
-    left: 3px;
+    top: 0.3rem;
+    left: 0.3rem;
     z-index: 1;
 
-    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
+    box-shadow: 0 0.2rem 0.5rem 0 rgba(0,0,0,0.3);
     background: #fcfff4;
 
     background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
@@ -61,7 +61,7 @@ input[type=checkbox] {
 }
 
 input[type=checkbox]:checked + label {
-  left: 43px;
+  left: 4.3rem;
 }
 
 
