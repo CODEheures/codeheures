@@ -13,5 +13,4 @@
     <div class="copyright">
         <p><img src="{{ asset('css/images/codeheures-court.svg') }}" /><span class="htmlentity">&copy;</span>2015 CODEheures<span class="logo"></span></p>
     </div>
-    <div class="clear"></div>
 </div>

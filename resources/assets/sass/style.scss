@@ -16,6 +16,9 @@ $ratio_w_h_card: 1.172;
 $card_width: 27.5rem;
 $h1_height: 1.47;
 
+$font1: "Open sans", sans-serif;
+$font2 : Arvo, sans-serif;
+$font3 : Flamenco, sans-serif;
 
 @import "../../../node_modules/susy/sass/susy";
 $susy: (
@@ -87,6 +90,20 @@ input, textarea {
   font-weight: inherit;
 }
 
+ul.circle, ul.advantage, ol {
+  list-style-position: outside;
+  padding-left: 4rem;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+ul.circle {
+  list-style-type: circle;
+  font-size: 1.6rem;
+}
+
 //Imports des styles exterieurs
 @import "web_styles/_checkbox";
 @import "web_styles/_table1";
@@ -98,7 +115,7 @@ input, textarea {
   @include mycontainer($width, $container-gutters);
 }
 
-.rot90 {
+.rot90::before {
   transform: rotate(90deg);
 }
 
@@ -163,7 +180,7 @@ input, textarea {
   }
 
   & li {
-    list-style-type: disc;
+    list-style-type: circle;
     list-style-position: inside;
     padding-left: 4rem;
     padding-bottom: 1rem;
@@ -226,6 +243,11 @@ input, textarea {
   background-color: $color3;
   color: $color11;
   pointer-events: none;
+}
+
+.input {
+  max-width: none;
+  margin: 1.5rem;
 }
 
 /*
@@ -326,32 +348,31 @@ body > header {
     height: 100%;
 
     background-color: rgba(0, 5, 8, .75);
-
+    .container {
+      @include cncc;
+      height: 100%;
+    }
     .header-content {
-      position: fixed;
-      right: 0;
-      left: 0;
-      top: 33%;
+      @include cncc;
       z-index: 1;
-      text-align: center;
-      font-family: open sans, sans-serif;
+      font-family: $font1;
       color: $color3;
 
       transition-property: all;
       transition-duration: 0.5s;
-
+      text-align: center;
       h1 {
         letter-spacing: 0.2rem;
-
-        font-size: 5.6rem;
+        max-font-size: 5.6rem;
+        font-size: 7vw;
         line-height: 6rem;
         font-weight: 600;
         & span.code {
-          font-family: arvo;
+          font-family: $font2;
         }
 
         & span.heures {
-          font-family: Flamenco;
+          font-family: $font3;
           font-weight: 100;
           font-size: 4.5rem;
           padding-left: 0.5rem;
@@ -364,7 +385,7 @@ body > header {
           color: #FFFFFF;
           font-size: 1.92rem;
           border: 0.1rem solid #d9703a;
-          display: inline-block;
+          display: block;
           padding: 1rem;
           border-radius: 0.35rem;
           margin-left: 3.2rem;
@@ -380,20 +401,17 @@ body > header {
 
       p {
         line-height: 2.4rem;
-
         font-size: 1.8rem;
         font-weight: 300;
-
-        padding: 5rem 10rem;
-
+        padding: 5rem 10%;
         & a {
           color: $color1;
           text-decoration: underline;
         }
-
       }
 
       .header-btn {
+        @include rncc;
         text-align: center;
         margin: 1rem 0;
       }
@@ -423,46 +441,42 @@ body > header {
 ********* Main *********
 */
 .main {
-
   position: relative;
   z-index: 3;
   padding-top: $height_nav_shrink;
   padding-bottom: 5rem;
   color: $color4;
-
-  & a.registration {
-    @include span(12);
-    text-align: right;
-    color: $color8;
-    padding-top: 1rem;
+  &.container {
+    @include cnfsc;
   }
 
   & section {
-
+    @include cnfsfs;
     padding-top: 6rem;
-    @include span(12);
     color: $color4;
     font-weight: 100;
-
+    max-width: 100%;
     & h1 {
-      @include span(12);
+      @include rwfsbl;
       text-transform: uppercase;
       font-size: 3rem;
       line-height: $h1_height;
       margin-bottom: 1rem;
+      & span {
+        padding-right: 0.8rem;
+      }
       & small {
+        display: flex;
         font-size: 60%;
       }
     }
 
     & h2 {
-      @include span(12);
       font-size: 2.8rem;
       padding-top: 2.5rem;
     }
 
     & h3 {
-      @include span(12);
       font-size: 2.5rem;
       text-decoration: underline;
       padding-top: 2.5rem;
@@ -471,7 +485,6 @@ body > header {
     }
 
     & h4 {
-      @include span(12);
       font-size: 2rem;
       text-decoration: underline;
       padding-top: 2.5rem;
@@ -480,13 +493,13 @@ body > header {
     }
 
     & p {
-      @include span(12);
       padding-top: 2rem;
       & strong {
         font-weight: 600;
       }
       &.center  {
-        text-align: center;
+        display: flex;
+        align-self: center;
         & span.solution {
           background-color: rgba(217, 112, 58, 1);
           color: #FFFFFF;
@@ -512,42 +525,33 @@ body > header {
       text-decoration: underline;
     }
 
-    & ul.disc, & ul.none {
-        @include span(12);
-        list-style-position: outside;
-    }
-
-    & ul.disc {
-      list-style-type: circle;
-      font-size: 1.6rem;
-    }
-
-    & ul.none {
-      & i {
-        @include span(1);
-        padding-top: 0.7rem;
-        text-align: right;
-      }
-      & p, & ul {
-        @include span(11);
-        padding-top: 0;
-      }
-      & ul {
-        padding-left: 9rem;
+    & .argument {
+      & > li {
+        padding-bottom: 3rem;
       }
     }
 
-    & ol {
-      @include span(12);
-      list-style-position: outside;
-      list-style-type: decimal;
-    }
-
-    & ol, ul {
-      &.argument {
-        & > li {
-          font-size: 1.8rem;
-          padding-bottom: 1rem;
+    & ul.advantage {
+      @include cncfs;
+      & > li {
+        @include cnfsfs;
+        & .top {
+          @include rnfsfs;
+          width: 100%;
+          & i {
+            display: flex;
+            min-width: 4rem;
+            margin-right: 2rem;
+            padding-top: 0.7rem;
+            text-align: right;
+          }
+          & p {
+            padding-top: 0;
+          }
+        }
+        & ul {
+          padding-top: 0;
+          padding-left: 9rem;
         }
       }
     }
@@ -585,7 +589,12 @@ body > header {
       }
     }
 
-
+    & a.registration {
+      @include span(12);
+      text-align: right;
+      color: $color8;
+      padding-top: 1rem;
+    }
 
 
     & div.purchase-title,
@@ -1023,49 +1032,14 @@ body > header {
     }
 
     & article {
-      @include span(6);
+      @include cncc;
+      width: 100%;
+      align-self: center;
       height: auto;
-
-      & .digest {
-
-        color: $color4;
-        bottom: 0;
-        position: relative;
-
-        & h2 {
-          text-transform: capitalize;
-          font-size: 1.8rem;
-          text-decoration: underline;
-          text-align: center;
-        }
-
-        & ul {
-
-          & li {
-            padding: 1rem;
-            clear: both;
-
-            &:first-of-type {
-              padding-top: 0;
-            }
-
-            & i {
-              @include span(2);
-              font-size: 4.5rem;
-              float: left;
-            }
-
-            & span {
-              @include span(10);
-              vertical-align: bottom;
-            }
-          }
-        }
-      }
-
       & .card {
         width: 90%;
         min-width: $card_width;
+        max-width: 50rem;
         height: auto;
         position: relative;
 
@@ -1081,20 +1055,18 @@ body > header {
           position: absolute;
           top: 0;
           left: 0;
-
           height: 100%;
           width: 100%;
           background: url('images/card_bg.png');
           background-origin: border-box;
           background-size: cover;
-
+          @include  cncfe;
           & p {
-            padding-top: 8.5rem;
             text-align: right;
             padding-right: 0.5rem;
             text-transform: capitalize;
-            line-height: 4.8rem;
-            font-size: 1.8rem;
+            line-height: 2.6;
+            font-size: 118%;
             letter-spacing: 0.1rem;
             color: rgba(255, 255, 255, 0.34);
             text-shadow: rgba(16, 35, 53, 1) 0 -0.2rem 0;
@@ -1112,23 +1084,49 @@ body > header {
           box-shadow:  0.3rem 0.3rem 5rem rgba(0, 0, 0, 0.3);
         }
       }
+      & .digest {
+        max-width: 50rem;
+        min-width: 40rem;
+        color: $color4;
+        position: relative;
+        & ul {
+          @include cncc;
+          & li {
+            @include rnfsc;
+            width: 100%;
+            padding: 1rem;
+            &:first-of-type {
+              padding-top: 0;
+            }
+            & i {
+              font-size: 4.5rem;
+              padding-right: 3rem;
+            }
+            & hr {
+              width: 100%;
+            }
+          }
+        }
+        //& h2 {
+        //  text-transform: capitalize;
+        //  font-size: 1.8rem;
+        //  text-decoration: underline;
+        //  text-align: center;
+        //}
+      }
     }
 
     & footer {
-      @include span(12);
+      align-self: flex-end;
+      max-width: 100rem;
+      @include cncfe;
       color: $color4;
-
       & p {
-        clear: both;
         margin-top: 4rem;
         margin-bottom: 2.5rem;
         margin-right: 1.5rem;
         text-align: right;
         color: $color4;
-      }
-
-      & a {
-        float: right;
       }
     }
 
@@ -1146,13 +1144,13 @@ body > header {
     }
 
     & form {
-      @include span(12);
+      @include rwfsfs;
       margin-top: 2rem;
       & .form-group {
-        @include span(6);
+        display: flex;
+        width: 100%;
         font-size: 150%;
         & a {
-          @include break();
           display: inline-block;
           width: calc(100% - 2em);
           font-size: 75%;
@@ -1168,13 +1166,10 @@ body > header {
       }
 
       & div.form-submit {
-        @include span(12);
-        & div.submit {
-          @include span(12);
-        }
+        width: 100%;
 
         & div.checkbox {
-          @include span(12);
+          width: 100%;
           margin-left: 1.5rem;
         }
       }
@@ -1186,53 +1181,31 @@ body > header {
 }
 
 body > footer {
-  @include span(12);
+  @include rnfsc;
   background-color: $color5;
 
   color: $color3;
   font-size: 1.2rem;
   font-weight: 100;
-  padding-bottom: 2rem;
-  padding-top: 2rem;
+  padding: 2rem 4rem;
   border-top: 0.1rem solid rgba(0, 0, 0, 0.6);
 
-  &.absolute {
-    position: absolute;
-    bottom: 0;
-  }
-
-  &.pdf {
-    background-color: $color12;
-    color: $color5;
-
-    & .common_footer {
-      & .infos {
-        @include span(6);
-      }
-
-      & .copyright {
-        @include span(6)
-      }
-    }
-  }
-
   & .common_footer {
-    @include span(12);
-
+    @include rwsbc;
+    width: 100%;
     & .infos {
-      @include span(4);
+      margin-right: 3rem;
       & i {
         padding-right: 0.3rem;
       }
-
       & i:not(:first-of-type){
         padding-left: 1rem;
       }
     }
 
     & .legale {
-      @include span(4);
-
+      min-width: 33%;
+      max-width: 50%;
       & h3 {
         font-size: 1.4rem;
       }
@@ -1245,14 +1218,9 @@ body > footer {
     }
 
     & .copyright {
-      @include span(4);
-      position: relative;
-
+      align-self: flex-end;
+      padding-top: 3rem;
       & p {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-
         & img {
           width: 3.5rem;
         }
@@ -1353,14 +1321,44 @@ body > footer {
       }
     }
   }
+
+  body > header {
+    .bg-cover {
+      .header-content {
+        h1 {
+          font-size: 5.6rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and(min-width: 800px) {
+  .main {
+    & section {
+      & article {
+        align-self: auto;
+        @include rnsbfs;
+        & .digest {
+          padding-left: 3rem;
+          max-width: none;
+        }
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 960px) {
   .main {
     & section {
-      & ul.none, & ul.disc, & ol {
+      & ul.advantage, & ul.circle, & ol {
         padding-left: 9rem;
         padding-right: 9rem;
+      }
+      & form {
+        & .form-group {
+          width: 50%;
+        }
       }
     }
   }
@@ -1437,7 +1435,7 @@ body > footer {
   //
   //        & ul.quotation-list {
   //          display: block;
-  //          list-style-type: disc;
+  //          list-style-type: circle;
   //          list-style-position: inside;
   //          @include span(12);
   //        }

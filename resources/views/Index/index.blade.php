@@ -14,23 +14,28 @@
 @endsection
 
 @section('header')
-    <header id="accueil" xmlns="http://www.w3.org/1999/html">
+    <header id="accueil">
         <div class="bg-cover">
-            <div class="header-content container">
-                <h1><span class="code">CODE</span><span class="heures">heures</span> - SITES WEB</h1>
-                <h2 class="presentation">Ma philosophie: proposer des tarifs/devis accréditifs en <strong><a
-                                href="#prestations">reportant les heures</a></strong> non consommées.</h2>
-                <p>Programmeur WEB indépendant, j'interviens pour toute création et maintenance de site web et
-                    d'application mobile. <br/>
-                    <a href="{{ route('demo') }}" class="">Visitez l'espace client de démonstration</a> et retrouvez-y
-                    tous les tarifs accréditifs.</p>
-                <div class="header-btn">
-                    <a href="#prestations" class="btn-transparent">En savoir plus</a>
-                    <a href="#contact" class="btn-yellow">Me contacter</a>
+            <div class="container">
+                <div class="header-content">
+                    <h1><span class="code">CODE</span><span class="heures">heures</span> - SITES WEB</h1>
+                    <h2 class="presentation">
+                        Ma philosophie: proposer des tarifs/devis accréditifs en
+                        <strong><a href="#prestations">reportant les heures</a></strong> non consommées.
+                    </h2>
+                    <p>
+                        Programmeur WEB indépendant, j'interviens pour toute création et maintenance de site web et
+                        d'application mobile. <a href="{{ route('demo') }}" class="">Visitez l'espace client
+                            de démonstration</a> et retrouvez-y tous les tarifs accréditifs.
+                    </p>
+                    <div class="header-btn">
+                        <a href="#prestations" class="btn-transparent">En savoir plus</a>
+                        <a href="#contact" class="btn-yellow">Me contacter</a>
+                    </div>
                 </div>
-            </div>
-            <div class="scroll-down">
-                <a href="#prestations"><i class="ion-chevron-down"></i></a>
+                <div class="scroll-down">
+                    <a href="#prestations"><i class="ion-chevron-down"></i></a>
+                </div>
             </div>
         </div>
     </header>
@@ -40,7 +45,9 @@
     <div class="main container" id="main">
         <!-- section générale -->
         <section id="prestations">
-            <h1>Tarifs & Devis accréditifs <small>pour une meilleure maîtrise de votre budget</small></h1>
+            <h1><span>Tarifs & Devis accréditifs</span>
+                <small>pour une meilleure maîtrise de votre budget</small>
+            </h1>
             <h2 class="fa fa-quote-left">Combien coûte un site web?</h2>
             <p>
                 Bonne question! <br/>
@@ -49,7 +56,7 @@
                 client...<br/>
                 <br/>Alors soyons bref, et concis. Comptez à partir de:
             </p>
-            <ul class="disc">
+            <ul class="circle">
                 <li>
                     1200€ pour site vitrine simple sans intervention d'un graphiste
                 </li>
@@ -87,10 +94,7 @@
                         <a class="btn-transparent" href="{{ route('demo') }}">En savoir plus</a>
                     </div>
                 </div>
-            </article>
-
-            <article>
-                <div class="digest">
+                <aside class="digest">
                     <ul>
                         <li>
                             <hr/>
@@ -112,9 +116,8 @@
                         </li>
                     </ul>
                     <div class="clear"></div>
-                </div>
+                </aside>
             </article>
-            <div class="clear"></div>
             <h4 class="space-top">Le principe du tarif accréditif se base sur 2 priorités</h4>
             <ol class="argument">
                 <li>
@@ -198,7 +201,7 @@
                     <p>Afin de rester transparent je mets à disposition sur <a
                                 href="{{ route('customer.monitor.index')}}" title="espace client" class="a-invert">votre
                             compte client</a>:</p>
-                    <ul class="disc">
+                    <ul class="circle">
                         <li>
                             La grille des temps pré-établis
                         </li>
@@ -209,19 +212,23 @@
                 </li>
             </ol>
             <h4>Vos avantages</h4>
-            <ul class="none argument">
-                <li class="clear">
-                    <i class="fa fa-2x fa-eur"></i>
-                    <p>Vous connaissez à l'avance l'investissement maximal et maîtrisez completement votre budget.<br/>
-                        La grille des temps pré-établis definit un plafond maximum consommé pour l'action engagée.</p>
+            <ul class="advantage argument">
+                <li>
+                    <div class="top">
+                        <i class="fa fa-2x fa-eur"></i>
+                        <p>Vous connaissez à l'avance l'investissement maximal et maîtrisez completement votre budget.<br/>
+                            La grille des temps pré-établis definit un plafond maximum consommé pour l'action engagée.</p>
+                    </div>
                 </li>
-                <li class="clear">
-                    <i class="fa fa-2x fa-line-chart"></i>
-                    <p>La grille des temps pré-établis est construite sur l'expérience moyenne d'un site.<br/>
-                        Du simple fait que plus j'interviens sur votre site, plus grande est l'efficacité,
-                        et votre fidélité vous amenera au fil du temps à voir le report des minutes important et
-                        recurrent
-                    </p>
+                <li>
+                    <div class="top">
+                        <i class="fa fa-2x fa-line-chart"></i>
+                        <p>La grille des temps pré-établis est construite sur l'expérience moyenne d'un site.<br/>
+                            Du simple fait que plus j'interviens sur votre site, plus grande est l'efficacité,
+                            et votre fidélité vous amenera au fil du temps à voir le report des minutes important et
+                            recurrent
+                        </p>
+                    </div>
                 </li>
             </ul>
             <footer>
@@ -251,9 +258,7 @@
                         <a class="btn-transparent" href="#">En savoir plus</a>
                     </div>
                 </div>
-            </article>
-            <article class="digests">
-                <div class="digest">
+                <aside class="digest">
                     <ul>
                         <li>
                             <hr/>
@@ -275,9 +280,8 @@
                         </li>
                     </ul>
                     <div class="clear"></div>
-                </div>
+                </aside>
             </article>
-            <div class="clear"></div>
             <h4 class="space-top">Le principe du devis accréditif se base sur 2 constats</h4>
             <ol class="argument">
                 <li>
@@ -298,7 +302,7 @@
             <ol class="argument">
                 <li>
                     <strong>Le devis est établi en 2 sections</strong> pour une totale transparence:
-                    <ul class="disc">
+                    <ul class="circle">
                         <li>les achats (maquettes, templates, plugs-ins, nom de domaine, hebergement...)</li>
                         <li>Un temps de travail estimé sur la base du besoin</li>
                     </ul>
@@ -314,29 +318,36 @@
                 </li>
             </ol>
             <h4>Vos avantages</h4>
-            <ul class="none argument">
-                <li class="clear">
-                    <i class="fa fa-2x fa-clock-o rot90"></i>
-                    <p>
-                        Vous avez l'assurance que la totalité du temps de travail estimé dans le devis sera converti.
-                    </p>
-                        <ul class="disc">
-                            <li>Soit le temps de travail est surestimé et vous bénéficierai d'un report en heures de maintenance</li>
-                            <li>Soit le temps de travail est sous-estimé et <a href="/" title="site codeheures.fr" class="a-invert">CODEheures.fr</a>
-                                prendra à sa charge ce dépassement. </li>
-                        </ul>
+            <ul class="advantage argument">
+                <li>
+                    <div class="top">
+                        <i class="fa fa-2x fa-clock-o rot90"></i>
+                        <p>
+                            Vous avez l'assurance que la totalité du temps de travail estimé dans le devis sera converti.
+
+                        </p>
+                    </div>
+                    <ul class="circle">
+                        <li>Soit le temps de travail est surestimé et vous bénéficierai d'un report en heures de maintenance</li>
+                        <li>Soit le temps de travail est sous-estimé et <a href="/" title="site codeheures.fr" class="a-invert">CODEheures.fr</a>
+                            prendra à sa charge ce dépassement. </li>
+                    </ul>
                 </li>
-                <li class="clear">
-                    <i class="fa fa-2x fa-rocket"></i>
-                    <p>Un démarrage plus rapide du projet axé sur l'obtention concrète. Le temps gagné à l'élaboration
-                        du devis est bénéfique pour le démarrage.
-                    </p>
+                <li>
+                    <div class="top">
+                        <i class="fa fa-2x fa-rocket"></i>
+                        <p>Un démarrage plus rapide du projet axé sur l'obtention concrète. Le temps gagné à l'élaboration
+                            du devis est bénéfique pour le démarrage.
+                        </p>
+                    </div>
                 </li>
-                <li class="clear">
-                    <i class="fa fa-2x fa-magic"></i>
-                    <p>La possibilité de transformer l'éventuel reliquat des heures en fonctionnalités,
-                        en plug-ins, template supplémentaire...
-                    </p>
+                <li>
+                    <div class="top">
+                        <i class="fa fa-2x fa-magic"></i>
+                        <p>La possibilité de transformer l'éventuel reliquat des heures en fonctionnalités,
+                            en plug-ins, template supplémentaire...
+                        </p>
+                    </div>
                 </li>
             </ul>
             <footer>

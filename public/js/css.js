@@ -17,22 +17,6 @@ $(function() {
         $('body > header').css({'height': $height})
     }
 
-    function setHeightDivsFooter() {
-        var $divs = $('body > footer div.common_footer div:not(:last)');
-        var $maxheight = 0;
-        $divs.each(function(){
-            if ($(this).height() > $maxheight){
-                $maxheight = $(this).height()
-            }
-        });
-
-        $divs.each(function(){
-            if ($(this).height() < $maxheight){
-                $(this).css({'height': $maxheight+'px'});
-            }
-        });
-    }
-
     function setFooterPosition() {
         var $footer = $('body > footer');
         $footer.removeClass('absolute');
@@ -51,10 +35,9 @@ $(function() {
 
     function setOpacityHeader($window_scrollTop) {
         var $opacity = 1- $window_scrollTop/250;
-        var $marginTop = $window_scrollTop/4;
         $('.header-content').css({
             'opacity':$opacity,
-            'margin-top': $marginTop
+            'margin-top': $window_scrollTop
         });
     }
 
@@ -74,31 +57,15 @@ $(function() {
         return $obj;
     }
 
-    function setcardDescriptionPSizeAndPosition() {
-
-        var $paddingTop =  $cardDescriptionP.parent().height()/3.5+'px';
-        var $fontSize = $cardDescriptionP.parent().width()/20+'px';
-        var $lineHeight = $cardDescriptionP.parent().width()/10+'px';
-
-        $cardDescriptionP.each(function() {
-            $(this).css({'font-size': $fontSize});
-            $(this).css({'line-height': $lineHeight});
-            $(this).css({'padding-top': $paddingTop});
-        });
-    }
-
     function windowResize(){
         setHeightHeader();
         setFooterPosition();
-        setcardDescriptionPSizeAndPosition();
     }
 
 
     $(document).ready(function() {
         setHeightHeader();
-        setHeightDivsFooter();
         setFooterPosition();
-        setcardDescriptionPSizeAndPosition();
     });
 
     $(window).resize(function() {
@@ -111,11 +78,6 @@ $(function() {
         var $window_scrollTop = $(window).scrollTop();
         var $rate_scroll = $window_scrollTop/$total_scroll;
 
-
-        //Effacement du menu
-        if(window.innerWidth <= $breakPoint1) {
-            $navbarMenu.slideUp();
-        }
         //adaptation de la navbar
         shrinkNavBar($window_scrollTop);
 

@@ -1,36 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b1a72970-9a9d-4fc3-bb1f-18a4d25dd334" name="Default" comment="initie flexbox: menu fini">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/sass/_boxs-column.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/sass/_boxs-row.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/sass/_colors.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/sass/_containers.scss" />
+    <list default="true" id="b1a72970-9a9d-4fc3-bb1f-18a4d25dd334" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/css.js" afterPath="$PROJECT_DIR$/public/js/css.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/_boxs-column.scss" afterPath="$PROJECT_DIR$/resources/assets/sass/_boxs-column.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/_boxs-row.scss" afterPath="$PROJECT_DIR$/resources/assets/sass/_boxs-row.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/style.scss" afterPath="$PROJECT_DIR$/resources/assets/sass/style.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Index/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/Index/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/product/edit/view.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/product/edit/view.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/quotation/create/view.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/quotation/create/view.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/quotation/edit/view.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/quotation/edit/view.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/password.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/password.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/reset.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/reset.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/consommation/view.blade.php" afterPath="$PROJECT_DIR$/resources/views/consommation/view.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/contact/form.blade.php" afterPath="$PROJECT_DIR$/resources/views/contact/form.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/customer/account/edit/view.blade.php" afterPath="$PROJECT_DIR$/resources/views/customer/account/edit/view.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/customer/account/phoneForce/view.blade.php" afterPath="$PROJECT_DIR$/resources/views/customer/account/phoneForce/view.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/customer/quotation/index/view.blade.php" afterPath="$PROJECT_DIR$/resources/views/customer/quotation/index/view.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/customer/quotation/order/view.blade.php" afterPath="$PROJECT_DIR$/resources/views/customer/quotation/order/view.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/default.blade.php" afterPath="$PROJECT_DIR$/resources/views/default.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/navbar/admin.blade.php" afterPath="$PROJECT_DIR$/resources/views/navbar/admin.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/navbar/auth.blade.php" afterPath="$PROJECT_DIR$/resources/views/navbar/auth.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/navbar/customer.blade.php" afterPath="$PROJECT_DIR$/resources/views/navbar/customer.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/navbar/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/navbar/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/navbar/navbar.blade.php" afterPath="$PROJECT_DIR$/resources/views/navbar/navbar.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/purchase/view.blade.php" afterPath="$PROJECT_DIR$/resources/views/purchase/view.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/footer/common.blade.php" afterPath="$PROJECT_DIR$/resources/views/footer/common.blade.php" />
     </list>
     <ignored path="ecortex.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,15 +33,43 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-          <file leaf-file-name="css.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="css.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/js/css.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-2521">
-                  <caret line="74" column="5" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
+                <state relative-caret-position="416">
+                  <caret line="66" column="26" selection-start-line="66" selection-start-column="26" selection-end-line="66" selection-end-column="26" />
                   <folding>
-                    <element signature="e#5491#5677#0" expanded="false" />
-                    <element signature="e#5755#6150#0" expanded="false" />
+                    <element signature="e#4257#4443#0" expanded="false" />
+                    <element signature="e#4521#4916#0" expanded="false" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/resources/views/Index/index.blade.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="440">
+                  <caret line="81" column="16" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="16" />
+                  <folding>
+                    <element signature="e#242#1563#0#HTML" expanded="false" />
+                    <element signature="e#1679#3297#0#HTML" expanded="false" />
+                    <element signature="e#3345#11068#0#HTML" expanded="false" />
+                    <element signature="e#3526#5114#0#HTML" expanded="false" />
+                    <element signature="e#11116#17136#0#HTML" expanded="false" />
+                    <element signature="e#11323#12935#0#HTML" expanded="false" />
+                    <element signature="e#11851#12912#0#HTML" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="common.blade.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/resources/views/footer/common.blade.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="504">
+                  <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -74,29 +81,55 @@
           <file leaf-file-name="style.scss" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/resources/assets/sass/style.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-2722">
-                  <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+                <state relative-caret-position="167">
+                  <caret line="1196" column="25" selection-start-line="1196" selection-start-column="25" selection-end-line="1196" selection-end-column="25" />
                   <folding>
-                    <element signature="e#1000#1023#0" expanded="false" />
-                    <element signature="e#1030#1215#0" expanded="false" />
-                    <element signature="e#1219#1265#0" expanded="false" />
-                    <element signature="e#1283#1356#0" expanded="false" />
-                    <element signature="e#1600#1631#0" expanded="false" />
-                    <element signature="e#1640#2937#0" expanded="false" />
-                    <element signature="e#2950#2975#0" expanded="false" />
-                    <element signature="e#3206#3327#0" expanded="false" />
-                    <element signature="e#3341#3522#0" expanded="false" />
-                    <element signature="e#3537#3718#0" expanded="false" />
-                    <element signature="e#3733#3841#0" expanded="false" />
-                    <element signature="e#3879#5175#0" expanded="false" />
-                    <element signature="e#4911#4935#0" expanded="false" />
-                    <element signature="e#5221#7184#0" expanded="false" />
-                    <element signature="e#7223#22025#0" expanded="false" />
-                    <element signature="e#22041#23158#0" expanded="false" />
-                    <element signature="e#23302#24989#0" expanded="false" />
-                    <element signature="e#25030#25298#0" expanded="false" />
-                    <element signature="e#25395#27488#0" expanded="false" />
+                    <element signature="e#1091#1114#0" expanded="false" />
+                    <element signature="e#1121#1306#0" expanded="false" />
+                    <element signature="e#1310#1356#0" expanded="false" />
+                    <element signature="e#1477#1534#0" expanded="false" />
+                    <element signature="e#1539#1570#0" expanded="false" />
+                    <element signature="e#1582#1633#0" expanded="false" />
+                    <element signature="e#1797#1868#0" expanded="false" />
+                    <element signature="e#1885#1916#0" expanded="false" />
+                    <element signature="e#3237#3262#0" expanded="false" />
+                    <element signature="e#3280#3474#0" expanded="false" />
+                    <element signature="e#3493#3614#0" expanded="false" />
+                    <element signature="e#3628#3809#0" expanded="false" />
+                    <element signature="e#3824#4005#0" expanded="false" />
+                    <element signature="e#4020#4128#0" expanded="false" />
+                    <element signature="e#4215#5511#0" expanded="false" />
+                    <element signature="e#5247#5271#0" expanded="false" />
+                    <element signature="e#5557#7555#0" expanded="false" />
+                    <element signature="e#7880#8149#0" expanded="false" />
+                    <element signature="e#8160#8219#0" expanded="false" />
+                    <element signature="e#8230#8375#0" expanded="false" />
+                    <element signature="e#8386#8527#0" expanded="false" />
+                    <element signature="e#8537#9196#0" expanded="false" />
+                    <element signature="e#9215#9278#0" expanded="false" />
+                    <element signature="e#9296#9356#0" expanded="false" />
+                    <element signature="e#9377#9848#0" expanded="false" />
+                    <element signature="e#9866#9923#0" expanded="false" />
+                    <element signature="e#9938#10516#0" expanded="false" />
+                    <element signature="e#19245#21218#0" expanded="false" />
+                    <element signature="e#21233#21495#0" expanded="false" />
+                    <element signature="e#23284#24971#0" expanded="false" />
+                    <element signature="e#24989#25100#0" expanded="false" />
+                    <element signature="e#25833#27928#0" expanded="false" />
+                    <marker date="1467512818657" expanded="false" signature="19347:20517" ph="{...}" />
+                    <marker date="1467512818657" expanded="false" signature="23178:25102" ph="{...}" />
+                    <marker date="1467512818657" expanded="false" signature="25140:25343" ph="{...}" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="_boxs-column.scss" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/resources/assets/sass/_boxs-column.scss">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1191">
+                  <caret line="73" column="12" selection-start-line="73" selection-start-column="12" selection-end-line="73" selection-end-column="12" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -104,8 +137,8 @@
           <file leaf-file-name="_boxs-row.scss" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/resources/assets/sass/_boxs-row.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1201">
-                  <caret line="65" column="18" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
+                <state relative-caret-position="891">
+                  <caret line="79" column="16" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
                   <folding />
                 </state>
               </provider>
@@ -143,19 +176,20 @@
         <option value="$PROJECT_DIR$/resources/views/default.blade.php" />
         <option value="$PROJECT_DIR$/resources/assets/sass/_containers.scss" />
         <option value="$PROJECT_DIR$/resources/assets/sass/_colors.scss" />
-        <option value="$PROJECT_DIR$/resources/assets/sass/_boxs-column.scss" />
         <option value="$PROJECT_DIR$/resources/views/navbar/navbar.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/navbar/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/product/edit/view.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/quotation/create/view.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/Index/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/quotation/edit/view.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/navbar/customer.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/navbar/auth.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/navbar/admin.blade.php" />
         <option value="$PROJECT_DIR$/resources/assets/sass/_boxs-row.scss" />
-        <option value="$PROJECT_DIR$/resources/assets/sass/style.scss" />
+        <option value="$PROJECT_DIR$/resources/views/Index/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/assets/sass/_boxs-column.scss" />
+        <option value="$PROJECT_DIR$/resources/views/footer/common.blade.php" />
         <option value="$PROJECT_DIR$/public/js/css.js" />
+        <option value="$PROJECT_DIR$/resources/assets/sass/style.scss" />
       </list>
     </option>
   </component>
@@ -267,55 +301,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pdf" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="quotation" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="codeheures" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="codeheures" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="navbar" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="codeheures" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="codeheures" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="auth" />
+              <option name="myItemId" value="footer" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -597,7 +583,7 @@
       <workItem from="1467286582497" duration="17876000" />
       <workItem from="1467356427509" duration="23812000" />
       <workItem from="1467415547273" duration="150000" />
-      <workItem from="1467464056612" duration="18211000" />
+      <workItem from="1467464056612" duration="34409000" />
     </task>
     <task id="LOCAL-00001" summary="update phone format">
       <created>1466111792439</created>
@@ -613,11 +599,18 @@
       <option name="project" value="LOCAL" />
       <updated>1467464564185</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="flexbox init and menu modify ok">
+      <created>1467490985492</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1467490985492</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96718000" />
+    <option name="totallyTimeSpent" value="112916000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-10" y="0" width="3860" height="2110" extended-state="0" />
@@ -625,9 +618,9 @@
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950392" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16657963" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22781526" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22767624" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16330859" sideWeight="0.24327958" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16339523" sideWeight="0.7567204" order="0" side_tool="false" content_ui="combo" />
@@ -682,20 +675,14 @@
     <MESSAGE value="update phone format" />
     <MESSAGE value="Finalisation argumentaire page acceuil&#10;Mise à jour vendor (change illuminate/html par  LaravelCollective/html&#10;Mise à jour CSS&#10;" />
     <MESSAGE value="initie flexbox: menu fini" />
-    <option name="LAST_COMMIT_MESSAGE" value="initie flexbox: menu fini" />
+    <MESSAGE value="flexbox init and menu modify ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="flexbox init and menu modify ok" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/mail.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1185">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/filesystems.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-315">
@@ -851,14 +838,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/sass/_boxs-column.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1046">
-          <caret line="39" column="1" selection-start-line="39" selection-start-column="1" selection-end-line="39" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/defaultPdf.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -939,14 +918,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/contact/form.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="27" column="44" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/consommation/view.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="457">
@@ -983,14 +954,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2730">
           <caret line="130" column="40" selection-start-line="130" selection-start-column="40" selection-end-line="130" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Index/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11798">
-          <caret line="347" column="35" selection-start-line="347" selection-start-column="35" selection-end-line="347" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -1061,47 +1024,103 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/sass/_boxs-row.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1201">
-          <caret line="65" column="18" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
+        <state relative-caret-position="891">
+          <caret line="79" column="16" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/sass/style.scss">
+    <entry file="file://$PROJECT_DIR$/resources/assets/sass/_boxs-column.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2722">
-          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+        <state relative-caret-position="1191">
+          <caret line="73" column="12" selection-start-line="73" selection-start-column="12" selection-end-line="73" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/contact/form.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="891">
+          <caret line="27" column="44" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Index/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="81" column="16" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="16" />
           <folding>
-            <element signature="e#1000#1023#0" expanded="false" />
-            <element signature="e#1030#1215#0" expanded="false" />
-            <element signature="e#1219#1265#0" expanded="false" />
-            <element signature="e#1283#1356#0" expanded="false" />
-            <element signature="e#1600#1631#0" expanded="false" />
-            <element signature="e#1640#2937#0" expanded="false" />
-            <element signature="e#2950#2975#0" expanded="false" />
-            <element signature="e#3206#3327#0" expanded="false" />
-            <element signature="e#3341#3522#0" expanded="false" />
-            <element signature="e#3537#3718#0" expanded="false" />
-            <element signature="e#3733#3841#0" expanded="false" />
-            <element signature="e#3879#5175#0" expanded="false" />
-            <element signature="e#4911#4935#0" expanded="false" />
-            <element signature="e#5221#7184#0" expanded="false" />
-            <element signature="e#7223#22025#0" expanded="false" />
-            <element signature="e#22041#23158#0" expanded="false" />
-            <element signature="e#23302#24989#0" expanded="false" />
-            <element signature="e#25030#25298#0" expanded="false" />
-            <element signature="e#25395#27488#0" expanded="false" />
+            <element signature="e#242#1563#0#HTML" expanded="false" />
+            <element signature="e#1679#3297#0#HTML" expanded="false" />
+            <element signature="e#3345#11068#0#HTML" expanded="false" />
+            <element signature="e#3526#5114#0#HTML" expanded="false" />
+            <element signature="e#11116#17136#0#HTML" expanded="false" />
+            <element signature="e#11323#12935#0#HTML" expanded="false" />
+            <element signature="e#11851#12912#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/css.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2521">
-          <caret line="74" column="5" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
+        <state relative-caret-position="416">
+          <caret line="66" column="26" selection-start-line="66" selection-start-column="26" selection-end-line="66" selection-end-column="26" />
           <folding>
-            <element signature="e#5491#5677#0" expanded="false" />
-            <element signature="e#5755#6150#0" expanded="false" />
+            <element signature="e#4257#4443#0" expanded="false" />
+            <element signature="e#4521#4916#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/footer/common.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/sass/style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="1196" column="25" selection-start-line="1196" selection-start-column="25" selection-end-line="1196" selection-end-column="25" />
+          <folding>
+            <element signature="e#1091#1114#0" expanded="false" />
+            <element signature="e#1121#1306#0" expanded="false" />
+            <element signature="e#1310#1356#0" expanded="false" />
+            <element signature="e#1477#1534#0" expanded="false" />
+            <element signature="e#1539#1570#0" expanded="false" />
+            <element signature="e#1582#1633#0" expanded="false" />
+            <element signature="e#1797#1868#0" expanded="false" />
+            <element signature="e#1885#1916#0" expanded="false" />
+            <element signature="e#3237#3262#0" expanded="false" />
+            <element signature="e#3280#3474#0" expanded="false" />
+            <element signature="e#3493#3614#0" expanded="false" />
+            <element signature="e#3628#3809#0" expanded="false" />
+            <element signature="e#3824#4005#0" expanded="false" />
+            <element signature="e#4020#4128#0" expanded="false" />
+            <element signature="e#4215#5511#0" expanded="false" />
+            <element signature="e#5247#5271#0" expanded="false" />
+            <element signature="e#5557#7555#0" expanded="false" />
+            <element signature="e#7880#8149#0" expanded="false" />
+            <element signature="e#8160#8219#0" expanded="false" />
+            <element signature="e#8230#8375#0" expanded="false" />
+            <element signature="e#8386#8527#0" expanded="false" />
+            <element signature="e#8537#9196#0" expanded="false" />
+            <element signature="e#9215#9278#0" expanded="false" />
+            <element signature="e#9296#9356#0" expanded="false" />
+            <element signature="e#9377#9848#0" expanded="false" />
+            <element signature="e#9866#9923#0" expanded="false" />
+            <element signature="e#9938#10516#0" expanded="false" />
+            <element signature="e#19245#21218#0" expanded="false" />
+            <element signature="e#21233#21495#0" expanded="false" />
+            <element signature="e#23284#24971#0" expanded="false" />
+            <element signature="e#24989#25100#0" expanded="false" />
+            <element signature="e#25833#27928#0" expanded="false" />
+            <marker date="1467512818657" expanded="false" signature="19347:20517" ph="{...}" />
+            <marker date="1467512818657" expanded="false" signature="23178:25102" ph="{...}" />
+            <marker date="1467512818657" expanded="false" signature="25140:25343" ph="{...}" />
           </folding>
         </state>
       </provider>
