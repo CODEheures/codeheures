@@ -3,16 +3,18 @@
         <?php $totalPrice = $totalPrices[$quotation->id];
          $totalTva = $totalTvas[$quotation->id] ?>
         <div class="quotation-title">
-            <h2><i class="ion-ios-information-outline"></i>Devis N°{{ $quotation->getPublicNumber() }}:</h2>
-            @if($quotation->canPurchase())
-            <div class="cart-quotation">
-                <a href="{{ route('customer.quotation.order', ['id' => $quotation->id]) }}" title="En cliquant, vous pourrez lire les conditions du présent devis et vous recevrez un sms avec un code de confirmation à utiliser à la prochaine étape pour signer ce devis" class="btn-yellow2">
-                    <i class="ion-edit"></i>Signer ce devis
-                </a>
+            <div class="left">
+                <h2><i class="ion-ios-information-outline"></i>Devis N°{{ $quotation->getPublicNumber() }}:</h2>
+                @if($quotation->canPurchase())
+                    <div class="cart-quotation">
+                        <a href="{{ route('customer.quotation.order', ['id' => $quotation->id]) }}" title="En cliquant, vous pourrez lire les conditions du présent devis et vous recevrez un sms avec un code de confirmation à utiliser à la prochaine étape pour signer ce devis" class="btn-yellow2">
+                            <i class="ion-edit"></i>Signer ce devis
+                        </a>
+                    </div>
+                @endif
             </div>
-            @endif
             <div class="price-quotation">
-                <div class="total-price-quotation-info">
+                <div class="btn-fake total-price-quotation-info">
                     Coût total: {{ number_format($totalPrice+$totalTva,2,'.',' ') }}€
                 </div>
             </div>
@@ -32,7 +34,6 @@
             @endif
             @include('customer.quotation.table.view')
         </div>
-        <div class="clear"></div>
     @endforeach
 @else
 <div class="quotation">

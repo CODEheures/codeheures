@@ -77,6 +77,8 @@ body {
   background: url('images/bg3.png') repeat fixed;
   background-color: $bg-color1;
   color: $color3;
+  min-height: 100vh;
+  @include cnsbc;
 }
 
 a {
@@ -120,22 +122,24 @@ ul.circle {
 }
 
 .alert {
+  @include cnfsfs;
   position: fixed;
   top: 10rem;
   z-index: 2000;
   border-radius: 0.5rem;
   border: 0.1rem solid;
-  padding-right: 5rem;
+  padding-right: 2rem;
   padding-left: 2rem;
   width: 70%;
   margin: 0 0 0 15%;
 
+  & .title {
+    @include rnsbfs;
+    width: 100%;
+  }
+
   & .close_btn {
-    display: inline-block;
     font-size: 3.4rem;
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
     cursor: pointer;
   }
 
@@ -151,11 +155,8 @@ ul.circle {
     color: darken(opacify($color-info, 1), 40%);
 
     &.fixe-here {
-      display: block;
       position: relative;
       top: 2rem;
-      clear: both;
-
       & p {
         float: none;
       }
@@ -306,6 +307,25 @@ ul.circle {
       &:hover {
         background-color: lighten($color5, 10%);
       }
+      & span.newQuote {
+        z-index: 2;
+        position: relative;
+
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+
+        border-radius: 50%;
+        border-color: $color3;
+        border-width: 0.2rem;
+        border-style: outset;
+
+        color: $color3;
+        font-weight: 400;
+        font-size: 1.2rem;
+        background-color: $color8;
+        margin-left: 0.3rem;
+
+      }
     }
   }
 
@@ -337,7 +357,7 @@ ul.circle {
 body > header {
   background: url('images/2.jpg') no-repeat top center fixed;
   background-size: cover;
-
+  width: 100%;
   .bg-cover {
     position: absolute;
     left: 0;
@@ -370,7 +390,6 @@ body > header {
         & span.code {
           font-family: $font2;
         }
-
         & span.heures {
           font-family: $font3;
           font-weight: 100;
@@ -456,6 +475,7 @@ body > header {
     color: $color4;
     font-weight: 100;
     max-width: 100%;
+    width: 100%;
     & h1 {
       @include rwfsbl;
       text-transform: uppercase;
@@ -472,6 +492,7 @@ body > header {
     }
 
     & h2 {
+      @include rnfsc;
       font-size: 2.8rem;
       padding-top: 2.5rem;
     }
@@ -589,18 +610,11 @@ body > header {
       }
     }
 
-    & a.registration {
-      @include span(12);
-      text-align: right;
-      color: $color8;
-      padding-top: 1rem;
-    }
-
-
     & div.purchase-title,
     & div.quotation-title,
     & div.product-title {
-      @include span(12);
+      @include rwsbc;
+      width: 100%;
       margin-top: 2rem;
       line-height: 4rem;
 
@@ -608,40 +622,27 @@ body > header {
         margin-top: 7rem;
       }
 
+      & .left {
+        @include rwfsc;
+      }
+
       & h2 {
-        display: inline-block;
         font-size: 2.2rem;
-        width: auto;
         padding-top: 0;
-        padding-right: 0;
-        padding-left: 0;
-        float: none;
-
-
         & i {
           font-size: 4rem;
-          vertical-align: middle;
           padding-right: 0.8rem;
         }
       }
 
       & div.cart-quotation,
       & div.price-quotation {
-        display: inline-block;
-        width: auto;
-      }
-
-      & div.price-quotation {
-        float: right;
+        margin-bottom: 1rem;
       }
 
       & div.reliquat-customer-info,
       & div.total-price-quotation-info {
-        display: inline-block;
-        float: right;
-        margin-right: 4rem;
-        padding: 0 1.5rem;
-        border-radius: 0.8rem;
+        line-height: initial;
         border: 0.1rem solid $color7;
         background-color: $color7;
         color: $color3;
@@ -757,7 +758,7 @@ body > header {
     }
 
     &#user {
-
+      width: 100%;
       & a {
         color: $color8;
       }
@@ -765,8 +766,7 @@ body > header {
       & nav.monitor-return,
       & nav.quotation-title,
       & nav.product-title {
-        @include span(12);
-        @include gutter(0);
+        width: 100%;
         position: relative;
         top: -1.8rem;
 
@@ -776,8 +776,6 @@ body > header {
       }
 
       & nav.quotation-get-pdf {
-        @include span(12);
-        @include gutter(0);
         position: relative;
         top: -1.3rem;
         left: 4.2rem;
@@ -787,14 +785,17 @@ body > header {
         }
       }
 
-      & p > span.signature {
-        color:$color-error;
-        float: right;
+      & p.order-validity {
+        @include rwsbc;
+        width: 100%;
+        & > span.signature {
+          color:$color-error;
+          float: right;
+        }
       }
 
       & div.graph-conso {
-        @include span(12);
-
+        width: 100%;
         & figure {
           height: 30rem;
         }
@@ -811,55 +812,13 @@ body > header {
           box-shadow: 0  0.1rem rgba(0, 0, 0, 0.5);
         }
       }
-
-      & div.seller {
-        @include span(12);
-        & div.from-seller {
-          float: left;
-          display: inline-block;
-          width: 18rem;
-        }
-
-        & div.infos {
-          float: left;
-          padding-left: 1rem;
-          margin-left: 2rem;
-          border-left: 0.1rem solid $color12;
-        }
-      }
-
-      & div.customer {
-        @include span(12);
-        padding-top: 5rem;
-        margin-left: 30rem;
-        & div.to-customer {
-          float: left;
-          display: inline-block;
-          width: 18rem;
-        }
-
-        & div.infos {
-          float: left;
-          padding-left: 1rem;
-          margin-left: 2rem;
-          border-left: 0.1rem solid $color12;
-        }
-      }
-
-      & p.sign {
-        text-align: right;
-        margin-top: 2rem;
-        margin-bottom: 4rem;
-        font-weight: 400;
-        padding-right: 3rem;
-      }
-
     }
 
     &#user div.purchase,
     &#user div.quotation,
     &#user div.product {
-      @include span(12);
+      @include cnfsfs;
+      width: 100%;
       padding-top: 2rem;
 
       & p {
@@ -882,7 +841,7 @@ body > header {
         }
 
         &.downPercentPayment {
-          text-align: center;
+          align-self: center;
           font-style: italic;
           padding-top: 3rem;
           font-weight: 400;
@@ -891,6 +850,8 @@ body > header {
       }
 
       & div.quotation-total {
+        align-self: flex-end;
+        @include rnfsfs;
         & p:not(.ttc) {
           font-weight: 100;
         }
@@ -900,23 +861,22 @@ body > header {
           padding-top: 0.5rem;
         }
 
-        & div.quotation-total-title {
-          @include span(8);
+        & div.quotation-total-title, & div.quotation-total-value {
           text-align: right;
         }
 
         & div.quotation-total-value {
-          @include span(4);
-          text-align: right;
-
+          padding-left: 2rem;
           & p.ttc {
             border-top: 0.2rem solid $color6;
           }
         }
-      }
 
-      & ul.quotation-list {
-        display: none;
+        & div.quotation-total-title {
+          & p.ttc {
+            border-top: 0.2rem solid transparent;
+          }
+        }
       }
 
       & table {
@@ -960,11 +920,6 @@ body > header {
               background-color: $color1;
             }
           }
-        }
-
-        &.purchase-table tbody tr,
-        &.quotation-table tbody tr {
-          display: none;
         }
       }
 
@@ -1131,12 +1086,9 @@ body > header {
     }
 
     & div.form-title {
-      @include span(12);
-
       & p {
         font-size: 150%;
       }
-
       & h1, & a {
         display: inline-block;
         width: auto;
@@ -1145,23 +1097,21 @@ body > header {
 
     & form {
       @include rwfsfs;
+      width: 100%;
       margin-top: 2rem;
       & .form-group {
         display: flex;
         width: 100%;
         font-size: 150%;
-        & a {
-          display: inline-block;
-          width: calc(100% - 2em);
-          font-size: 75%;
-          text-align: right;
-          position: relative;
-          bottom: 0;
-          max-width: 45rem;
-          margin-left: 1em;
-          margin-right: 1em;
-          color: $color4;
-          top: -1em;
+        &.password {
+          @include cnfsfs;
+            & > a {
+              font-size: 1.2rem;
+              position: relative;
+              color: $color4;
+              top: -1em;
+              margin-left: 1.5rem;
+            }
         }
       }
 
@@ -1177,11 +1127,18 @@ body > header {
     }
 
   }
-
+  & a.registration {
+    @include rnfec;
+    align-self: flex-end;
+    text-align: right;
+    color: $color8;
+    padding-top: 1rem;
+  }
 }
 
 body > footer {
   @include rnfsc;
+  width: 100%;
   background-color: $color5;
 
   color: $color3;
@@ -1276,6 +1233,10 @@ body > footer {
           transition-duration: 800ms;
         }
 
+        &:hover {
+          background-color: transparent;
+        }
+
         &[aria-selected="true"] {
           color: $color1;
           & .activeplus {
@@ -1289,34 +1250,10 @@ body > footer {
             background-color: $color3;
           }
           &:hover {
-            background-color: transparent;
             & .activeplus {
               width: 100%;
             }
           }
-
-        }
-
-        & span.newQuote {
-          z-index: 2;
-          position: relative;
-          top: 1rem;
-          left: -0.7rem;
-
-          padding-left: 0.5rem;
-          padding-right: 0.5rem;
-
-          border-radius: 50%;
-          border-color: $color3;
-          border-width: 0.2rem;
-          border-style: outset;
-
-          color: $color3;
-          font-weight: 400;
-
-          background-color: $color8;
-
-
         }
       }
     }
@@ -1327,6 +1264,19 @@ body > footer {
       .header-content {
         h1 {
           font-size: 5.6rem;
+        }
+      }
+    }
+  }
+
+  .main {
+    section {
+      & div.purchase-title,
+      & div.quotation-title,
+      & div.product-title {
+        & div.cart-quotation,
+        & div.price-quotation {
+          margin-bottom: 0;
         }
       }
     }
@@ -1431,13 +1381,6 @@ body > footer {
   //      &#user div.quotation {
   //        & table.quotation-table {
   //          display: none;
-  //        }
-  //
-  //        & ul.quotation-list {
-  //          display: block;
-  //          list-style-type: circle;
-  //          list-style-position: inside;
-  //          @include span(12);
   //        }
   //
   //        & p.tva-info {

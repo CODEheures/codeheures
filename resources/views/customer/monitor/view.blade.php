@@ -1,6 +1,6 @@
 <div class="purchase-title">
     <h2><i class="ion-ios-speedometer-outline"></i>Ma consommation</h2>
-    <div class="reliquat-customer-info">
+    <div class="btn-fake reliquat-customer-info">
         Crédit: {{ $totalLeft }}h
     </div>
 </div>
@@ -51,7 +51,6 @@
             </tbody>
         </table>
     </div>
-    <div class="clear"></div>
     @endif
 @endforeach
 
@@ -89,4 +88,3 @@
     <p>Aucune prestation personnalisée dans vos commandes</p>
 @endif
 </div>
-<div class="clear"></div>

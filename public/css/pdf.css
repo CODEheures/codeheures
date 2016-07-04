@@ -94,7 +94,8 @@ table tr:first-child th:last-child {
 
 table tr {
   text-align: center;
-  padding-left: 2rem; }
+  padding-left: 2rem;
+  display: table-row; }
 
 table td:first-child {
   text-align: left;

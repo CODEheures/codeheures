@@ -17,7 +17,7 @@
         </span>
     </div>
 
-    <div class="form-group">
+    <div class="form-group password">
         <span class="input input--fumi">
             {!! Form::password('password', ['class' => 'input__field input__field--fumi', 'placeholder' => '********']) !!}
             <label for="name" class="input__label input__label--fumi">
@@ -27,8 +27,6 @@
         </span>
         <a href="{{ route('reset.request') }}">mot de passe oublié ?</a>
     </div>
-
-    <div class="clear"></div>
 
     <div class="form-submit">
         <div class="submit">
@@ -42,6 +40,5 @@
             </div>
         </div>
     </div>
-    <div class="clear"></div>
 {!! Form::close() !!}
 @endsection

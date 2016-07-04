@@ -15,4 +15,9 @@
 
 @section('script')
     @include('plugins.graphConso.scripts')
+    <script type="text/javascript">
+        $(function() {
+            $('section#user div.purchase table.purchase-table tfoot').trigger('click');
+        });
+    </script>
 @endsection

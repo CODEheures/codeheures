@@ -48,32 +48,6 @@
     @endforeach
     </tbody>
 </table>
-@if(!isset($isPdf) || !$isPdf)
-<ul class="quotation-list">
-    @foreach($quotation->lineQuotes as $lineQuote)
-        <li>{{ $lineQuote->product->description }}
-            {{ $lineQuote->product->price }}€(ht)*
-            {{ $lineQuote->quantity }}
-
-            @if($lineQuote->discount > 0)-{{ $lineQuote->discount }}
-            @if($lineQuote->discount_type == 'percent')
-                %
-            @else
-                €
-            @endif
-            @else
-            @endif
-
-            @if($lineQuote->discount > 0 && $lineQuote->discount_type == 'devise')
-                ={{ $lineQuote->product->price*$lineQuote->quantity - $lineQuote->discount}}€(ht)
-            @elseif($lineQuote->discount > 0 && $lineQuote->discount_type == 'percent')
-                ={{ $lineQuote->product->price*$lineQuote->quantity*(1-$lineQuote->discount/100)}}€(ht)
-            @else
-                ={{ $lineQuote->product->price*$lineQuote->quantity }}€(ht)</li>
-        @endif
-    @endforeach
-</ul>
-@endif
 <p class="tva-info">TVA non applicable, article 293B du code général des impôts. Ce devis contient {{ count($quotation->lineQuotes) }} lignes.</p>
 <div class="quotation-total">
     <div class="quotation-total-title">

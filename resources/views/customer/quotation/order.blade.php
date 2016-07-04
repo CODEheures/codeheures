@@ -17,10 +17,5 @@
 
 @section('script')
     @parent
-    <script type="text/javascript">
-        $(function() {
-            $('section#user div.quotation table.quotation-table tfoot').trigger('click');
-        });
-    </script>
     @include('plugins.inputEffect.scripts')
 @endsection

@@ -52,7 +52,7 @@
 
     <div class="purchase-title">
         <h2><i class="ion-ios-speedometer-outline"></i>Ma consommation</h2>
-        <div class="reliquat-customer-info">
+        <div class="btn-fake reliquat-customer-info">
             Crédit: {{ $reste }}h
         </div>
     </div>

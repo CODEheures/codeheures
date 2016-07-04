@@ -4,25 +4,15 @@
 $(function() {
 
     //parametre application
-    var $breakPoint1 = 790;
     var $navbarMenu = $('.navbar-menu');
     var $hamburger = $('.hamburger');
     var $alerts = $('.alert');
     var $menu_links = $('.navbar-menu a');
-    var $cardDescriptionP = $('.card_description p');
     var $tableaux = $('section#user div.purchase table.purchase-table, section#user div.quotation table.quotation-table');
 
     function setHeightHeader() {
         var $height = $(window).height();
         $('body > header').css({'height': $height})
-    }
-
-    function setFooterPosition() {
-        var $footer = $('body > footer');
-        $footer.removeClass('absolute');
-        if($footer.offset().top+$footer.height() < $(window).height()){
-            $footer.addClass('absolute');
-        }
     }
 
     function shrinkNavBar($window_scrollTop) {
@@ -57,19 +47,12 @@ $(function() {
         return $obj;
     }
 
-    function windowResize(){
-        setHeightHeader();
-        setFooterPosition();
-    }
-
-
     $(document).ready(function() {
         setHeightHeader();
-        setFooterPosition();
     });
 
     $(window).resize(function() {
-       windowResize();
+        setHeightHeader();
     });
 
     $(window).scroll(function() {
@@ -92,7 +75,6 @@ $(function() {
             $def_ancre != null ? $ancres.push($def_ancre):null;
         }
 
-
         //Recherche de l'ancre la plus proche du scroll
         var $memo_key = '';
         for(var $key in $ancres) {
@@ -101,16 +83,12 @@ $(function() {
             }
         }
 
-
         //Action sur la clé la plus proche du scroll
         $('.navbar-menu a').each(function(){
             if($memo_key != '' && $(this).attr('href').indexOf('#'+$ancres[$memo_key]['name']) > -1 && !$(this).hasClass('active')){
                 $(this).trigger('click');
             }
         });
-
-
-
 
         //animation des descriptions des cartes
         var $card = $('.card');
@@ -147,8 +125,8 @@ $(function() {
 
     //Fermeture des alerts
     $alerts.each(function(){
-        $(this).children('.close_btn').on('click', function(){
-            $(this).parent().slideUp(500, function() {
+        $(this).find('.close_btn').on('click', function(){
+            $(this).parent().parent().slideUp(500, function() {
                 $(this).remove();
             });
         })
@@ -159,7 +137,7 @@ $(function() {
         $(this).children('tfoot').on('click', function() {
            $(this).parent().children('tbody').children('tr').each(function(){
               $(this).fadeToggle(600, function(){
-                  windowResize();
+                  setHeightHeader();
               });
            });
            $(this).find('i').toggleClass('ion-chevron-down');

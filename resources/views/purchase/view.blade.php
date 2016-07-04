@@ -49,7 +49,7 @@
 
     <div class="purchase-title">
         <h2><i class="ion-ios-speedometer-outline"></i>Ma consommation</h2>
-        <div class="reliquat-customer-info">
+        <div class="btn-fake reliquat-customer-info">
             Crédit: {{ $totalLeft }}h
         </div>
     </div>
@@ -82,12 +82,11 @@
         </table>
     </div>
 @endif
-<div class="clear"></div>
 
 @if(auth()->user()->role =='admin')
     <div class="purchase-title">
         <h2><i class="ion-plus-round"></i>Ajouter une consommation client</h2>
-        <div class="reliquat-customer-info">
+        <div class="btn-fake reliquat-customer-info">
             Maxi: {{ $totalLeft }}h
         </div>
     </div>
