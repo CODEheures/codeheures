@@ -45,8 +45,6 @@ $lm768: (
         column-width: 10rem,
 );
 
-
-
 /*
 *********reset css *******
 */
@@ -776,10 +774,6 @@ body > header {
       }
 
       & nav.quotation-get-pdf {
-        position: relative;
-        top: -1.3rem;
-        left: 4.2rem;
-
         & p {
           padding: 0;
         }
@@ -1277,6 +1271,13 @@ body > footer {
         & div.cart-quotation,
         & div.price-quotation {
           margin-bottom: 0;
+        }
+      }
+      &#user {
+        & nav.quotation-get-pdf {
+          position: relative;
+          top: -1.3rem;
+          left: 4.2rem;
         }
       }
     }

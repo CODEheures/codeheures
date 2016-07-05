@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="scroll-down">
-                    <a href="#prestations"><i class="ion-chevron-down"></i></a>
+                    <a href="#prestations"><i class="ion-chevron-up"></i></a>
                 </div>
             </div>
         </div>

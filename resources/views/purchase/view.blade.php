@@ -17,7 +17,7 @@
             </thead>
             <tfoot>
             <tr>
-                <td colspan={!! auth()->user()->role == 'admin' ? "5":"4" !!}>détails<br /><i class="ion-chevron-down"></i></td>
+                <td colspan={!! auth()->user()->role == 'admin' ? "5":"4" !!}>détails<br /><i class="ion-chevron-up"></i></td>
             </tr>
             </tfoot>
             <tbody>

@@ -245,7 +245,7 @@ table tr:last-child td:first-child {
 table tr:last-child td:last-child {
   border-bottom-right-radius: 0.3rem; }
 
-table tr:hover td {
+table tbody tr:hover td {
   background: #f2f2f2;
   background: -webkit-linear-gradient(bottom, #f2f2f2, #f0f0f0);
   background: linear-gradient(to top, #f2f2f2, #f0f0f0); }
@@ -6414,12 +6414,8 @@ body > header {
         .main section#user nav.quotation-title p,
         .main section#user nav.product-title p {
           padding: 0; }
-      .main section#user nav.quotation-get-pdf {
-        position: relative;
-        top: -1.3rem;
-        left: 4.2rem; }
-        .main section#user nav.quotation-get-pdf p {
-          padding: 0; }
+      .main section#user nav.quotation-get-pdf p {
+        padding: 0; }
       .main section#user p.order-validity {
         display: -webkit-box;
         display: -webkit-flex;
@@ -7178,7 +7174,11 @@ body > footer {
   .main section div.quotation-title div.price-quotation,
   .main section div.product-title div.cart-quotation,
   .main section div.product-title div.price-quotation {
-    margin-bottom: 0; } }
+    margin-bottom: 0; }
+  .main section#user nav.quotation-get-pdf {
+    position: relative;
+    top: -1.3rem;
+    left: 4.2rem; } }
 
 @media screen and (min-width: 800px) {
   .main section article {

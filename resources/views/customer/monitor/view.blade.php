@@ -33,7 +33,7 @@
             </thead>
             <tfoot>
                 <tr>
-                    <td colspan="4">détails<br /><i class="ion-chevron-down"></i></td>
+                    <td colspan="4">détails<br /><i class="ion-chevron-up"></i></td>
                 </tr>
             </tfoot>
             <tbody>

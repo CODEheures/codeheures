@@ -123,7 +123,7 @@ table tr:last-child td:first-child {
 table tr:last-child td:last-child {
   border-bottom-right-radius: 0.3rem; }
 
-table tr:hover td {
+table tbody tr:hover td {
   background: #f2f2f2;
   background: -webkit-linear-gradient(bottom, #f2f2f2, #f0f0f0);
   background: linear-gradient(to top, #f2f2f2, #f0f0f0); }

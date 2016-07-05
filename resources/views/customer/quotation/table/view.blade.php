@@ -12,7 +12,7 @@
     @if(!isset($isPdf) || !$isPdf)
     <tfoot>
     <tr>
-        <td colspan="6">détails<br /><i class="ion-chevron-down"></i></td>
+        <td colspan="6">détails<br /><i class="ion-chevron-up"></i></td>
     </tr>
     </tfoot>
     <tbody>

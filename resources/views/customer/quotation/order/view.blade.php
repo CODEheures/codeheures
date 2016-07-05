@@ -13,7 +13,7 @@
 @endif
 <div class="quotation">
     <p class="order-validity">
-        <span class="quotation-date"> valable jusqu'au {{ \Carbon\Carbon::parse($quotation->validity)->formatLocalized('%A %e %B %Y') }}:</span>@if(!isset($isPdf) || !$isPdf)<span class="signature">Signature en bas de page</span>@endif
+        <span class="quotation-date"> valable jusqu'au {{ \Carbon\Carbon::parse($quotation->validity)->formatLocalized('%A %e %B %Y') }}:</span>@if(!isset($isPdf) || !$isPdf)<span class="signature">CODE SMS A CONFIRMER en bas de page</span>@endif
     </p>
     @include('customer.quotation.table.view')
     @if($quotation->downPercentPayment)

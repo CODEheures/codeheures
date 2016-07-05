@@ -17,7 +17,7 @@
             </thead>
             <tfoot>
             <tr>
-                <td colspan="5">détails<br /><i class="ion-chevron-down"></i></td>
+                <td colspan="5">détails<br /><i class="ion-chevron-up"></i></td>
             </tr>
             </tfoot>
             <tbody>
