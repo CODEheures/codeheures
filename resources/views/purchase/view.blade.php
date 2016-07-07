@@ -17,7 +17,7 @@
             </thead>
             <tfoot>
             <tr>
-                <td colspan={!! auth()->user()->role == 'admin' ? "5":"4" !!}>détails<br /><i class="ion-chevron-down"></i></td>
+                <td colspan={!! auth()->user()->role == 'admin' ? "5":"4" !!}>détails<br /><i class="ion-chevron-up"></i></td>
             </tr>
             </tfoot>
             <tbody>
@@ -32,11 +32,11 @@
                     <td>{{ $reste }}</td>
                     @if(auth()->user()->role == 'admin')
                         <td>
-                            <a href="{{ route('admin.consommation.delete', ['id'=> $consommation->id]) }}" class="btn btn-danger">
+                            <a href="{{ route('admin.consommation.delete', ['id'=> $consommation->id]) }}" class="btn-danger">
                                 <i class="ion-ios-close-outline"></i> Supprimer
                             </a>
                             <br />
-                            <a href="{{ route('admin.consommation.edit', ['id'=> $consommation->id]) }}" class="btn btn-danger">
+                            <a href="{{ route('admin.consommation.edit', ['id'=> $consommation->id]) }}" class="btn-danger">
                                 <i class="ion-edit"></i> Modifier
                             </a>
                         </td>
@@ -49,7 +49,7 @@
 
     <div class="purchase-title">
         <h2><i class="ion-ios-speedometer-outline"></i>Ma consommation</h2>
-        <div class="reliquat-customer-info">
+        <div class="btn-fake reliquat-customer-info">
             Crédit: {{ $totalLeft }}h
         </div>
     </div>
@@ -82,12 +82,11 @@
         </table>
     </div>
 @endif
-<div class="clear"></div>
 
 @if(auth()->user()->role =='admin')
     <div class="purchase-title">
         <h2><i class="ion-plus-round"></i>Ajouter une consommation client</h2>
-        <div class="reliquat-customer-info">
+        <div class="btn-fake reliquat-customer-info">
             Maxi: {{ $totalLeft }}h
         </div>
     </div>
@@ -128,7 +127,7 @@
 
     <div class="form-submit">
         <div class="submit">
-            <input type="submit" class="btn btn-yellow2" value="Ajouter" />
+            <input type="submit" class="btn-yellow2" value="Ajouter" />
         </div>
     </div>
 

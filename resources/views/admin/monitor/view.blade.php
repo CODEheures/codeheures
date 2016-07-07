@@ -38,4 +38,3 @@
     <p>Aucune commande client...</p>
 @endif
 </div>
-<div class="clear"></div>

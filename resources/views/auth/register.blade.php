@@ -3,7 +3,7 @@
 @section('form')
 <div class="form-title">
     <h1>S'inscrire</h1>
-    <a href="{{ route('login') }}" class="btn btn-yellow2">Se Connecter</a>
+    <a href="{{ route('login') }}" class="btn-yellow2">Se Connecter</a>
 </div>
 
 {!! Form::open(['class' => 'form-horizontal', 'url' => route('register.post')]) !!}
@@ -50,7 +50,7 @@
 
     <div class="form-submit">
         <div class="submit">
-            <input type="submit" class="btn btn-yellow2" value="S'inscrire" />
+            <input type="submit" class="btn-yellow2" value="S'inscrire" />
         </div>
     </div>
 

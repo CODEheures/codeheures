@@ -15,11 +15,6 @@
 @endsection
 
 @section('script')
-    <script type="text/javascript">
-        $(function() {
-            $('section#user div.quotation table.quotation-table tfoot').trigger('click');
-        });
-    </script>
     <script type="text/javascript" src="{{ asset('js/qtip2.min.js') }}"></script>
     <script type="text/javascript">
         $(function() {

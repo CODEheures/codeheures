@@ -17,7 +17,7 @@
             </thead>
             <tfoot>
             <tr>
-                <td colspan="5">détails<br /><i class="ion-chevron-down"></i></td>
+                <td colspan="5">détails<br /><i class="ion-chevron-up"></i></td>
             </tr>
             </tfoot>
             <tbody>
@@ -32,7 +32,7 @@
                         <td>{!! Form::text('value', null, ['class' => 'form-control', 'placeholder' => '2.4']) !!}</td>
                         <td>{{ $reste }}</td>
                         <td>
-                            <input type="submit" class="btn btn-yellow2" value="Modifier" />
+                            <input type="submit" class="btn-yellow2" value="Modifier" />
                         </td>
                     </tr>
                 @else
@@ -52,7 +52,7 @@
 
     <div class="purchase-title">
         <h2><i class="ion-ios-speedometer-outline"></i>Ma consommation</h2>
-        <div class="reliquat-customer-info">
+        <div class="btn-fake reliquat-customer-info">
             Crédit: {{ $reste }}h
         </div>
     </div>

@@ -1,4 +1,23 @@
 @charset "UTF-8";
+/*
+CSS Flexbox Mobile First
+*/
+/*--------------------------------------------------*/
+/*                    ROW                           */
+/*--------------------------------------------------*/
+/******************** WRAP **************************/
+/******************** NO-WRAP **************************/
+/*--------------------------------------------------*/
+/*                REVERSE ROW                       */
+/*--------------------------------------------------*/
+/*--------------------------------------------------*/
+/*                    COLUMN                        */
+/*--------------------------------------------------*/
+/******************** WRAP **************************/
+/******************** NO-WRAP ************************/
+/*
+*********reset css *******
+*/
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
@@ -30,6 +49,206 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0; }
+
+.clear:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  outline: none; }
+
+/*
+****** General ******
+*/
+html {
+  font-size: 62.5%; }
+
+body {
+  font-family: 'open sans', sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.24;
+  background: url("images/bg3.png") repeat fixed;
+  background-color: #fff;
+  color: #fff;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+a {
+  text-decoration: none;
+  color: #fff; }
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit; }
+
+ul.circle, ul.advantage, ol {
+  list-style-position: outside;
+  padding-left: 4rem; }
+
+ol {
+  list-style-type: decimal; }
+
+ul.circle {
+  list-style-type: circle;
+  font-size: 1.6rem; }
+
+input[type=checkbox] {
+  visibility: hidden; }
+
+.check-style3 {
+  display: inline-block;
+  text-align: left;
+  width: 8rem;
+  height: 2.6rem;
+  background: #333;
+  margin: 2rem 1rem;
+  border-radius: 5rem;
+  position: relative;
+  box-shadow: inset 0 0.1rem 0.1rem rgba(0, 0, 0, 0.5), 0 0.1rem 0 rgba(255, 255, 255, 0.2); }
+  .check-style3:after {
+    content: 'OFF';
+    font: 1.2rem/2.6rem Arial, sans-serif;
+    color: #000;
+    position: absolute;
+    right: 1rem;
+    z-index: 0;
+    font-weight: bold;
+    text-shadow: 0.1rem 0.1rem 0 rgba(255, 255, 255, 0.15); }
+  .check-style3:before {
+    content: 'ON';
+    font: 1.2rem/2.6rem Arial, sans-serif;
+    color: #ffee7b;
+    position: absolute;
+    left: 1rem;
+    z-index: 0;
+    font-weight: bold; }
+  .check-style3 label {
+    display: block;
+    width: 3.4rem;
+    height: 2rem;
+    border-radius: 5rem;
+    -webkit-transition: all .4s ease;
+            transition: all .4s ease;
+    cursor: pointer;
+    position: absolute;
+    top: 0.3rem;
+    left: 0.3rem;
+    z-index: 1;
+    box-shadow: 0 0.2rem 0.5rem 0 rgba(0, 0, 0, 0.3);
+    background: #fcfff4;
+    background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%); }
+
+input[type=checkbox]:checked + label {
+  left: 4.3rem; }
+
+table a:link {
+  color: #666;
+  font-weight: bold;
+  text-decoration: none; }
+
+table a:visited {
+  color: #999999;
+  font-weight: bold;
+  text-decoration: none; }
+
+table a:active,
+table a:hover {
+  color: #bd5a35;
+  text-decoration: underline; }
+
+table caption {
+  width: 100%;
+  text-align: left; }
+  table caption span {
+    font-size: 1rem; }
+
+table {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #666;
+  font-size: 1.2rem;
+  text-shadow: 0.1rem 0.1rem 0 #fff;
+  background: #eaebec;
+  margin: 2rem;
+  border: none;
+  border-radius: 0.3rem;
+  box-shadow: 0 0.1rem 0.2rem #e1e1e1; }
+
+table th {
+  padding: 2.1rem 0.8rem 2.2rem 0.8rem;
+  border-top: 0.1rem solid #fafafa;
+  border-bottom: 0.1rem solid #e0e0e0;
+  background: #ededed;
+  background: -webkit-linear-gradient(bottom, #ededed, #ebebeb);
+  background: linear-gradient(to top, #ededed, #ebebeb); }
+
+table th:first-child {
+  text-align: left;
+  padding-left: 2rem; }
+
+table tr:first-child th:first-child {
+  border-top-left-radius: 0.3rem; }
+
+table tr:first-child th:last-child {
+  border-top-right-radius: 0.3rem; }
+
+table tr {
+  text-align: center;
+  padding-left: 2rem;
+  display: table-row; }
+
+table td:first-child {
+  text-align: left;
+  padding-left: 2rem;
+  border-left: 0; }
+
+table td {
+  padding: 0.8rem;
+  border-top: 0.1rem solid #ffffff;
+  border-bottom: 0.1rem solid #e0e0e0;
+  border-left: 0.1rem solid #e0e0e0;
+  background: white; }
+
+table tr.even td {
+  background: #f6f6f6;
+  background: -webkit-linear-gradient(bottom, #f8f8f8, #f6f6f6);
+  background: linear-gradient(to top, #f8f8f8, #f6f6f6); }
+
+table tr:last-child td {
+  border-bottom: 0; }
+
+table tr:last-child td:first-child {
+  border-bottom-left-radius: 0.3rem; }
+
+table tr:last-child td:last-child {
+  border-bottom-right-radius: 0.3rem; }
+
+table tbody tr:hover td {
+  background: #f2f2f2;
+  background: -webkit-linear-gradient(bottom, #f2f2f2, #f0f0f0);
+  background: linear-gradient(to top, #f2f2f2, #f0f0f0); }
 
 /*!
 Animate.css - http://daneden.me/animate
@@ -5319,203 +5538,74 @@ Copyright (c) 2015 Daniel Eden
 .ion-xbox:before {
   content: ""; }
 
-/*
-******** Vars *********
-*/
-/*
-****** General ******
-*/
-*, *:before, *:after {
-  box-sizing: border-box; }
-
-html {
-  font-size: 62.5%; }
-
-body {
-  font-family: 'open sans', sans-serif;
-  font-size: 1.8rem;
-  line-height: 1.24;
-  background: url("images/bg3.png") repeat fixed;
-  background-color: #fff;
-  color: #fff; }
-  body.pdf {
-    width: 110rem;
-    background: none; }
-
-a {
-  text-decoration: none;
-  color: #fff; }
-
-input, textarea {
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit; }
-
-input[type=checkbox] {
-  visibility: hidden; }
-
-.check-style3 {
-  display: inline-block;
-  text-align: left;
-  width: 8rem;
-  height: 2.6rem;
-  background: #333;
-  margin: 2rem 1rem;
-  border-radius: 5rem;
-  position: relative;
-  box-shadow: inset 0 0.1rem 0.1rem rgba(0, 0, 0, 0.5), 0 0.1rem 0 rgba(255, 255, 255, 0.2); }
-  .check-style3:after {
-    content: 'OFF';
-    font: 1.2rem/2.6rem Arial, sans-serif;
-    color: #000;
-    position: absolute;
-    right: 1rem;
-    z-index: 0;
-    font-weight: bold;
-    text-shadow: 0.1rem 0.1rem 0 rgba(255, 255, 255, 0.15); }
-  .check-style3:before {
-    content: 'ON';
-    font: 1.2rem/2.6rem Arial, sans-serif;
-    color: #ffee7b;
-    position: absolute;
-    left: 1rem;
-    z-index: 0;
-    font-weight: bold; }
-  .check-style3 label {
-    display: block;
-    width: 3.4rem;
-    height: 2rem;
-    border-radius: 5rem;
-    -webkit-transition: all .4s ease;
-            transition: all .4s ease;
-    cursor: pointer;
-    position: absolute;
-    top: 0.3rem;
-    left: 0.3rem;
-    z-index: 1;
-    box-shadow: 0 0.2rem 0.5rem 0 rgba(0, 0, 0, 0.3);
-    background: #fcfff4;
-    background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-    background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%); }
-
-input[type=checkbox]:checked + label {
-  left: 4.3rem; }
-
-table a:link {
-  color: #666;
-  font-weight: bold;
-  text-decoration: none; }
-
-table a:visited {
-  color: #999999;
-  font-weight: bold;
-  text-decoration: none; }
-
-table a:active,
-table a:hover {
-  color: #bd5a35;
-  text-decoration: underline; }
-
-table caption {
-  width: 100%;
-  text-align: left; }
-  table caption span {
-    font-size: 1rem; }
-
-table {
-  font-family: Arial, Helvetica, sans-serif;
-  color: #666;
-  font-size: 1.2rem;
-  text-shadow: 0.1rem 0.1rem 0 #fff;
-  background: #eaebec;
-  margin: 2rem;
-  border: none;
-  border-radius: 0.3rem;
-  box-shadow: 0 0.1rem 0.2rem #e1e1e1; }
-
-table th {
-  padding: 2.1rem 0.8rem 2.2rem 0.8rem;
-  border-top: 0.1rem solid #fafafa;
-  border-bottom: 0.1rem solid #e0e0e0;
-  background: #ededed;
-  background: -webkit-linear-gradient(bottom, #ededed, #ebebeb);
-  background: linear-gradient(to top, #ededed, #ebebeb); }
-
-table th:first-child {
-  text-align: left;
-  padding-left: 2rem; }
-
-table tr:first-child th:first-child {
-  border-top-left-radius: 0.3rem; }
-
-table tr:first-child th:last-child {
-  border-top-right-radius: 0.3rem; }
-
-table tr {
-  text-align: center;
-  padding-left: 2rem; }
-
-table td:first-child {
-  text-align: left;
-  padding-left: 2rem;
-  border-left: 0; }
-
-table td {
-  padding: 0.8rem;
-  border-top: 0.1rem solid #ffffff;
-  border-bottom: 0.1rem solid #e0e0e0;
-  border-left: 0.1rem solid #e0e0e0;
-  background: white; }
-
-table tr.even td {
-  background: #f6f6f6;
-  background: -webkit-linear-gradient(bottom, #f8f8f8, #f6f6f6);
-  background: linear-gradient(to top, #f8f8f8, #f6f6f6); }
-
-table tr:last-child td {
-  border-bottom: 0; }
-
-table tr:last-child td:first-child {
-  border-bottom-left-radius: 0.3rem; }
-
-table tr:last-child td:last-child {
-  border-bottom-right-radius: 0.3rem; }
-
-table tr:hover td {
-  background: #f2f2f2;
-  background: -webkit-linear-gradient(bottom, #f2f2f2, #f0f0f0);
-  background: linear-gradient(to top, #f2f2f2, #f0f0f0); }
-
 .container {
-  max-width: 117rem;
+  max-width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: auto;
+  width: 100%;
   margin-left: auto;
   margin-right: auto; }
-  .container:after {
-    content: " ";
-    display: block;
-    clear: both; }
 
-.rot90 {
+.rot90::before {
   -webkit-transform: rotate(90deg);
       -ms-transform: rotate(90deg);
           transform: rotate(90deg); }
 
 .alert {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   position: fixed;
   top: 10rem;
   z-index: 2000;
   border-radius: 0.5rem;
   border: 0.1rem solid;
-  padding-right: 5rem;
+  padding-right: 2rem;
   padding-left: 2rem;
   width: 70%;
   margin: 0 0 0 15%; }
+  .alert .title {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    width: 100%; }
   .alert .close_btn {
-    display: inline-block;
     font-size: 3.4rem;
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
     cursor: pointer; }
   .alert.alert-success {
     background-color: rgba(44, 171, 63, 0.9);
@@ -5526,10 +5616,8 @@ table tr:hover td {
     border-color: rgba(13, 61, 82, 0.9);
     color: black; }
     .alert.alert-info.fixe-here {
-      display: block;
       position: relative;
-      top: 2rem;
-      clear: both; }
+      top: 2rem; }
       .alert.alert-info.fixe-here p {
         float: none; }
   .alert.alert-danger {
@@ -5544,20 +5632,15 @@ table tr:hover td {
     padding-top: 1rem;
     padding-bottom: 1rem; }
   .alert li {
-    list-style-type: disc;
+    list-style-type: circle;
     list-style-position: inside;
     padding-left: 4rem;
     padding-bottom: 1rem; }
 
-.clear:after {
-  content: " ";
-  display: block;
-  clear: both; }
-
 .space-top {
   margin-top: 3.2rem; }
 
-.btn {
+[class^="btn-"] {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
   padding: 1rem 1.5rem;
@@ -5566,7 +5649,7 @@ table tr:hover td {
           transition-property: all;
   -webkit-transition-duration: 0.5s;
           transition-duration: 0.5s; }
-  .btn i {
+  [class^="btn-"] i {
     padding-right: 1rem; }
 
 .btn-transparent {
@@ -5600,6 +5683,10 @@ table tr:hover td {
   color: #b5b5b5;
   pointer-events: none; }
 
+.input {
+  max-width: none;
+  margin: 1.5rem; }
+
 /*
 ****** Navbar ******
 */
@@ -5613,54 +5700,119 @@ table tr:hover td {
           transition-duration: 0.8s;
   -webkit-transition-property: all;
           transition-property: all; }
+  .navbar .container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center; }
   .navbar .navbar-logo {
-    width: 33.33333%;
-    float: left;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-right: 0.5rem; }
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding-right: 0.5rem;
+    max-width: 75%; }
     .navbar .navbar-logo img {
-      vertical-align: middle;
+      max-height: 8rem;
+      width: auto;
       height: auto;
-      width: 100%; }
+      min-width: 0;
+      min-height: 0; }
   .navbar .hamburger {
-    display: none; }
+    font-size: 3rem;
+    text-align: center;
+    cursor: pointer; }
   .navbar .navbar-menu {
-    width: 66.66667%;
-    float: left;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    text-align: right;
-    overflow: hidden;
-    padding-left: 0.5rem; }
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    display: none;
+    width: calc(100% + 2rem);
+    background-color: #222;
+    padding-bottom: 0.2rem;
+    margin-left: -1rem;
+    margin-right: -1rem; }
     .navbar .navbar-menu a {
-      text-transform: uppercase;
-      font-size: 1.4rem;
-      margin: 0 0.8vw;
-      position: relative;
-      -webkit-transition: background-color 0.5s;
-              transition: background-color 0.5s; }
-      .navbar .navbar-menu a.active {
-        color: #ffee7b; }
-      .navbar .navbar-menu a .activeplus {
-        position: absolute;
-        left: 0;
-        bottom: -0.4rem;
-        height: 0.2rem;
-        width: 0%;
-        background-color: #ffee7b; }
-      .navbar .navbar-menu a .preactive {
-        position: absolute;
-        left: 0;
-        bottom: -0.4rem;
-        height: 0.2rem;
-        width: 0%;
-        background-color: #fff; }
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-flex-wrap: nowrap;
+          -ms-flex-wrap: nowrap;
+              flex-wrap: nowrap;
+      -webkit-box-pack: end;
+      -webkit-justify-content: flex-end;
+          -ms-flex-pack: end;
+              justify-content: flex-end;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      width: 100%;
+      padding-right: 2.5rem;
+      font-size: 2.5rem;
+      line-height: 7rem;
+      border-bottom: solid 0.1rem black;
+      box-shadow: rgba(255, 255, 255, 0.3) 0.1rem 0 0.2rem; }
+      .navbar .navbar-menu a:hover {
+        background-color: #3c3c3c; }
       .navbar .navbar-menu a span.newQuote {
         z-index: 2;
         position: relative;
-        top: 1rem;
-        left: -0.7rem;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
         border-radius: 50%;
@@ -5669,17 +5821,17 @@ table tr:hover td {
         border-style: outset;
         color: #fff;
         font-weight: 400;
-        background-color: #3880aa; }
+        font-size: 1.2rem;
+        background-color: #3880aa;
+        margin-left: 0.3rem; }
   .navbar.full {
-    height: 10rem;
-    line-height: 10rem; }
+    height: 10rem; }
   .navbar.shrink, .navbar.shrink-force {
     height: 6rem;
     line-height: 6rem;
     background: #222; }
     .navbar.shrink .navbar-logo img, .navbar.shrink-force .navbar-logo img {
-      height: 4rem;
-      width: auto; }
+      max-height: 4rem; }
     .navbar.shrink .navbar-logo span, .navbar.shrink-force .navbar-logo span {
       line-height: 2.4rem; }
 
@@ -5688,7 +5840,8 @@ table tr:hover td {
 */
 body > header {
   background: url("images/2.jpg") no-repeat top center fixed;
-  background-size: cover; }
+  background-size: cover;
+  width: 100%; }
   body > header .bg-cover {
     position: absolute;
     left: 0;
@@ -5697,28 +5850,67 @@ body > header {
     z-index: 1;
     height: 100%;
     background-color: rgba(0, 5, 8, 0.75); }
+    body > header .bg-cover .container {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-flex-wrap: nowrap;
+          -ms-flex-wrap: nowrap;
+              flex-wrap: nowrap;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      height: 100%; }
     body > header .bg-cover .header-content {
-      position: fixed;
-      right: 0;
-      left: 0;
-      top: 33%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-flex-wrap: nowrap;
+          -ms-flex-wrap: nowrap;
+              flex-wrap: nowrap;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
       z-index: 1;
-      text-align: center;
-      font-family: open sans, sans-serif;
+      font-family: "Open sans", sans-serif;
       color: #fff;
       -webkit-transition-property: all;
               transition-property: all;
       -webkit-transition-duration: 0.5s;
-              transition-duration: 0.5s; }
+              transition-duration: 0.5s;
+      text-align: center; }
       body > header .bg-cover .header-content h1 {
         letter-spacing: 0.2rem;
-        font-size: 5.6rem;
+        max-font-size: 5.6rem;
+        font-size: 7vw;
         line-height: 6rem;
         font-weight: 600; }
         body > header .bg-cover .header-content h1 span.code {
-          font-family: arvo; }
+          font-family: Arvo, sans-serif; }
         body > header .bg-cover .header-content h1 span.heures {
-          font-family: Flamenco;
+          font-family: Flamenco, sans-serif;
           font-weight: 100;
           font-size: 4.5rem;
           padding-left: 0.5rem; }
@@ -5727,7 +5919,7 @@ body > header {
         color: #FFFFFF;
         font-size: 1.92rem;
         border: 0.1rem solid #d9703a;
-        display: inline-block;
+        display: block;
         padding: 1rem;
         border-radius: 0.35rem;
         margin-left: 3.2rem;
@@ -5741,11 +5933,31 @@ body > header {
         line-height: 2.4rem;
         font-size: 1.8rem;
         font-weight: 300;
-        padding: 5rem 10rem; }
+        padding: 5rem 10%; }
         body > header .bg-cover .header-content p a {
           color: #ffee7b;
           text-decoration: underline; }
       body > header .bg-cover .header-content .header-btn {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+                flex-direction: row;
+        -webkit-flex-wrap: nowrap;
+            -ms-flex-wrap: nowrap;
+                flex-wrap: nowrap;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center;
         text-align: center;
         margin: 1rem 0; }
     body > header .bg-cover .scroll-down {
@@ -5770,70 +5982,133 @@ body > header {
   padding-top: 6rem;
   padding-bottom: 5rem;
   color: #2E4C4C; }
-  .main a.registration {
-    width: 100%;
-    float: left;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    text-align: right;
-    color: #3880aa;
-    padding-top: 1rem; }
+  .main.container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center; }
   .main section {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+            align-items: flex-start;
     padding-top: 6rem;
-    width: 100%;
-    float: left;
-    padding-left: 2rem;
-    padding-right: 2rem;
     color: #2E4C4C;
-    font-weight: 100; }
+    font-weight: 100;
+    max-width: 100%;
+    width: 100%; }
     .main section h1 {
-      width: 100%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-flex-wrap: wrap;
+          -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+      -webkit-box-pack: start;
+      -webkit-justify-content: flex-start;
+          -ms-flex-pack: start;
+              justify-content: flex-start;
+      -webkit-box-align: baseline;
+      -webkit-align-items: baseline;
+          -ms-flex-align: baseline;
+              align-items: baseline;
       text-transform: uppercase;
       font-size: 3rem;
       line-height: 1.47;
       margin-bottom: 1rem; }
+      .main section h1 span {
+        padding-right: 0.8rem; }
       .main section h1 small {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
         font-size: 60%; }
     .main section h2 {
-      width: 100%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-flex-wrap: nowrap;
+          -ms-flex-wrap: nowrap;
+              flex-wrap: nowrap;
+      -webkit-box-pack: start;
+      -webkit-justify-content: flex-start;
+          -ms-flex-pack: start;
+              justify-content: flex-start;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
       font-size: 2.8rem;
       padding-top: 2.5rem; }
     .main section h3 {
-      width: 100%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem;
       font-size: 2.5rem;
       text-decoration: underline;
       padding-top: 2.5rem;
       line-height: 1.2;
       padding-bottom: 1rem; }
     .main section h4 {
-      width: 100%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem;
       font-size: 2rem;
       text-decoration: underline;
       padding-top: 2.5rem;
       line-height: 1;
       padding-bottom: 1rem; }
     .main section p {
-      width: 100%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem;
       padding-top: 2rem; }
       .main section p strong {
         font-weight: 600; }
       .main section p.center {
-        text-align: center; }
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-align-self: center;
+            -ms-flex-item-align: center;
+                align-self: center; }
         .main section p.center span.solution {
           background-color: #d9703a;
           color: #FFFFFF;
@@ -5852,40 +6127,86 @@ body > header {
     .main section a.a-invert {
       color: #222;
       text-decoration: underline; }
-    .main section ul.disc, .main section ul.none {
-      width: 100%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem;
-      list-style-position: outside; }
-    .main section ul.disc {
-      list-style-type: circle;
-      font-size: 1.6rem; }
-    .main section ul.none i {
-      width: 8.33333%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem;
-      padding-top: 0.7rem;
-      text-align: right; }
-    .main section ul.none p, .main section ul.none ul {
-      width: 91.66667%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem;
-      padding-top: 0; }
-    .main section ul.none ul {
-      padding-left: 9rem; }
-    .main section ol {
-      width: 100%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem;
-      list-style-position: outside;
-      list-style-type: decimal; }
-    .main section ol.argument > li, .main section ul.argument > li {
-      font-size: 1.8rem;
-      padding-bottom: 1rem; }
+    .main section .argument > li {
+      padding-bottom: 3rem; }
+    .main section ul.advantage {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-flex-wrap: nowrap;
+          -ms-flex-wrap: nowrap;
+              flex-wrap: nowrap;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: start;
+      -webkit-align-items: flex-start;
+          -ms-flex-align: start;
+              align-items: flex-start; }
+      .main section ul.advantage > li {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-flex-wrap: nowrap;
+            -ms-flex-wrap: nowrap;
+                flex-wrap: nowrap;
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+            -ms-flex-pack: start;
+                justify-content: flex-start;
+        -webkit-box-align: start;
+        -webkit-align-items: flex-start;
+            -ms-flex-align: start;
+                align-items: flex-start; }
+        .main section ul.advantage > li .top {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: horizontal;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: row;
+              -ms-flex-direction: row;
+                  flex-direction: row;
+          -webkit-flex-wrap: nowrap;
+              -ms-flex-wrap: nowrap;
+                  flex-wrap: nowrap;
+          -webkit-box-pack: start;
+          -webkit-justify-content: flex-start;
+              -ms-flex-pack: start;
+                  justify-content: flex-start;
+          -webkit-box-align: start;
+          -webkit-align-items: flex-start;
+              -ms-flex-align: start;
+                  align-items: flex-start;
+          width: 100%; }
+          .main section ul.advantage > li .top i {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            min-width: 4rem;
+            margin-right: 2rem;
+            padding-top: 0.7rem;
+            text-align: right; }
+          .main section ul.advantage > li .top p {
+            padding-top: 0; }
+        .main section ul.advantage > li ul {
+          padding-top: 0;
+          padding-left: 9rem; }
     .main section li strong {
       font-weight: 400;
       color: #d9703a; }
@@ -5907,31 +6228,65 @@ body > header {
     .main section div.purchase-title,
     .main section div.quotation-title,
     .main section div.product-title {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-flex-wrap: wrap;
+          -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
       width: 100%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem;
       margin-top: 2rem;
       line-height: 4rem; }
       .main section div.purchase-title:not(:first-of-type),
       .main section div.quotation-title:not(:first-of-type),
       .main section div.product-title:not(:first-of-type) {
         margin-top: 7rem; }
+      .main section div.purchase-title .left,
+      .main section div.quotation-title .left,
+      .main section div.product-title .left {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+                flex-direction: row;
+        -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+            -ms-flex-pack: start;
+                justify-content: flex-start;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center; }
       .main section div.purchase-title h2,
       .main section div.quotation-title h2,
       .main section div.product-title h2 {
-        display: inline-block;
         font-size: 2.2rem;
-        width: auto;
-        padding-top: 0;
-        padding-right: 0;
-        padding-left: 0;
-        float: none; }
+        padding-top: 0; }
         .main section div.purchase-title h2 i,
         .main section div.quotation-title h2 i,
         .main section div.product-title h2 i {
           font-size: 4rem;
-          vertical-align: middle;
           padding-right: 0.8rem; }
       .main section div.purchase-title div.cart-quotation,
       .main section div.purchase-title div.price-quotation,
@@ -5939,23 +6294,14 @@ body > header {
       .main section div.quotation-title div.price-quotation,
       .main section div.product-title div.cart-quotation,
       .main section div.product-title div.price-quotation {
-        display: inline-block;
-        width: auto; }
-      .main section div.purchase-title div.price-quotation,
-      .main section div.quotation-title div.price-quotation,
-      .main section div.product-title div.price-quotation {
-        float: right; }
+        margin-bottom: 1rem; }
       .main section div.purchase-title div.reliquat-customer-info,
       .main section div.purchase-title div.total-price-quotation-info,
       .main section div.quotation-title div.reliquat-customer-info,
       .main section div.quotation-title div.total-price-quotation-info,
       .main section div.product-title div.reliquat-customer-info,
       .main section div.product-title div.total-price-quotation-info {
-        display: inline-block;
-        float: right;
-        margin-right: 4rem;
-        padding: 0 1.5rem;
-        border-radius: 0.8rem;
+        line-height: initial;
         border: 0.1rem solid #12ad9b;
         background-color: #12ad9b;
         color: #fff; }
@@ -5966,67 +6312,74 @@ body > header {
       font-size: 1.2rem; }
     .main section div.quotation-progress,
     .main section div.quotation-progress-text {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-flex-wrap: nowrap;
+          -ms-flex-wrap: nowrap;
+              flex-wrap: nowrap;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
       width: 100%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem; }
-      .main section div.quotation-progress:after,
-      .main section div.quotation-progress-text:after {
-        content: " ";
-        display: block;
-        clear: both; }
+      margin-left: 1rem;
+      margin-right: 1rem; }
       .main section div.quotation-progress div.quotation-progress-1,
       .main section div.quotation-progress div.quotation-progress-2,
       .main section div.quotation-progress div.quotation-progress-3,
       .main section div.quotation-progress-text div.quotation-progress-1,
       .main section div.quotation-progress-text div.quotation-progress-2,
       .main section div.quotation-progress-text div.quotation-progress-3 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+                flex-direction: row;
+        -webkit-flex-wrap: nowrap;
+            -ms-flex-wrap: nowrap;
+                flex-wrap: nowrap;
+        -webkit-justify-content: space-around;
+            -ms-flex-pack: distribute;
+                justify-content: space-around;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center;
         height: 1.2rem;
-        text-align: center; }
-      .main section div.quotation-progress div.quotation-progress-1,
-      .main section div.quotation-progress-text div.quotation-progress-1 {
-        margin-left: 8.33333%; }
-      .main section div.quotation-progress div.quotation-progress-1,
-      .main section div.quotation-progress div.quotation-progress-3,
-      .main section div.quotation-progress-text div.quotation-progress-1,
-      .main section div.quotation-progress-text div.quotation-progress-3 {
-        width: 25%;
-        float: left; }
-      .main section div.quotation-progress div.quotation-progress-1 div.point,
-      .main section div.quotation-progress div.quotation-progress-2 div.point,
-      .main section div.quotation-progress div.quotation-progress-3 div.point,
-      .main section div.quotation-progress-text div.quotation-progress-1 div.point,
-      .main section div.quotation-progress-text div.quotation-progress-2 div.point,
-      .main section div.quotation-progress-text div.quotation-progress-3 div.point {
-        width: 8.33333%;
-        float: left;
-        font-size: 0.8rem;
-        text-align: center;
-        color: rgba(171, 161, 144, 0.3); }
-      .main section div.quotation-progress div.quotation-progress-1 div.bar,
-      .main section div.quotation-progress div.quotation-progress-2 div.bar,
-      .main section div.quotation-progress div.quotation-progress-3 div.bar,
-      .main section div.quotation-progress-text div.quotation-progress-1 div.bar,
-      .main section div.quotation-progress-text div.quotation-progress-2 div.bar,
-      .main section div.quotation-progress-text div.quotation-progress-3 div.bar {
-        background-color: rgba(171, 161, 144, 0.3);
-        margin-top: 0.7rem;
-        height: 50%;
-        border-radius: 0.3rem; }
-      .main section div.quotation-progress div.quotation-progress-1 div.bar,
-      .main section div.quotation-progress div.quotation-progress-3 div.bar,
-      .main section div.quotation-progress-text div.quotation-progress-1 div.bar,
-      .main section div.quotation-progress-text div.quotation-progress-3 div.bar {
-        width: 91.66667%;
-        float: left; }
-      .main section div.quotation-progress div.quotation-progress-2,
-      .main section div.quotation-progress-text div.quotation-progress-2 {
-        width: 33.33333%;
-        float: left; }
+        width: 33%; }
+        .main section div.quotation-progress div.quotation-progress-1 div.bar,
         .main section div.quotation-progress div.quotation-progress-2 div.bar,
-        .main section div.quotation-progress-text div.quotation-progress-2 div.bar {
-          width: 83.33333%;
-          float: left; }
+        .main section div.quotation-progress div.quotation-progress-3 div.bar,
+        .main section div.quotation-progress-text div.quotation-progress-1 div.bar,
+        .main section div.quotation-progress-text div.quotation-progress-2 div.bar,
+        .main section div.quotation-progress-text div.quotation-progress-3 div.bar {
+          width: 90%;
+          background-color: rgba(171, 161, 144, 0.3);
+          height: 50%;
+          border-radius: 0.3rem; }
+        .main section div.quotation-progress div.quotation-progress-1 div.point,
+        .main section div.quotation-progress div.quotation-progress-2 div.point,
+        .main section div.quotation-progress div.quotation-progress-3 div.point,
+        .main section div.quotation-progress-text div.quotation-progress-1 div.point,
+        .main section div.quotation-progress-text div.quotation-progress-2 div.point,
+        .main section div.quotation-progress-text div.quotation-progress-3 div.point {
+          font-size: 0.8rem;
+          color: rgba(171, 161, 144, 0.3); }
       .main section div.quotation-progress div.quotation-progress-1 div.point,
       .main section div.quotation-progress-text div.quotation-progress-1 div.point {
         color: #12ad9b; }
@@ -6048,98 +6401,85 @@ body > header {
       .main section div.quotation-progress.published.viewed.purchased div.quotation-progress-3 div.bar,
       .main section div.quotation-progress-text.published.viewed.purchased div.quotation-progress-3 div.bar {
         background-color: #12ad9b; }
-    .main section#user a {
-      color: #3880aa; }
-    .main section#user nav.monitor-return,
-    .main section#user nav.quotation-title,
-    .main section#user nav.product-title {
-      width: 100%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem;
-      padding-left: 2rem;
-      padding-right: 2rem;
-      position: relative;
-      top: -1.8rem; }
-      .main section#user nav.monitor-return p,
-      .main section#user nav.quotation-title p,
-      .main section#user nav.product-title p {
-        padding: 0; }
-    .main section#user nav.quotation-get-pdf {
-      width: 100%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem;
-      padding-left: 2rem;
-      padding-right: 2rem;
-      position: relative;
-      top: -1.3rem;
-      left: 4.2rem; }
+    .main section#user {
+      width: 100%; }
+      .main section#user a {
+        color: #3880aa; }
+      .main section#user nav.monitor-return,
+      .main section#user nav.quotation-title,
+      .main section#user nav.product-title {
+        width: 100%;
+        position: relative;
+        top: -1.8rem; }
+        .main section#user nav.monitor-return p,
+        .main section#user nav.quotation-title p,
+        .main section#user nav.product-title p {
+          padding: 0; }
       .main section#user nav.quotation-get-pdf p {
         padding: 0; }
-    .main section#user p > span.signature {
-      color: rgba(215, 44, 35, 0.9);
-      float: right; }
-    .main section#user div.graph-conso {
-      width: 100%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem; }
-      .main section#user div.graph-conso figure {
-        height: 30rem; }
-      .main section#user div.graph-conso .tooltip-graph-conso {
-        position: absolute;
-        display: none;
-        z-index: 3;
-        color: #3880aa;
-        background-color: rgba(56, 128, 170, 0.1);
-        border-color: #3880aa;
-        border-radius: 0.5rem;
-        padding: 1rem;
-        box-shadow: 0 0.1rem rgba(0, 0, 0, 0.5); }
-    .main section#user div.seller {
-      width: 100%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem; }
-      .main section#user div.seller div.from-seller {
-        float: left;
-        display: inline-block;
-        width: 18rem; }
-      .main section#user div.seller div.infos {
-        float: left;
-        padding-left: 1rem;
-        margin-left: 2rem;
-        border-left: 0.1rem solid rgba(34, 34, 34, 0.06); }
-    .main section#user div.customer {
-      width: 100%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem;
-      padding-top: 5rem;
-      margin-left: 30rem; }
-      .main section#user div.customer div.to-customer {
-        float: left;
-        display: inline-block;
-        width: 18rem; }
-      .main section#user div.customer div.infos {
-        float: left;
-        padding-left: 1rem;
-        margin-left: 2rem;
-        border-left: 0.1rem solid rgba(34, 34, 34, 0.06); }
-    .main section#user p.sign {
-      text-align: right;
-      margin-top: 2rem;
-      margin-bottom: 4rem;
-      font-weight: 400;
-      padding-right: 3rem; }
+      .main section#user p.order-validity {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+                flex-direction: row;
+        -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center;
+        width: 100%; }
+        .main section#user p.order-validity > span.signature {
+          color: rgba(215, 44, 35, 0.9);
+          float: right; }
+      .main section#user div.graph-conso {
+        width: 100%; }
+        .main section#user div.graph-conso figure {
+          height: 50rem; }
+        .main section#user div.graph-conso .tooltip-graph-conso {
+          position: absolute;
+          display: none;
+          z-index: 3;
+          color: #3880aa;
+          background-color: rgba(56, 128, 170, 0.1);
+          border-color: #3880aa;
+          border-radius: 0.5rem;
+          padding: 1rem;
+          box-shadow: 0 0.1rem rgba(0, 0, 0, 0.5); }
     .main section#user div.purchase,
     .main section#user div.quotation,
     .main section#user div.product {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-flex-wrap: nowrap;
+          -ms-flex-wrap: nowrap;
+              flex-wrap: nowrap;
+      -webkit-box-pack: start;
+      -webkit-justify-content: flex-start;
+          -ms-flex-pack: start;
+              justify-content: flex-start;
+      -webkit-box-align: start;
+      -webkit-align-items: flex-start;
+          -ms-flex-align: start;
+              align-items: flex-start;
       width: 100%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem;
       padding-top: 2rem; }
       .main section#user div.purchase p,
       .main section#user div.quotation p,
@@ -6166,43 +6506,65 @@ body > header {
         .main section#user div.purchase p.downPercentPayment,
         .main section#user div.quotation p.downPercentPayment,
         .main section#user div.product p.downPercentPayment {
-          text-align: center;
+          -webkit-align-self: center;
+              -ms-flex-item-align: center;
+                  align-self: center;
           font-style: italic;
           padding-top: 3rem;
           font-weight: 400; }
-      .main section#user div.purchase div.quotation-total p:not(.ttc),
-      .main section#user div.quotation div.quotation-total p:not(.ttc),
-      .main section#user div.product div.quotation-total p:not(.ttc) {
-        font-weight: 100; }
-      .main section#user div.purchase div.quotation-total p.ttc,
-      .main section#user div.quotation div.quotation-total p.ttc,
-      .main section#user div.product div.quotation-total p.ttc {
-        margin-top: 1rem;
-        padding-top: 0.5rem; }
-      .main section#user div.purchase div.quotation-total div.quotation-total-title,
-      .main section#user div.quotation div.quotation-total div.quotation-total-title,
-      .main section#user div.product div.quotation-total div.quotation-total-title {
-        width: 66.66667%;
-        float: left;
-        padding-left: 2rem;
-        padding-right: 2rem;
-        text-align: right; }
-      .main section#user div.purchase div.quotation-total div.quotation-total-value,
-      .main section#user div.quotation div.quotation-total div.quotation-total-value,
-      .main section#user div.product div.quotation-total div.quotation-total-value {
-        width: 33.33333%;
-        float: left;
-        padding-left: 2rem;
-        padding-right: 2rem;
-        text-align: right; }
-        .main section#user div.purchase div.quotation-total div.quotation-total-value p.ttc,
-        .main section#user div.quotation div.quotation-total div.quotation-total-value p.ttc,
-        .main section#user div.product div.quotation-total div.quotation-total-value p.ttc {
-          border-top: 0.2rem solid rgba(34, 34, 34, 0.5); }
-      .main section#user div.purchase ul.quotation-list,
-      .main section#user div.quotation ul.quotation-list,
-      .main section#user div.product ul.quotation-list {
-        display: none; }
+      .main section#user div.purchase div.quotation-total,
+      .main section#user div.quotation div.quotation-total,
+      .main section#user div.product div.quotation-total {
+        -webkit-align-self: flex-end;
+            -ms-flex-item-align: end;
+                align-self: flex-end;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+                flex-direction: row;
+        -webkit-flex-wrap: nowrap;
+            -ms-flex-wrap: nowrap;
+                flex-wrap: nowrap;
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+            -ms-flex-pack: start;
+                justify-content: flex-start;
+        -webkit-box-align: start;
+        -webkit-align-items: flex-start;
+            -ms-flex-align: start;
+                align-items: flex-start; }
+        .main section#user div.purchase div.quotation-total p:not(.ttc),
+        .main section#user div.quotation div.quotation-total p:not(.ttc),
+        .main section#user div.product div.quotation-total p:not(.ttc) {
+          font-weight: 100; }
+        .main section#user div.purchase div.quotation-total p.ttc,
+        .main section#user div.quotation div.quotation-total p.ttc,
+        .main section#user div.product div.quotation-total p.ttc {
+          margin-top: 1rem;
+          padding-top: 0.5rem; }
+        .main section#user div.purchase div.quotation-total div.quotation-total-title, .main section#user div.purchase div.quotation-total div.quotation-total-value,
+        .main section#user div.quotation div.quotation-total div.quotation-total-title,
+        .main section#user div.quotation div.quotation-total div.quotation-total-value,
+        .main section#user div.product div.quotation-total div.quotation-total-title,
+        .main section#user div.product div.quotation-total div.quotation-total-value {
+          text-align: right; }
+        .main section#user div.purchase div.quotation-total div.quotation-total-value,
+        .main section#user div.quotation div.quotation-total div.quotation-total-value,
+        .main section#user div.product div.quotation-total div.quotation-total-value {
+          padding-left: 2rem; }
+          .main section#user div.purchase div.quotation-total div.quotation-total-value p.ttc,
+          .main section#user div.quotation div.quotation-total div.quotation-total-value p.ttc,
+          .main section#user div.product div.quotation-total div.quotation-total-value p.ttc {
+            border-top: 0.2rem solid rgba(34, 34, 34, 0.5); }
+        .main section#user div.purchase div.quotation-total div.quotation-total-title p.ttc,
+        .main section#user div.quotation div.quotation-total div.quotation-total-title p.ttc,
+        .main section#user div.product div.quotation-total div.quotation-total-title p.ttc {
+          border-top: 0.2rem solid transparent; }
       .main section#user div.purchase table,
       .main section#user div.quotation table,
       .main section#user div.product table {
@@ -6276,20 +6638,35 @@ body > header {
           .main section#user div.product table tbody tr td.presta-perso span.total-price-quotation.positive,
           .main section#user div.product table tbody tr td.presta-perso span.product-price.positive {
             background-color: #ffee7b; }
-        .main section#user div.purchase table.purchase-table tbody tr,
-        .main section#user div.purchase table.quotation-table tbody tr,
-        .main section#user div.quotation table.purchase-table tbody tr,
-        .main section#user div.quotation table.quotation-table tbody tr,
-        .main section#user div.product table.purchase-table tbody tr,
-        .main section#user div.product table.quotation-table tbody tr {
-          display: none; }
+        .main section#user div.purchase table a.btn-danger,
+        .main section#user div.quotation table a.btn-danger,
+        .main section#user div.product table a.btn-danger {
+          padding-top: 0;
+          padding-bottom: 0; }
       .main section#user div.purchase div.quotations-list,
       .main section#user div.quotation div.quotations-list,
       .main section#user div.product div.quotations-list {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+                flex-direction: row;
+        -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+        -webkit-box-align: start;
+        -webkit-align-items: flex-start;
+            -ms-flex-align: start;
+                align-items: flex-start;
         width: 100%;
-        float: left;
-        padding-left: 2rem;
-        padding-right: 2rem;
         box-shadow: 0.1rem 0.3rem rgba(0, 0, 0, 0.3); }
         .main section#user div.purchase div.quotations-list:not(:first-of-type),
         .main section#user div.quotation div.quotations-list:not(:first-of-type),
@@ -6307,25 +6684,81 @@ body > header {
         .main section#user div.purchase div.quotations-list div.description,
         .main section#user div.quotation div.quotations-list div.description,
         .main section#user div.product div.quotations-list div.description {
-          width: 50%;
-          float: left;
-          padding-left: 2rem;
-          padding-right: 2rem; }
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: column;
+              -ms-flex-direction: column;
+                  flex-direction: column;
+          -webkit-flex-wrap: nowrap;
+              -ms-flex-wrap: nowrap;
+                  flex-wrap: nowrap;
+          -webkit-box-pack: start;
+          -webkit-justify-content: flex-start;
+              -ms-flex-pack: start;
+                  justify-content: flex-start;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          padding-left: 1rem;
+          padding-bottom: 1rem; }
         .main section#user div.purchase div.quotations-list div.progress-icon,
         .main section#user div.quotation div.quotations-list div.progress-icon,
         .main section#user div.product div.quotations-list div.progress-icon {
-          width: 33.33333%;
-          float: left;
-          padding-left: 2rem;
-          padding-right: 2rem; }
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: column;
+              -ms-flex-direction: column;
+                  flex-direction: column;
+          -webkit-flex-wrap: nowrap;
+              -ms-flex-wrap: nowrap;
+                  flex-wrap: nowrap;
+          -webkit-box-pack: start;
+          -webkit-justify-content: flex-start;
+              -ms-flex-pack: start;
+                  justify-content: flex-start;
+          -webkit-box-align: start;
+          -webkit-align-items: flex-start;
+              -ms-flex-align: start;
+                  align-items: flex-start;
+          padding: 0 2rem 1rem 2rem; }
           .main section#user div.purchase div.quotations-list div.progress-icon p,
           .main section#user div.quotation div.quotations-list div.progress-icon p,
           .main section#user div.product div.quotations-list div.progress-icon p {
-            font-weight: 100; }
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: row;
+                -ms-flex-direction: row;
+                    flex-direction: row;
+            -webkit-flex-wrap: nowrap;
+                -ms-flex-wrap: nowrap;
+                    flex-wrap: nowrap;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-between;
+                -ms-flex-pack: justify;
+                    justify-content: space-between;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+                -ms-flex-align: center;
+                    align-items: center;
+            font-weight: 100;
+            min-width: 11rem; }
           .main section#user div.purchase div.quotations-list div.progress-icon i,
           .main section#user div.quotation div.quotations-list div.progress-icon i,
           .main section#user div.product div.quotations-list div.progress-icon i {
-            font-size: 1.2rem; }
+            font-size: 2.8rem; }
           .main section#user div.purchase div.quotations-list div.progress-icon i.ion-ios-checkmark-outline,
           .main section#user div.quotation div.quotations-list div.progress-icon i.ion-ios-checkmark-outline,
           .main section#user div.product div.quotations-list div.progress-icon i.ion-ios-checkmark-outline {
@@ -6337,10 +6770,32 @@ body > header {
         .main section#user div.purchase div.quotations-list div.price,
         .main section#user div.quotation div.quotations-list div.price,
         .main section#user div.product div.quotations-list div.price {
-          width: 16.66667%;
-          float: left;
-          padding-left: 2rem;
-          padding-right: 2rem; }
+          -webkit-align-self: flex-end;
+              -ms-flex-item-align: end;
+                  align-self: flex-end;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: column;
+              -ms-flex-direction: column;
+                  flex-direction: column;
+          -webkit-flex-wrap: nowrap;
+              -ms-flex-wrap: nowrap;
+                  flex-wrap: nowrap;
+          -webkit-box-pack: start;
+          -webkit-justify-content: flex-start;
+              -ms-flex-pack: start;
+                  justify-content: flex-start;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          padding-right: 1rem;
+          padding-bottom: 1rem;
+          font-size: 3rem; }
       .main section#user div.purchase div.mentions,
       .main section#user div.quotation div.mentions,
       .main section#user div.product div.mentions {
@@ -6360,41 +6815,35 @@ body > header {
             list-style-type: square;
             list-style-position: inside; }
     .main section article {
-      width: 50%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-flex-wrap: nowrap;
+          -ms-flex-wrap: nowrap;
+              flex-wrap: nowrap;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      width: 100%;
+      -webkit-align-self: center;
+          -ms-flex-item-align: center;
+              align-self: center;
       height: auto; }
-      .main section article .digest {
-        color: #2E4C4C;
-        bottom: 0;
-        position: relative; }
-        .main section article .digest h2 {
-          text-transform: capitalize;
-          font-size: 1.8rem;
-          text-decoration: underline;
-          text-align: center; }
-        .main section article .digest ul li {
-          padding: 1rem;
-          clear: both; }
-          .main section article .digest ul li:first-of-type {
-            padding-top: 0; }
-          .main section article .digest ul li i {
-            width: 16.66667%;
-            float: left;
-            padding-left: 2rem;
-            padding-right: 2rem;
-            font-size: 4.5rem;
-            float: left; }
-          .main section article .digest ul li span {
-            width: 83.33333%;
-            float: left;
-            padding-left: 2rem;
-            padding-right: 2rem;
-            vertical-align: bottom; }
       .main section article .card {
         width: 90%;
         min-width: 27.5rem;
+        max-width: 50rem;
         height: auto;
         position: relative;
         box-shadow: 0.3rem 0.3rem 2rem rgba(0, 0, 0, 0.6); }
@@ -6410,14 +6859,33 @@ body > header {
           width: 100%;
           background: url("images/card_bg.png");
           background-origin: border-box;
-          background-size: cover; }
+          background-size: cover;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: column;
+              -ms-flex-direction: column;
+                  flex-direction: column;
+          -webkit-flex-wrap: nowrap;
+              -ms-flex-wrap: nowrap;
+                  flex-wrap: nowrap;
+          -webkit-box-pack: center;
+          -webkit-justify-content: center;
+              -ms-flex-pack: center;
+                  justify-content: center;
+          -webkit-box-align: end;
+          -webkit-align-items: flex-end;
+              -ms-flex-align: end;
+                  align-items: flex-end; }
           .main section article .card .card_description p {
-            padding-top: 8.5rem;
             text-align: right;
             padding-right: 0.5rem;
             text-transform: capitalize;
-            line-height: 4.8rem;
-            font-size: 1.8rem;
+            line-height: 2.6;
+            font-size: 118%;
             letter-spacing: 0.1rem;
             color: rgba(255, 255, 255, 0.34);
             text-shadow: #102335 0 -0.2rem 0;
@@ -6428,120 +6896,268 @@ body > header {
             right: 0; }
         .main section article .card:hover {
           box-shadow: 0.3rem 0.3rem 5rem rgba(0, 0, 0, 0.3); }
+      .main section article .digest {
+        max-width: 50rem;
+        min-width: 40rem;
+        color: #2E4C4C;
+        position: relative; }
+        .main section article .digest ul {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: column;
+              -ms-flex-direction: column;
+                  flex-direction: column;
+          -webkit-flex-wrap: nowrap;
+              -ms-flex-wrap: nowrap;
+                  flex-wrap: nowrap;
+          -webkit-box-pack: center;
+          -webkit-justify-content: center;
+              -ms-flex-pack: center;
+                  justify-content: center;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+              -ms-flex-align: center;
+                  align-items: center; }
+          .main section article .digest ul li {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: row;
+                -ms-flex-direction: row;
+                    flex-direction: row;
+            -webkit-flex-wrap: nowrap;
+                -ms-flex-wrap: nowrap;
+                    flex-wrap: nowrap;
+            -webkit-box-pack: start;
+            -webkit-justify-content: flex-start;
+                -ms-flex-pack: start;
+                    justify-content: flex-start;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+                -ms-flex-align: center;
+                    align-items: center;
+            width: 100%;
+            padding: 1rem; }
+            .main section article .digest ul li:first-of-type {
+              padding-top: 0; }
+            .main section article .digest ul li i {
+              font-size: 4.5rem;
+              padding-right: 3rem; }
+            .main section article .digest ul li hr {
+              width: 100%; }
     .main section footer {
-      width: 100%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem;
+      -webkit-align-self: flex-end;
+          -ms-flex-item-align: end;
+              align-self: flex-end;
+      max-width: 100rem;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-flex-wrap: nowrap;
+          -ms-flex-wrap: nowrap;
+              flex-wrap: nowrap;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: end;
+      -webkit-align-items: flex-end;
+          -ms-flex-align: end;
+              align-items: flex-end;
       color: #2E4C4C; }
       .main section footer p {
-        clear: both;
         margin-top: 4rem;
         margin-bottom: 2.5rem;
         margin-right: 1.5rem;
         text-align: right;
         color: #2E4C4C; }
-      .main section footer a {
-        float: right; }
-    .main section div.form-title {
-      width: 100%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem; }
-      .main section div.form-title p {
-        font-size: 150%; }
-      .main section div.form-title h1, .main section div.form-title a {
-        display: inline-block;
-        width: auto; }
+    .main section div.form-title p {
+      font-size: 150%; }
+    .main section div.form-title h1, .main section div.form-title a {
+      display: inline-block;
+      width: auto; }
     .main section form {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-flex-wrap: wrap;
+          -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+      -webkit-box-pack: start;
+      -webkit-justify-content: flex-start;
+          -ms-flex-pack: start;
+              justify-content: flex-start;
+      -webkit-box-align: start;
+      -webkit-align-items: flex-start;
+          -ms-flex-align: start;
+              align-items: flex-start;
       width: 100%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem;
       margin-top: 2rem; }
       .main section form .form-group {
-        width: 50%;
-        float: left;
-        padding-left: 2rem;
-        padding-right: 2rem;
-        font-size: 150%; }
-        .main section form .form-group a {
-          clear: both;
-          display: inline-block;
-          width: calc(100% - 2em);
-          font-size: 75%;
-          text-align: right;
-          position: relative;
-          bottom: 0;
-          max-width: 45rem;
-          margin-left: 1em;
-          margin-right: 1em;
-          color: #2E4C4C;
-          top: -1em; }
-      .main section form div.form-submit {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
         width: 100%;
-        float: left;
-        padding-left: 2rem;
-        padding-right: 2rem; }
-        .main section form div.form-submit div.submit {
-          width: 100%;
-          float: left;
-          padding-left: 2rem;
-          padding-right: 2rem; }
-        .main section form div.form-submit div.checkbox {
-          width: 100%;
-          float: left;
-          padding-left: 2rem;
-          padding-right: 2rem;
-          margin-left: 1.5rem; }
+        font-size: 150%; }
+        .main section form .form-group.password {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: column;
+              -ms-flex-direction: column;
+                  flex-direction: column;
+          -webkit-flex-wrap: nowrap;
+              -ms-flex-wrap: nowrap;
+                  flex-wrap: nowrap;
+          -webkit-box-pack: start;
+          -webkit-justify-content: flex-start;
+              -ms-flex-pack: start;
+                  justify-content: flex-start;
+          -webkit-box-align: start;
+          -webkit-align-items: flex-start;
+              -ms-flex-align: start;
+                  align-items: flex-start; }
+          .main section form .form-group.password > a {
+            font-size: 1.2rem;
+            position: relative;
+            color: #2E4C4C;
+            top: -1em;
+            margin-left: 1.5rem; }
+    .main section div.form-submit {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-flex-wrap: wrap;
+          -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+      -webkit-box-pack: start;
+      -webkit-justify-content: flex-start;
+          -ms-flex-pack: start;
+              justify-content: flex-start;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      width: 100%; }
+      .main section div.form-submit div.checkbox {
+        width: 100%;
+        margin-left: 1.5rem; }
+  .main a.registration {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-align-self: flex-end;
+        -ms-flex-item-align: end;
+            align-self: flex-end;
+    text-align: right;
+    color: #3880aa;
+    padding-top: 1rem; }
 
 body > footer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100%;
-  float: left;
-  padding-left: 2rem;
-  padding-right: 2rem;
   background-color: #222;
   color: #fff;
   font-size: 1.2rem;
   font-weight: 100;
-  padding-bottom: 2rem;
-  padding-top: 2rem;
+  padding: 2rem 4rem;
   border-top: 0.1rem solid rgba(0, 0, 0, 0.6); }
-  body > footer.absolute {
-    position: absolute;
-    bottom: 0; }
-  body > footer.pdf {
-    background-color: rgba(34, 34, 34, 0.06);
-    color: #222; }
-    body > footer.pdf .common_footer .infos {
-      width: 50%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem; }
-    body > footer.pdf .common_footer .copyright {
-      width: 50%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem; }
   body > footer .common_footer {
-    width: 100%;
-    float: left;
-    padding-left: 2rem;
-    padding-right: 2rem; }
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 100%; }
     body > footer .common_footer .infos {
-      width: 33.33333%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem; }
+      margin-right: 3rem; }
       body > footer .common_footer .infos i {
         padding-right: 0.3rem; }
       body > footer .common_footer .infos i:not(:first-of-type) {
         padding-left: 1rem; }
     body > footer .common_footer .legale {
-      width: 33.33333%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem; }
+      min-width: 33%;
+      max-width: 50%; }
       body > footer .common_footer .legale h3 {
         font-size: 1.4rem; }
       body > footer .common_footer .legale hr {
@@ -6549,116 +7165,173 @@ body > footer {
         margin-top: 1rem;
         margin-bottom: 1rem; }
     body > footer .common_footer .copyright {
-      width: 33.33333%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem;
-      position: relative; }
-      body > footer .common_footer .copyright p {
-        position: absolute;
-        bottom: 0;
-        right: 0; }
-        body > footer .common_footer .copyright p img {
-          width: 3.5rem; }
+      -webkit-align-self: flex-end;
+          -ms-flex-item-align: end;
+              align-self: flex-end;
+      padding-top: 3rem; }
+      body > footer .common_footer .copyright p img {
+        width: 3.5rem; }
 
-@media screen and (max-width: 790px) {
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 117rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: auto;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto; }
   .navbar {
-    width: 100%;
-    float: left; }
-    .navbar .container .navbar-logo {
-      width: 58.33333%;
-      float: left; }
-    .navbar .container .hamburger {
-      width: 16.66667%;
-      float: right;
-      display: inline-block;
-      font-size: 3rem;
-      text-align: center;
-      cursor: pointer; }
-    .navbar .container .navbar-menu {
-      clear: both;
-      width: 100%;
-      float: left;
-      padding-left: 0;
-      padding-right: 0;
-      background-color: #222;
-      padding-bottom: 0.2rem; }
-      .navbar .container .navbar-menu a {
-        clear: both;
-        width: 100%;
-        float: left;
-        margin: 0;
-        padding-right: 2.5rem;
-        font-size: 2.5rem;
-        line-height: 7rem;
-        border-bottom: solid 0.1rem black;
-        box-shadow: rgba(255, 255, 255, 0.3) 0.1rem 0 0.2rem; }
-        .navbar .container .navbar-menu a:hover {
-          background-color: #3c3c3c; } }
-
-@media screen and (max-width: 767px) {
-  .main section article {
-    width: 100%;
-    float: left; }
-    .main section article div.card .card_description p {
-      font-size: 1.2rem;
-      padding-top: 4rem; }
-    .main section article .digest {
-      padding-top: 1.47; }
-  .main section form {
-    margin-top: 2rem; }
-    .main section form .form-group {
-      width: 100%;
-      float: left; }
-  .main section div.quotation-title h2 {
-    display: block; }
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center; }
+    .navbar .navbar-logo {
+      max-width: 35%; }
+    .navbar .hamburger {
+      display: none; }
+    .navbar .navbar-menu {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-flex-wrap: nowrap;
+          -ms-flex-wrap: nowrap;
+              flex-wrap: nowrap;
+      -webkit-box-pack: end;
+      -webkit-justify-content: flex-end;
+          -ms-flex-pack: end;
+              justify-content: flex-end;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      padding-left: 0.5rem;
+      width: auto;
+      background-color: transparent;
+      padding-bottom: 0;
+      margin-left: 0;
+      margin-right: 0; }
+      .navbar .navbar-menu a {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-flex-wrap: nowrap;
+            -ms-flex-wrap: nowrap;
+                flex-wrap: nowrap;
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+            -ms-flex-pack: start;
+                justify-content: flex-start;
+        -webkit-box-align: start;
+        -webkit-align-items: flex-start;
+            -ms-flex-align: start;
+                align-items: flex-start;
+        width: auto;
+        padding-right: 0;
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        line-height: 1.8;
+        margin: 0 0.8vw;
+        position: relative;
+        border-bottom: none;
+        box-shadow: none;
+        -webkit-transition: background-color 0.5s;
+                transition: background-color 0.5s; }
+        .navbar .navbar-menu a .activeplus {
+          height: 0.2rem;
+          width: 0%;
+          -webkit-transition: width;
+                  transition: width;
+          -webkit-transition-duration: 800ms;
+                  transition-duration: 800ms; }
+        .navbar .navbar-menu a:hover {
+          background-color: transparent; }
+        .navbar .navbar-menu a[aria-selected="true"] {
+          color: #ffee7b; }
+          .navbar .navbar-menu a[aria-selected="true"] .activeplus {
+            background-color: #ffee7b;
+            width: 100%; }
+        .navbar .navbar-menu a[aria-selected="false"] .activeplus, .navbar .navbar-menu a:not([aria-selected]) .activeplus {
+          background-color: #fff; }
+        .navbar .navbar-menu a[aria-selected="false"]:hover .activeplus, .navbar .navbar-menu a:not([aria-selected]):hover .activeplus {
+          width: 100%; }
+  body > header .bg-cover .header-content h1 {
+    font-size: 5.6rem; }
+  .main section div.purchase-title div.cart-quotation,
+  .main section div.purchase-title div.price-quotation,
   .main section div.quotation-title div.cart-quotation,
-  .main section div.quotation-title div.price-quotation {
-    display: inline-block;
-    width: 100%;
-    float: left;
-    margin-top: 2rem; }
-    .main section div.quotation-title div.cart-quotation a,
-    .main section div.quotation-title div.cart-quotation div.total-price-quotation-info,
-    .main section div.quotation-title div.price-quotation a,
-    .main section div.quotation-title div.price-quotation div.total-price-quotation-info {
-      float: left;
-      margin-left: 0; }
+  .main section div.quotation-title div.price-quotation,
+  .main section div.product-title div.cart-quotation,
+  .main section div.product-title div.price-quotation {
+    margin-bottom: 0; }
   .main section#user nav.quotation-get-pdf {
-    top: -15.7rem; }
-  .main section#user div.quotation table.quotation-table {
-    display: none; }
-  .main section#user div.quotation ul.quotation-list {
-    display: block;
-    list-style-type: disc;
-    list-style-position: inside;
-    width: 100%;
-    float: left; }
-  .main section#user div.quotation p.tva-info {
-    text-align: right;
     position: relative;
-    top: 10.5rem;
-    right: 1.5rem; }
-  .main section#user div.quotation div.quotation-total div.quotation-total-title {
-    width: 50%;
-    float: left; }
-  .main section#user div.quotation div.quotation-total div.quotation-total-value {
-    width: 50%;
-    float: left; }
-  body > footer .common_footer .infos {
-    width: 50%;
-    float: left; }
-  body > footer .common_footer .legale {
-    width: 50%;
-    float: left; }
-  body > footer .common_footer .copyright {
-    width: 100%;
-    float: left; } }
+    top: -1.3rem;
+    left: 4.2rem; } }
+
+@media screen and (min-width: 800px) {
+  .main section article {
+    -webkit-align-self: auto;
+        -ms-flex-item-align: auto;
+            align-self: auto;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+            align-items: flex-start; }
+    .main section article .digest {
+      padding-left: 3rem;
+      max-width: none; } }
 
 @media screen and (min-width: 960px) {
-  .main section ul.none, .main section ul.disc, .main section ol {
+  .main section ul.advantage, .main section ul.circle, .main section ol {
     padding-left: 9rem;
     padding-right: 9rem; }
+  .main section form .form-group {
+    width: 50%; }
   table td {
     padding: 1.8rem; }
   table th {

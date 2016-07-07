@@ -189,7 +189,7 @@ class QuotationController extends Controller
                         $quotation->sms_tentatives = 0;
                         $quotation->save();
                         $this->sms('Votre code de confirmation est: ' . $randomSMSConfirmCode);
-                        $request->session()->flash('status', 'Vous allez recevoir un SMS avec un code de confirmation valable pendant 15minutes');
+                        $request->session()->flash('status', 'Vous allez recevoir un SMS avec un code de confirmation valable pendant 15minutes à renseigner en bas de cette page');
                     } else {
                         $error = 'Nombre de tentatives atteint. Attendre ' . $quotation->getLeftTimeCodeValidity() .
                             'secondes avant génération et envoi d\'un nouveau code';
@@ -409,8 +409,8 @@ class QuotationController extends Controller
 
     private function sms($message){
         $sms = new SmsFreeMobile();
-        $sms->setKey("HFMSnaZCFcF2ph")
-            ->setUser("11584563");
+        $sms->setKey(env('FREE_SMS_PASS'))
+            ->setUser(env('FREE_SMS_USER'));
         try {
             $sms->send($message);
         } catch (Exception $e) {

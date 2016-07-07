@@ -79,7 +79,7 @@
 
     <div class="form-submit">
         <div class="submit">
-            <input type="submit" class="btn btn-yellow2" value="Valider" />
+            <input type="submit" class="btn-yellow2" value="Valider" />
         </div>
     </div>
 
@@ -137,7 +137,7 @@
 
         <div class="form-submit">
             <div class="submit">
-                <input type="submit" class="btn btn-yellow2" value="Valider" />
+                <input type="submit" class="btn-yellow2" value="Valider" />
             </div>
         </div>
         {!! Form::close() !!}
@@ -147,8 +147,10 @@
             <p>Adresse de livraison</p>
         </div>
         <div class="alert alert-info fixe-here">
-            <p>Ne pas renseigner cette section si l'adresse de livraison est identique à l'adresse de facturation</p>
-            <div class="close_btn"><i class="ion-ios-close"></i></div>
+            <div class="title">
+                <p>Ne pas renseigner cette section si l'adresse de livraison est identique à l'adresse de facturation</p>
+                <div class="close_btn"><i class="ion-ios-close"></i></div>
+            </div>
         </div>
         {!! Form::model($address, ['method' => 'PUT', 'url' => route('customer.account.addressUpdate'), 'class' => 'form-horizontal']) !!}
 
@@ -196,7 +198,7 @@
 
         <div class="form-submit">
             <div class="submit">
-                <input type="submit" class="btn btn-yellow2" value="Valider" />
+                <input type="submit" class="btn-yellow2" value="Valider" />
             </div>
         </div>
         {!! Form::close() !!}

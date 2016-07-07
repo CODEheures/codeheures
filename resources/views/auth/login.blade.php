@@ -3,7 +3,7 @@
 @section('form')
 <div class="form-title">
     <h1>Se connecter</h1>
-    <a href="{{ route('register') }}" class="btn btn-yellow2">Inscription</a>
+    <a href="{{ route('register') }}" class="btn-yellow2">Inscription</a>
 </div>
 {!! Form::open(['class' => 'form-horizontal', 'url' => route('login.post')]) !!}
 
@@ -17,7 +17,7 @@
         </span>
     </div>
 
-    <div class="form-group">
+    <div class="form-group password">
         <span class="input input--fumi">
             {!! Form::password('password', ['class' => 'input__field input__field--fumi', 'placeholder' => '********']) !!}
             <label for="name" class="input__label input__label--fumi">
@@ -28,11 +28,9 @@
         <a href="{{ route('reset.request') }}">mot de passe oublié ?</a>
     </div>
 
-    <div class="clear"></div>
-
     <div class="form-submit">
         <div class="submit">
-            <input type="submit" class="btn btn-yellow2" value="Connexion" />
+            <input type="submit" class="btn-yellow2" value="Connexion" />
         </div>
         <div class="checkbox">
             <span>Se souvenir de moi</span>
@@ -42,6 +40,5 @@
             </div>
         </div>
     </div>
-    <div class="clear"></div>
 {!! Form::close() !!}
 @endsection

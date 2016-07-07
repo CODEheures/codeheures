@@ -1,7 +1,7 @@
 <div class="quotation-title">
     <h2><i class="ion-ios-information-outline"></i>Devis N°{{ $quotation->getPublicNumber() }}:</h2>
     <div class="price-quotation">
-        <div class="total-price-quotation-info">
+        <div class="btn-fake total-price-quotation-info">
             Coût total: {{ number_format($totalPrice+$totalTva,2,'.',' ') }}€
         </div>
     </div>
@@ -12,19 +12,16 @@
 </nav>
 @endif
 <div class="quotation">
-    <p>
-        <span class="quotation-date"> valable jusqu'au {{ \Carbon\Carbon::parse($quotation->validity)->formatLocalized('%A %e %B %Y') }}:</span>@if(!isset($isPdf) || !$isPdf)<span class="signature">Signature en bas de page</span>@endif
+    <p class="order-validity">
+        <span class="quotation-date"> valable jusqu'au {{ \Carbon\Carbon::parse($quotation->validity)->formatLocalized('%A %e %B %Y') }}:</span>@if(!isset($isPdf) || !$isPdf)<span class="signature">CODE SMS A CONFIRMER en bas de page</span>@endif
     </p>
     @include('customer.quotation.table.view')
     @if($quotation->downPercentPayment)
     <p class="downPercentPayment">L'acceptation de ce devis donnera lieu à un acompte de {{ $quotation->downPercentPayment }}%</p>
     @endif
-    <div class="clear"></div>
     @include('legal.quotation.mentions')
 </div>
 
-
-<div class="clear"></div>
 @if(!isset($isPdf) || !$isPdf)
 <div class="quotation-title">
     <h2><i class="ion-ios-locked-outline"></i>Signature éléctronique</h2>
@@ -49,7 +46,7 @@
 
         <div class="form-submit">
             <div class="submit">
-                <input type="submit" class="btn btn-yellow2" value="Signer" />
+                <input type="submit" class="btn-yellow2" value="Signer" />
             </div>
         </div>
 
