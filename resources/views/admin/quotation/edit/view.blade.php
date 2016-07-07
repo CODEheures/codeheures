@@ -1,6 +1,6 @@
 <div class="quotation-title">
     <h2><i class="ion-ios-information-outline"></i>Informations devis</h2>
-    <div class="total-price-quotation-info">
+    <div class="btn-fake total-price-quotation-info">
         Coût total: {{ $totalPrice }}€
     </div>
 </div>
@@ -8,21 +8,36 @@
 <div class="quotation">
     {!! Form::model($quotation, ['method'=>'put', 'class' => 'form-horizontal', 'url' => route('admin.quotation.update', ['id' => $quotation->id])]) !!}
         <div class="form-group">
-            {!! Form::label('user_id', 'Client') !!}
-            {!! Form::select('user_id', $userList, null, ['class' => 'form-control'. ($quotation->canEdit() == false ? ' form-disable':'')]) !!}
+            <span class="input input--fumi">
+                {!! Form::select('user_id', $userList, null, ['class' => 'input__field input__field--fumi'. ($quotation->canEdit() == false ? ' form-disable':'')]) !!}
+                <label for="user_id" class="input__label input__label--fumi">
+                    <i class="fa fa-fw fa-user icon icon--fumi"></i>
+                    <span class="input__label-content input__label-content--fumi">Client</span>
+                </label>
+            </span>
         </div>
 
         <div class="form-group">
-            {!! Form::label('validity', 'Date de validité') !!}
-            {!! Form::input('date', 'validity', null, ['class' => 'form-control'. ($quotation->canEdit() == false ? ' form-disable':''), 'placeholder' => '10-11-2015']) !!}
+            <span class="input input--fumi">
+                {!! Form::input('date', 'validity', null, ['class' => 'input__field input__field--fumi'. ($quotation->canEdit() == false ? ' form-disable':''), 'placeholder' => '10-11-2015']) !!}
+                <label for="validity" class="input__label input__label--fumi">
+                    <i class="fa fa-fw fa-calendar icon icon--fumi"></i>
+                    <span class="input__label-content input__label-content--fumi">Date de validité</span>
+                </label>
+            </span>
         </div>
 
         <div class="form-group">
-            {!! Form::label('downPercentPayment', 'Acompte demandé en %') !!}
-            {!! Form::input('number', 'downPercentPayment', null, ['class' => 'form-control'. ($quotation->canEdit() == false ? ' form-disable':''), 'placeholder' => '20']) !!}
+            <span class="input input--fumi">
+                {!! Form::input('number', 'downPercentPayment', null, ['class' => 'input__field input__field--fumi'. ($quotation->canEdit() == false ? ' form-disable':''), 'placeholder' => '20']) !!}
+                <label for="downPercentPayment" class="input__label input__label--fumi">
+                    <i class="fa fa-fw fa-percent icon icon--fumi"></i>
+                    <span class="input__label-content input__label-content--fumi">Acompte demandé en %</span>
+                </label>
+            </span>
         </div>
 
-        <div class="form-group">
+        <div class="form-submit">
             <div class="submit">
                 @if(!$quotation->canEdit())
                     <input type="submit" class="btn-disable" value="Modifier" />
@@ -126,8 +141,6 @@
     </table>
 </div>
 
-<div class="clear"></div>
-
 <div class="quotation-title">
     <h2><i class="ion-plus-round"></i>Ajouter une ligne au devis</h2>
 </div>
@@ -138,26 +151,46 @@
     {!! Form::hidden('quotation_id', $quotation->id) !!}
 
     <div class="form-group">
-        {!! Form::label('product_id', 'Client') !!}
-        {!! Form::select('product_id', $productList, null, ['class' => 'form-control'. ($quotation->canEdit() == false ? ' form-disable':'')]) !!}
+        <span class="input input--fumi">
+            {!! Form::select('product_id', $productList, null, ['class' => 'input__field input__field--fumi'. ($quotation->canEdit() == false ? ' form-disable':'')]) !!}
+            <label for="product_id" class="input__label input__label--fumi">
+                <i class="fa fa-fw fa-tag icon icon--fumi"></i>
+                <span class="input__label-content input__label-content--fumi">Produit</span>
+            </label>
+        </span>
     </div>
 
     <div class="form-group">
-        {!! Form::label('quantity', 'Quantité') !!}
-        {!! Form::input('number', 'quantity', null, ['class' => 'form-control'. ($quotation->canEdit() == false ? ' form-disable':''), 'placeholder' => '3']) !!}
+        <span class="input input--fumi">
+            {!! Form::input('number', 'quantity', null, ['class' => 'input__field input__field--fumi'. ($quotation->canEdit() == false ? ' form-disable':''), 'placeholder' => '3']) !!}
+            <label for="quantity" class="input__label input__label--fumi">
+                <i class="fa fa-fw fa-asterisk icon icon--fumi"></i>
+                <span class="input__label-content input__label-content--fumi">Quantité</span>
+            </label>
+        </span>
     </div>
 
     <div class="form-group">
-        {!! Form::label('discount', 'Réduction') !!}
-        {!! Form::input('number', 'discount', null, ['class' => 'form-control'. ($quotation->canEdit() == false ? ' form-disable':''), 'placeholder' => '20']) !!}
+        <span class="input input--fumi">
+            {!! Form::input('number', 'discount', null, ['class' => 'input__field input__field--fumi'. ($quotation->canEdit() == false ? ' form-disable':''), 'placeholder' => '20']) !!}
+            <label for="discount" class="input__label input__label--fumi">
+                <i class="fa fa-fw fa-gift icon icon--fumi"></i>
+                <span class="input__label-content input__label-content--fumi">Réduction</span>
+            </label>
+        </span>
     </div>
 
     <div class="form-group">
-        {!! Form::label('discount_type', 'Type de réduction') !!}
-        {!! Form::select('discount_type', $listEnumDiscountType , null, ['class' => 'form-control'. ($quotation->canEdit() == false ? ' form-disable':'')]) !!}
+        <span class="input input--fumi">
+            {!! Form::select('discount_type', $listEnumDiscountType , null, ['class' => 'input__field input__field--fumi'. ($quotation->canEdit() == false ? ' form-disable':'')]) !!}
+            <label for="discount_type" class="input__label input__label--fumi">
+                <i class="fa fa-fw fa-list icon icon--fumi"></i>
+                <span class="input__label-content input__label-content--fumi">Type de réduction</span>
+            </label>
+        </span>
     </div>
 
-    <div class="form-group">
+    <div class="form-submit">
         <div class="submit">
             @if(!$quotation->canEdit())
                 <input type="submit" class="btn-disable" value="Ajouter" />
@@ -170,12 +203,11 @@
     {!! Form::close() !!}
 </div>
 
-<div class="clear"></div>
-
 <div class="quotation-title">
     <h2><i class="ion-ios-people-outline"></i>Publication</h2>
 </div>
 <div class="quotation">
+    <div class="form-submit">
         @if($quotation->canPublish())
             <a href="{{ route('admin.quotation.publish', ['id' => $quotation->id]) }}" class="btn-yellow2">Publier</a>
         @else
@@ -196,4 +228,5 @@
         @else
             <a href="{{ route('admin.quotation.archive', ['id' => $quotation->id]) }}" class="btn-disable">Archiver</a>
         @endif
+    </div>
 </div>

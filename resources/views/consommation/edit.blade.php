@@ -1,6 +1,7 @@
 @extends('layouts.common')
 
 @section('css')
+    @parent
     @include('plugins.graphConso.css')
 @endsection
 
@@ -21,10 +22,6 @@
 @endsection
 
 @section('script')
+    @parent
     @include('plugins.graphConso.scripts')
-    <script type="text/javascript">
-        $(function() {
-            $('section#user div.purchase table.purchase-table tfoot').trigger('click');
-        });
-    </script>
 @endsection

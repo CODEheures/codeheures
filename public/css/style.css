@@ -98,7 +98,7 @@ a {
   text-decoration: none;
   color: #fff; }
 
-input, textarea {
+input, textarea, select {
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit; }
@@ -6312,73 +6312,74 @@ body > header {
       font-size: 1.2rem; }
     .main section div.quotation-progress,
     .main section div.quotation-progress-text {
-      box-sizing: border-box;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-flex-wrap: nowrap;
+          -ms-flex-wrap: nowrap;
+              flex-wrap: nowrap;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
       width: 100%;
-      float: left;
-      padding-left: 2rem;
-      padding-right: 2rem; }
-      .main section div.quotation-progress:after,
-      .main section div.quotation-progress-text:after {
-        content: " ";
-        display: block;
-        clear: both; }
+      margin-left: 1rem;
+      margin-right: 1rem; }
       .main section div.quotation-progress div.quotation-progress-1,
       .main section div.quotation-progress div.quotation-progress-2,
       .main section div.quotation-progress div.quotation-progress-3,
       .main section div.quotation-progress-text div.quotation-progress-1,
       .main section div.quotation-progress-text div.quotation-progress-2,
       .main section div.quotation-progress-text div.quotation-progress-3 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+                flex-direction: row;
+        -webkit-flex-wrap: nowrap;
+            -ms-flex-wrap: nowrap;
+                flex-wrap: nowrap;
+        -webkit-justify-content: space-around;
+            -ms-flex-pack: distribute;
+                justify-content: space-around;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center;
         height: 1.2rem;
-        text-align: center; }
-      .main section div.quotation-progress div.quotation-progress-1,
-      .main section div.quotation-progress-text div.quotation-progress-1 {
-        margin-left: 8.33333%; }
-      .main section div.quotation-progress div.quotation-progress-1,
-      .main section div.quotation-progress div.quotation-progress-3,
-      .main section div.quotation-progress-text div.quotation-progress-1,
-      .main section div.quotation-progress-text div.quotation-progress-3 {
-        box-sizing: border-box;
-        width: 25%;
-        float: left; }
-      .main section div.quotation-progress div.quotation-progress-1 div.point,
-      .main section div.quotation-progress div.quotation-progress-2 div.point,
-      .main section div.quotation-progress div.quotation-progress-3 div.point,
-      .main section div.quotation-progress-text div.quotation-progress-1 div.point,
-      .main section div.quotation-progress-text div.quotation-progress-2 div.point,
-      .main section div.quotation-progress-text div.quotation-progress-3 div.point {
-        box-sizing: border-box;
-        width: 8.33333%;
-        float: left;
-        font-size: 0.8rem;
-        text-align: center;
-        color: rgba(171, 161, 144, 0.3); }
-      .main section div.quotation-progress div.quotation-progress-1 div.bar,
-      .main section div.quotation-progress div.quotation-progress-2 div.bar,
-      .main section div.quotation-progress div.quotation-progress-3 div.bar,
-      .main section div.quotation-progress-text div.quotation-progress-1 div.bar,
-      .main section div.quotation-progress-text div.quotation-progress-2 div.bar,
-      .main section div.quotation-progress-text div.quotation-progress-3 div.bar {
-        background-color: rgba(171, 161, 144, 0.3);
-        margin-top: 0.7rem;
-        height: 50%;
-        border-radius: 0.3rem; }
-      .main section div.quotation-progress div.quotation-progress-1 div.bar,
-      .main section div.quotation-progress div.quotation-progress-3 div.bar,
-      .main section div.quotation-progress-text div.quotation-progress-1 div.bar,
-      .main section div.quotation-progress-text div.quotation-progress-3 div.bar {
-        box-sizing: border-box;
-        width: 91.66667%;
-        float: left; }
-      .main section div.quotation-progress div.quotation-progress-2,
-      .main section div.quotation-progress-text div.quotation-progress-2 {
-        box-sizing: border-box;
-        width: 33.33333%;
-        float: left; }
+        width: 33%; }
+        .main section div.quotation-progress div.quotation-progress-1 div.bar,
         .main section div.quotation-progress div.quotation-progress-2 div.bar,
-        .main section div.quotation-progress-text div.quotation-progress-2 div.bar {
-          box-sizing: border-box;
-          width: 83.33333%;
-          float: left; }
+        .main section div.quotation-progress div.quotation-progress-3 div.bar,
+        .main section div.quotation-progress-text div.quotation-progress-1 div.bar,
+        .main section div.quotation-progress-text div.quotation-progress-2 div.bar,
+        .main section div.quotation-progress-text div.quotation-progress-3 div.bar {
+          width: 90%;
+          background-color: rgba(171, 161, 144, 0.3);
+          height: 50%;
+          border-radius: 0.3rem; }
+        .main section div.quotation-progress div.quotation-progress-1 div.point,
+        .main section div.quotation-progress div.quotation-progress-2 div.point,
+        .main section div.quotation-progress div.quotation-progress-3 div.point,
+        .main section div.quotation-progress-text div.quotation-progress-1 div.point,
+        .main section div.quotation-progress-text div.quotation-progress-2 div.point,
+        .main section div.quotation-progress-text div.quotation-progress-3 div.point {
+          font-size: 0.8rem;
+          color: rgba(171, 161, 144, 0.3); }
       .main section div.quotation-progress div.quotation-progress-1 div.point,
       .main section div.quotation-progress-text div.quotation-progress-1 div.point {
         color: #12ad9b; }
@@ -6444,7 +6445,7 @@ body > header {
       .main section#user div.graph-conso {
         width: 100%; }
         .main section#user div.graph-conso figure {
-          height: 30rem; }
+          height: 50rem; }
         .main section#user div.graph-conso .tooltip-graph-conso {
           position: absolute;
           display: none;
@@ -6637,14 +6638,35 @@ body > header {
           .main section#user div.product table tbody tr td.presta-perso span.total-price-quotation.positive,
           .main section#user div.product table tbody tr td.presta-perso span.product-price.positive {
             background-color: #ffee7b; }
+        .main section#user div.purchase table a.btn-danger,
+        .main section#user div.quotation table a.btn-danger,
+        .main section#user div.product table a.btn-danger {
+          padding-top: 0;
+          padding-bottom: 0; }
       .main section#user div.purchase div.quotations-list,
       .main section#user div.quotation div.quotations-list,
       .main section#user div.product div.quotations-list {
-        box-sizing: border-box;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+                flex-direction: row;
+        -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+        -webkit-box-align: start;
+        -webkit-align-items: flex-start;
+            -ms-flex-align: start;
+                align-items: flex-start;
         width: 100%;
-        float: left;
-        padding-left: 2rem;
-        padding-right: 2rem;
         box-shadow: 0.1rem 0.3rem rgba(0, 0, 0, 0.3); }
         .main section#user div.purchase div.quotations-list:not(:first-of-type),
         .main section#user div.quotation div.quotations-list:not(:first-of-type),
@@ -6662,27 +6684,81 @@ body > header {
         .main section#user div.purchase div.quotations-list div.description,
         .main section#user div.quotation div.quotations-list div.description,
         .main section#user div.product div.quotations-list div.description {
-          box-sizing: border-box;
-          width: 50%;
-          float: left;
-          padding-left: 2rem;
-          padding-right: 2rem; }
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: column;
+              -ms-flex-direction: column;
+                  flex-direction: column;
+          -webkit-flex-wrap: nowrap;
+              -ms-flex-wrap: nowrap;
+                  flex-wrap: nowrap;
+          -webkit-box-pack: start;
+          -webkit-justify-content: flex-start;
+              -ms-flex-pack: start;
+                  justify-content: flex-start;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          padding-left: 1rem;
+          padding-bottom: 1rem; }
         .main section#user div.purchase div.quotations-list div.progress-icon,
         .main section#user div.quotation div.quotations-list div.progress-icon,
         .main section#user div.product div.quotations-list div.progress-icon {
-          box-sizing: border-box;
-          width: 33.33333%;
-          float: left;
-          padding-left: 2rem;
-          padding-right: 2rem; }
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: column;
+              -ms-flex-direction: column;
+                  flex-direction: column;
+          -webkit-flex-wrap: nowrap;
+              -ms-flex-wrap: nowrap;
+                  flex-wrap: nowrap;
+          -webkit-box-pack: start;
+          -webkit-justify-content: flex-start;
+              -ms-flex-pack: start;
+                  justify-content: flex-start;
+          -webkit-box-align: start;
+          -webkit-align-items: flex-start;
+              -ms-flex-align: start;
+                  align-items: flex-start;
+          padding: 0 2rem 1rem 2rem; }
           .main section#user div.purchase div.quotations-list div.progress-icon p,
           .main section#user div.quotation div.quotations-list div.progress-icon p,
           .main section#user div.product div.quotations-list div.progress-icon p {
-            font-weight: 100; }
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: row;
+                -ms-flex-direction: row;
+                    flex-direction: row;
+            -webkit-flex-wrap: nowrap;
+                -ms-flex-wrap: nowrap;
+                    flex-wrap: nowrap;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-between;
+                -ms-flex-pack: justify;
+                    justify-content: space-between;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+                -ms-flex-align: center;
+                    align-items: center;
+            font-weight: 100;
+            min-width: 11rem; }
           .main section#user div.purchase div.quotations-list div.progress-icon i,
           .main section#user div.quotation div.quotations-list div.progress-icon i,
           .main section#user div.product div.quotations-list div.progress-icon i {
-            font-size: 1.2rem; }
+            font-size: 2.8rem; }
           .main section#user div.purchase div.quotations-list div.progress-icon i.ion-ios-checkmark-outline,
           .main section#user div.quotation div.quotations-list div.progress-icon i.ion-ios-checkmark-outline,
           .main section#user div.product div.quotations-list div.progress-icon i.ion-ios-checkmark-outline {
@@ -6694,11 +6770,32 @@ body > header {
         .main section#user div.purchase div.quotations-list div.price,
         .main section#user div.quotation div.quotations-list div.price,
         .main section#user div.product div.quotations-list div.price {
-          box-sizing: border-box;
-          width: 16.66667%;
-          float: left;
-          padding-left: 2rem;
-          padding-right: 2rem; }
+          -webkit-align-self: flex-end;
+              -ms-flex-item-align: end;
+                  align-self: flex-end;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: column;
+              -ms-flex-direction: column;
+                  flex-direction: column;
+          -webkit-flex-wrap: nowrap;
+              -ms-flex-wrap: nowrap;
+                  flex-wrap: nowrap;
+          -webkit-box-pack: start;
+          -webkit-justify-content: flex-start;
+              -ms-flex-pack: start;
+                  justify-content: flex-start;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          padding-right: 1rem;
+          padding-bottom: 1rem;
+          font-size: 3rem; }
       .main section#user div.purchase div.mentions,
       .main section#user div.quotation div.mentions,
       .main section#user div.product div.mentions {
@@ -6949,11 +7046,31 @@ body > header {
             color: #2E4C4C;
             top: -1em;
             margin-left: 1.5rem; }
-      .main section form div.form-submit {
-        width: 100%; }
-        .main section form div.form-submit div.checkbox {
-          width: 100%;
-          margin-left: 1.5rem; }
+    .main section div.form-submit {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-flex-wrap: wrap;
+          -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+      -webkit-box-pack: start;
+      -webkit-justify-content: flex-start;
+          -ms-flex-pack: start;
+              justify-content: flex-start;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      width: 100%; }
+      .main section div.form-submit div.checkbox {
+        width: 100%;
+        margin-left: 1.5rem; }
   .main a.registration {
     display: -webkit-box;
     display: -webkit-flex;
@@ -7220,5 +7337,3 @@ body > footer {
   table th {
     padding-left: 2.5rem;
     padding-right: 2.5rem; } }
-
-/*********************OLD *****************************/

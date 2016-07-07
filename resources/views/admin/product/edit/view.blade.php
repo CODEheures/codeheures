@@ -1,47 +1,82 @@
 <div class="product-title">
     <h2><i class="ion-ios-information-outline"></i>Informations produit</h2>
-    <div class="total-price-quotation-info">
+    <div class="btn-fake total-price-quotation-info">
         Prix HT: {{ $product->price }}€
     </div>
 </div>
 <div class="product">
     {!! Form::model($product, ['method'=>'put', 'class' => 'form-horizontal', 'url' => route('admin.product.update', ['id' => $product->id])]) !!}
         <div class="form-group">
-            {!! Form::label('reservedForUserId', 'Réservé pour le Client') !!}
-            {!! Form::select('reservedForUserId', $userList, null, ['class' => 'form-control'. ($product->canEdit() == false ? ' form-disable':'')]) !!}
+            <span class="input input--fumi">
+                {!! Form::select('reservedForUserId', $userList, null, ['class' => 'input__field input__field--fumi'. ($product->canEdit() == false ? ' form-disable':'')]) !!}
+                <label for="reservedForUserId" class="input__label input__label--fumi">
+                    <i class="fa fa-fw fa-lock icon icon--fumi"></i>
+                    <span class="input__label-content input__label-content--fumi">Réservé pour le Client</span>
+                </label>
+            </span>
         </div>
 
         <div class="form-group">
-            {!! Form::label('type', 'Type') !!}
-            {!! Form::select('type', $listEnumProductType, null, ['class' => 'form-control'. ($product->canEdit() == false ? ' form-disable':'')]) !!}
+            <span class="input input--fumi">
+                {!! Form::select('type', $listEnumProductType, null, ['class' => 'input__field input__field--fumi'. ($product->canEdit() == false ? ' form-disable':'')]) !!}
+                <label for="type" class="input__label input__label--fumi">
+                    <i class="fa fa-fw fa-tag icon icon--fumi"></i>
+                    <span class="input__label-content input__label-content--fumi">Type</span>
+                </label>
+            </span>
         </div>
 
         <div class="form-group">
-            {!! Form::label('unit', 'Type') !!}
-            {!! Form::select('unit', $listUnits, null, ['class' => 'form-control'. ($product->canEdit() == false ? ' form-disable':'')]) !!}
+           <span class="input input--fumi">
+                {!! Form::select('unit', $listUnits, null, ['class' => 'input__field input__field--fumi'. ($product->canEdit() == false ? ' form-disable':'')]) !!}
+                <label for="unit" class="input__label input__label--fumi">
+                    <i class="fa fa-fw fa-question icon icon--fumi"></i>
+                    <span class="input__label-content input__label-content--fumi">Unité</span>
+                </label>
+            </span>
         </div>
 
         <div class="form-group">
-            {!! Form::label('value', 'Valeur') !!}
-            {!! Form::input('number','value', null, ['class' => 'form-control'. ($product->canEdit() == false ? ' form-disable':''), 'min' => 0]) !!}
+            <span class="input input--fumi">
+                {!! Form::input('number','value', null, ['class' => 'input__field input__field--fumi'. ($product->canEdit() == false ? ' form-disable':''), 'min' => 0]) !!}
+                <label for="value" class="input__label input__label--fumi">
+                    <i class="fa fa-fw fa-plus icon icon--fumi"></i>
+                    <span class="input__label-content input__label-content--fumi">Valeur</span>
+                </label>
+            </span>
         </div>
 
         <div class="form-group">
-            {!! Form::label('description', 'Description') !!}
-            {!! Form::textarea('description', null, ['class' => 'form-control'. ($product->canEdit() == false ? ' form-disable':''), 'placeholder' => '10h de webmastering...']) !!}
+            <span class="input input--fumi">
+                {!! Form::textarea('description', null, ['class' => 'input__field input__field--fumi'. ($product->canEdit() == false ? ' form-disable':''), 'placeholder' => '10h de webmastering...']) !!}
+                <label for="description" class="input__label input__label--fumi">
+                    <i class="fa fa-fw fa-comment-o icon icon--fumi"></i>
+                    <span class="input__label-content input__label-content--fumi">Description</span>
+                </label>
+            </span>
         </div>
 
         <div class="form-group">
-            {!! Form::label('price', 'Prix HT') !!}
-            {!! Form::input('number','price', null, ['class' => 'form-control'. ($product->canEdit() == false ? ' form-disable':''), 'min' => 0]) !!}
+            <span class="input input--fumi">
+                {!! Form::input('number','price', null, ['class' => 'input__field input__field--fumi'. ($product->canEdit() == false ? ' form-disable':''), 'min' => 0]) !!}
+                <label for="price" class="input__label input__label--fumi">
+                    <i class="fa fa-fw fa-euro icon icon--fumi"></i>
+                    <span class="input__label-content input__label-content--fumi">Prix HT</span>
+                </label>
+            </span>
         </div>
 
         <div class="form-group">
-            {!! Form::label('tva', 'TVA') !!}
-            {!! Form::input('number','tva', null, ['class' => 'form-control'. ($product->canEdit() == false ? ' form-disable':''), 'min' => 0, 'step' => 0.1]) !!}
+            <span class="input input--fumi">
+                {!! Form::input('number','tva', null, ['class' => 'input__field input__field--fumi'. ($product->canEdit() == false ? ' form-disable':''), 'min' => 0, 'step' => 0.1]) !!}
+                <label for="tva" class="input__label input__label--fumi">
+                    <i class="fa fa-fw fa-percent icon icon--fumi"></i>
+                    <span class="input__label-content input__label-content--fumi">TVA</span>
+                </label>
+            </span>
         </div>
 
-        <div class="form-group">
+        <div class="form-submit">
             <div class="submit">
                 @if($product->canEdit())
                     <input type="submit" class="btn-yellow2" value="Modifier" />
@@ -62,20 +97,21 @@
     </ul>
 </div>
 
-<div class="clear"></div>
 
 <div class="product-title">
     <h2><i class="ion-ios-people-outline"></i>Publication</h2>
 </div>
 <div class="product">
-    @if($product->canEdit())
-        <a href="{{ route('admin.product.delete', ['id' => $product->id]) }}" class="btn-yellow2">Supprimer</a>
-    @else
-        <a href="#" class="btn-disable">Supprimer</a>
-    @endif
-    @if(!$product->isObsolete)
-        <a href="{{ route('admin.product.toObsolete', ['id' => $product->id]) }}" class="btn-yellow2">Rendre obsolete</a>
-    @else
-        <a href="{{ route('admin.product.toNotObsolete', ['id' => $product->id]) }}" class="btn-yellow2">Rendre non-obsolete</a>
-    @endif
+    <div class="form-submit">
+        @if($product->canEdit())
+            <a href="{{ route('admin.product.delete', ['id' => $product->id]) }}" class="btn-yellow2">Supprimer</a>
+        @else
+            <a href="#" class="btn-disable">Supprimer</a>
+        @endif
+        @if(!$product->isObsolete)
+            <a href="{{ route('admin.product.toObsolete', ['id' => $product->id]) }}" class="btn-yellow2">Rendre obsolete</a>
+        @else
+            <a href="{{ route('admin.product.toNotObsolete', ['id' => $product->id]) }}" class="btn-yellow2">Rendre non-obsolete</a>
+        @endif
+    </div>
 </div>

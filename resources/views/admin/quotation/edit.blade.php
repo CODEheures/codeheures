@@ -1,7 +1,8 @@
 @extends('layouts.common')
 
 @section('css')
-
+    @parent
+    @include('plugins.inputEffect.css')
 @endsection
 
 @section('title')
@@ -21,9 +22,6 @@
 @endsection
 
 @section('script')
-    <script type="text/javascript">
-        $(function() {
-            $('section#user div.quotation table.quotation-table tfoot').trigger('click');
-        });
-    </script>
+    @parent
+    @include('plugins.inputEffect.scripts')
 @endsection

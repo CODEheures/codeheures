@@ -5,7 +5,6 @@ CSS Flexbox Mobile First
 @import "boxs-column";
 @import "containers";
 
-
 //Variables
 @import "colors";
 $container-gutters: 1rem;
@@ -19,31 +18,6 @@ $h1_height: 1.47;
 $font1: "Open sans", sans-serif;
 $font2 : Arvo, sans-serif;
 $font3 : Flamenco, sans-serif;
-
-@import "../../../node_modules/susy/sass/susy";
-$susy: (
-        container: 117rem,
-        columns: 12,
-        gutters: 40/100,
-        gutter-position: inside-static,
-        column-width: 10rem,
-);
-
-$lm790: (
-        container: 79rem,
-        columns: 12,
-        gutters: 0/100,
-        gutter-position: inside-static,
-        column-width: 10rem,
-);
-
-$lm768: (
-        container: 76.8rem,
-        columns: 12,
-        gutters: 0/100,
-        gutter-position: inside-static,
-        column-width: 10rem,
-);
 
 /*
 *********reset css *******
@@ -84,7 +58,7 @@ a {
   color: $color3;
 }
 
-input, textarea {
+input, textarea, select {
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
@@ -661,57 +635,26 @@ body > header {
 
     & div.quotation-progress,
     & div.quotation-progress-text {
-      @include susy-clearfix;
-      @include span(12);
+      @include rnsbc;
+      width: 100%;
+      margin-left: 1rem;
+      margin-right: 1rem;
 
       & div.quotation-progress-1,
       & div.quotation-progress-2,
       & div.quotation-progress-3 {
+        @include rnsac;
         height: 1.2rem;
-        text-align: center;
-      }
-
-      & div.quotation-progress-1 {
-        margin-left: span(1);
-      }
-
-      & div.quotation-progress-1,
-      & div.quotation-progress-3 {
-        @include span(3 no-gutter);
-      }
-
-      & div.quotation-progress-1,
-      & div.quotation-progress-2,
-      & div.quotation-progress-3 {
-
-        & div.point {
-          @include span(1 no-gutter);
-          font-size: 0.8rem;
-          text-align: center;
-          color: $color10;
-        }
-
+        width: 33%;
         & div.bar {
+          width: 90%;
           background-color: $color10;
-          margin-top: 0.7rem;
           height: 50%;
           border-radius: 0.3rem;
         }
-      }
-
-      & div.quotation-progress-1,
-      & div.quotation-progress-3 {
-
-        & div.bar {
-          @include span(11 no-gutter);
-        }
-      }
-
-      & div.quotation-progress-2 {
-        @include span(4 no-gutter);
-
-        & div.bar {
-          @include span(10 no-gutter);
+        & div.point {
+          font-size: 0.8rem;
+          color: $color10;
         }
       }
 
@@ -791,7 +734,7 @@ body > header {
       & div.graph-conso {
         width: 100%;
         & figure {
-          height: 30rem;
+          height: 50rem;
         }
 
         & .tooltip-graph-conso {
@@ -915,10 +858,16 @@ body > header {
             }
           }
         }
+
+        & a.btn-danger {
+          padding-top: 0;
+          padding-bottom: 0;
+        }
       }
 
       & div.quotations-list {
-        @include span(12);
+        @include rwsbfs;
+        width: 100%;
         box-shadow:  0.1rem 0.3rem rgba(0,0,0,0.3);
 
         &:not(:first-of-type){
@@ -935,18 +884,22 @@ body > header {
         }
 
         & div.description {
-          @include span(6);
+          @include cnfsc;
+          padding-left: 1rem;
+          padding-bottom: 1rem;
         }
 
         & div.progress-icon {
-          @include span(4);
-
+          @include cnfsfs;
+          padding: 0 2rem 1rem 2rem;
           & p {
+            @include rnsbc;
             font-weight: 100;
+            min-width: 11rem;
           }
 
           & i {
-            font-size: 1.2rem;
+            font-size: 2.8rem;
           }
 
           & i.ion-ios-checkmark-outline {
@@ -959,7 +912,11 @@ body > header {
         }
 
         & div.price {
-          @include span(2);
+          align-self: flex-end;
+          @include cnfsc;
+          padding-right: 1rem;
+          padding-bottom: 1rem;
+          font-size: 3rem;
         }
       }
 
@@ -1108,16 +1065,16 @@ body > header {
             }
         }
       }
+    }
 
-      & div.form-submit {
+    & div.form-submit {
+      @include rwfsc;
+      width: 100%;
+
+      & div.checkbox {
         width: 100%;
-
-        & div.checkbox {
-          width: 100%;
-          margin-left: 1.5rem;
-        }
+        margin-left: 1.5rem;
       }
-
     }
 
   }
@@ -1323,101 +1280,4 @@ body > footer {
 
     }
   }
-}
-
-
-/*********************OLD *****************************/
-@media screen and (max-width: 767px) {
-
-  //@include with-layout($lm768) {
-  //
-  //  .main {
-  //
-  //    & section {
-  //      & article {
-  //        @include span(12);
-  //
-  //        & div.card .card_description p {
-  //          font-size: 1.2rem;
-  //          padding-top: 4rem;
-  //        }
-  //        & .digest {
-  //          padding-top: $h1_height;
-  //        }
-  //      }
-  //
-  //      & form {
-  //        margin-top: 2rem;
-  //
-  //        & .form-group {
-  //          @include span(12);
-  //
-  //        }
-  //      }
-  //
-  //      & div.quotation-title {
-  //        & h2 {
-  //          display: block;
-  //        }
-  //
-  //        & div.cart-quotation,
-  //        & div.price-quotation {
-  //          display: inline-block;
-  //          @include span(12);
-  //          margin-top: 2rem;
-  //
-  //          & a,
-  //          & div.total-price-quotation-info {
-  //            float: left;
-  //            margin-left: 0;
-  //          }
-  //        }
-  //
-  //      }
-  //
-  //      &#user nav.quotation-get-pdf {
-  //        top: -15.7rem;
-  //      }
-  //
-  //      &#user div.quotation {
-  //        & table.quotation-table {
-  //          display: none;
-  //        }
-  //
-  //        & p.tva-info {
-  //          text-align: right;
-  //          position: relative;
-  //          top: 10.5rem;
-  //          right: 1.5rem;
-  //        }
-  //
-  //        & div.quotation-total {
-  //          & div.quotation-total-title {
-  //            @include span(6);
-  //          }
-  //
-  //          & div.quotation-total-value {
-  //            @include span(6);
-  //          }
-  //        }
-  //      }
-  //    }
-  //
-  //  }
-  //
-  //  body > footer {
-  //    & .common_footer {
-  //      & .infos {
-  //        @include span(6);
-  //      }
-  //      & .legale {
-  //        @include span(6);
-  //      }
-  //      & .copyright {
-  //        @include span(12);
-  //      }
-  //    }
-  //  }
-  //}
-
 }

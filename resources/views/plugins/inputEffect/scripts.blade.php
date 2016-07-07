@@ -39,6 +39,21 @@
             inputEl.addEventListener( 'blur', onInputBlur );
         } );
 
+        [].slice.call( document.querySelectorAll( 'select.input__field' ) ).forEach( function( inputEl ) {
+            // in case the input is already filled..
+            console.log(inputEl);
+            if( inputEl.value.trim() !== '' ) {
+                $(inputEl).parent().addClass('input--filled');
+            }
+
+            $(inputEl).attr('data-placeholder',$(inputEl).attr('placeholder'));
+            $(inputEl).removeAttr('placeholder');
+
+            // events:
+            inputEl.addEventListener( 'focus', onInputFocus );
+            inputEl.addEventListener( 'blur', onInputBlur );
+        } );
+
         function onInputFocus( ev ) {
             $elem = ev.target;
             $($elem).attr('placeholder',$($elem).attr('data-placeholder'));

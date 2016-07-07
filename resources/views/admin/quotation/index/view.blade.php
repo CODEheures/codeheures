@@ -3,8 +3,8 @@
         @foreach($quotations as $quotation)
             <div class="quotations-list">
                 <div class="description">
-                    <i class="ion-minus-round"></i>
                     <a href="{{ route('admin.quotation.edit', ['id' => $quotation->id]) }}" class="quotation-number">
+                        <i class="ion-minus-round"></i>
                         N°{{ $quotation->getPublicNumber() }}
                         <span class="quotation-date"> du {{ $quotation->created_at->formatLocalized('%d-%m-%Y') }}:</span>
                         "{{ $quotation->user->name }}"
@@ -27,4 +27,3 @@
         <p>Aucun devis client...</p>
     @endif
 </div>
-<div class="clear"></div>
