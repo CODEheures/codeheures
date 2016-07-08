@@ -1,7 +1,10 @@
 @if($purchase->product->type == 'time')
     <div class="purchase">
         <p>
-            <span class="purchase-date">Achat du {{ $purchase->created_at->formatLocalized('%A %e %B %Y') }} @if(auth()->user()->role == 'admin')par {{ $purchase->user->name }} ({{ $purchase->user->email }})@endif:</span> {{ $purchase->quantity }}x "{{ $purchase->product->description }}"
+            <span class="purchase-date">Achat du {{ $purchase->created_at->formatLocalized('%A %e %B %Y') }}
+                @if(auth()->user()->role == 'admin')par {{ $purchase->user->name }} ({{ $purchase->user->email }})@endif
+                :</span> {{ $purchase->quantity }}x "{{ $purchase->product->description }}"
+                @if($purchase->quotation_id)<a href="{{ route('customer.quotation.pdf', ['id'=>$purchase->quotation_id]) }}" class="quotation-number">(devis {{ $purchase->quotation->getPublicNumber() }})</a>@endif
         </p>
         <table class="purchase-table">
             <thead>
@@ -76,6 +79,7 @@
                     <td class="presta-perso">
                         <i class="ion-minus-round"></i>
                         <span class="purchase-date">Achat du {{ $purchase->created_at->formatLocalized('%A %e %B %Y') }}:</span> "{{ $purchase->product->description }}"
+                        @if($purchase->quotation_id)<a href="{{ route('customer.quotation.pdf', ['id'=>$purchase->quotation_id]) }}" class="quotation-number">(devis {{ $purchase->quotation->getPublicNumber() }})</a>@endif
                     </td>
                 </tr>
             </tbody>

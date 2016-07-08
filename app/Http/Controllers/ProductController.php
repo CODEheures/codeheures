@@ -43,9 +43,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $newProduct = new Product;
+        $product = new Product;
         $userList = UserList::userList();
-        dd($userList);
+        $listEnumProductType = $this->getEnumValues('products', 'type');
+        $listUnits = [''];
+        $listUnits  = $listUnits + $this->getEnumValues('products', 'unit');
+        return view('admin.product.create', compact('product', 'userList', 'listEnumProductType', 'listUnits'));
     }
 
     /**
@@ -56,7 +59,8 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        //
+        Product::create($request->only(['description', 'type', 'unit', 'value', 'price', 'reservedForUserId', 'url']));
+        return redirect(route('admin.product.index'))->with('success', 'Modifications enregistrées');
     }
 
     /**
@@ -99,7 +103,7 @@ class ProductController extends Controller
         //dd($request->all());
         $product = Product::findOrFail($id);
         if($product->canEdit()){
-            $product->update($request->only(['description', 'type', 'unit', 'value', 'price', 'reservedForUserId']));
+            $product->update($request->only(['description', 'type', 'unit', 'value', 'price', 'reservedForUserId', 'url']));
             return redirect()->back()->with('success', 'Modifications enregistrées');
         }
 

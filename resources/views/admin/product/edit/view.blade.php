@@ -5,7 +5,17 @@
     </div>
 </div>
 <div class="product">
-    {!! Form::model($product, ['method'=>'put', 'class' => 'form-horizontal', 'url' => route('admin.product.update', ['id' => $product->id])]) !!}
+    <?php if($product->id != null) {
+        $method = 'put';
+        $route = route('admin.product.update', ['id' => $product->id]);
+        $submitText = 'modifier';
+    } else {
+        $method = 'post';
+        $route = route('admin.product.store');
+        $submitText = 'créer';
+    }
+     ?>
+    {!! Form::model($product, ['method'=>$method, 'class' => 'form-horizontal', 'url' => $route]) !!}
         <div class="form-group">
             <span class="input input--fumi">
                 {!! Form::select('reservedForUserId', $userList, null, ['class' => 'input__field input__field--fumi'. ($product->canEdit() == false ? ' form-disable':'')]) !!}
@@ -41,7 +51,7 @@
                 {!! Form::input('number','value', null, ['class' => 'input__field input__field--fumi'. ($product->canEdit() == false ? ' form-disable':''), 'min' => 0]) !!}
                 <label for="value" class="input__label input__label--fumi">
                     <i class="fa fa-fw fa-plus icon icon--fumi"></i>
-                    <span class="input__label-content input__label-content--fumi">Valeur</span>
+                    <span class="input__label-content input__label-content--fumi">Quantité</span>
                 </label>
             </span>
         </div>
@@ -58,7 +68,17 @@
 
         <div class="form-group">
             <span class="input input--fumi">
-                {!! Form::input('number','price', null, ['class' => 'input__field input__field--fumi'. ($product->canEdit() == false ? ' form-disable':''), 'min' => 0]) !!}
+                {!! Form::input('url', 'url', null, ['class' => 'input__field input__field--fumi'. ($product->canEdit() == false ? ' form-disable':''), 'placeholder' => 'http://...']) !!}
+                <label for="url" class="input__label input__label--fumi">
+                    <i class="fa fa-fw fa-link icon icon--fumi"></i>
+                    <span class="input__label-content input__label-content--fumi">Lien Web</span>
+                </label>
+            </span>
+        </div>
+
+        <div class="form-group">
+            <span class="input input--fumi">
+                {!! Form::input('number','price', null, ['class' => 'input__field input__field--fumi'. ($product->canEdit() == false ? ' form-disable':''), 'min' => 0, 'step' => '0.01']) !!}
                 <label for="price" class="input__label input__label--fumi">
                     <i class="fa fa-fw fa-euro icon icon--fumi"></i>
                     <span class="input__label-content input__label-content--fumi">Prix HT</span>
@@ -79,22 +99,32 @@
         <div class="form-submit">
             <div class="submit">
                 @if($product->canEdit())
-                    <input type="submit" class="btn-yellow2" value="Modifier" />
+                    <input type="submit" class="btn-yellow2" value="{{ $submitText }}" />
                 @else
-                    <input type="submit" class="btn-disable" value="Modifier" />
+                    <input type="submit" class="btn-disable" value="{{ $submitText }}" />
                 @endif
             </div>
         </div>
     {!! Form::close() !!}
 
     @if(!$product->canEdit())
-        <p>Ce produit a été proposé dans les dévis suivants:</p>
-        <ul>
-        @foreach($product->lineQuote as $lineQuote)
-        <li><a href="{{ route('admin.quotation.edit', ['id' => $lineQuote->quotation->id]) }}">Devis n° {{ $lineQuote->quotation->id }}</a></li>
-        @endforeach
+        @if($product->lineQuote->count() > 0)
+            <p class="space-top">Ce produit a été proposé dans les dévis suivants:</p>
+            <ul>
+            @foreach($product->lineQuote as $lineQuote)
+            <li><a href="{{ route('admin.quotation.edit', ['id' => $lineQuote->quotation->id]) }}">Devis n° {{ $lineQuote->quotation->id }}</a></li>
+            @endforeach
+            </ul>
+        @endif
+        @if($product->purchases->count() > 0)
+            <p class="space-top">Ce produit a été acheté par les clients suivants:</p>
+            <ul>
+            @foreach($product->purchases as $purchase)
+                <li>{{ $purchase->user->name }} {{ $purchase->user->firstname }} ({{ $purchase->user->email }})</li>
+            @endforeach
+            </ul>
+        @endif
     @endif
-    </ul>
 </div>
 
 

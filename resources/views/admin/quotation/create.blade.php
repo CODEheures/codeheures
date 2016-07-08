@@ -1,7 +1,8 @@
 @extends('layouts.common')
 
 @section('css')
-
+    @parent
+    @include('plugins.inputEffect.css')
 @endsection
 
 @section('title')
@@ -21,5 +22,6 @@
 @endsection
 
 @section('script')
-
+    @parent
+    @include('plugins.inputEffect.scripts')
 @endsection

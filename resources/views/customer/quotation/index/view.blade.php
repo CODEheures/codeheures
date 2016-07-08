@@ -12,6 +12,13 @@
                         </a>
                     </div>
                 @endif
+                @if($quotation->canRefuse())
+                    <div class="refuse-quotation">
+                        <a href="{{ route('customer.quotation.refuse', ['id' => $quotation->id]) }}" title="En cliquant, vous refuserez definitivement à ce devis" class="btn-transparent">
+                            <i class="ion-trash-a"></i>Refuser ce devis
+                        </a>
+                    </div>
+                @endif
             </div>
             <div class="price-quotation">
                 <div class="btn-fake total-price-quotation-info">

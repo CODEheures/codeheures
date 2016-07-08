@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['description', 'type', 'value', 'price', 'unit', 'isObsolete', 'reservedForUserId', 'tva'];
+    protected $fillable = ['description', 'type', 'value', 'price', 'unit', 'isObsolete', 'reservedForUserId', 'tva', 'url'];
 
     public function purchases() {
         return $this->hasMany('App\Purchase');
@@ -17,7 +17,7 @@ class Product extends Model
     }
 
     public function canEdit() {
-        if($this->lineQuote()->count() > 0){
+        if($this->lineQuote()->count() > 0 || $this->purchases()->count() > 0){
             return false;
         }
 

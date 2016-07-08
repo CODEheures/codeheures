@@ -25,7 +25,7 @@ class AddQuantityToPurchase extends Migration
     public function down()
     {
         Schema::table('purchases', function (Blueprint $table) {
-            $table->dropColumn(['unit']);
+            $table->dropColumn(['quantity']);
         });
     }
 }

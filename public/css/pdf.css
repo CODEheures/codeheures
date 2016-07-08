@@ -220,15 +220,26 @@ div.quotation {
       font-weight: 400; }
   div.quotation table {
     margin: 0;
-    width: 100%; }
+    width: 100%;
+    border: 1px solid #b5b5b5;
+    border-radius: 6px; }
     div.quotation table tr {
       page-break-inside: avoid;
       page-break-after: auto; }
+      div.quotation table tr td:nth-child(2), div.quotation table tr td:nth-child(5), div.quotation table tr td:nth-child(6) {
+        text-align: right; }
+      div.quotation table tr td:nth-child(3), div.quotation table tr td:nth-child(4) {
+        text-align: center; }
     div.quotation table td {
       page-break-inside: avoid;
-      page-break-after: auto; }
+      page-break-after: auto;
+      font-size: 12px; }
     div.quotation table thead {
       display: table-header-group; }
+      div.quotation table thead tr th {
+        font-size: 14px;
+        padding-top: 5px;
+        padding-bottom: 5px; }
   div.quotation div.quotation-total p:not(.ttc) {
     font-weight: 100; }
   div.quotation div.quotation-total p.ttc {

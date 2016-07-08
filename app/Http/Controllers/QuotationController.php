@@ -6,6 +6,7 @@ use App\Common\SmsFreeMobile;
 use App\Http\Requests\QuotationRequest;
 use App\LineQuote;
 use App\Product;
+use App\Purchase;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
@@ -24,8 +25,8 @@ class QuotationController extends Controller
     public function __construct(Guard $auth) {
         $this->middleware('auth');
         $this->middleware('haveNewQuotation');
-        $this->middleware('fullProfile', ['only' => ['customerIndex', 'order', 'pdf']]);
-        $this->middleware('admin', ['except' => ['customerIndex', 'order', 'orderPost', 'pdf']]);
+        $this->middleware('fullProfile', ['only' => ['customerIndex', 'order', 'refuse', 'pdf']]);
+        $this->middleware('admin', ['except' => ['customerIndex', 'order', 'refuse', 'orderPost', 'pdf']]);
         $this->auth = $auth;
     }
 
@@ -55,7 +56,7 @@ class QuotationController extends Controller
      */
     public function customerIndex()
     {
-        $quotations = Quotation::where('user_id', '=', $this->auth->user()->id)->where('isPublished', '=', true)->where('isArchived', '=', false)->where('validity', '>=', Carbon::today()->format('Y-m-d'))->get();
+        $quotations = Quotation::where('user_id', '=', $this->auth->user()->id)->where('isPublished', '=', true)->where('isRefused', '=', false)->where('isArchived', '=', false)->where('validity', '>=', Carbon::today()->format('Y-m-d'))->get();
         $quotations->load('lineQuotes');
         $totalPrices = [];
         $totalTvas = [];
@@ -66,56 +67,6 @@ class QuotationController extends Controller
             $quotation->save();
     }
         return view('customer.quotation.index', compact('quotations', 'totalPrices', 'totalTvas'));
-    }
-
-    /**
-     * Return PDF of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function pdfOLD($id)
-    {
-        $quotation = Quotation::findOrFail($id);
-        if($quotation->user_id == $this->auth->user()->id) {
-            $quotation->load('lineQuotes');
-            $quotation->load('user');
-            $totalPrice = $this->totalPrice($quotation);
-            $totalTva = $this->totalPrice($quotation, true);
-            $isPdf = true;
-
-            $content = view('pdf.quotation.index', compact('quotation', 'totalPrice', 'totalTva', 'isPdf'))->__toString();
-            @file_put_contents(public_path().'/html/pdf_footer.html',view('footer.pdf')->__toString());
-            @file_put_contents(public_path().'/html/pdf_header_'. $quotation->id .'.html',view('header.pdf', compact('quotation'))->__toString());
-            //dd(asset('public/css/pdf.css'));
-            $page=1;
-            $options= array(
-                'margin-top' => 25,
-                'footer-spacing' => 5,
-                'header-spacing' => 25,
-                'header-html' => asset('/html/pdf_header_'. $quotation->id .'.html'),
-                'footer-html' => asset('/html/pdf_footer.html'),
-                'margin-bottom' => 35,
-                'footer-font-name' =>  'open sans',
-                'footer-font-size' => 8,
-                'footer-line',
-                'replace' => [
-                    '{page}' => $page++,
-                ],
-                'javascript-delay' => 1000,
-            );
-
-            $pdf = new \mikehaertl\wkhtmlto\Pdf();
-            $pdf->setOptions($options);
-            $pdf->addPage($content);
-            $pdf->send();
-
-            //$pdf->send('codeheures-devis-'.$quotation->getPublicNumber().'.pdf');
-            if(file_exists(public_path().'/html/pdf_header_'. $quotation->id .'.html')){
-                unlink(public_path().'/html/pdf_header_'. $quotation->id .'.html');
-            }
-        } else {
-            return redirect(route('home'));
-        }
     }
 
     /**
@@ -216,6 +167,18 @@ class QuotationController extends Controller
                 $quotation->phoneUsedForOrder = auth()->user()->phone;
                 $quotation->save();
                 //TODO MAIL AVEC PDF
+                $lineQuotes = $quotation->lineQuotes;
+                foreach ($lineQuotes as $lineQuote) {
+                    $purchase = Purchase::create([
+                        'user_id' => $quotation->user->id,
+                        'product_id' => $lineQuote->product->id,
+                        'hash_key' => str_random(12),
+                        'payed' => false,
+                        'quantity' => $lineQuote->quantity,
+                        'quotation_id' => $quotation->id
+                    ]);
+                    $purchase->save();
+                }
                 return redirect(route('customer.quotation.index'))->with('success', 'Votre devis est desormais numériquement signé,
                 merci de votre confiance. Merci de nous renvoyer un devis papier signé d\'ici 15 jours. Ce devis vous a
                 été envoyé dans votre boite mail et est disponible en téléchargement sur votre compte CODEheures dans la rubrique
@@ -239,7 +202,7 @@ class QuotationController extends Controller
      */
     public function create()
     {
-        $newQuotation = new Quotation();
+        $newQuotation = new Quotation;
         $userList = UserList::userList();
         return view('admin.quotation.create', compact('newQuotation', 'userList'));
     }
@@ -370,6 +333,24 @@ class QuotationController extends Controller
             return redirect()->back()->with('info', 'Devis dépublié');
         }
         return redirect()->back()->withErrors('Devis signé, dépublication interdite');
+    }
+
+    /**
+     * UnPublish the specified resource for customer.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function refuse($id)
+    {
+        $quotation = Quotation::findOrFail($id);
+        if($quotation->canRefuse() && $quotation->user_id == auth()->user()->id){
+            $quotation->isRefused = true;
+            $quotation->save();
+            return redirect()->back()->with('info', "Ho non '-(. Vous venez de refuser notre devis. 
+            Nous vous remerçions de votre confiance et restons à votre disposition pour toute question");
+        }
+        return redirect()->back()->withErrors('Action interdite');
     }
 
     /**

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddQuotationToPurchase extends Migration
+class AddUrlToProduct extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class AddQuotationToPurchase extends Migration
      */
     public function up()
     {
-        Schema::table('purchases', function (Blueprint $table) {
-            $table->integer('lineQuote_id')->unsigned()->nullable()->index();
+        Schema::table('products', function (Blueprint $table) {
+            $table->string('url')->nullable()->default(null);
         });
     }
 
@@ -24,8 +24,8 @@ class AddQuotationToPurchase extends Migration
      */
     public function down()
     {
-        Schema::table('purchases', function (Blueprint $table) {
-            $table->dropColumn(['lineQuote_id']);
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropColumn(['url']);
         });
     }
 }

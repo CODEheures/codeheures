@@ -19,6 +19,7 @@ class CreatePurchasesTable extends Migration
             $table->integer('product_id')->unsigned()->index();
             $table->string('hash_key',20)->unique()->index();
             $table->boolean('payed')->default(false);
+            $table->integer('quotation_id')->unsigned()->nullable()->default(null)->index();
         });
     }
 

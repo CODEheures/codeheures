@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('description');
             $table->enum('type',['time','one_shot']);
             $table->smallInteger('value')->unsigned()->default(null)->nullable();
-            $table->smallInteger('price')->unsigned();
+            $table->decimal('price')->unsigned();
         });
     }
 

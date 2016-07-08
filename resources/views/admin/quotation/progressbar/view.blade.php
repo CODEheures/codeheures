@@ -32,3 +32,21 @@
         <p>signé</p>
     </div>
 </div>
+@if($quotation->isRefused)
+<div class="quotation-progress refuse published viewed  refused">
+@else
+<div class="quotation-progress refuse">
+@endif
+    <div class="quotation-progress-2b">
+        <div class="bifurcation"><i class="ion-minus-round"></i></div>
+    </div>
+    <div class="quotation-progress-3">
+        <div class="bar"></div>
+        <div class="point"><i class="ion-record"></i></div>
+    </div>
+</div>
+<div class="quotation-progress-text refuse">
+    <div class="quotation-progress-3">
+        <p>refusé</p>
+    </div>
+</div>

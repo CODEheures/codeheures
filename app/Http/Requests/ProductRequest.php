@@ -24,7 +24,8 @@ class ProductRequest extends Request
     public function rules()
     {
         return [
-            'description' =>'required|min:3'
+            'description' =>'required|min:3',
+            'url' => 'url'
         ];
     }
 }

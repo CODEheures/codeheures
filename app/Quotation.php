@@ -12,7 +12,7 @@ class Quotation extends Model
     private $max_sms_tentative_code = 2;
     private $max_time_validity = 15;
 
-    protected $fillable = ['validity', 'user_id', 'isPublished', 'isViewed', 'isOrdered', 'isArchived', 'sms_code', 'sms_validity', 'sms_tentatives', 'orderDate', 'downPercentPayment', 'phoneUsedForOrder'];
+    protected $fillable = ['validity', 'user_id', 'isPublished', 'isViewed', 'isOrdered', 'isRefused', 'isArchived', 'sms_code', 'sms_validity', 'sms_tentatives', 'orderDate', 'downPercentPayment', 'phoneUsedForOrder'];
 
     public function __construct(array $attributes =[]) {
         parent::__construct($attributes);
@@ -32,6 +32,10 @@ class Quotation extends Model
 
     public function lineQuotes() {
         return $this->hasMany('App\LineQuote');
+    }
+
+    public function purchase() {
+        return $this->hasOne('App\Purchase');
     }
 
     public function getPublicNumber() {
@@ -64,6 +68,8 @@ class Quotation extends Model
             return true;
         } elseif ($this->validity < Carbon::today()->format('Y-m-d')) {
             return true;
+        } elseif ($this->isRefused) {
+            return true;
         }
         return false;
     }
@@ -82,6 +88,17 @@ class Quotation extends Model
             $this->user_id == auth()->user()->id
             && $this->isPublished
             && $this->validity >= Carbon::today()->format('Y-m-d')
+            && !$this->isOrdered
+            && !$this->isRefused
+        ) {
+            return true;
+        }
+        return false;
+    }
+
+    public function canRefuse() {
+        if(
+            $this->user_id == auth()->user()->id
             && !$this->isOrdered
         ) {
             return true;

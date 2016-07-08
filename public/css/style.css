@@ -6335,6 +6335,62 @@ body > header {
       width: 100%;
       margin-left: 1rem;
       margin-right: 1rem; }
+      .main section div.quotation-progress.refuse,
+      .main section div.quotation-progress-text.refuse {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+                flex-direction: row;
+        -webkit-flex-wrap: nowrap;
+            -ms-flex-wrap: nowrap;
+                flex-wrap: nowrap;
+        -webkit-box-pack: end;
+        -webkit-justify-content: flex-end;
+            -ms-flex-pack: end;
+                justify-content: flex-end;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center; }
+        .main section div.quotation-progress.refuse div.quotation-progress-2b,
+        .main section div.quotation-progress-text.refuse div.quotation-progress-2b {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: horizontal;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: row;
+              -ms-flex-direction: row;
+                  flex-direction: row;
+          -webkit-flex-wrap: nowrap;
+              -ms-flex-wrap: nowrap;
+                  flex-wrap: nowrap;
+          -webkit-box-pack: end;
+          -webkit-justify-content: flex-end;
+              -ms-flex-pack: end;
+                  justify-content: flex-end;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          height: 1.2rem;
+          width: 33%; }
+          .main section div.quotation-progress.refuse div.quotation-progress-2b div.bifurcation,
+          .main section div.quotation-progress-text.refuse div.quotation-progress-2b div.bifurcation {
+            font-size: 4.8rem;
+            color: rgba(171, 161, 144, 0.3);
+            -webkit-transform: rotate(72deg);
+                -ms-transform: rotate(72deg);
+                    transform: rotate(72deg);
+            -webkit-transform-origin: right;
+                -ms-transform-origin: right;
+                    transform-origin: right; }
       .main section div.quotation-progress div.quotation-progress-1,
       .main section div.quotation-progress div.quotation-progress-2,
       .main section div.quotation-progress div.quotation-progress-3,
@@ -6401,6 +6457,15 @@ body > header {
       .main section div.quotation-progress.published.viewed.purchased div.quotation-progress-3 div.bar,
       .main section div.quotation-progress-text.published.viewed.purchased div.quotation-progress-3 div.bar {
         background-color: #12ad9b; }
+      .main section div.quotation-progress.published.viewed.refused div.quotation-progress-2b div.bifurcation,
+      .main section div.quotation-progress-text.published.viewed.refused div.quotation-progress-2b div.bifurcation {
+        color: rgba(215, 44, 35, 0.9); }
+      .main section div.quotation-progress.published.viewed.refused div.quotation-progress-3 div.point,
+      .main section div.quotation-progress-text.published.viewed.refused div.quotation-progress-3 div.point {
+        color: rgba(215, 44, 35, 0.9); }
+      .main section div.quotation-progress.published.viewed.refused div.quotation-progress-3 div.bar,
+      .main section div.quotation-progress-text.published.viewed.refused div.quotation-progress-3 div.bar {
+        background-color: rgba(215, 44, 35, 0.9); }
     .main section#user {
       width: 100%; }
       .main section#user a {
@@ -6493,9 +6558,11 @@ body > header {
         .main section#user div.product p span.purchase-date,
         .main section#user div.product p span.quotation-date {
           font-weight: 100; }
-        .main section#user div.purchase p a.purchase-number,
+        .main section#user div.purchase p a.purchase-number, .main section#user div.purchase p a.quotation-number,
         .main section#user div.quotation p a.purchase-number,
-        .main section#user div.product p a.purchase-number {
+        .main section#user div.quotation p a.quotation-number,
+        .main section#user div.product p a.purchase-number,
+        .main section#user div.product p a.quotation-number {
           font-size: 1.2rem;
           font-weight: 400; }
         .main section#user div.purchase p.tva-info,
@@ -6700,10 +6767,10 @@ body > header {
           -webkit-justify-content: flex-start;
               -ms-flex-pack: start;
                   justify-content: flex-start;
-          -webkit-box-align: center;
-          -webkit-align-items: center;
-              -ms-flex-align: center;
-                  align-items: center;
+          -webkit-box-align: start;
+          -webkit-align-items: flex-start;
+              -ms-flex-align: start;
+                  align-items: flex-start;
           padding-left: 1rem;
           padding-bottom: 1rem; }
         .main section#user div.purchase div.quotations-list div.progress-icon,

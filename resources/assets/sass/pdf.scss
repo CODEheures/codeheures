@@ -171,20 +171,34 @@ div.quotation {
   & table {
     margin: 0;
     width: 100%;
+    border: 1px solid $color11;
+    border-radius: 6px;
     //page-break-after:auto;
 
     & tr {
       page-break-inside:avoid;
       page-break-after:auto;
+      & td:nth-child(2), & td:nth-child(5), & td:nth-child(6) {
+        text-align: right;
+      }
+      & td:nth-child(3), & td:nth-child(4) {
+        text-align: center;
+      }
     }
 
     & td {
       page-break-inside:avoid;
       page-break-after:auto;
+      font-size: 12px;
     }
 
     & thead {
       display:table-header-group;
+      & tr th {
+        font-size: 14px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
     }
 
   }

@@ -20,6 +20,7 @@ class CreateQuotationsTable extends Migration
             $table->boolean('isPublished')->default(false);
             $table->boolean('isViewed')->default(false);
             $table->boolean('isOrdered')->default(false);
+            $table->boolean('isRefused')->default(false);
             $table->boolean('isArchived')->default(false);
             $table->integer('sms_code')->unsigned()->nullable()->default(null);
             $table->timestamp('sms_validity')->nullable()->default(null);

@@ -52,6 +52,7 @@ Class ResetDemo
 
     private function createDatas($email, $name) {
 
+        //creation de l'utilisateur
         $fake = Factory::create('fr_FR');
 
         $passwd = str_random(14);
@@ -81,8 +82,10 @@ Class ResetDemo
         $user->save();
         $user->addresses()->saveMany([$billingAddress,$shippingAddress]);
 
+
+        //création des produits
         $product1 = Product::create([
-           'description' => '1h de webmastering',
+            'description' => '1 h de webmastering',
             'type' => 'time',
             'value' => 1,
             'price' => 60,
@@ -91,31 +94,60 @@ Class ResetDemo
         ]);
 
         $product2 = Product::create([
-            'description' => '5h de webmastering',
+            'description' => '5 h de webmastering',
             'type' => 'time',
             'value' => 5,
-            'price' => 250,
+            'price' => 240,
             'unit' => 'heure(s)',
             'reservedForUserId' => $user->id
         ]);
 
         $product3 = Product::create([
-            'description' => '10h de webmastering',
+            'description' => '10 h de webmastering',
             'type' => 'time',
             'value' => 10,
-            'price' => 400,
+            'price' => 399,
             'unit' => 'heure(s)',
             'reservedForUserId' => $user->id
         ]);
 
         $product4 = Product::create([
-            'description' => '1 site vitrine 5 pages base wix.com',
-            'type' => 'one_shot',
-            'value' => 1,
-            'price' => 800,
+            'description' => '150h de webmastering pour creation e-commerce',
+            'type' => 'time',
+            'value' => 150,
+            'price' => 4000,
+            'unit' => 'heure(s)',
             'reservedForUserId' => $user->id
         ]);
 
+        $product5 = Product::create([
+           'description' => '1 theme baby kid store Prestashop',
+            'type' => 'one_shot',
+            'value' => 1,
+            'price' => 79.99,
+            'url' => 'http://addons.prestashop.com/demo/FO15619.html',
+            'reservedForUserId' => $user->id
+        ]);
+
+        $product6 = Product::create([
+            'description' => '1 module Mercanet BNP prestashop',
+            'type' => 'one_shot',
+            'value' => 1,
+            'price' => 149.99,
+            'url' => 'http://addons.prestashop.com/fr/22144-bnp-paribas-mercanet-officiel.html',
+            'reservedForUserId' => $user->id
+        ]);
+
+        $product7 = Product::create([
+            'description' => '1 module Paiement ATOS prestashop',
+            'type' => 'one_shot',
+            'value' => 1,
+            'price' => 199.99,
+            'url' => 'http://addons.prestashop.com/fr/1-sips-atos-worldine.html',
+            'reservedForUserId' => $user->id
+        ]);
+
+        //3 Achats effectués
         $purchase1 = Purchase::create([
             'user_id' => $user->id,
             'product_id' => $product3->id,
@@ -123,8 +155,8 @@ Class ResetDemo
             'payed' => true,
             'quantity' => 1
         ]);
-        $purchase1->created_at = '2015-10-03 20:44:00';
-        $purchase1->updated_at = '2015-10-03 20:44:00';
+        $purchase1->created_at = Carbon::now()->subDay(15);
+        $purchase1->updated_at = Carbon::now()->subDay(15);
         $purchase1->save();
 
         $purchase2 = Purchase::create([
@@ -132,97 +164,146 @@ Class ResetDemo
             'product_id' => $product2->id,
             'hash_key' => str_random(12),
             'payed' => true,
-            'quantity' => 2
+            'quantity' => 1
         ]);
-        $purchase2->created_at = '2015-10-05 20:44:00';
-        $purchase2->updated_at = '2015-10-05 20:44:00';
+        $purchase2->created_at = Carbon::now()->subDay(32);
+        $purchase2->updated_at = Carbon::now()->subDay(32);
         $purchase2->save();
 
         $purchase3 = Purchase::create([
             'user_id' => $user->id,
-            'product_id' => $product4->id,
+            'product_id' => $product1->id,
             'hash_key' => str_random(12),
             'payed' => true,
-            'quantity' => 1
+            'quantity' => 3
         ]);
-        $purchase3->created_at = '2015-08-01 20:44:00';
-        $purchase3->updated_at = '2015-08-01 20:44:00';
+        $purchase3->created_at = Carbon::now()->subDay(58);
+        $purchase3->updated_at = Carbon::now()->subDay(58);
         $purchase3->save();
 
-        $consommation1 = Consommation::create([
+
+        //Consommation de l'achat n°1
+        $consommation11 = Consommation::create([
             'purchase_id' => $purchase1->id,
             'value' => 1.5,
             'comment' => 'ajoute photos et commentaires'
         ]);
-        $consommation1->created_at = '2015-10-04 20:44:00';
-        $consommation1->updated_at = '2015-10-04 20:44:00';
-        $consommation1->save();
+        $consommation11->created_at = Carbon::now()->subDay(2);
+        $consommation11->updated_at = Carbon::now()->subDay(2);
+        $consommation11->save();
 
-        $consommation2 = Consommation::create([
+        $consommation12 = Consommation::create([
             'purchase_id' => $purchase1->id,
             'value' => 2,
             'comment' => 'ajoute d\'une page prestataire'
         ]);
-        $consommation2->created_at = '2015-10-15 20:44:00';
-        $consommation2->updated_at = '2015-10-15 20:44:00';
-        $consommation2->save();
+        $consommation12->created_at = Carbon::now()->subDay(4);
+        $consommation12->updated_at = Carbon::now()->subDay(4);
+        $consommation12->save();
 
-        $consommation3 = Consommation::create([
-            'purchase_id' => $purchase1->id,
+
+        //Consommations achat n°2
+        $consommation21 = Consommation::create([
+            'purchase_id' => $purchase2->id,
             'value' => 4,
             'comment' => 'refonte de la page d\'accueil'
         ]);
-        $consommation3->created_at = '2015-10-18 20:44:00';
-        $consommation3->updated_at = '2015-10-18 20:44:00';
-        $consommation3->save();
+        $consommation21->created_at = Carbon::now()->subDay(18);
+        $consommation21->updated_at = Carbon::now()->subDay(18);
+        $consommation21->save();
 
-        $consommation4 = Consommation::create([
-            'purchase_id' => $purchase1->id,
-            'value' => 0.8,
-            'comment' => 'mise à jour photo'
-        ]);
-        $consommation4->created_at = '2015-10-25 20:44:00';
-        $consommation4->updated_at = '2015-10-25 20:44:00';
-        $consommation4->save();
-
-        $consommation5 = Consommation::create([
-            'purchase_id' => $purchase1->id,
-            'value' => 1.5,
-            'comment' => 'gestion des utilisateurs'
-        ]);
-        $consommation5->created_at = '2015-10-30 20:44:00';
-        $consommation5->updated_at = '2015-10-30 20:44:00';
-        $consommation5->save();
-
-        $consommation6 = Consommation::create([
-            'purchase_id' => $purchase1->id,
+        $consommation22 = Consommation::create([
+            'purchase_id' => $purchase2->id,
             'value' => 0.2,
             'comment' => 'correction de texte'
         ]);
-        $consommation6->created_at = '2015-11-08 21:44:00';
-        $consommation6->updated_at = '2015-11-08 21:44:00';
-        $consommation6->save();
+        $consommation22->created_at = Carbon::now()->subDay(21);
+        $consommation22->updated_at = Carbon::now()->subDay(21);
+        $consommation22->save();
 
-        $consommation7 = Consommation::create([
+        $consommation23 = Consommation::create([
             'purchase_id' => $purchase2->id,
+            'value' => 0.8,
+            'comment' => 'mise à jour photo'
+        ]);
+        $consommation23->created_at = Carbon::now()->subDay(32);
+        $consommation23->updated_at = Carbon::now()->subDay(32);
+        $consommation23->save();
+
+
+        //Consommation achat n°3
+        $consommation31 = Consommation::create([
+            'purchase_id' => $purchase3->id,
+            'value' => 0.8,
+            'comment' => 'mise à jour photo'
+        ]);
+        $consommation31->created_at = Carbon::now()->subDay(37);
+        $consommation31->updated_at = Carbon::now()->subDay(37);
+        $consommation31->save();
+
+        $consommation32 = Consommation::create([
+            'purchase_id' => $purchase3->id,
+            'value' => 1.5,
+            'comment' => 'gestion des utilisateurs'
+        ]);
+        $consommation32->created_at = Carbon::now()->subDay(48);
+        $consommation32->updated_at = Carbon::now()->subDay(48);
+        $consommation32->save();
+
+        $consommation33 = Consommation::create([
+            'purchase_id' => $purchase3->id,
             'value' => 0.7,
             'comment' => 'mise à jour page 2'
         ]);
-        $consommation7->created_at = '2015-11-09 20:44:00';
-        $consommation7->updated_at = '2015-11-09 20:44:00';
-        $consommation7->save();
+        $consommation33->created_at = Carbon::now()->subDay(58);;
+        $consommation33->updated_at = Carbon::now()->subDay(58);;
+        $consommation33->save();
 
 
+        //Devis n°1
         $quotation1 = Quotation::create([
             'user_id' => $user->id,
             'isPublished' => true,
-            'downPercentPayment' => 30
+            'downPercentPayment' => 5
         ]);
         $quotation1->created_at = Carbon::now()->subDays(15);
         $quotation1->updated_at = Carbon::now()->subDays(15);
         $quotation1->validity = Carbon::now()->subDays(15)->addMonth(1)->format('Y-m-d');
         $quotation1->save();
 
+        $lineQuote1 = LineQuote::create([
+            'quotation_id' => $quotation1->id,
+            'product_id' => $product4->id,
+            'quantity' => 1,
+        ]);
+        $lineQuote1->created_at = Carbon::now()->subDays(15);
+        $lineQuote1->updated_at = Carbon::now()->subDays(15);
+        $lineQuote1->save();
+
+        $lineQuote2 = LineQuote::create([
+            'quotation_id' => $quotation1->id,
+            'product_id' => $product5->id,
+            'quantity' => 1,
+            'discount' => 0,
+            'discount_type' => 'devise'
+        ]);
+        $lineQuote2->created_at = Carbon::now()->subDays(15);
+        $lineQuote2->updated_at = Carbon::now()->subDays(15);
+        $lineQuote2->save();
+
+        $lineQuote3 = LineQuote::create([
+            'quotation_id' => $quotation1->id,
+            'product_id' => $product6->id,
+            'quantity' => 1,
+            'discount' => 0,
+            'discount_type' => 'percent'
+        ]);
+        $lineQuote3->created_at = Carbon::now()->subDays(15);
+        $lineQuote3->updated_at = Carbon::now()->subDays(15);
+        $lineQuote3->save();
+
+
+        //Devis n°2
         $quotation2 = Quotation::create([
             'user_id' => $user->id,
             'isPublished' => true,
@@ -232,42 +313,11 @@ Class ResetDemo
         $quotation2->validity = Carbon::now()->subDays(11)->addMonth(1)->format('Y-m-d');
         $quotation2->save();
 
-        $lineQuote1 = LineQuote::create([
-            'quotation_id' => $quotation1->id,
-            'product_id' => $product1->id,
-            'quantity' => 1,
-        ]);
-        $lineQuote1->created_at = Carbon::now()->subDays(15);
-        $lineQuote1->updated_at = Carbon::now()->subDays(15);
-        $lineQuote1->save();
-
-        $lineQuote2 = LineQuote::create([
-            'quotation_id' => $quotation1->id,
-            'product_id' => $product2->id,
-            'quantity' => 3,
-            'discount' => 15,
-            'discount_type' => 'devise'
-        ]);
-        $lineQuote2->created_at = Carbon::now()->subDays(15);
-        $lineQuote2->updated_at = Carbon::now()->subDays(15);
-        $lineQuote2->save();
-
-        $lineQuote3 = LineQuote::create([
-            'quotation_id' => $quotation1->id,
-            'product_id' => $product4->id,
-            'quantity' => 1,
-            'discount' => 10,
-            'discount_type' => 'percent'
-        ]);
-        $lineQuote3->created_at = Carbon::now()->subDays(15);
-        $lineQuote3->updated_at = Carbon::now()->subDays(15);
-        $lineQuote3->save();
-
         $lineQuote4 = LineQuote::create([
             'quotation_id' => $quotation2->id,
-            'product_id' => $product2->id,
+            'product_id' => $product4->id,
             'quantity' => 1,
-            'discount' => 10,
+            'discount' => 2.5,
             'discount_type' => 'percent'
         ]);
         $lineQuote4->created_at = Carbon::now()->subDays(11);
@@ -276,9 +326,20 @@ Class ResetDemo
 
         $lineQuote5 = LineQuote::create([
             'quotation_id' => $quotation2->id,
-            'product_id' => $product4->id,
+            'product_id' => $product5->id,
             'quantity' => 1,
-            'discount' => 10,
+            'discount' => 0,
+            'discount_type' => 'percent'
+        ]);
+        $lineQuote5->created_at = Carbon::now()->subDays(11);
+        $lineQuote5->updated_at = Carbon::now()->subDays(11);
+        $lineQuote5->save();
+
+        $lineQuote5 = LineQuote::create([
+            'quotation_id' => $quotation2->id,
+            'product_id' => $product7->id,
+            'quantity' => 1,
+            'discount' => 0,
             'discount_type' => 'percent'
         ]);
         $lineQuote5->created_at = Carbon::now()->subDays(11);
