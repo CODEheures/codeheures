@@ -23,5 +23,5 @@
 
 @section('script')
     @parent
-    @include('plugins.inputEffect.scripts')
+
 @endsection

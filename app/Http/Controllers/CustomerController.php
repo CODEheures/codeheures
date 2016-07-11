@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Common\DataGraph;
 use App\Http\Requests\PhoneAccountRequest;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
@@ -27,6 +28,8 @@ class CustomerController extends Controller
         $this->mailer = $mailer;
         $this->auth = $auth;
     }
+
+    use DataGraph;
 
     public function edit() {
         $user = $this->auth->user();
@@ -82,20 +85,15 @@ class CustomerController extends Controller
 
 
         //data pour le graphique conso
-        $conso = [];
+        $conso = collect([]);
         $totalQuantity = 0;
         $totalConsommation = 0;
         foreach($purchases as $purchase){
             if($purchase->product->type == 'time'){
                 $totalQuantity += $purchase->product->value*$purchase->quantity;
+                $conso  = $conso->merge($purchase->consommations);
             }
             foreach($purchase->consommations as $consommation){
-                $conso[] = [
-                    'x' => $consommation->created_at->format('Y-m-d'),
-                    'y' => $consommation->value,
-                    'com' => $consommation->comment
-                ];
-
                 if($purchase->product->type == 'time'){
                     $totalConsommation += $consommation->value;
                 }
@@ -104,23 +102,8 @@ class CustomerController extends Controller
 
         $totalLeft = $totalQuantity-$totalConsommation;
 
-        $main=[];
-        $main[] = [
-            'className' => '.consommations',
-            'data' => $conso
-        ];
-
-        $data = [
-            'xScale' => 'time',
-            'yScale' => 'linear',
-            'main' => $main
-
-        ];
-
-
-        $data = json_encode($data,JSON_NUMERIC_CHECK);
-
-
+        $data = $this->dataGraph($conso);
+        
         return view('customer.monitor.index', compact('user', 'purchases', 'data', 'totalLeft'));
     }
 

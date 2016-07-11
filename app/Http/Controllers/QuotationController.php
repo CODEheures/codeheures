@@ -87,7 +87,7 @@ class QuotationController extends Controller
             $content = view('pdf.quotation.index', compact('quotation', 'totalPrice', 'totalTva', 'isPdf'))->__toString();
             $header = view('header.pdf', compact('quotation'))->__toString();
             $footer = view('footer.pdf')->__toString();
-            $css = file_get_contents(asset('css/pdf.css'));
+            $css = file_get_contents(asset('css/pdf.min.css'));
 
             $mpdf = new \mPDF();
 

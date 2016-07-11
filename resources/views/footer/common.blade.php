@@ -5,7 +5,10 @@
         <p><i class="ion-ios-email-outline"> </i>webmaster@codeheures.fr</p>
     </div>
     <div class="legale">
-        <a href="#">mentions légales</a>
+        <div class="links">
+            <a href="#">mentions légales</a>
+            <a href="{{ route('cgv') }}">Conditions Générales de ventes</a>
+        </div>
         <hr />
         <h3>Horaires:</h3>
         <p>8h-12h | 14h-18h</p>

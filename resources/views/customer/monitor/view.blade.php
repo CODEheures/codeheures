@@ -4,8 +4,11 @@
         Crédit: {{ $totalLeft }}h
     </div>
 </div>
+<nav class="prestation-get-pdf">
+    <p><a href="{{ route('customer.prestation.pdf') }}"><i class="ion-archive"></i>Télécharger la grille des prestations standards</a></p>
+</nav>
 
-@if(empty(json_decode($data)->main[0]->data))
+@if(!$data)
     <div class="purchase">
         <p>Aucun relevé de consommation pour l'instant!</p>
     </div>
@@ -41,7 +44,7 @@
 
             <?php $reste = (int) $purchase->product->value*$purchase->quantity; ?>
             @foreach($purchase->consommations as $consommation)
-                <?php $reste =  round($reste - round($consommation->value,1),1); ?>
+                <?php $reste =  round($reste - round($consommation->value,2),2); ?>
                 <tr>
                     <td>{{ $consommation->created_at->formatLocalized('%d-%m-%Y') }}</td>
                     <td width="50%">{{ $consommation->comment }}</td>
@@ -56,7 +59,7 @@
 @endforeach
 
 <div class="purchase-title">
-    <h2><i class="ion-ios-settings"></i>Mes prestations personnalisées</h2>
+    <h2><i class="ion-ios-settings"></i>Mes achats de Plugins et Thèmes</h2>
 </div>
 
 <?php $purchaseNotTimeExist = false ?>

@@ -44,4 +44,8 @@ class MainController extends Controller
                 Par sécurité cet espace est régénéré toutes les heures.
                 Prochaine régération dans '. Carbon::parse($user->created_at)->addHour(1)->diffInMinutes(Carbon::now(),true). 'minute(s)');
     }
+
+    public function cgv() {
+        return view('legal.cgv.index');
+    }
 }

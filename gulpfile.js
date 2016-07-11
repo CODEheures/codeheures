@@ -18,7 +18,9 @@
 // Configuration
 var $path = {
     'css': 'public/css/',
-    'scss': 'resources/assets/sass/'
+    'scss': 'resources/assets/sass/',
+    'js': 'public/js/',
+    'assetJs': 'resources/assets/js/'
 };
 
 // Require
@@ -34,10 +36,32 @@ gulp.task('sass', function () {
         .pipe($.autoprefixer({
             cascade:true
         }))
+        .pipe($.csso({
+            restructure: true,
+        }))
+        .pipe($.rename({
+            suffix: '.min'
+        }))
         .pipe(gulp.dest($path.css))
+    //.pipe($.size())
+});
+
+// Tasks
+gulp.task('minifyJS', function () {
+    gulp.src($path.assetJs+'*.js')
+        .pipe($.minify().on('error', console.error.bind(console, "SASS Error:")
+        ))
+        .pipe($.minify({
+            ext:{
+                min:'.min.js'
+            },
+            noSource: true,
+        }))
+        .pipe(gulp.dest($path.js))
     //.pipe($.size())
 });
 
 gulp.task('default', function(){
     gulp.watch($path.scss+'*.scss', ['sass'])
+    gulp.watch($path.assetJs+'*.js', ['minifyJS'])
 });

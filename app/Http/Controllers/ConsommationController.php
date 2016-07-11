@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Consommation;
 use App\Http\Requests\ConsommationRequest;
+use App\Prestation;
 use App\Purchase;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -66,6 +67,9 @@ class ConsommationController extends Controller
         $purchase = Purchase::findOrFail($request->get('purchase_id'));
         $purchase->consommations()->save($consommation);
 
+        $prestation = Prestation::findOrFail($request->get('prestation_id'));
+        $prestation->consommations()->save($consommation);
+
         return redirect()->back()->with('success','Pointage enregistré');
     }
 
@@ -90,6 +94,7 @@ class ConsommationController extends Controller
     {
         $consommationToEdit = Consommation::findOrFail($id);
         $consommationToEdit->load('purchase');
+        $consommationToEdit->load('prestation');
 
         $purchase = $consommationToEdit->purchase;
         $purchase->load(['consommations' => function($query){
@@ -98,9 +103,14 @@ class ConsommationController extends Controller
         $purchase->load('product');
 
         $consommations = $purchase->consommations()->get();
+        $consommations->load('prestation');
         $data = $this->dataGraph($consommations);
 
-        return view('consommation.edit', compact('consommationToEdit', 'purchase', 'consommations', 'data'));
+        $prestations[0] = 'Aucun';
+        $prestationsDatas= Prestation::where('isObsolete', '=', 'false')->orderBy('name')->Lists('name', 'id');
+        $prestations = $prestations + $prestationsDatas->toArray();
+
+        return view('consommation.edit', compact('consommationToEdit', 'purchase', 'consommations', 'data', 'prestations'));
     }
 
     /**
@@ -118,6 +128,9 @@ class ConsommationController extends Controller
         }
         $consommation = Consommation::findOrFail($id);
         $consommation->update($request->only(['created_at', 'comment', 'value']));
+
+        $prestation = Prestation::findOrFail($request->get('prestation_id'));
+        $prestation->consommations()->save($consommation);
 
         return redirect(route('purchase.show', ['id' => $consommation->purchase->id]))->with('success', 'Consommation mise à jour');
     }
@@ -139,6 +152,7 @@ class ConsommationController extends Controller
 
     private function redirectNoneConformConsommation($request, $updateId=0){
         $purchase = Purchase::findOrFail($request->get('purchase_id'));
+        $prestationReference = Prestation::findOrFail($request->get('prestation_id'));
 
         $purchase->load('consommations');
         $purchase->load('product');
@@ -155,12 +169,16 @@ class ConsommationController extends Controller
         }
 
 
-        if(round($totalConsommation+$request->get('value'),1) > $totalQuantity){
+        if(round($totalConsommation+$request->get('value'),2) > $totalQuantity){
             return 'Pointage refusé, valeur supérieure au reliquat';
         }
 
         if($purchase->created_at->gt(Carbon::createFromFormat('Y-m-d', $request->get('created_at')))){
             return 'Date invalide: pointage antérieur à l\'achat client';
+        }
+
+        if($request->get('value') > $prestationReference->duration) {
+            return 'Pointage interdit: votre valeure est plus élévée que la référence indiquéé';
         }
 
         return null;

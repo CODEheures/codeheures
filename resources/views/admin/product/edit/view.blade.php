@@ -108,10 +108,10 @@
     {!! Form::close() !!}
 
     @if(!$product->canEdit())
-        @if($product->lineQuote->count() > 0)
+        @if($product->lineQuotes->count() > 0)
             <p class="space-top">Ce produit a été proposé dans les dévis suivants:</p>
             <ul>
-            @foreach($product->lineQuote as $lineQuote)
+            @foreach($product->lineQuotes as $lineQuote)
             <li><a href="{{ route('admin.quotation.edit', ['id' => $lineQuote->quotation->id]) }}">Devis n° {{ $lineQuote->quotation->id }}</a></li>
             @endforeach
             </ul>

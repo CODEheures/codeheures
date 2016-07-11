@@ -34,7 +34,6 @@ $font3 : Flamenco, sans-serif;
   outline: none;
 }
 
-
 /*
 ****** General ******
 */
@@ -79,10 +78,13 @@ ul.circle {
 }
 
 //Imports des styles exterieurs
+@import "select2/select2";
 @import "web_styles/_checkbox";
 @import "web_styles/_table1";
 @import "animate/animate";
 @import "ionicons/ionicons";
+@import "fa-icons/font-awesome";
+
 
 .container {
   $width: 100%;
@@ -97,6 +99,7 @@ ul.circle {
   @include cnfsfs;
   position: fixed;
   top: 10rem;
+  left: 0;
   z-index: 2000;
   border-radius: 0.5rem;
   border: 0.1rem solid;
@@ -165,12 +168,14 @@ ul.circle {
 }
 
 [class^="btn-"] {
+  @include rncc;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
   padding: 1rem 1.5rem;
   border-radius: 0.8rem;
   transition-property: all;
   transition-duration: 0.5s;
+  line-height: 1.35;
 
   & i {
     padding-right: 1rem;
@@ -584,7 +589,8 @@ body > header {
 
     & div.purchase-title,
     & div.quotation-title,
-    & div.product-title {
+    & div.product-title,
+    & div.prestation-title {
       @include rwsbc;
       width: 100%;
       margin-top: 2rem;
@@ -608,12 +614,16 @@ body > header {
       }
 
       & div.cart-quotation,
-      & div.price-quotation {
-        margin-bottom: 1rem;
+      & div.price-quotation,
+      & div.refuse-quotation {
+        @include rncc;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
       }
 
       & div.reliquat-customer-info,
-      & div.total-price-quotation-info {
+      & div.total-price-quotation-info,
+      & div.prestation-duration {
         line-height: initial;
         border: 0.1rem solid $color7;
         background-color: $color7;
@@ -737,7 +747,8 @@ body > header {
 
       & nav.monitor-return,
       & nav.quotation-title,
-      & nav.product-title {
+      & nav.product-title,
+      & nav.prestation-title {
         width: 100%;
         position: relative;
         top: -1.8rem;
@@ -747,7 +758,9 @@ body > header {
         }
       }
 
-      & nav.quotation-get-pdf {
+      & nav.quotation-get-pdf,
+      & nav.prestation-get-pdf {
+        margin-left: 1.95rem;
         & p {
           padding: 0;
         }
@@ -784,7 +797,8 @@ body > header {
 
     &#user div.purchase,
     &#user div.quotation,
-    &#user div.product {
+    &#user div.product,
+    &#user div.prestation {
       @include cnfsfs;
       width: 100%;
       padding-top: 2rem;
@@ -851,6 +865,7 @@ body > header {
         margin: 0;
         width: 100%;
 
+
         transition-property: all;
         transition-duration: 800ms;
 
@@ -879,7 +894,8 @@ body > header {
 
           & span.reliquat,
           & span.total-price-quotation,
-          & span.product-price {
+          & span.product-price,
+          & span.prestation-duration {
             float: right;
             padding-left: 0.5rem;
             padding-right: 0.5rem;
@@ -893,6 +909,12 @@ body > header {
         & a.btn-danger {
           padding-top: 0;
           padding-bottom: 0;
+        }
+
+        &.quotation-table {
+          & td:nth-child(2), & td:nth-child(6) {
+            min-width: 8rem;
+          }
         }
       }
 
@@ -1145,6 +1167,9 @@ body > footer {
     & .legale {
       min-width: 33%;
       max-width: 50%;
+      & .links {
+        @include rwsbc;
+      }
       & h3 {
         font-size: 1.4rem;
       }
@@ -1175,6 +1200,18 @@ body > footer {
     @include mycontainer($width, $container-gutters);
   }
 
+  body > header {
+    .bg-cover {
+      .header-content {
+        h1 {
+          font-size: 5.6rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and(min-width: 800px) {
   .navbar {
     @include rncc;
 
@@ -1240,39 +1277,6 @@ body > footer {
       }
     }
   }
-
-  body > header {
-    .bg-cover {
-      .header-content {
-        h1 {
-          font-size: 5.6rem;
-        }
-      }
-    }
-  }
-
-  .main {
-    section {
-      & div.purchase-title,
-      & div.quotation-title,
-      & div.product-title {
-        & div.cart-quotation,
-        & div.price-quotation {
-          margin-bottom: 0;
-        }
-      }
-      &#user {
-        & nav.quotation-get-pdf {
-          position: relative;
-          top: -1.3rem;
-          left: 4.2rem;
-        }
-      }
-    }
-  }
-}
-
-@media screen and(min-width: 800px) {
   .main {
     & section {
       & article {
@@ -1309,6 +1313,33 @@ body > footer {
       padding-left: 2.5rem;
       padding-right: 2.5rem;
 
+    }
+  }
+}
+
+@media screen and (min-width: 970px) {
+  .main {
+    section {
+      & div.purchase-title,
+      & div.quotation-title,
+      & div.product-title,
+      & div.prestation-title {
+        & div.cart-quotation,
+        & div.price-quotation,
+        & div.refuse-quotation {
+          margin-bottom: 0;
+          margin-top: 0;
+        }
+      }
+      &#user {
+        & nav.quotation-get-pdf,
+        & nav.prestation-get-pdf {
+          position: relative;
+          top: -1.3rem;
+          left: 4.2rem;
+          margin-left: 0;
+        }
+      }
     }
   }
 }

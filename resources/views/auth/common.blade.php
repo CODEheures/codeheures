@@ -10,7 +10,7 @@
 @endsection
 
 @section('navbar')
-    @include('navbar.auth')
+    @include('navbar.index', ['navOptions' => ['shrinkForce' => true, 'active' => 'customer']])
 @endsection
 
 
@@ -30,5 +30,5 @@
 
 @section('script')
     @parent
-    @include('plugins.inputEffect.scripts')
+
 @endsection

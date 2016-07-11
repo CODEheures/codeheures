@@ -2,7 +2,7 @@
     <h2><i class="ion-ios-speedometer-outline"></i>Suivi d'activité globale</h2>
 </div>
 
-@if(empty(json_decode($data)->main[0]->data))
+@if(!$data)
     <div class="purchase">
         <p>Aucune relevé de consommation pour l'instant!</p>
     </div>
@@ -23,7 +23,7 @@
 @foreach($purchases as $purchase)
     <?php $reste = (int) $purchase->product->value*$purchase->quantity; ?>
     @foreach($purchase->consommations as $consommation)
-        <?php $reste =  round($reste - round($consommation->value,1),1); ?>
+        <?php $reste =  round($reste - round($consommation->value,2),2); ?>
     @endforeach
     <tr>
         <td class="admin">

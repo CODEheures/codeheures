@@ -9,4 +9,5 @@
     <a href="{{ route('admin.monitor.index') }}" {!! ($active == 'monitor') ? 'aria-selected="true"':'aria-selected="false"' !!}>Suivis clients<div class="activeplus"></div></a>
     <a href="{{ route('admin.quotation.index') }}" {!! ($active == 'quotation') ? 'aria-selected="true"':'aria-selected="false"' !!}>Devis<div class="activeplus"></div></a>
     <a href="{{ route('admin.product.index') }}" {!! ($active == 'product') ? 'aria-selected="true"':'aria-selected="false"' !!}>Produits<div class="activeplus"></div></a>
+    <a href="{{ route('admin.prestation.index') }}" {!! ($active == 'prestations') ? 'aria-selected="true"':'aria-selected="false"' !!}>Prestations<div class="activeplus"></div></a>
 @endsection

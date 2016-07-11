@@ -83,7 +83,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        $product->load('lineQuote');
+        $product->load('lineQuotes');
         $userList = UserList::userList();
         $listEnumProductType = $this->getEnumValues('products', 'type');
         $listUnits = [''];

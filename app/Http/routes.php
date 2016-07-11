@@ -4,6 +4,7 @@
 Route::get('/', ['as' => 'home', 'uses' => 'MainController@index']);
 Route::post('/contact', ['as' => 'contact.post', 'uses' => 'MainController@contact_post']);
 Route::get('/demo', ['as' => 'demo', 'uses' => 'MainController@demoCustomerSpace']);
+Route::get('/conditions-generales-de-ventes', ['as' => 'cgv', 'uses' => 'MainController@cgv']);
 
 //Espace client
 Route::group(['prefix' => 'customer'], function() {
@@ -23,6 +24,9 @@ Route::group(['prefix' => 'customer'], function() {
     Route::get('/quotation/{id}/refuse', ['as' => 'customer.quotation.refuse', 'uses' => 'QuotationController@refuse'])->where(['id'=>'[0-9]+']);
     Route::get('/quotation/{id}/pdf', ['as' => 'customer.quotation.pdf', 'uses' => 'QuotationController@pdf'])->where(['id'=>'[0-9]+']);
     Route::post('/quotation/{id}/order', ['as' => 'customer.quotation.order.post', 'uses' => 'QuotationController@orderPost'])->where(['id'=>'[0-9]+']);
+
+    //customer prestations
+    Route::get('/prestation/pdf', ['as' => 'customer.prestation.pdf', 'uses' => 'PrestationController@pdf']);
 });
 
 //Espace admin
@@ -67,6 +71,18 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/product/{id}/toObsolete', ['as' => 'admin.product.toObsolete', 'uses' => 'ProductController@toObsolete'])->where(['id'=>'[0-9]+']);
     Route::get('/product/{id}/toNotObsolete', ['as' => 'admin.product.toNotObsolete', 'uses' => 'ProductController@toNotObsolete'])->where(['id'=>'[0-9]+']);
 
+    //prestations
+    Route::get('/prestation', ['as' => 'admin.prestation.index', 'uses' => 'PrestationController@index']);
+    Route::get('/prestation/{id}/edit', ['as' => 'admin.prestation.edit', 'uses' => 'PrestationController@edit'])->where(['id'=>'[0-9]+']);
+    Route::post('/prestation', ['as' => 'admin.prestation.store', 'uses' => 'PrestationController@store']);
+    Route::get('/prestation/{id}/delete', ['as' => 'admin.prestation.delete', 'uses' => 'PrestationController@destroy'])->where(['id'=>'[0-9]+']);
+    Route::delete('/prestation/{id}', ['as' => 'admin.prestation.destroy', 'uses' => 'PrestationController@destroy'])->where(['id'=>'[0-9]+']);
+    Route::get('/prestation/create', ['as' => 'admin.prestation.create', 'uses' => 'PrestationController@create']);
+    Route::put('/prestation/{id}', ['as' => 'admin.prestation.update', 'uses' => 'PrestationController@update'])->where(['id'=>'[0-9]+']);
+    Route::get('/prestation/{id}/publish', ['as' => 'admin.prestation.publish', 'uses' => 'PrestationController@publish'])->where(['id'=>'[0-9]+']);
+    Route::get('/prestation/{id}/toObsolete', ['as' => 'admin.prestation.toObsolete', 'uses' => 'PrestationController@toObsolete'])->where(['id'=>'[0-9]+']);
+    Route::get('/prestation/{id}/toNotObsolete', ['as' => 'admin.prestation.toNotObsolete', 'uses' => 'PrestationController@toNotObsolete'])->where(['id'=>'[0-9]+']);
+    Route::get('/prestation/{id}', ['as' => 'admin.prestation.show', 'uses' => 'PrestationController@show'])->where(['id'=>'[0-9]+']);
     //test sms
     Route::get('/sms', 'AdminController@sms');
 

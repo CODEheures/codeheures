@@ -12,12 +12,12 @@ class Product extends Model
         return $this->hasMany('App\Purchase');
     }
 
-    public function lineQuote() {
+    public function lineQuotes() {
         return $this->hasMany('App\LineQuote');
     }
 
     public function canEdit() {
-        if($this->lineQuote()->count() > 0 || $this->purchases()->count() > 0){
+        if($this->lineQuotes()->count() > 0 || $this->purchases()->count() > 0){
             return false;
         }
 

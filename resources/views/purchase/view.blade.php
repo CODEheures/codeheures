@@ -11,6 +11,7 @@
                 <tr>
                     <th>Date</th>
                     <th>Justification</th>
+                    <th>Référence</th>
                     <th>Consommation</th>
                     <th>Reliquat forfait</th>
                     @if(auth()->user()->role == 'admin')
@@ -20,17 +21,22 @@
             </thead>
             <tfoot>
             <tr>
-                <td colspan={!! auth()->user()->role == 'admin' ? "5":"4" !!}>détails<br /><i class="ion-chevron-up"></i></td>
+                <td colspan={!! auth()->user()->role == 'admin' ? "6":"5" !!}>détails<br /><i class="ion-chevron-up"></i></td>
             </tr>
             </tfoot>
             <tbody>
 
             <?php $reste = (int) $purchase->product->value*$purchase->quantity; ?>
             @foreach($purchase->consommations as $consommation)
-                <?php $reste =  round($reste - round($consommation->value,1),1); ?>
+                <?php $reste =  round($reste - round($consommation->value,2),2); ?>
                 <tr>
                     <td>{{ $consommation->created_at->formatLocalized('%d-%m-%Y') }}</td>
                     <td {!! auth()->user()->role == 'admin' ? null: 'width="50%"' !!}>{{ $consommation->comment }}</td>
+                    @if($consommation->prestation_id != null)
+                        <td>{{ $consommation->prestation->name }} ({{ $consommation->prestation->duration }}h)</td>
+                    @else
+                        <td>-</td>
+                    @endif
                     <td>{{ $consommation->value }}</td>
                     <td>{{ $reste }}</td>
                     @if(auth()->user()->role == 'admin')
@@ -91,26 +97,38 @@
     <div class="purchase-title">
         <h2><i class="ion-plus-round"></i>Ajouter une consommation client</h2>
         <div class="btn-fake reliquat-customer-info">
-            Maxi: {{ $totalLeft }}h
+            Maxi: {{ $totalLeft }}@if($purchase->product->type=='time')h @else unité(s) @endif
         </div>
     </div>
     {!! Form::open(['class' => 'form-horizontal', 'url' => route('admin.consommation.store')]) !!}
 
     {!! Form::hidden('purchase_id', $purchase->id) !!}
 
+    @if($purchase->product->type=='time')
+    <div class="form-group">
+            <span class="input input--fumi">
+                {!! Form::select('prestation_id', $prestations, null, ['class' => 'input__field input__field--fumi', 'data-assist' => 'assist1']) !!}
+                <label for="prestation_id" class="input__label input__label--fumi">
+                    <i class="fa fa-fw fa-link icon icon--fumi"></i>
+                    <span class="input__label-content input__label-content--fumi">Prestation de référence</span>
+                </label>
+            </span>
+    </div>
+    @endif
+
     <div class="form-group">
         <span class="input input--fumi">
-            {!! Form::text('value', null, ['class' => 'input__field input__field--fumi', 'placeholder' => '2.4']) !!}
+            {!! Form::number('value', null, ['class' => 'input__field input__field--fumi', 'placeholder' => '2.4', 'min' => '0', 'step' => '0.05', 'data-isAssistBy' => 'assist1']) !!}
             <label for="value" class="input__label input__label--fumi">
                 <i class="fa fa-fw fa-user icon icon--fumi"></i>
-                <span class="input__label-content input__label-content--fumi">Pointage (h)</span>
+                <span class="input__label-content input__label-content--fumi">Pointage @if($purchase->product->type=='time')(h) @else() (unités) @endif</span>
             </label>
         </span>
     </div>
 
     <div class="form-group">
         <span class="input input--fumi">
-            {!! Form::text('comment', null, ['class' => 'input__field input__field--fumi', 'placeholder' => 'Ajout d\'un texte en page d\'accueil']) !!}
+            {!! Form::text('comment', null, ['class' => 'input__field input__field--fumi', 'placeholder' => 'Ajout d\'un texte de justification']) !!}
             <label for="comment" class="input__label input__label--fumi">
                 <i class="fa fa-fw fa-user icon icon--fumi"></i>
                 <span class="input__label-content input__label-content--fumi">Commentaire</span>

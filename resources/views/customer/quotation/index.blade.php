@@ -1,7 +1,8 @@
 @extends('layouts.common')
 
 @section('css')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/qtip2/jquery.qtip.css') }}">
+    @parent
+    @include('plugins.qtip.css')
 @endsection
 
 @section('navbar')
@@ -15,18 +16,6 @@
 @endsection
 
 @section('script')
-    <script type="text/javascript" src="{{ asset('js/qtip2.min.js') }}"></script>
-    <script type="text/javascript">
-        $(function() {
-            $('a[title]').qtip({
-                position: {
-                    my: 'top center',
-                    at: 'bottom center'
-                },
-                style: {
-                    classes: 'qtip-tipsy'
-                }
-            });
-        });
-    </script>
+    @parent
+    @include('plugins.qtip.scripts')
 @endsection

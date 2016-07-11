@@ -112,7 +112,7 @@ Class ResetDemo
         ]);
 
         $product4 = Product::create([
-            'description' => '150h de webmastering pour creation e-commerce',
+            'description' => '150h de webmastering pour creation e-commerce selon cahier des charge founi',
             'type' => 'time',
             'value' => 150,
             'price' => 4000,

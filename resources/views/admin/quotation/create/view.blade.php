@@ -28,6 +28,3 @@
         </div>
     </div>
 {!! Form::close() !!}
-
-
-<div class="clear"></div>

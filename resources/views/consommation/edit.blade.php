@@ -3,10 +3,11 @@
 @section('css')
     @parent
     @include('plugins.graphConso.css')
+    @include('plugins.inputEffect.css')
 @endsection
 
 @section('title')
-    CODEheures | Edition Pointage
+    CODEheures | Commande {{ $purchase->hash_key }}
 @endsection
 
 @section('navbar')

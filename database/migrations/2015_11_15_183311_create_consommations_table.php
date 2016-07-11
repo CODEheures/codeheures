@@ -17,6 +17,7 @@ class CreateConsommationsTable extends Migration
             $table->timestamps();
             $table->integer('purchase_id')->unsigned()->index();
             $table->float('value')->unsigned();
+            $table->integer('prestation_id')->unsigned()->nullable()->default(null)->index();
         });
     }
 

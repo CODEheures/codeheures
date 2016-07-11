@@ -145,4 +145,104 @@ $(function() {
         });
     });
 
+    //Assistance au remplissage consommation client
+    //En cas de modif du champ prestation standard AJAX pour récup valeur et mise à jour auto du pointage
+    $('[data-assist="assist1"]').change(function () {
+        //AJAX pour recup valeurs prestation standard
+        if($('[data-assist="assist1"]').val() != 0) {
+            $.ajax('/admin/prestation/' + $('[data-assist="assist1"]').val())
+                .done(function (data) {
+                    $assist = $('[data-isAssistBy="assist1"]');
+                    $assist.attr('max', data.duration);
+                    $assist.val(data.duration);
+                    if($assist.parent().is('span.input--fumi')){
+                        $assist.parent().addClass('input--filled');
+                        $assist.attr('data-placeholder', 'maxi: ' + data.duration);
+                    }
+                });
+        } else {
+            $assist = $('[data-isAssistBy="assist1"]');
+            $assist.attr('data-placeholder', '2.4');
+            $assist.attr('max', '');
+        }
+    });
+
+
+
+
+    /*****************************************************************************************************/
+    /*                                              SELECT 2                                             */
+    /*****************************************************************************************************/
+    $('select[multiple]').select2();
+
+
+    /*****************************************************************************************************/
+    /*                                              INPUT FUMI                                           */
+    /*****************************************************************************************************/
+    if (!String.prototype.trim) {
+        (function() {
+            // Make sure we trim BOM and NBSP
+            var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+            String.prototype.trim = function() {
+                return this.replace(rtrim, '');
+            };
+        })();
+    }
+
+    [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+        // in case the input is already filled..
+        if( inputEl.value.trim() !== '' ) {
+            $(inputEl).parent().addClass('input--filled');
+        }
+
+        $(inputEl).attr('data-placeholder',$(inputEl).attr('placeholder'));
+        $(inputEl).removeAttr('placeholder');
+
+        // events:
+        inputEl.addEventListener( 'focus', onInputFocus );
+        inputEl.addEventListener( 'blur', onInputBlur );
+    } );
+
+    [].slice.call( document.querySelectorAll( 'textarea.input__field' ) ).forEach( function( inputEl ) {
+        // in case the input is already filled..
+        if( inputEl.value.trim() !== '' ) {
+            $(inputEl).parent().addClass('input--filled');
+        }
+
+        $(inputEl).attr('data-placeholder',$(inputEl).attr('placeholder'));
+        $(inputEl).removeAttr('placeholder');
+
+        // events:
+        inputEl.addEventListener( 'focus', onInputFocus );
+        inputEl.addEventListener( 'blur', onInputBlur );
+    } );
+
+    [].slice.call( document.querySelectorAll( 'select.input__field' ) ).forEach( function( inputEl ) {
+        // in case the input is already filled..
+        if( inputEl.value.trim() !== '' ) {
+            $(inputEl).parent().addClass('input--filled');
+        }
+
+        $(inputEl).attr('data-placeholder',$(inputEl).attr('placeholder'));
+        $(inputEl).removeAttr('placeholder');
+
+        // events:
+        inputEl.addEventListener( 'focus', onInputFocus );
+        inputEl.addEventListener( 'blur', onInputBlur );
+    } );
+
+    function onInputFocus( ev ) {
+        $elem = ev.target;
+        $($elem).attr('placeholder',$($elem).attr('data-placeholder'));
+        $($elem).parent().addClass('input--filled');
+    }
+
+    function onInputBlur( ev ) {
+        $elem = ev.target;
+        if( $elem.value.trim() === '' ) {
+            $($elem).attr('data-placeholder',$($elem).attr('placeholder'));
+            $($elem).removeAttr('placeholder');
+            $($elem).parent().removeClass('input--filled');
+        }
+    }
 });

@@ -10,7 +10,7 @@
 @endsection
 
 @section('navbar')
-    @include('navbar.index')
+    @include('navbar.index', ['navOptions' => ['shrinkForce' => false, 'active' => 'home']])
 @endsection
 
 @section('header')
@@ -230,6 +230,15 @@
                         </p>
                     </div>
                 </li>
+                <li>
+                    <div class="top">
+                        <i class="fa fa-2x fa-reply"></i>
+                        <p>En cas d'insatisfaction ou de n'importe quelle autre cause, la possibilité sur simple demande
+                            par mail de vous faire rembourser sans délai et sans condition le crédit d'heures restant
+                            au prix d'achat.
+                        </p>
+                    </div>
+                </li>
             </ul>
             <footer>
                 <p>
@@ -349,6 +358,15 @@
                         </p>
                     </div>
                 </li>
+                <li>
+                    <div class="top">
+                        <i class="fa fa-2x fa-reply"></i>
+                        <p>En cas d'insatisfaction ou de n'importe quelle autre cause, la possibilité sur simple demande
+                            par mail de vous faire rembourser sans délai et sans condition le crédit d'heures restant
+                            au prix d'achat.
+                        </p>
+                    </div>
+                </li>
             </ul>
             <footer>
                 <p>
@@ -382,5 +400,5 @@
 
 @section('script')
     @parent
-    @include('plugins.inputEffect.scripts')
+
 @endsection

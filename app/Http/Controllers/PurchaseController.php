@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Prestation;
 use App\Purchase;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
+use App\Common\DataGraph;
 
 class PurchaseController extends Controller
 {
@@ -17,6 +20,9 @@ class PurchaseController extends Controller
         $this->middleware('haveNewQuotation');
         $this->auth = $auth;
     }
+
+    use DataGraph;
+
     /**
      * Display a listing of the resource.
      *
@@ -65,43 +71,38 @@ class PurchaseController extends Controller
             $totalLeft=0;
             $data = [];
             $conso = [];
+            $prestations= [];
+            
+
             if($purchase->product->type=='time'){
                 $totalQuantity = $purchase->product->value*$purchase->quantity;
                 $totalConsommation = 0;
                 foreach($purchase->consommations as $consommation){
                     $totalConsommation += $consommation->value;
                 }
-                $totalLeft = round($totalQuantity-round($totalConsommation,1),1);
+                $totalLeft = round($totalQuantity-round($totalConsommation,2),2);
+
 
                 foreach($purchase->consommations as $consommation){
-                    $conso[] = [
-                        'x' => $consommation->created_at->format('Y-m-d'),
-                        'y' => $consommation->value,
-                        'com' => $consommation->comment
-                    ];
-
-                    if($purchase->product->type == 'time'){
-                        $totalConsommation += $consommation->value;
-                    }
+                    $totalConsommation += $consommation->value;
                 }
 
+                $prestations[0] = 'Aucun';
+                $prestationsDatas= Prestation::where('isObsolete', '=', 'false')->orderBy('name')->Lists('name', 'id');
+                $prestations = $prestations + $prestationsDatas->toArray();
+
+            } else {
+                $totalQuantity = $purchase->quantity;
+                $totalConsommation = 0;
+                foreach($purchase->consommations as $consommation){
+                    $totalConsommation += $consommation->value;
+                }
+                $totalLeft = round($totalQuantity-round($totalConsommation,2),2);
             }
 
-            $main=[];
-            $main[] = [
-                'className' => '.consommations',
-                'data' => $conso
-            ];
+            $data = $this->dataGraph($purchase->consommations);
 
-            $data = [
-                'xScale' => 'time',
-                'yScale' => 'linear',
-                'main' => $main
-
-            ];
-
-            $data = json_encode($data,JSON_NUMERIC_CHECK);
-            return view('purchase.show', compact('purchase','data', 'totalLeft'));
+            return view('purchase.show', compact('purchase','data', 'totalLeft', 'prestations'));
         }
 
         return abort(404);

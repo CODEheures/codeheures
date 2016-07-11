@@ -1,6 +1,7 @@
 @extends('layouts.common')
 
 @section('css')
+    @parent()
     @include('plugins.graphConso.css')
     @include('plugins.inputEffect.css')
 @endsection
@@ -26,6 +27,6 @@
 @endsection
 
 @section('script')
+    @parent()
     @include('plugins.graphConso.scripts')
-    @include('plugins.inputEffect.scripts')
 @endsection

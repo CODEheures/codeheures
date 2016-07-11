@@ -25,7 +25,8 @@ class ConsommationRequest extends Request
     {
         return [
             'purchase_id' => 'required|numeric|exists:purchases,id',
-            'value' => 'required|numeric|min:0.1',
+            'prestation_id' => 'numeric|exists:prestations,id',
+            'value' => 'required|numeric|min:0.05',
             'comment' => 'required|string|min:3|max:200',
             'created_at' =>'required|date'
         ];

@@ -20,4 +20,3 @@
         <p>Aucun produit en vente...</p>
     @endif
 </div>
-<div class="clear"></div>

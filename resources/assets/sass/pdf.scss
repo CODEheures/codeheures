@@ -111,7 +111,7 @@ p.indication {
   margin-top: 1cm;
 }
 
-div.quotation-title {
+div.quotation-title, div.prestation-title {
   margin-top: 20px;
   line-height: 40px;
 
@@ -144,7 +144,14 @@ div.quotation-title {
 
 }
 
-div.quotation {
+div.prestation-title {
+  & h2 {
+    border-top: 1px solid $color11;
+    border-bottom: 1px solid $color11;
+  }
+}
+
+div.quotation, div.prestation {
   padding-top: 20px;
 
   & p {
@@ -201,6 +208,30 @@ div.quotation {
       }
     }
 
+    &.prestation-table {
+      & td:nth-child(2) {
+        width: 25%;
+        font-size: 22px;
+      }
+    }
+  }
+
+  & span {
+    &.prestation-name {
+      font-size: 22px;
+    }
+    &.prestation-description {
+      padding-left: 5px;
+      font-size: 14px;
+    }
+    &.prestation-link {
+      padding-left: 5px;
+      font-size: 12px;
+      & a {
+        color: $color8;
+        font-weight: 900;
+      }
+    }
   }
 
   & div.quotation-total {
@@ -238,6 +269,7 @@ div.quotation {
     font-size: 0.8em;
     & h2 {
       font-weight: bold;
+      padding-top: 20px;
     }
 
     & ul {
@@ -247,6 +279,23 @@ div.quotation {
         list-style-position: inside;
       }
     }
+  }
+
+  & div.prestation-cgv {
+    & ul {
+      padding-left: 26px;
+      & li {
+        list-style-type: square;
+        list-style-position: outside;
+        font-size: 14px;
+        padding-bottom: 5px;
+      }
+    }
+  }
+
+  & p.modification {
+    font-style: italic;
+    font-size: 12px;
   }
 }
 
