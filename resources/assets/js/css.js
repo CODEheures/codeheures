@@ -47,10 +47,48 @@ $(function() {
         return $obj;
     }
 
-    $(document).ready(function() {
-        setHeightHeader();
+    //Gestion du tunnel page acceuil
+    var $tunnel = $('.tunnel');
+    var $sections = $tunnel.children('section');
+    $sections.each(function (index) {
+        if(index > 0) {
+            $(this).hide();
+        }
     });
 
+    $('a[data-from]').click(function (e) {
+        e.preventDefault();
+
+        var $from = $sections.eq($(this).data('from'));
+        var $to = $sections.eq($(this).data('to'));
+
+        var $xScroll = ($(this).data('from')-$(this).data('to'))*100;
+
+        $('html,body').animate({scrollTop: $from.offset().top}, function () {
+            if($xScroll < 0) {
+                $to.slideDown({
+                    start: function () {
+                        $from.animate({'margin-left': $xScroll+'%'}, 800, function () {
+                            $from.slideUp(function () {
+                                $from.css({'margin-left': '0'});
+                            });
+                        });
+                    }
+                });
+            } else {
+                $to.css({'margin-left': (-$xScroll)+'%'});
+                $to.slideDown({
+                    start: function () {
+                        $to.animate({'margin-left': 0}, 800, 'swing', function () {
+                            $from.slideUp(800);
+                        });
+                    }
+                });
+            }
+        });
+    });
+
+    setHeightHeader();
     $(window).resize(function() {
         setHeightHeader();
     });
@@ -68,7 +106,7 @@ $(function() {
         setOpacityHeader($window_scrollTop);
 
         //definition des ancres  mettre dans l'ordre de hauteur
-        var $name_ancres = ['accueil','prestations','contact','client'];
+        var $name_ancres = ['accueil','prestations', 'contact'];
         var $ancres = [];
         for(var $key in $name_ancres){
             $def_ancre = defAncre($name_ancres[$key]);
@@ -86,7 +124,14 @@ $(function() {
         //Action sur la clé la plus proche du scroll
         $('.navbar-menu a').each(function(){
             if($memo_key != '' && $(this).attr('href').indexOf('#'+$ancres[$memo_key]['name']) > -1 && !$(this).hasClass('active')){
-                $(this).trigger('click');
+                console.log($ancres[$memo_key]['name']);
+                if($ancres[$memo_key]['name'] != 'contact') {
+                    $(this).trigger('click');
+                } else if ($ancres[$memo_key]['name'] == 'contact' && $total_scroll == $window_scrollTop) {
+                    $(this).trigger('click');
+                } else {
+                    $(this).prev().trigger('click');
+                }
             }
         });
 
@@ -152,7 +197,7 @@ $(function() {
         if($('[data-assist="assist1"]').val() != 0) {
             $.ajax('/admin/prestation/' + $('[data-assist="assist1"]').val())
                 .done(function (data) {
-                    $assist = $('[data-isAssistBy="assist1"]');
+                    var $assist = $('[data-isAssistBy="assist1"]');
                     $assist.attr('max', data.duration);
                     $assist.val(data.duration);
                     if($assist.parent().is('span.input--fumi')){
@@ -161,7 +206,7 @@ $(function() {
                     }
                 });
         } else {
-            $assist = $('[data-isAssistBy="assist1"]');
+            var $assist = $('[data-isAssistBy="assist1"]');
             $assist.attr('data-placeholder', '2.4');
             $assist.attr('max', '');
         }

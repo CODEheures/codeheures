@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory;
 use App\Address;
+use App\Prestation;
 
 Class ResetDemo
 {

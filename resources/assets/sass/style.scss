@@ -178,6 +178,7 @@ ul.circle {
   line-height: 1.35;
 
   & i {
+    padding-left: 1rem;
     padding-right: 1rem;
   }
 }
@@ -446,12 +447,45 @@ body > header {
     @include cnfsc;
   }
 
+  & .tunnel {
+    @include rnfsfs;
+    width: 100%;
+    overflow: hidden;
+    & > section {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      position: relative;
+    }
+
+    & p.change-section {
+      &.two {
+        @include rwsbc;
+      }
+      &.one-right {
+        @include rwfec;
+      }
+      &.one-left {
+        @include rwfsc;
+      }
+      width: 100%;
+      & a {
+        &.next {
+          right: 0;
+        }
+        &.back {
+          left: 0;
+        }
+      }
+    }
+  }
+
   & section {
     @include cnfsfs;
     padding-top: 6rem;
     color: $color4;
     font-weight: 100;
     max-width: 100%;
+    min-width: 100%;
     width: 100%;
     & h1 {
       @include rwfsbl;
