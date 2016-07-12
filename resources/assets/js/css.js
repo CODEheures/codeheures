@@ -290,4 +290,17 @@ $(function() {
             $($elem).parent().removeClass('input--filled');
         }
     }
+
+    /*****************************************************************************************************/
+    /*                                COOKIECONSENT                                                      */
+    /*****************************************************************************************************/
+    window.cookieconsent_options = {
+        message: "En poursuivant votre navigation sans modifier vos paramètres, vous acceptez l'utilisation des cookies" +
+        " ou technologies similaires pour disposer de services er d'offres adaptés à vos centres d'interêts ainsi que" +
+        " pour la sécurisation des transactions sur notre site.",
+        dismiss: 'OK',
+        learnMore: "Plus d'info",
+        link: '/mentions-legales',
+        theme: null
+    }
 });

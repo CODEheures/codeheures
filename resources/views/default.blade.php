@@ -25,12 +25,13 @@
 @yield('header')
 
 @yield('main')
-
+    <div class="cookie_container"></div>
     <footer>
         @yield('footer')
     </footer>
     <script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
     <script src="{{ asset('js/select2.min.js') }}"></script>
+    <script src="{{ asset('js/cookieconsent.min.js') }}"></script>
     <script src="{{ asset('js/css.min.js') }}"></script>
     @yield('script')
 </body>

@@ -48,4 +48,8 @@ class MainController extends Controller
     public function cgv() {
         return view('legal.cgv.index');
     }
+
+    public function mentions() {
+        return view('legal.mentions.index');
+    }
 }

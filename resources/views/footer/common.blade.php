@@ -6,7 +6,7 @@
     </div>
     <div class="legale">
         <div class="links">
-            <a href="#">mentions légales</a>
+            <a href="{{ route('mentions') }}">mentions légales</a>
             <a href="{{ route('cgv') }}">Conditions Générales de ventes</a>
         </div>
         <hr />
