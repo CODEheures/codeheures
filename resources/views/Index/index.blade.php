@@ -78,7 +78,7 @@
                     vous offre une solution innovante et gagnant/gagnant: <strong>les tarifs et devis accréditif</strong>
                 </span>
                 </p>
-                <p class="space-top change-section one-right"><a href="#" class="btn-yellow2 next" data-from="0" data-to="1">Tarifs et Devis accréditifs <i class="fa fa-arrow-circle-o-right"></i></a></p>
+                <p class="space-top change-section one-right"><a href="#" class="btn-yellow2-invert next" data-from="0" data-to="1">Tarifs et Devis accréditifs <i class="fa fa-arrow-circle-o-right"></i></a></p>
             </section>
 
             <!-- section webmastering -->
@@ -118,7 +118,6 @@
                                 <hr/>
                             </li>
                         </ul>
-                        <div class="clear"></div>
                     </aside>
                 </article>
                 <h4 class="space-top">Le principe du tarif accréditif se base sur 2 priorités</h4>
@@ -249,11 +248,14 @@
                         suivi de votre consommation horaire. Accedez à la démonstration en visitant l'espace client de
                         démonstration.
                     </p>
-                    <a href="{{ route('demo') }}" class="btn-yellow2">Espace client de démonstration & tarifs</a>
+                    <p class="exit">
+                        <a href="{{ route('demo') }}" class="btn-yellow2">Espace client de démonstration & tarifs</a>
+                        <a href="#" class="btn-yellow2">Voir les réalisations</a>
+                    </p>
                 </footer>
                 <p class="space-top change-section two">
-                    <a href="#" class="btn-yellow2 back" data-from="1" data-to="0"><i class="fa fa-arrow-circle-o-left"></i>Combien coûte un site web</a>
-                    <a href="#" class="btn-yellow2 next" data-from="1" data-to="2">Devis accréditifs<i class="fa fa-arrow-circle-o-right"></i></a>
+                    <a href="#" class="btn-yellow2-invert back" data-from="1" data-to="0"><i class="fa fa-arrow-circle-o-left"></i>Combien coûte un site web</a>
+                    <a href="#" class="btn-yellow2-invert next" data-from="1" data-to="2">Devis accréditifs<i class="fa fa-arrow-circle-o-right"></i></a>
                 </p>
             </section>
 
@@ -381,10 +383,13 @@
                         disponibles sont nombreuses. Il convient donc d'adapter la réponse à chaque demande. Pour en savoir
                         plus visitez le "lab" CODEheures.
                     </p>
-                    <a href="#" class="btn-yellow2">Voir les réalisations</a>
+                    <p class="exit">
+                        <a href="{{ route('demo') }}" class="btn-yellow2">Espace client de démonstration & tarifs</a>
+                        <a href="#" class="btn-yellow2">Voir les réalisations</a>
+                    </p>
                 </footer>
                 <p class="space-top change-section one-left">
-                    <a href="#" class="btn-yellow2 back" data-from="2" data-to="1"><i class="fa fa-arrow-circle-o-left"></i>Tarifs accréditifs</a>
+                    <a href="#" class="btn-yellow2-invert back" data-from="2" data-to="1"><i class="fa fa-arrow-circle-o-left"></i>Tarifs accréditifs</a>
                 </p>
             </section>
         </div>

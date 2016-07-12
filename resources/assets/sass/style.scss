@@ -217,6 +217,17 @@ ul.circle {
   }
 }
 
+.btn-yellow2-invert {
+  border: 0.1rem solid $color4;
+  background-color: transparent;
+  color: $color4;
+  &:hover {
+    background-color: $color1;
+    color: $color2;
+    border-color: $color1;
+  }
+}
+
 .btn-disable {
   border: 0.1rem solid $color11;
   background-color: $color3;
@@ -476,6 +487,11 @@ body > header {
           left: 0;
         }
       }
+    }
+
+    & p.exit {
+      @include rwfec;
+      width: 100%;
     }
   }
 
