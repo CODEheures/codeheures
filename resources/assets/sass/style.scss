@@ -57,7 +57,7 @@ a {
   color: $color3;
 }
 
-input, textarea, select {
+input, textarea, select, button {
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
@@ -654,6 +654,10 @@ body > header {
         @include rwfsc;
       }
 
+      & .right {
+        @include rwfec;
+      }
+
       & h2 {
         font-size: 2.2rem;
         padding-top: 0;
@@ -1121,6 +1125,81 @@ body > header {
         //  text-decoration: underline;
         //  text-align: center;
         //}
+      }
+      & .prices {
+        @include rnsbs;
+        width: 100%;
+        margin-bottom: 3rem;
+        & .price {
+          $border-radius: 0.6rem;
+          margin: 1rem;
+          border-radius: $border-radius;
+          box-shadow: 0 0 2rem 0 rgba(0,0,0,0.5);
+          width: 21%;
+          min-width: 22rem;
+          background-color: $color3;
+          & .header-price {
+            @include cncc;
+            height: 5rem;
+            background-color: $color-logo;
+            border-top-left-radius: $border-radius;
+            border-top-right-radius: $border-radius;
+            color: white;
+            font-size: 2.1rem;
+            font-weight: 400;
+          }
+          & .body-price {
+            @include cnfsc;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            font-size: 1.5rem;
+            & .description-price {
+              margin-bottom: 2rem;
+              & p {
+                &:first-child {
+                  @include cncc;
+                  padding-bottom: 2rem;
+                  & strong {
+                    font-size: 1.8rem;
+                  }
+                }
+              }
+              & p {
+                &:last-child {
+                  @include rnfsfs;
+                  height: 10rem;
+                  border-bottom: 0.1rem solid rgba(0,0,0,0.25);
+                }
+              }
+            }
+            & .price-price {
+              @include rnfsfs;
+              font-size: 4rem;
+              font-weight: 900;
+              padding-bottom: 2rem;
+              & span.money {
+                font-size: 2rem;
+              }
+            }
+            & label {
+              @include cncc;
+              margin-bottom: 2rem;
+            }
+          }
+        }
+      }
+      & .form-prices {
+        & div.form-submit {
+          justify-content: flex-end;
+          & button {
+            &[aria-disabled="true"]{
+              pointer-events: none;
+            }
+            &[aria-disabled="false"]{
+              cursor: pointer;
+            }
+          }
+        }
       }
     }
 

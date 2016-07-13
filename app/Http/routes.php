@@ -15,7 +15,10 @@ Route::group(['prefix' => 'customer'], function() {
     Route::put('account/address', ['as' => 'customer.account.addressUpdate', 'uses' => 'CustomerController@addressUpdate']);
     Route::post('account/phone', ['as' => 'customer.account.phone.update', 'uses' => 'CustomerController@updatePhoneOnly']);
     Route::get('/register', ['as' => 'customer.demoToRegister', 'uses' => 'CustomerController@customerDemoToRegister']);
-
+    //customer sale
+    Route::get('/sale/choice', ['as' => 'customer.sale.choice', 'uses' => 'CustomerController@saleChoice']);
+    Route::post('/sale/recapitulation', ['as' => 'customer.sale.recapitulation', 'uses' => 'CustomerController@saleRecapitulation']);
+    
     //customer monitor index
     Route::get('/monitor', ['as' => 'customer.monitor.index', 'uses' => 'CustomerController@monitor']);
 

@@ -115,4 +115,12 @@ class CustomerController extends Controller
 
         return redirect(route('home'));
     }
+
+    public function saleChoice() {
+        return view('sale.choice.index');
+    }
+
+    public function saleRecapitulation() {
+        return view('sale.recapitulation.index');
+    }
 }

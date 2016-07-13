@@ -1,7 +1,10 @@
 <div class="purchase-title">
     <h2><i class="ion-ios-speedometer-outline"></i>Ma consommation</h2>
-    <div class="btn-fake reliquat-customer-info">
-        Crédit: {{ $totalLeft }}h
+    <div class="right">
+        <a href="{{ route('customer.sale.choice') }}" class="btn-yellow2">Recharger mon compte</a>
+        <div class="btn-fake reliquat-customer-info">
+            Crédit: {{ $totalLeft }}h
+        </div>
     </div>
 </div>
 <nav class="prestation-get-pdf">

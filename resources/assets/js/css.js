@@ -213,7 +213,31 @@ $(function() {
     });
 
 
+    //Gestion CSS des choix d'achats
+    var $labelsChoice = $('.body-price label');
+    var $inputsChoice = $('.body-price input[type="radio"]');
+    var $buttonChoice = $('.form-prices button[type="submit"]');
 
+    function choiced(elem) {
+        $labelsChoice.removeClass('btn-yellow2');
+        $labelsChoice.addClass('btn-yellow2-invert');
+        elem.parent().removeClass('btn-yellow2-invert');
+        elem.parent().addClass('btn-yellow2');
+        $buttonChoice.attr('aria-disabled', 'false');
+        $buttonChoice.removeClass('btn-yellow2-invert');
+        $buttonChoice.addClass('btn-yellow2');
+    }
+
+    //when back browser with checked memory
+    $inputsChoice.each(function () {
+        if($(this).prop('checked')){
+            choiced($(this));
+        }
+    });
+
+    $inputsChoice.click(function (e) {
+        choiced($(this));
+    });
 
     /*****************************************************************************************************/
     /*                                              SELECT 2                                             */
