@@ -3,7 +3,13 @@
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/light.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/plugins/export/export.js"></script>
 <script type="text/javascript">
-    <?php echo 'var $data='. $data; ?>;
+    <?php
+        if(isset($data)) {
+            echo 'var $data='. $data .';';
+        } else {
+            echo 'var $data="";';
+        }
+    ?>
     AmCharts.makeChart("graphConso1",
             {
                 "type": "serial",

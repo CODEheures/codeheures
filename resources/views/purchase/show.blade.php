@@ -1,7 +1,7 @@
 @extends('layouts.common')
 
 @section('css')
-    @parent()
+    @parent
     @include('plugins.graphConso.css')
     @include('plugins.inputEffect.css')
 @endsection
@@ -19,7 +19,7 @@
 @endsection
 
 @section('user.action')
-    <h1>Détails commande N° {{ $purchase->hash_key }}</h1>
+    <h1>Détails commande</h1>
     <nav class="monitor-return">
         <p><a href="{{ auth()->user()->role == 'admin' ? route('admin.monitor.index'):route('customer.monitor.index') }}"><i class="ion-arrow-left-c"></i>Tableau de bord</a></p>
     </nav>
@@ -27,6 +27,6 @@
 @endsection
 
 @section('script')
-    @parent()
+    @parent
     @include('plugins.graphConso.scripts')
 @endsection

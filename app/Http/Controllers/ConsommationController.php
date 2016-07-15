@@ -7,6 +7,7 @@ use App\Http\Requests\ConsommationRequest;
 use App\Prestation;
 use App\Purchase;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -56,7 +57,7 @@ class ConsommationController extends Controller
     {
         $message = $this->redirectNoneConformConsommation($request);
         if ($message != null) {
-            return redirect()->back()->withErrors($message);
+            return redirect()->back()->withErrors($message)->withInput();
         }
 
         $consommation = new Consommation();
@@ -67,8 +68,10 @@ class ConsommationController extends Controller
         $purchase = Purchase::findOrFail($request->get('purchase_id'));
         $purchase->consommations()->save($consommation);
 
-        $prestation = Prestation::findOrFail($request->get('prestation_id'));
-        $prestation->consommations()->save($consommation);
+        if($request->get('prestation_id') && $request->get('prestation_id') > 0) {
+            $prestation = Prestation::findOrFail($request->get('prestation_id'));
+            $prestation->consommations()->save($consommation);
+        }
 
         return redirect()->back()->with('success','Pointage enregistré');
     }
@@ -124,13 +127,16 @@ class ConsommationController extends Controller
     {
         $message = $this->redirectNoneConformConsommation($request, $id);
         if ($message != null) {
-            return redirect()->back()->withErrors($message);
+            return redirect()->back()->withErrors($message)->withInput();
         }
         $consommation = Consommation::findOrFail($id);
         $consommation->update($request->only(['created_at', 'comment', 'value']));
 
-        $prestation = Prestation::findOrFail($request->get('prestation_id'));
-        $prestation->consommations()->save($consommation);
+
+        if($request->get('prestation_id') && $request->get('prestation_id') > 0) {
+            $prestation = Prestation::findOrFail($request->get('prestation_id'));
+            $prestation->consommations()->save($consommation);
+        }
 
         return redirect(route('purchase.show', ['id' => $consommation->purchase->id]))->with('success', 'Consommation mise à jour');
     }
@@ -152,8 +158,6 @@ class ConsommationController extends Controller
 
     private function redirectNoneConformConsommation($request, $updateId=0){
         $purchase = Purchase::findOrFail($request->get('purchase_id'));
-        $prestationReference = Prestation::findOrFail($request->get('prestation_id'));
-
         $purchase->load('consommations');
         $purchase->load('product');
 
@@ -177,10 +181,19 @@ class ConsommationController extends Controller
             return 'Date invalide: pointage antérieur à l\'achat client';
         }
 
-        if($request->get('value') > $prestationReference->duration) {
-            return 'Pointage interdit: votre valeure est plus élévée que la référence indiquéé';
-        }
 
+        //Traitement en cas de prestation de référence
+        //TODO: Placer tous les findOrfail dans des blocs try/catch
+        if($request->get('prestation_id') && $request->get('prestation_id') > 0) {
+            try {
+                $prestationReference = Prestation::findOrFail($request->get('prestation_id'));
+            } catch (ModelNotFoundException $e) {
+                return 'Pointage refusé, prestation de référence inexistante';
+            }
+            if($request->get('value') > $prestationReference->duration) {
+                return 'Pointage interdit: votre valeure est plus élévée que la référence indiquéé';
+            }
+        }
         return null;
     }
 }

@@ -1,3 +1,4 @@
+<img src="{{  asset('css/images/codeheures.svg') }}" width="300px" height="auto">
 <h3>Une nouvelle annonce de {{ $user->name }}!</h3>
 
 <p>Validez la nouvelle annonce en visitant le lien suivant

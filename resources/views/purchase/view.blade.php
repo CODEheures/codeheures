@@ -1,5 +1,14 @@
 @if($purchase->product->type == 'time')
     <div class="purchase">
+        <div class="purchase-title">
+            <h2><i class="ion-ios-information-outline"></i>Commande N°{{ $purchase->hash_key }}:</h2>
+        </div>
+        @if($purchase->havePaypalBilling())
+        <nav class="purchase-get-billing-pdf">
+            <p><a href="{{ route('customer.billing', ['id' => $purchase->id]) }}"><i class="ion-archive"></i>Télécharger la facture</a></p>
+        </nav>
+        @else
+        @endif
         <p>
             <span class="purchase-date">Achat du {{ $purchase->created_at->formatLocalized('%A %e %B %Y') }}
                 @if(auth()->user()->role == 'admin')par {{ $purchase->user->name }} ({{ $purchase->user->email }})@endif

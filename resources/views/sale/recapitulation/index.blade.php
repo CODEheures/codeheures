@@ -14,7 +14,7 @@
 @section('user.action')
     <h1>Récapitualtion de votre achat</h1>
     <nav class="monitor-return">
-        <p><a href="{{ auth()->user()->role == 'admin' ? route('admin.monitor.index'):route('customer.monitor.index') }}"><i class="ion-arrow-left-c"></i>Tableau de bord</a></p>
+        <p><a href="{{ route('customer.sale.choice') }}"><i class="ion-arrow-left-c"></i>Etape 1/3: choix du pack</a></p>
     </nav>
     <h3>Etape 2/3: Vérifier ma commande</h3>
     @include('sale.recapitulation.view')

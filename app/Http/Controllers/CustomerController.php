@@ -11,29 +11,60 @@ use App\Http\Requests;
 use App\Http\Requests\ContactRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Mail\Mailer;
-use App\Address;
+use App\Address as CodeheuresAddress;
 use App\Http\Requests\UpdateAccountRequest;
 use App\Http\Requests\UpdateAccountAddressRequest;
+use App\Http\Requests\SaleChoiceRequest;
 use App\Purchase;
 use App\Product;
+use PayPal\Api\CreditCard;
+use PayPal\Api\FundingInstrument;
+use PayPal\Api\PayerInfo;
+use PayPal\Api\ShippingAddress;
+use PayPal\Rest\ApiContext;
+use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Api\Amount;
+use PayPal\Api\Details;
+use PayPal\Api\Item;
+use PayPal\Api\ItemList;
+use PayPal\Api\Payer;
+use PayPal\Api\Payment;
+use PayPal\Api\RedirectUrls;
+use PayPal\Api\PaymentExecution;
+use PayPal\Api\Transaction;
+use PayPal\Exception\PayPalConnectionException;
+use PhpSpec\Exception\Exception;
+use PayPal\Api\Address as PaypalAddress;
 
 class CustomerController extends Controller
 {
     private $mailer;
     private $auth;
+    private $_api_context;
 
     public function __construct(Mailer $mailer, Guard $auth) {
         $this->middleware('auth');
         $this->middleware('haveNewQuotation');
+        $this->middleware('fullProfile', ['only' => ['saleChoice', 'saleRecapitulation']]);
+        $this->middleware('admin', ['only' => ['testPdf']]);
         $this->mailer = $mailer;
         $this->auth = $auth;
+
+        // setup PayPal api context
+        if(auth()->check() && auth()->user()->email != env('DEMO_USER_MAIL')){
+            $paypal_conf = config('paypal');
+        } else {
+            $paypal_conf = config('paypal_sandbox');
+        }
+        $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_conf['client_id'], $paypal_conf['secret']));
+        $this->_api_context->setConfig($paypal_conf['settings']);
     }
 
     use DataGraph;
 
     public function edit() {
         $user = $this->auth->user();
-        $addresses = Address::where('user_id', '=', $user->id)->get();
+        $addresses = CodeheuresAddress::where('user_id', '=', $user->id)->get();
         return view('customer.account.edit', compact('user', 'addresses'));
 
     }
@@ -72,14 +103,18 @@ class CustomerController extends Controller
 
     public function addressUpdate(UpdateAccountAddressRequest $request){
         $user = $this->auth->user();
-        $address = Address::where('user_id', '=', $user->id)->where('type', '=', $request->get('type'))->first();
+        $address = CodeheuresAddress::where('user_id', '=', $user->id)->where('type', '=', $request->get('type'))->first();
         $address->update($request->only(['address', 'complement', 'zipCode', 'town']));
         return redirect()->back()->with('success', 'informations enregistrées');
     }
 
     public function monitor(){
         $user = $this->auth->user();
-        $purchases = Purchase::where('user_id', '=', $user->id)->orderBy('created_at', 'DESC')->get();
+        $purchases = Purchase::where('user_id', '=', $user->id)
+            ->where(function($query) {
+                $query->where('payed', '=', true)
+                ->orWhere('quotation_id', '<>', 'null');
+        })->orderBy('created_at', 'DESC')->get();
         $purchases->load('product');
         $purchases->load('consommations');
 
@@ -117,10 +152,271 @@ class CustomerController extends Controller
     }
 
     public function saleChoice() {
-        return view('sale.choice.index');
+        $productsList = Product::where('isObsolete', '=', false)
+            ->where('type', '=', 'time')
+            ->where(function($query)  {
+                $query->whereNull('reservedForUserId')
+                    ->orWhere('reservedForUserId', '=', '0');
+            })
+
+            ->where(function($query)  {
+                $query->where('value', '=', 1)
+                    ->orWhere('value', '=', 5)
+                    ->orWhere('value', '=', 10)
+                    ->orWhere('value', '=', 50);
+            })
+            ->get();
+        return view('sale.choice.index', compact('productsList'));
     }
 
-    public function saleRecapitulation() {
-        return view('sale.recapitulation.index');
+    public function saleRecapitulation(SaleChoiceRequest $request) {
+        $product = Product::findOrFail($request->get('product-id'));
+        return view('sale.recapitulation.index', compact('product'));
+    }
+
+    public function salePayment($id) {
+        $product = Product::findOrFail($id);
+        $purchase = new Purchase();
+        $purchase->hash_key = $purchase->generateHashKey();
+        $purchase->user_id = $this->auth->user()->id;
+        $purchase->product_id = $product->id;
+        $purchase->payed = false;
+        $purchase->quantity = 1;
+        $purchase->save();
+
+        $price = round(($product->price + round(($product->price*$product->tva/100),2)),2);
+
+
+        $payerInfo = new PayerInfo();
+//        $payerInfo->setEmail($this->auth->user()->email);
+//        $payerInfo->setFirstName($this->auth->user()->firstName);
+//        $payerInfo->setLastName($this->auth->user()->lastName);
+//        $payerInfo->setExternalRememberMeId($this->auth->user()->id);
+
+
+        $adresses = $this->auth->user()->addresses;
+        foreach ($adresses as $adress) {
+            if($adress->type == 'billing') {
+                $paypalAdress = new ShippingAddress();
+                $paypalAdress->setLine1($adress->address);
+                $paypalAdress->setLine2($adress->complement);
+                $paypalAdress->setPostalCode($adress->zipCode);
+                $paypalAdress->setCity($adress->town);
+                $paypalAdress->setCountryCode('FR');
+                if($this->auth->user()->enterprise != null){
+                    $paypalAdress->setRecipientName($this->auth->user()->enterprise);
+                } else {
+                    $paypalAdress->setRecipientName($this->auth->user()->firstName . ' ' . $this->auth->user()->lastName);
+                }
+            }
+        }
+
+
+        $payer = new Payer();
+        $payer->setPaymentMethod('paypal');
+        $payer->setPayerInfo($payerInfo);
+
+
+        $item_1 = new Item();
+        $item_1->setName($product->description) // item name
+            ->setCurrency('EUR')
+            ->setQuantity(1)
+            ->setTax(round(($product->tva*$product->price/100),2))
+            ->setPrice($price); // unit price
+
+        // add item to list
+        $item_list = new ItemList();
+        $item_list->setItems(array($item_1));
+        $item_list->setShippingAddress($paypalAdress);
+
+        $amount = new Amount();
+        $amount->setCurrency('EUR')->setTotal($price);
+
+        $transaction = new Transaction();
+        $transaction->setAmount($amount)
+            ->setItemList($item_list)
+            ->setDescription('Votre achat chez CODEheures')
+            ->setInvoiceNumber($purchase->id);
+
+
+        $redirect_urls = new RedirectUrls();
+
+        // Specify return URL
+        $redirect_urls->setReturnUrl(route('customer.sale.payment.status').'?success=true')
+            ->setCancelUrl(route('customer.sale.payment.status').'?success=false');
+
+        $payment = new Payment();
+        $payment->setIntent('Sale')
+            ->setPayer($payer)
+            ->setRedirectUrls($redirect_urls)
+            ->setTransactions(array($transaction));
+
+
+        try {
+            $payment->create($this->_api_context);
+        } catch (PayPalConnectionException $ex) {
+            if (config('app.debug')) {
+                echo "Exception: " . $ex->getMessage() . PHP_EOL;
+                $err_data = json_decode($ex->getData(), true);
+                exit;
+            } else {
+                die('Ho mince! Une erreur inconnue est apparue \':(');
+            }
+        }
+
+        foreach($payment->getLinks() as $link) {
+            if($link->getRel() == 'approval_url') {
+                $redirect_url = $link->getHref();
+                break;
+            }
+        }
+
+        // add payment ID to session
+        session(['paypal_payment_id' => $payment->getId()]);
+
+        if(isset($redirect_url)) {
+            // redirect to paypal
+            return redirect($redirect_url);
+        }
+        return redirect(route('customer.monitor.index'))
+            ->with('error', 'Ho mince! Une erreur inconnue est apparue \':(');
+        }
+
+    public function salePaymentStatus(Request $request) {
+
+        if($request->get('success') == 'true') {
+            // Get the payment ID before session clear
+            $session_payment_id = session('paypal_payment_id');
+            $payment_id = $request->get('paymentId');
+
+            //test sessionId = Request return paymentId
+            if($session_payment_id != $payment_id) {
+                session()->forget('paypal_payment_id');
+                return redirect(route('customer.monitor.index'))
+                    ->with('error', 'Ho non! Le paiement à échoué \':(');
+
+            }
+
+            // clear the session payment ID
+            session()->forget('paypal_payment_id');
+
+            if (empty($request->input('PayerID')) || empty($request->input('token'))) {
+                return redirect(route('customer.monitor.index'))
+                    ->with('error', 'Ho non! Le paiement à échoué \':(');
+            }
+
+            $payment = Payment::get($payment_id, $this->_api_context);
+
+            // PaymentExecution object includes information necessary
+            // to execute a PayPal account payment.
+            // The payer_id is added to the request query parameters
+            // when the user is redirected from paypal back to your site
+            $execution = new PaymentExecution();
+            $execution->setPayerId($request->input('PayerID'));
+            //Execute the payment
+            $result = $payment->execute($execution, $this->_api_context);
+
+
+
+            if ($result->getState() == 'approved') { // payment made
+                $purchase = Purchase::findOrFail($result->getTransactions()[0]->getInvoiceNumber());
+                $purchase->paypal_result = json_encode(['id' => $result->getId()]);
+                $purchase->payed = true;
+                $purchase->save();
+
+                //envoi du mail de la facture
+                $mpdf = $this->generateMPDF($purchase);
+                $mpdf->Output(storage_path() . '/pdf/' . $purchase->hash_key.'.pdf', 'F');
+
+                $user = $this->auth->user();
+                $this->mailer->send(['text' => 'emails.sale.text-confirm', 'html' => 'emails.sale.html-confirm'], compact('user', 'purchase'), function($message) use($user, $purchase){
+                    $message->to($user->email);
+                    $message->subject('Votre achat sur ' . env('APP_NAME'));
+                    $message->attach(storage_path() . '/pdf/' . $purchase->hash_key.'.pdf');
+                });
+
+                session('info_url', route('customer.billing', ['id' => $purchase->id]));
+                session('info_url_txt', 'voir ma facture');
+                return redirect(route('customer.monitor.index'))
+                    ->with('success', 'Merci pour votre paiement. Votre compte est crédité. Votre facture est disponible dans votre espace client sur le détail de votre commande sur le lien suivant: ')
+                    ->with('info_url', route('customer.billing', ['id' => $purchase->id]))
+                    ->with('info_url_txt', 'voir ma facture');
+            }
+
+            return redirect(route('customer.monitor.index'))
+                ->with('error', 'Ho non! Le paiement à échoué \':(');
+        } else {
+            return redirect(route('customer.monitor.index'))
+                ->with('error', 'Ho non! Le paiement à échoué \':(');
+        }
+    }
+
+    public function getBillingPdf($id) {
+        $purchase = Purchase::findOrFail($id);
+        if($this->auth->user()->id != $purchase->user_id) {
+            return redirect('/');
+        } else {
+            if($purchase->havePaypalBilling()) {
+                try {
+                    $mpdf = $this->generateMPDF($purchase);
+                    $mpdf->Output();
+                } catch (Exception $ex) {
+                    return redirect(route('customer.monitor.index'))
+                        ->with('error', 'Ho non! La génération de la facture a échoué \':(');
+                }
+            } else {
+                return redirect(route('customer.monitor.index'))
+                    ->with('error', 'Ho non! La génération de la facture a échoué \':(');
+            }
+        }
+    }
+
+    private function generateMPDF($purchase) {
+        $paymentId = json_decode($purchase->paypal_result)->id;
+        $payment = Payment::get($paymentId, $this->_api_context);
+
+        $content = view('pdf.purchase.billing.index', compact('payment', 'purchase'))->__toString();
+        $header = view('header.pdf', compact('quotation'))->__toString();
+        $footer = view('footer.pdf')->__toString();
+        $css = file_get_contents(asset('css/pdf.min.css'));
+
+        $mpdf = new \mPDF();
+
+        $mpdf->SetHTMLHeader($header);
+        $mpdf->SetHTMLFooter($footer);
+        //$mpdf->Bookmark('Start of the document');
+        $mpdf->AddPageByArray([
+            'margin-left' => 10,
+            'margin-right' => 10,
+            'margin-top' => 30,
+            'margin-bottom' => 30,
+            'margin-header' => 10,
+            'margin-footer' => 10
+        ]);
+        $mpdf->WriteHTML($css,1);
+        $mpdf->WriteHTML($content,2);
+
+        return $mpdf;
+    }
+
+    public function testPdf() {
+        //choisir le n° de purchase pour le test
+        $purchase = Purchase::findOrFail(230);
+
+
+        $paypal_conf = config('paypal_sandbox');
+        $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_conf['client_id'], $paypal_conf['secret']));
+        $this->_api_context->setConfig($paypal_conf['settings']);
+
+        $mpdf = $this->generateMPDF($purchase);
+        $mpdf->Output(storage_path() . '/pdf/' . $purchase->hash_key.'.pdf', 'F');
+
+        $user = $this->auth->user();
+        $this->mailer->send(['text' => 'emails.sale.text-confirm', 'html' => 'emails.sale.html-confirm'], compact('user', 'purchase'), function($message) use($user, $purchase){
+            $message->to($user->email);
+            $message->subject('Votre achat sur ' . env('APP_NAME'));
+            $message->attach(storage_path() . '/pdf/' . $purchase->hash_key.'.pdf');
+        });
+        return redirect('/')->with('info', 'mail de test envoyé avec pdf en piece jointe');
     }
 }

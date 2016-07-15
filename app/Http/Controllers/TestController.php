@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Test;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -19,6 +19,7 @@ class TestController extends Controller
      * @param Mailer $mailer
      */
     public function __construct(Mailer $mailer){
+        $this->middleware('admin');
         $this->mailer = $mailer;
         $this->vars = ['hello', 'mon pote','1A'];
     }

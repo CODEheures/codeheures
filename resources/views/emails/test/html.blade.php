@@ -1,3 +1,4 @@
+<img src="{{  asset('css/images/codeheures.svg') }}" width="300px" height="auto">
 <h1>Vous avez un message</h1>
 
 <ol>

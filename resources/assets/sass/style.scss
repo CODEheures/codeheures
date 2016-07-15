@@ -34,6 +34,11 @@ $font3 : Flamenco, sans-serif;
   outline: none;
 }
 
+::selection {
+  background: rgba(0,156,222,.15);
+  text-shadow: none;
+}
+
 /*
 ****** General ******
 */
@@ -812,7 +817,8 @@ body > header {
       }
 
       & nav.quotation-get-pdf,
-      & nav.prestation-get-pdf {
+      & nav.prestation-get-pdf,
+      & nav.purchase-get-billing-pdf {
         margin-left: 1.95rem;
         & p {
           padding: 0;
@@ -856,7 +862,7 @@ body > header {
       width: 100%;
       padding-top: 2rem;
 
-      & p {
+      & > p {
         padding: 0;
         font-weight: bold;
 
@@ -1127,7 +1133,7 @@ body > header {
         //}
       }
       & .prices {
-        @include rnsbs;
+        @include cncc;
         width: 100%;
         margin-bottom: 3rem;
         & .price {
@@ -1136,7 +1142,7 @@ body > header {
           border-radius: $border-radius;
           box-shadow: 0 0 2rem 0 rgba(0,0,0,0.5);
           width: 21%;
-          min-width: 22rem;
+          min-width: 26rem;
           background-color: $color3;
           & .header-price {
             @include cncc;
@@ -1169,6 +1175,8 @@ body > header {
                   @include rnfsfs;
                   height: 10rem;
                   border-bottom: 0.1rem solid rgba(0,0,0,0.25);
+                  font-size: 1.45rem;
+                  font-style: italic;
                 }
               }
             }
@@ -1176,7 +1184,6 @@ body > header {
               @include rnfsfs;
               font-size: 4rem;
               font-weight: 900;
-              padding-bottom: 2rem;
               & span.money {
                 font-size: 2rem;
               }
@@ -1184,6 +1191,13 @@ body > header {
             & label {
               @include cncc;
               margin-bottom: 2rem;
+            }
+            & p[class^='tva'] {
+              font-size: 0.8rem;
+              padding-top: 0;
+              &:last-of-type {
+                padding-bottom: 2rem;
+              }
             }
           }
         }
@@ -1199,6 +1213,59 @@ body > header {
               cursor: pointer;
             }
           }
+        }
+      }
+      & .check-data {
+        @include cncc;
+        width: 100%;
+        & div[class^='data-'] {
+          width: 90%;
+          min-width: 30rem;
+          background: $color3;
+          box-shadow: 0 0 5rem 0 rgba(0,0,0,0.1);
+          padding: 2rem;
+          font-size: 1.5rem;
+          margin-left:  1rem;
+          margin-right: 1rem;
+          margin-bottom: 2rem;
+          margin-top: 2rem;
+          & p {
+            margin: 0;
+            padding-top: 0;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            color: $color-info;
+            font-weight: 900;
+            border-bottom: 0.1rem solid $color-info;
+          }
+          & ul {
+            & li {
+              @include rnsbfs;
+              padding-bottom: 0.8rem;
+              text-align: right;
+              & span {
+                text-align: left;
+              }
+            }
+          }
+        }
+      }
+      & .payout {
+        @include cncfe;
+        width: 100%;
+        & a img{
+          width: 24rem;
+          &:active {
+            transform: scale(0.95);
+          }
+        }
+        & p, ul {
+          width: 24rem;
+          font-size: 1.2rem;
+        }
+        & ul {
+          list-style-type: circle;
+          list-style-position: inside;
         }
       }
     }
@@ -1318,6 +1385,26 @@ body > footer {
         }
       }
 
+    }
+  }
+}
+
+@media screen and(min-width: 530px) {
+  .main {
+    & section {
+      & article {
+        & .prices {
+          @include rwsas;
+        }
+        & .check-data {
+          @include rwsas;
+          & div[class^='data-'] {
+            min-width: 45rem;
+            width: 45%;
+            font-size: 1.9rem;
+          }
+        }
+      }
     }
   }
 }
@@ -1461,7 +1548,8 @@ body > footer {
       }
       &#user {
         & nav.quotation-get-pdf,
-        & nav.prestation-get-pdf {
+        & nav.prestation-get-pdf,
+        & nav.purchase-get-billing-pdf {
           position: relative;
           top: -1.3rem;
           left: 4.2rem;

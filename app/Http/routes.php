@@ -18,6 +18,9 @@ Route::group(['prefix' => 'customer'], function() {
     //customer sale
     Route::get('/sale/choice', ['as' => 'customer.sale.choice', 'uses' => 'CustomerController@saleChoice']);
     Route::post('/sale/recapitulation', ['as' => 'customer.sale.recapitulation', 'uses' => 'CustomerController@saleRecapitulation']);
+    Route::get('/sale/payment/{id}', ['as' => 'customer.sale.payment', 'uses' => 'CustomerController@salePayment'])->where(['id'=>'[0-9]+']);
+    Route::get('/sale/payment/status', ['as' => 'customer.sale.payment.status', 'uses' => 'CustomerController@salePaymentStatus']);
+    Route::get('/billing/{id}', ['as' => 'customer.billing', 'uses' => 'CustomerController@getBillingPdf'])->where(['id'=>'[0-9]+']);
     
     //customer monitor index
     Route::get('/monitor', ['as' => 'customer.monitor.index', 'uses' => 'CustomerController@monitor']);
@@ -31,6 +34,9 @@ Route::group(['prefix' => 'customer'], function() {
 
     //customer prestations
     Route::get('/prestation/pdf', ['as' => 'customer.prestation.pdf', 'uses' => 'PrestationController@pdf']);
+
+    //customer prestations
+    Route::get('/test/pdf', ['as' => 'test.pdf', 'uses' => 'CustomerController@testPdf']);
 });
 
 //Espace admin
@@ -87,8 +93,6 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/prestation/{id}/toObsolete', ['as' => 'admin.prestation.toObsolete', 'uses' => 'PrestationController@toObsolete'])->where(['id'=>'[0-9]+']);
     Route::get('/prestation/{id}/toNotObsolete', ['as' => 'admin.prestation.toNotObsolete', 'uses' => 'PrestationController@toNotObsolete'])->where(['id'=>'[0-9]+']);
     Route::get('/prestation/{id}', ['as' => 'admin.prestation.show', 'uses' => 'PrestationController@show'])->where(['id'=>'[0-9]+']);
-    //test sms
-    Route::get('/sms', 'AdminController@sms');
 
     //reset DemoUser
     Route::get('/resetDemo', 'AdminController@resetDemo');
@@ -132,7 +136,8 @@ Route::get('/home', function(){
 });
 
 //Tests Routes
-Route::group(['prefix' => 'test', 'namespace' => 'Test'], function() {
+Route::group(['prefix' => 'test'], function() {
     Route::get('email', 'TestController@testMail');
-
+    Route::get('/mailbillingpdf',  'CustomerController@testPdf');
+    Route::get('/sms', 'AdminController@sms');
 });

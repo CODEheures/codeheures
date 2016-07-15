@@ -1,7 +1,12 @@
 @if(session()->has('success'))
     <div class="alert alert-success">
         <div class="title">
-            <p>{{ session('success') }}</p>
+            <p>
+                {{ session('success') }}
+                @if(session()->has('info_url'))
+                <a href="{{ session('info_url') }}">{{ session('info_url_txt') }}</a>
+                @endif
+            </p>
             <div class="close_btn"><i class="ion-ios-close"></i></div>
         </div>
     </div>

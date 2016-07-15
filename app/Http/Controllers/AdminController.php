@@ -52,8 +52,9 @@ class AdminController extends Controller
          * configure l'ID utilisateur et la clé disponible dans
          * le compte Free Mobile après avoir activé l'option.
          */
-        $sms->setKey("HFMSnaZCFcF2ph")
-            ->setUser("11584563");
+
+        $sms->setKey(env('FREE_SMS_PASS'))
+            ->setUser(env("FREE_SMS_USER"));
 
         try {
             // envoi d'un message
@@ -63,7 +64,7 @@ class AdminController extends Controller
             // peut-être des erreurs.
             echo "Erreur sur envoi de SMS: (".$e->getCode().") ".$e->getMessage();
         }
-
+        return redirect('/')->with('info', 'sms de test envoyé');
 
     }
 

@@ -32,7 +32,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('description', 'DESC')->get();
+        $products = Product::orderBy('description')->get();
         return view('admin.product.index', compact('products'));
     }
 

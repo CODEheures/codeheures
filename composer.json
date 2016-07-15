@@ -11,7 +11,8 @@
         "intervention/image" : "~2.3",
         "twbs/bootstrap-sass": "~3.3.5",
         "mikehaertl/phpwkhtmltopdf": "^2.2",
-        "mpdf/mpdf": "^6.1"
+        "mpdf/mpdf": "^6.1",
+        "paypal/rest-api-sdk-php": "*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

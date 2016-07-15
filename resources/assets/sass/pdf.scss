@@ -111,7 +111,7 @@ p.indication {
   margin-top: 1cm;
 }
 
-div.quotation-title, div.prestation-title {
+div.quotation-title, div.prestation-title, div.purchase-title {
   margin-top: 20px;
   line-height: 40px;
 
@@ -151,7 +151,7 @@ div.prestation-title {
   }
 }
 
-div.quotation, div.prestation {
+div.quotation, div.prestation, div.purchase {
   padding-top: 20px;
 
   & p {
@@ -234,7 +234,7 @@ div.quotation, div.prestation {
     }
   }
 
-  & div.quotation-total {
+  & div.quotation-total, & div.purchase-total {
     & p:not(.ttc) {
       font-weight: 100;
     }
@@ -244,14 +244,14 @@ div.quotation, div.prestation {
       padding-top: 5px;
     }
 
-    & div.quotation-total-title {
+    & div.quotation-total-title, & div.purchase-total-title {
       width: 60%;
       display: inline-block;
       float: left;
       text-align: right;
     }
 
-    & div.quotation-total-value {
+    & div.quotation-total-value, & div.purchase-total-value {
       text-align: right;
       float: right;
       width: 25%;

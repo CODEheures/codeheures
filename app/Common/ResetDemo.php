@@ -151,7 +151,7 @@ Class ResetDemo
         //3 Achats effectués
         $purchase1 = Purchase::create([
             'user_id' => $user->id,
-            'product_id' => $product3->id,
+            'product_id' => $product2->id,
             'hash_key' => str_random(12),
             'payed' => true,
             'quantity' => 1
@@ -160,34 +160,13 @@ Class ResetDemo
         $purchase1->updated_at = Carbon::now()->subDay(15);
         $purchase1->save();
 
-        $purchase2 = Purchase::create([
-            'user_id' => $user->id,
-            'product_id' => $product2->id,
-            'hash_key' => str_random(12),
-            'payed' => true,
-            'quantity' => 1
-        ]);
-        $purchase2->created_at = Carbon::now()->subDay(32);
-        $purchase2->updated_at = Carbon::now()->subDay(32);
-        $purchase2->save();
-
-        $purchase3 = Purchase::create([
-            'user_id' => $user->id,
-            'product_id' => $product1->id,
-            'hash_key' => str_random(12),
-            'payed' => true,
-            'quantity' => 3
-        ]);
-        $purchase3->created_at = Carbon::now()->subDay(58);
-        $purchase3->updated_at = Carbon::now()->subDay(58);
-        $purchase3->save();
-
 
         //Consommation de l'achat n°1
         $consommation11 = Consommation::create([
             'purchase_id' => $purchase1->id,
-            'value' => 1.5,
-            'comment' => 'ajoute photos et commentaires'
+            'value' => 0.05,
+            'comment' => 'changer photos sur le site',
+            'prestation_id' => 1
         ]);
         $consommation11->created_at = Carbon::now()->subDay(2);
         $consommation11->updated_at = Carbon::now()->subDay(2);
@@ -195,70 +174,43 @@ Class ResetDemo
 
         $consommation12 = Consommation::create([
             'purchase_id' => $purchase1->id,
-            'value' => 2,
-            'comment' => 'ajoute d\'une page prestataire'
+            'value' => 2.3,
+            'comment' => 'changer le theme de la boutique prestashop',
+            'prestation_id' => 4
         ]);
         $consommation12->created_at = Carbon::now()->subDay(4);
         $consommation12->updated_at = Carbon::now()->subDay(4);
         $consommation12->save();
 
-
-        //Consommations achat n°2
-        $consommation21 = Consommation::create([
-            'purchase_id' => $purchase2->id,
-            'value' => 4,
-            'comment' => 'refonte de la page d\'accueil'
-        ]);
-        $consommation21->created_at = Carbon::now()->subDay(18);
-        $consommation21->updated_at = Carbon::now()->subDay(18);
-        $consommation21->save();
-
-        $consommation22 = Consommation::create([
-            'purchase_id' => $purchase2->id,
+        $consommation13 = Consommation::create([
+            'purchase_id' => $purchase1->id,
             'value' => 0.2,
-            'comment' => 'correction de texte'
+            'comment' => 'changer le texte de la page d\'accueil',
+            'prestation_id' => 2
         ]);
-        $consommation22->created_at = Carbon::now()->subDay(21);
-        $consommation22->updated_at = Carbon::now()->subDay(21);
-        $consommation22->save();
+        $consommation13->created_at = Carbon::now()->subDay(6);
+        $consommation13->updated_at = Carbon::now()->subDay(6);
+        $consommation13->save();
 
-        $consommation23 = Consommation::create([
-            'purchase_id' => $purchase2->id,
-            'value' => 0.8,
-            'comment' => 'mise à jour photo'
+        $consommation14 = Consommation::create([
+            'purchase_id' => $purchase1->id,
+            'value' => 1.9,
+            'comment' => 'mise à jour des tarifs',
+            'prestation_id' => 5
         ]);
-        $consommation23->created_at = Carbon::now()->subDay(32);
-        $consommation23->updated_at = Carbon::now()->subDay(32);
-        $consommation23->save();
+        $consommation14->created_at = Carbon::now()->subDay(7);
+        $consommation14->updated_at = Carbon::now()->subDay(7);
+        $consommation14->save();
 
-
-        //Consommation achat n°3
-        $consommation31 = Consommation::create([
-            'purchase_id' => $purchase3->id,
-            'value' => 0.8,
-            'comment' => 'mise à jour photo'
+        $consommation15 = Consommation::create([
+            'purchase_id' => $purchase1->id,
+            'value' => 0.05,
+            'comment' => 'mise à jour photo',
+            'prestation_id' => 1
         ]);
-        $consommation31->created_at = Carbon::now()->subDay(37);
-        $consommation31->updated_at = Carbon::now()->subDay(37);
-        $consommation31->save();
-
-        $consommation32 = Consommation::create([
-            'purchase_id' => $purchase3->id,
-            'value' => 1.5,
-            'comment' => 'gestion des utilisateurs'
-        ]);
-        $consommation32->created_at = Carbon::now()->subDay(48);
-        $consommation32->updated_at = Carbon::now()->subDay(48);
-        $consommation32->save();
-
-        $consommation33 = Consommation::create([
-            'purchase_id' => $purchase3->id,
-            'value' => 0.7,
-            'comment' => 'mise à jour page 2'
-        ]);
-        $consommation33->created_at = Carbon::now()->subDay(58);;
-        $consommation33->updated_at = Carbon::now()->subDay(58);;
-        $consommation33->save();
+        $consommation15->created_at = Carbon::now()->subDay(7);
+        $consommation15->updated_at = Carbon::now()->subDay(7);
+        $consommation15->save();
 
 
         //Devis n°1

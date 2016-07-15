@@ -42,19 +42,19 @@ class FullProfile
             if($testAddress==true){
                 return redirect(route('customer.account.edit'))
                     ->with('info', 'Completez votre profil SVP. Vous devez remplir votre nom et prénom et/ou votre
-                    nom d\'entreprise et siret dans votre profil avant de pouvoir afficher vos devis');
+                    nom d\'entreprise et siret dans votre profil avant de pouvoir afficher cette page');
             } else {
                 return redirect(route('customer.account.edit'))
                     ->with('info', 'Completez votre profil SVP. Vous devez remplir votre nom et prénom et/ou votre
                     nom d\'entreprise et siret dans votre profil ainsi que votre adresse de facturation
-                    avant de pouvoir afficher vos devis');
+                    avant de pouvoir afficher cette page');
             }
         }
 
         if($testAddress==false){
             return redirect(route('customer.account.edit'))
                 ->with('info', 'Completez votre profil SVP. Vous devez remplir votre adresse de facturation
-                avant de pouvoir afficher vos devis');
+                avant de pouvoir afficher cette page');
         }
 
         return $next($request);

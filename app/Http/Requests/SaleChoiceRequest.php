@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class ConsommationRequest extends Request
+class SaleChoiceRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class ConsommationRequest extends Request
     public function rules()
     {
         return [
-            'purchase_id' => 'required|numeric|exists:purchases,id',
-            'value' => 'required|numeric|min:0.05',
-            'comment' => 'required|string|min:3|max:200',
-            'created_at' =>'required|date'
+            'product-id' => 'required|numeric|exists:products,id',
         ];
     }
 }

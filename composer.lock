@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e7f37e21f44caa19f4fde6f4dcf7bbc6",
-    "content-hash": "672b1191227a7e6b2e331f617ad5a80d",
+    "hash": "19a97ea9c4f271ba3a9aa8f607597ff5",
+    "content-hash": "254e6bf3e74301d79c8591688ce46b35",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -746,16 +746,16 @@
         },
         {
             "name": "mikehaertl/php-shellcommand",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mikehaertl/php-shellcommand.git",
-                "reference": "c7bbaf2e01a6d6dbf39d54dd077a8f9061a845c2"
+                "reference": "ff2cf46599e6382e982a324d23b7b05ced3965c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mikehaertl/php-shellcommand/zipball/c7bbaf2e01a6d6dbf39d54dd077a8f9061a845c2",
-                "reference": "c7bbaf2e01a6d6dbf39d54dd077a8f9061a845c2",
+                "url": "https://api.github.com/repos/mikehaertl/php-shellcommand/zipball/ff2cf46599e6382e982a324d23b7b05ced3965c6",
+                "reference": "ff2cf46599e6382e982a324d23b7b05ced3965c6",
                 "shasum": ""
             },
             "type": "library",
@@ -778,20 +778,20 @@
             "keywords": [
                 "shell"
             ],
-            "time": "2015-09-22 18:26:51"
+            "time": "2016-05-23 16:28:11"
         },
         {
             "name": "mikehaertl/php-tmpfile",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mikehaertl/php-tmpfile.git",
-                "reference": "e34d43fa546d09f434b59ea8c05d4e4d55d55687"
+                "reference": "b1b013cc29a8ee0423994b286d22e3aed6640d4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mikehaertl/php-tmpfile/zipball/e34d43fa546d09f434b59ea8c05d4e4d55d55687",
-                "reference": "e34d43fa546d09f434b59ea8c05d4e4d55d55687",
+                "url": "https://api.github.com/repos/mikehaertl/php-tmpfile/zipball/b1b013cc29a8ee0423994b286d22e3aed6640d4e",
+                "reference": "b1b013cc29a8ee0423994b286d22e3aed6640d4e",
                 "shasum": ""
             },
             "type": "library",
@@ -806,7 +806,7 @@
             ],
             "authors": [
                 {
-                    "name": "Michael Haertl",
+                    "name": "Michael Härtl",
                     "email": "haertl.mike@gmail.com"
                 }
             ],
@@ -814,7 +814,7 @@
             "keywords": [
                 "files"
             ],
-            "time": "2014-07-09 11:08:51"
+            "time": "2016-07-07 05:59:42"
         },
         {
             "name": "mikehaertl/phpwkhtmltopdf",
@@ -1185,6 +1185,55 @@
             "time": "2016-03-18 20:34:03"
         },
         {
+            "name": "paypal/rest-api-sdk-php",
+            "version": "1.7.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paypal/PayPal-PHP-SDK.git",
+                "reference": "a284bb6d71933b6cd92e07894818fd61aa968462"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paypal/PayPal-PHP-SDK/zipball/a284bb6d71933b6cd92e07894818fd61aa968462",
+                "reference": "a284bb6d71933b6cd92e07894818fd61aa968462",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.3.0",
+                "psr/log": "1.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PayPal": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "PayPal",
+                    "homepage": "https://github.com/paypal/rest-api-sdk-php/contributors"
+                }
+            ],
+            "description": "PayPal's PHP SDK for REST APIs",
+            "homepage": "http://paypal.github.io/PayPal-PHP-SDK/",
+            "keywords": [
+                "payments",
+                "paypal",
+                "rest",
+                "sdk"
+            ],
+            "time": "2016-06-21 20:18:43"
+        },
+        {
             "name": "psr/http-message",
             "version": "1.0",
             "source": {
@@ -1394,23 +1443,23 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.2",
+            "version": "v5.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "d8db871a54619458a805229a057ea2af33c753e8"
+                "reference": "4cc92842069c2bbc1f28daaaf1d2576ec4dfe153"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/d8db871a54619458a805229a057ea2af33c753e8",
-                "reference": "d8db871a54619458a805229a057ea2af33c753e8",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/4cc92842069c2bbc1f28daaaf1d2576ec4dfe153",
+                "reference": "4cc92842069c2bbc1f28daaaf1d2576ec4dfe153",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "mockery/mockery": "~0.9.1,<0.9.4"
+                "mockery/mockery": "~0.9.1"
             },
             "type": "library",
             "extra": {
@@ -1443,7 +1492,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2016-05-01 08:45:47"
+            "time": "2016-07-08 11:51:25"
         },
         {
             "name": "symfony/console",
