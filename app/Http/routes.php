@@ -138,6 +138,6 @@ Route::get('/home', function(){
 //Tests Routes
 Route::group(['prefix' => 'test'], function() {
     Route::get('email', 'TestController@testMail');
-    Route::get('/mailbillingpdf',  'CustomerController@testPdf');
-    Route::get('/sms', 'AdminController@sms');
+    Route::get('mailbillingpdf',  'CustomerController@testPdf');
+    Route::get('sms', 'AdminController@sms');
 });

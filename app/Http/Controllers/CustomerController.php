@@ -326,7 +326,8 @@ class CustomerController extends Controller
 
                 //envoi du mail de la facture
                 $mpdf = $this->generateMPDF($purchase);
-                $mpdf->Output(storage_path() . '/pdf/' . $purchase->hash_key.'.pdf', 'F');
+                $pdfFileName = storage_path() . '/pdf/' . $purchase->hash_key.'.pdf';
+                $mpdf->Output($pdfFileName, 'F');
 
                 $user = $this->auth->user();
                 $this->mailer->send(['text' => 'emails.sale.text-confirm', 'html' => 'emails.sale.html-confirm'], compact('user', 'purchase'), function($message) use($user, $purchase){
@@ -334,6 +335,8 @@ class CustomerController extends Controller
                     $message->subject('Votre achat sur ' . env('APP_NAME'));
                     $message->attach(storage_path() . '/pdf/' . $purchase->hash_key.'.pdf');
                 });
+
+                file_exists($pdfFileName) ? unlink($pdfFileName) : null;
 
                 session('info_url', route('customer.billing', ['id' => $purchase->id]));
                 session('info_url_txt', 'voir ma facture');
@@ -401,22 +404,26 @@ class CustomerController extends Controller
 
     public function testPdf() {
         //choisir le n° de purchase pour le test
-        $purchase = Purchase::findOrFail(230);
+        $purchase = Purchase::findOrFail(237);
 
 
         $paypal_conf = config('paypal_sandbox');
         $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_conf['client_id'], $paypal_conf['secret']));
         $this->_api_context->setConfig($paypal_conf['settings']);
 
+        $pdfFileName = storage_path() . '/pdf/' . $purchase->hash_key.'.pdf';
         $mpdf = $this->generateMPDF($purchase);
-        $mpdf->Output(storage_path() . '/pdf/' . $purchase->hash_key.'.pdf', 'F');
+        $mpdf->Output($pdfFileName, 'F');
 
         $user = $this->auth->user();
+
         $this->mailer->send(['text' => 'emails.sale.text-confirm', 'html' => 'emails.sale.html-confirm'], compact('user', 'purchase'), function($message) use($user, $purchase){
             $message->to($user->email);
             $message->subject('Votre achat sur ' . env('APP_NAME'));
             $message->attach(storage_path() . '/pdf/' . $purchase->hash_key.'.pdf');
         });
+
+        file_exists($pdfFileName) ? unlink($pdfFileName) : null;
         return redirect('/')->with('info', 'mail de test envoyé avec pdf en piece jointe');
     }
 }
