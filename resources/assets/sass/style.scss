@@ -240,6 +240,12 @@ ul.circle {
   pointer-events: none;
 }
 
+.btn-facebook-login {
+  border: 0.1rem solid $color-facebook;
+  background-color: $color-facebook;
+  color: white;
+}
+
 .input {
   max-width: none;
   margin: 1.5rem;
@@ -1143,7 +1149,9 @@ body > header {
           box-shadow: 0 0 2rem 0 rgba(0,0,0,0.5);
           width: 21%;
           min-width: 26rem;
+          min-height: 41.5rem;
           background-color: $color3;
+          position: relative;
           & .header-price {
             @include cncc;
             height: 5rem;
@@ -1198,6 +1206,27 @@ body > header {
               &:last-of-type {
                 padding-bottom: 2rem;
               }
+            }
+          }
+          & .disable {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background-image: repeating-linear-gradient(-45deg,
+                    rgba(0,0,0,0.1) 0px,
+                    rgba(0,0,0,0.1) 5px,
+                    transparent 5px,
+                    transparent 10px);
+            border-radius: $border-radius;
+            @include rncfe;
+            & p {
+              font-weight: 900;
+              text-align: center;
+              padding-bottom: 2rem;
+              padding-left: 1rem;
+              padding-right: 1rem;
             }
           }
         }
@@ -1318,7 +1347,14 @@ body > header {
     & div.form-submit {
       @include rwfsc;
       width: 100%;
-
+      & div.submit:not(.right) {
+        @include rwfsc;
+        width: 100%;
+      }
+      & div.submit.right {
+        @include rwfec;
+        width: 100%;
+      }
       & div.checkbox {
         width: 100%;
         margin-left: 1.5rem;

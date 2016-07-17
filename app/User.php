@@ -28,7 +28,22 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'confirmation_token', 'firstName', 'lastName', 'enterprise', 'siret', 'phone'];
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'confirmation_token',
+        'firstName',
+        'lastName',
+        'enterprise',
+        'siret',
+        'phone',
+        'confirmed',
+        'facebook_id',
+        'avatar',
+        'quota',
+        'is_admin_valid'
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -47,5 +62,15 @@ class User extends Model implements AuthenticatableContract,
 
     public function quotations() {
         return $this->hasMany('App\Quotation');
+    }
+
+    public function validPuchases() {
+        $purchases = Purchase::where('user_id', '=', $this->id)
+            ->where(function($query) {
+                $query->where('payed', '=', true)
+                    ->orWhere('quotation_id', '<>', 'null');
+            })->orderBy('created_at', 'DESC')->get();
+
+        return $purchases;
     }
 }

@@ -35,6 +35,7 @@ use PayPal\Api\Transaction;
 use PayPal\Exception\PayPalConnectionException;
 use PhpSpec\Exception\Exception;
 use PayPal\Api\Address as PaypalAddress;
+use App\Common\Credit;
 
 class CustomerController extends Controller
 {
@@ -61,6 +62,7 @@ class CustomerController extends Controller
     }
 
     use DataGraph;
+    use Credit;
 
     public function edit() {
         $user = $this->auth->user();
@@ -110,33 +112,14 @@ class CustomerController extends Controller
 
     public function monitor(){
         $user = $this->auth->user();
-        $purchases = Purchase::where('user_id', '=', $user->id)
-            ->where(function($query) {
-                $query->where('payed', '=', true)
-                ->orWhere('quotation_id', '<>', 'null');
-        })->orderBy('created_at', 'DESC')->get();
+        $purchases = $user->validPuchases();
         $purchases->load('product');
         $purchases->load('consommations');
 
 
         //data pour le graphique conso
-        $conso = collect([]);
-        $totalQuantity = 0;
-        $totalConsommation = 0;
-        foreach($purchases as $purchase){
-            if($purchase->product->type == 'time'){
-                $totalQuantity += $purchase->product->value*$purchase->quantity;
-                $conso  = $conso->merge($purchase->consommations);
-            }
-            foreach($purchase->consommations as $consommation){
-                if($purchase->product->type == 'time'){
-                    $totalConsommation += $consommation->value;
-                }
-            }
-        }
-
-        $totalLeft = $totalQuantity-$totalConsommation;
-
+        $totalLeft = $this->consosAndtotalLeft($purchases)[1];
+        $conso = $this->consosAndtotalLeft($purchases)[0];
         $data = $this->dataGraph($conso);
         
         return view('customer.monitor.index', compact('user', 'purchases', 'data', 'totalLeft'));
@@ -166,12 +149,23 @@ class CustomerController extends Controller
                     ->orWhere('value', '=', 50);
             })
             ->get();
-        return view('sale.choice.index', compact('productsList'));
+        $user = $this->auth->user();
+        $purchases = $user->validPuchases();
+        $totalLeft = $this->consosAndtotalLeft($purchases)[1];
+        return view('sale.choice.index', compact('productsList', 'totalLeft'));
     }
 
     public function saleRecapitulation(SaleChoiceRequest $request) {
+        $user = $this->auth->user();
+        $purchases = $user->validPuchases();
+        $totalLeft = $this->consosAndtotalLeft($purchases)[1];
         $product = Product::findOrFail($request->get('product-id'));
-        return view('sale.recapitulation.index', compact('product'));
+        if(auth()->user()->is_admin_valid && auth()->user()->quota >= $totalLeft+$product->value){
+            return view('sale.recapitulation.index', compact('product'));
+        }
+        return redirect(route('customer.monitor.index'))
+            ->with('error', 'Ho mince! Une erreur inconnue est apparue \':(');
+
     }
 
     public function salePayment($id) {
@@ -188,11 +182,6 @@ class CustomerController extends Controller
 
 
         $payerInfo = new PayerInfo();
-//        $payerInfo->setEmail($this->auth->user()->email);
-//        $payerInfo->setFirstName($this->auth->user()->firstName);
-//        $payerInfo->setLastName($this->auth->user()->lastName);
-//        $payerInfo->setExternalRememberMeId($this->auth->user()->id);
-
 
         $adresses = $this->auth->user()->addresses;
         foreach ($adresses as $adress) {

@@ -164,6 +164,14 @@
   justify-content: flex-end;
   align-items: center;
 }
+
+@mixin rncfe {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-end;
+}
 /*--------------------------------------------------*/
 /*                REVERSE ROW                       */
 /*--------------------------------------------------*/

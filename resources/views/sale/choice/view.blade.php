@@ -35,16 +35,28 @@
                 </div>
                 <p class="tva">prix TTC TVA = {{ round(($product->price*$product->tva/100),2) }}€</p>
                 <p class="tva">TVA non applicable, article 293B du code général des impôts.</p>
+                @if(auth()->user()->is_admin_valid && auth()->user()->quota >= $totalLeft+$product->value)
                 <label for="product-id{{$product->id}}" class="btn-yellow2-invert">
                     <input type= "radio" name="product-id" id="product-id{{$product->id}}" value="{{$product->id}}" />
                     Choisir cette offre
                 </label>
+                @endif
             </div>
+            @if(!auth()->user()->is_admin_valid)
+            <div class="disable">
+                <p>Votre compte est inéligilble à cette offre pour le moment</p>
+            </div>
+            @endif
+            @if(auth()->user()->is_admin_valid && auth()->user()->quota < $totalLeft+$product->value)
+                <div class="disable">
+                    <p>Votre plafond de crédit est déjà atteind :-)</p>
+                </div>
+            @endif
         </div>
         @endforeach
     </div>
     <div class="form-submit">
-        <div class="submit">
+        <div class="submit right">
             <button type="submit" class="btn-yellow2-invert" aria-disabled="true">Verifier ma commande<i class="fa fa-arrow-circle-o-right"></i></button>
         </div>
     </div>

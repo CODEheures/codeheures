@@ -208,25 +208,27 @@
 </div>
 <div class="quotation">
     <div class="form-submit">
-        @if($quotation->canPublish())
-            <a href="{{ route('admin.quotation.publish', ['id' => $quotation->id]) }}" class="btn-yellow2">Publier</a>
-        @else
-            <a href="{{ route('admin.quotation.publish', ['id' => $quotation->id]) }}" class="btn-disable">Publier</a>
-        @endif
-        @if($quotation->canUnpublish())
-            <a href="{{ route('admin.quotation.unPublish', ['id' => $quotation->id]) }}" class="btn-yellow2">Dépublier</a>
-        @else
-            <a href="{{ route('admin.quotation.unPublish', ['id' => $quotation->id]) }}" class="btn-disable">Dépublier</a>
-        @endif
-        @if($quotation->canDelete())
-            <a href="{{ route('admin.quotation.delete', ['id' => $quotation->id]) }}" class="btn-yellow2">Supprimer</a>
-        @else
-            <a href="{{ route('admin.quotation.delete', ['id' => $quotation->id]) }}" class="btn-disable">Supprimer</a>
-        @endif
-        @if($quotation->canArchive())
-            <a href="{{ route('admin.quotation.archive', ['id' => $quotation->id]) }}" class="btn-yellow2">Archiver</a>
-        @else
-            <a href="{{ route('admin.quotation.archive', ['id' => $quotation->id]) }}" class="btn-disable">Archiver</a>
-        @endif
+        <div class="submit">
+            @if($quotation->canPublish())
+                <a href="{{ route('admin.quotation.publish', ['id' => $quotation->id]) }}" class="btn-yellow2">Publier</a>
+            @else
+                <a href="{{ route('admin.quotation.publish', ['id' => $quotation->id]) }}" class="btn-disable">Publier</a>
+            @endif
+            @if($quotation->canUnpublish())
+                <a href="{{ route('admin.quotation.unPublish', ['id' => $quotation->id]) }}" class="btn-yellow2">Dépublier</a>
+            @else
+                <a href="{{ route('admin.quotation.unPublish', ['id' => $quotation->id]) }}" class="btn-disable">Dépublier</a>
+            @endif
+            @if($quotation->canDelete())
+                <a href="{{ route('admin.quotation.delete', ['id' => $quotation->id]) }}" class="btn-yellow2">Supprimer</a>
+            @else
+                <a href="{{ route('admin.quotation.delete', ['id' => $quotation->id]) }}" class="btn-disable">Supprimer</a>
+            @endif
+            @if($quotation->canArchive())
+                <a href="{{ route('admin.quotation.archive', ['id' => $quotation->id]) }}" class="btn-yellow2">Archiver</a>
+            @else
+                <a href="{{ route('admin.quotation.archive', ['id' => $quotation->id]) }}" class="btn-disable">Archiver</a>
+            @endif
+        </div>
     </div>
 </div>

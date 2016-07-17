@@ -70,6 +70,8 @@ Class ResetDemo
         ]);
 
         $user->confirmed = true;
+        $user->is_admin_valid = true;
+        $user->quota = 15;
 
         $billingAddress = new Address();
         $billingAddress->type = 'billing';

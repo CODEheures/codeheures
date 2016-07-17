@@ -74,19 +74,21 @@
 </div>
 <div class="product">
     <div class="form-submit">
-        @if($prestation->id != null && $prestation->canEdit())
-            <a href="{{ route('admin.prestation.publish', ['id' => $prestation->id]) }}" class="btn-yellow2">Publier</a>
-            <a href="{{ route('admin.prestation.delete', ['id' => $prestation->id]) }}" class="btn-yellow2">Supprimer</a>
-        @else
-            <a href="#" class="btn-disable">Publier</a>
-            <a href="#" class="btn-disable">Supprimer</a>
-        @endif
-        @if($prestation->id != null && $prestation->isPublished)
-            @if(!$prestation->isObsolete)
-                <a href="{{ route('admin.prestation.toObsolete', ['id' => $prestation->id]) }}" class="btn-yellow2">Rendre obsolete</a>
+        <div class="submit">
+            @if($prestation->id != null && $prestation->canEdit())
+                <a href="{{ route('admin.prestation.publish', ['id' => $prestation->id]) }}" class="btn-yellow2">Publier</a>
+                <a href="{{ route('admin.prestation.delete', ['id' => $prestation->id]) }}" class="btn-yellow2">Supprimer</a>
             @else
-                <a href="{{ route('admin.prestation.toNotObsolete', ['id' => $prestation->id]) }}" class="btn-yellow2">Rendre non-obsolete</a>
+                <a href="#" class="btn-disable">Publier</a>
+                <a href="#" class="btn-disable">Supprimer</a>
             @endif
-        @endif
+            @if($prestation->id != null && $prestation->isPublished)
+                @if(!$prestation->isObsolete)
+                    <a href="{{ route('admin.prestation.toObsolete', ['id' => $prestation->id]) }}" class="btn-yellow2">Rendre obsolete</a>
+                @else
+                    <a href="{{ route('admin.prestation.toNotObsolete', ['id' => $prestation->id]) }}" class="btn-yellow2">Rendre non-obsolete</a>
+                @endif
+            @endif
+        </div>
     </div>
 </div>

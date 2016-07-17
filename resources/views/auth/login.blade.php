@@ -31,6 +31,7 @@
     <div class="form-submit">
         <div class="submit">
             <input type="submit" class="btn-yellow2" value="Connexion" />
+            <a href="{{ route('facebook.login') }}" class="btn-facebook-login">Se connecter avec Facebook</a>
         </div>
         <div class="checkbox">
             <span>Se souvenir de moi</span>

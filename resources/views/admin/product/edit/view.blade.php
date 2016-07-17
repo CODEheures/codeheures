@@ -133,15 +133,17 @@
 </div>
 <div class="product">
     <div class="form-submit">
-        @if($product->canEdit())
-            <a href="{{ route('admin.product.delete', ['id' => $product->id]) }}" class="btn-yellow2">Supprimer</a>
-        @else
-            <a href="#" class="btn-disable">Supprimer</a>
-        @endif
-        @if(!$product->isObsolete)
-            <a href="{{ route('admin.product.toObsolete', ['id' => $product->id]) }}" class="btn-yellow2">Rendre obsolete</a>
-        @else
-            <a href="{{ route('admin.product.toNotObsolete', ['id' => $product->id]) }}" class="btn-yellow2">Rendre non-obsolete</a>
-        @endif
+        <div class="submit">
+            @if($product->canEdit())
+                <a href="{{ route('admin.product.delete', ['id' => $product->id]) }}" class="btn-yellow2">Supprimer</a>
+            @else
+                <a href="#" class="btn-disable">Supprimer</a>
+            @endif
+            @if(!$product->isObsolete)
+                <a href="{{ route('admin.product.toObsolete', ['id' => $product->id]) }}" class="btn-yellow2">Rendre obsolete</a>
+            @else
+                <a href="{{ route('admin.product.toNotObsolete', ['id' => $product->id]) }}" class="btn-yellow2">Rendre non-obsolete</a>
+            @endif
+        </div>
     </div>
 </div>
