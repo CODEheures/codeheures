@@ -44,6 +44,11 @@ Route::group(['prefix' => 'admin'], function() {
     //admin monitor index
     Route::get('/monitor', ['as' => 'admin.monitor.index', 'uses' => 'AdminController@monitor']);
 
+    //admin customer manage
+    Route::get('/customer/active/{id}', ['as' => 'admin.customer.active', 'uses' => 'AdminController@customerActive'])->where(['id'=>'[0-9]+']);
+    Route::get('/customer/desactive/{id}', ['as' => 'admin.customer.desactive', 'uses' => 'AdminController@customerDesactive'])->where(['id'=>'[0-9]+']);
+    Route::put('/customer/updateQuota/{id}', ['as' => 'admin.customer.updateQuota', 'uses' => 'AdminController@updateCustomerQuota'])->where(['id'=>'[0-9]+']);
+
     //consommations
     Route::post('/consommation', ['as' => 'admin.consommation.store', 'uses' => 'ConsommationController@store']);
     Route::get('/consommation/{id}/delete', ['as' => 'admin.consommation.delete', 'uses' => 'ConsommationController@destroy'])->where(['id'=>'[0-9]+']);

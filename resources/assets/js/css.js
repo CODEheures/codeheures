@@ -88,6 +88,8 @@ $(function() {
         });
     });
 
+
+    //GLOBAL
     setHeightHeader();
     $(window).resize(function() {
         setHeightHeader();
@@ -210,6 +212,27 @@ $(function() {
             $assist.attr('data-placeholder', '2.4');
             $assist.attr('max', '');
         }
+    });
+
+    //Assistance au slider quota admin customer
+    var $ranges = $('[data-assist="assist2"]');
+    $ranges.mousedown(function () {
+        var $range = $(this);
+        var $assist = $(this).parent().children('[data-isAssistBy="assist2"]');
+        var listener = function() {
+            window.requestAnimationFrame(function() {
+                $assist.html('Nouveau quota:' + $range.val());
+            });
+        };
+        $range.mousemove(function () {
+            listener();
+        });
+    });
+
+    $ranges.mouseup(function () {
+        var $range = $(this);
+        $range.unbind("mousemove");
+
     });
 
 

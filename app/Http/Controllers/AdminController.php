@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Common\ResetDemo;
 use App\Consommation;
 
+use App\User;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -15,6 +16,7 @@ use App\Purchase;
 use App\Product;
 use \App\Common\DataGraph;
 use \App\Common\SmsFreeMobile;
+use App\Http\Requests\UpdateCustomerQuotaRequest;
 
 class AdminController extends Controller
 {
@@ -39,8 +41,9 @@ class AdminController extends Controller
         $consommations = Consommation::orderBy('created_at', 'DESC')->get();
         $data = $this->dataGraph($consommations);
 
+        $customersList = User::where('role', '=', 'user')->get();
 
-        return view('admin.monitor.index', compact('user', 'purchases', 'data'));
+        return view('admin.monitor.index', compact('user', 'purchases', 'data', 'customersList'));
     }
 
     public function sms(){
@@ -72,5 +75,25 @@ class AdminController extends Controller
         $resetClass = new ResetDemo();
         $resetClass->reset();
         return redirect('/')->with('info', 'reset du compte démo effectué');
+    }
+
+    public function updateCustomerQuota(UpdateCustomerQuotaRequest $request, $id) {
+        $user = User::findOrFail($id);
+        $user->update($request->only('quota'));
+        return redirect()->back()->with('success', 'Quota de l\'utilisateur mis à jour');
+    }
+
+    public function customerActive($id) {
+        $user = User::findOrFail($id);
+        $user->is_admin_valid = true;
+        $user->save();
+        return redirect()->back()->with('success', 'Utilisateur desormais actif');
+    }
+
+    public function customerDesactive($id) {
+        $user = User::findOrFail($id);
+        $user->is_admin_valid = false;
+        $user->save();
+        return redirect()->back()->with('success', 'Utilisateur desormais inactif');
     }
 }

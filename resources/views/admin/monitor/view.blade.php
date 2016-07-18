@@ -38,3 +38,74 @@
     <p>Aucune commande client...</p>
 @endif
 </div>
+
+<div class="customer-title">
+    <h2><i class="ion-ios-people-outline"></i>Liste clients</h2>
+</div>
+<div class="product">
+    @if(count($customersList)>0)
+        <table>
+            <thead>
+            <tr>
+                <th>Nom d'utilisateur</th>
+                <th>Email</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Société</th>
+                <th>Téléphone</th>
+                <th>actif ?</th>
+                <th>Quota</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($customersList as $customer)
+                <tr>
+                    <td>
+                        {{ $customer->name }}
+                    </td>
+                    <td>
+                        {{ $customer->email }}
+                    </td>
+                    <td>
+                        {{ $customer->firstName }}
+                    </td>
+                    <td>
+                        {{ $customer->lastName }}
+                    </td>
+                    <td>
+                        {{ $customer->enterprise }}
+                    </td>
+                    <td>
+                        {{ $customer->phone }}
+                    </td>
+                    <td>
+                        @include('admin.monitor.isActiveIcon.view')
+                    </td>
+                    <td>
+                        {{ $customer->quota }}
+                    </td>
+                    <td class="quota">
+                        @if(!$customer->is_admin_valid)
+                        <a href="{{ route('admin.customer.active', ['id'=> $customer->id]) }}" class="btn-danger">
+                            <i class="ion-ios-close-outline"></i> Activer
+                        </a>
+                        @else
+                        <a href="{{ route('admin.customer.desactive', ['id'=> $customer->id]) }}" class="btn-danger">
+                            <i class="ion-ios-close-outline"></i> Desactiver
+                        </a>
+                        {!! Form::open(['method' => 'PUT', 'class' => 'form-horizontal', 'url' => route('admin.customer.updateQuota', ['id'=>$customer->id])]) !!}
+                            <p data-isAssistBy="assist2">Nouveau quota</p>
+                            <input type="range" name="quota" class="form-control" min="0" max="50" step="1" value="{{ $customer->quota }}" data-assist="assist2">
+                            <input type="submit" class="btn-yellow2" value="changer quota">
+                        {!! Form::close() !!}
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    @else
+        <p>Aucun client pour le moment...</p>
+    @endif
+</div>

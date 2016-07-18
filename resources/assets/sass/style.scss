@@ -669,7 +669,8 @@ body > header {
     & div.purchase-title,
     & div.quotation-title,
     & div.product-title,
-    & div.prestation-title {
+    & div.prestation-title,
+    & div.customer-title {
       @include rwsbc;
       width: 100%;
       margin-top: 2rem;
@@ -881,7 +882,8 @@ body > header {
     &#user div.purchase,
     &#user div.quotation,
     &#user div.product,
-    &#user div.prestation {
+    &#user div.prestation,
+    &#user div.customer {
       @include cnfsfs;
       width: 100%;
       padding-top: 2rem;
@@ -986,6 +988,13 @@ body > header {
             &.positive {
               background-color: $color1;
             }
+          }
+        }
+
+        & tbody tr td.quota {
+          @include cncc;
+          & form {
+            @include cncc;
           }
         }
 
@@ -1599,7 +1608,8 @@ body > footer {
       & div.purchase-title,
       & div.quotation-title,
       & div.product-title,
-      & div.prestation-title {
+      & div.prestation-title,
+      & div.customer-title {
         & div.cart-quotation,
         & div.price-quotation,
         & div.refuse-quotation {
