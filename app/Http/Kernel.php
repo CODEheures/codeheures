@@ -33,5 +33,6 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\Admin::class,
         'haveNewQuotation' => \App\Http\Middleware\HaveNewQuotation::class,
         'fullProfile' => \App\Http\Middleware\FullProfile::class,
+        'isNotOauth' => \App\Http\Middleware\IsNotOauth::class,
     ];
 }

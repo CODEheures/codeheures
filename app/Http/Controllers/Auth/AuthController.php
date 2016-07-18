@@ -258,12 +258,7 @@ class AuthController extends Controller
      */
     private function findOrCreateUser($user, $provider)
     {
-        $providers = [
-            'facebook',
-            'google',
-            'twitter',
-            'github'
-        ];
+        $providers = config('providers_login');
         if(in_array($provider, $providers)){
             $keyId = $provider.'_id';
             $authUser = User::where($keyId, $user->id)->first();
@@ -274,13 +269,7 @@ class AuthController extends Controller
             if($user->email && $user->email != '') {
                 $existEmail = User::where('email', '=' , $user->email)->first();
                 if($existEmail) {
-                    $refOauth = '';
-                    foreach ($providers as $testId) {
-                        $column = $testId.'_id';
-                        if($existEmail->$column){
-                            $refOauth = $testId;
-                        }
-                    }
+                    $refOauth = $existEmail->oAuthProvider($providers);
                     if($refOauth == '') {
                         $refOauth = 'un autre utilisateur';
                     }

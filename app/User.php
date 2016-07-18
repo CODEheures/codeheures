@@ -77,4 +77,15 @@ class User extends Model implements AuthenticatableContract,
 
         return $purchases;
     }
+
+    public function oAuthProvider($providers) {
+        $refOauth = '';
+        foreach ($providers as $testId) {
+            $column = $testId.'_id';
+            if($this->$column){
+                $refOauth = $testId;
+            }
+        }
+        return $refOauth;
+    }
 }
