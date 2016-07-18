@@ -70,7 +70,7 @@ class AdminController extends Controller
 
     public function resetDemo(){
         $resetClass = new ResetDemo();
-        $message = $resetClass->reset();
-        dd($message);
+        $resetClass->reset();
+        return redirect('/')->with('info', 'reset du compte démo effectué');
     }
 }

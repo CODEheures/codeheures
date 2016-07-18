@@ -31,8 +31,6 @@
     <div class="form-submit">
         <div class="submit">
             <input type="submit" class="btn-yellow2" value="Connexion" />
-            <a href="{{ route('social.login', ['provider' => 'facebook']) }}" class="btn-facebook-login">Se connecter avec Facebook</a>
-            <a href="{{ route('social.login', ['provider' => 'google']) }}" class="btn-google-login">Se connecter avec Google</a>
         </div>
         <div class="checkbox">
             <span>Se souvenir de moi</span>
@@ -40,6 +38,12 @@
                 {!! Form::checkbox('check',1, null, ['id'=>'remember']) !!}
                 <label for="remember"></label>
             </div>
+        </div>
+        <div class="submit social">
+            <a href="{{ route('social.login', ['provider' => 'facebook']) }}" class="btn-facebook-login">Se connecter avec Facebook</a>
+            <a href="{{ route('social.login', ['provider' => 'google']) }}" class="btn-google-login">Se connecter avec Google</a>
+            <a href="{{ route('social.login', ['provider' => 'twitter']) }}" class="btn-twitter-login">Se connecter avec Twitter</a>
+            <a href="{{ route('social.login', ['provider' => 'github']) }}" class="btn-github-login">Se connecter avec Github</a>
         </div>
     </div>
 {!! Form::close() !!}

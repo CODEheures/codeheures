@@ -5,7 +5,7 @@
 
     <div class="form-group">
             <span class="input input--fumi">
-                {!! Form::email('email', null, ['class' => 'input__field input__field--fumi', 'disabled' => true]) !!}
+                {!! Form::email('email', null, ['class' => 'input__field input__field--fumi']) !!}
                 <label for="email" class="input__label input__label--fumi">
                     <i class="fa fa-fw fa-envelope icon icon--fumi"></i>
                     <span class="input__label-content input__label-content--fumi">Email</span>

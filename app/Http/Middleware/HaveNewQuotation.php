@@ -20,11 +20,14 @@ class HaveNewQuotation
     {
         if(auth()->check()){
             $nbNewQuotations = Quotation::where('user_id',  '=', auth()->user()->id)
-                ->where('isViewed', '=', false)
                 ->where('validity', '>', Carbon::now()->format('Y-m-d'))
+                ->where('isPublished', '=', true)
+                ->where('isOrdered', '=', false)
+                ->where('isRefused', '=', false)
                 ->count();
             session()->set('nbNewQuote', $nbNewQuotations);
         }
+
         return $next($request);
     }
 }

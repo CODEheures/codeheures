@@ -11,7 +11,9 @@ trait UserList
         $userList = [];
         $userList[0] = 'Aucun';
         foreach($users as $user){
-            $userList[$user->id] = $user->email . ' | ' . $user->name;
+            if($user->email){
+                $userList[$user->id] = $user->email . ' | ' . $user->name;
+            }
         }
 
         return $userList;

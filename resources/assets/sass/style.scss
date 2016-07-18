@@ -252,6 +252,18 @@ ul.circle {
   color: white;
 }
 
+.btn-twitter-login {
+  border: 0.1rem solid $color-twitter;
+  background-color: $color-twitter;
+  color: white;
+}
+
+.btn-github-login {
+  border: 0.1rem solid black;
+  background-color: black;
+  color: white;
+}
+
 .input {
   max-width: none;
   margin: 1.5rem;
@@ -1364,6 +1376,13 @@ body > header {
       & div.checkbox {
         width: 100%;
         margin-left: 1.5rem;
+      }
+      & div.submit.social {
+        margin-top: 2rem;
+        & a {
+          margin-bottom: 1rem;
+          font-size: 1.5rem;
+        }
       }
     }
 

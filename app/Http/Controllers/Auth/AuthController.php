@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class AuthController extends Controller
 {
@@ -46,7 +47,7 @@ class AuthController extends Controller
      */
     public function __construct(Mailer $mailer)
     {
-        $this->middleware('guest', ['except' => 'getLogout']);
+        $this->middleware('guest', ['except' => ['getLogout', 'accountConfirm']]);
         $this->mailer = $mailer;
     }
 
@@ -73,23 +74,43 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        //Chaine random du Token
-        $token = str_random(60);
+
 
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'confirmation_token' => $token,
             'password' => bcrypt($data['password']),
         ]);
+        $user->save();
+        $this->addAdresses($user);
+
+        $this->setNewToken($user, $this->mailer);
+
+        return $user;
+    }
+
+    private function addAdresses($user) {
+        $billingAddress = new Address();
+        $billingAddress->type = 'billing';
+        $shippingAddress = new Address();
+        $shippingAddress->type = 'shipping';
+        $user->save();
+        $user->addresses()->saveMany([$billingAddress,$shippingAddress]);
+    }
+
+    public static function setNewToken($user, Mailer $mailer) {
+        //Chaine random du Token
+        $token = str_random(60);
+
+        $user->confirmed = false;
+        $user->confirmation_token = $token;
+        $user->save();
 
         //Envoi du mail de confirmation
-        $this->mailer->send(['text' => 'emails.account.text-confirm', 'html' => 'emails.account.html-confirm'],compact('user'), function($message) use($user){
+       $mailer->send(['text' => 'emails.account.text-confirm', 'html' => 'emails.account.html-confirm'],compact('user'), function($message) use($user){
             $message->to($user->email);
             $message->subject('Confirmez votre compte ' . env('APP_NAME'));
         });
-
-        return $user;
     }
 
     public function accountConfirm($id, $token){
@@ -100,13 +121,7 @@ class AuthController extends Controller
             } elseif ($token == $user->confirmation_token) {
                 $user->confirmed = true;
                 $user->confirmation_token = '';
-
-                $billingAddress = new Address();
-                $billingAddress->type = 'billing';
-                $shippingAddress = new Address();
-                $shippingAddress->type = 'shipping';
                 $user->save();
-                $user->addresses()->saveMany([$billingAddress,$shippingAddress]);
                 auth()->login($user);
                 return redirect('/')->with('success','Félicitation, votre compte est maintenant validé');
             } else {
@@ -221,14 +236,17 @@ class AuthController extends Controller
         }
 
         $authUser = $this->findOrCreateUser($user, $provider);
-
-        Auth::login($authUser, true);
-
-        if($this->isNewOauthUser) {
-            return redirect()->route('customer.monitor.index')
-                ->with('success', 'Bienvenu sur CODEheures '. auth()->user()->name . '. Merci de votre confiance. Vous pouvez desormais profiter de votre espace client');
+        if(is_a($authUser, RedirectResponse::class)) {
+            return $authUser;
         } else {
-            return redirect()->route('customer.monitor.index');
+            Auth::login($authUser, true);
+
+            if($this->isNewOauthUser) {
+                return redirect()->route('customer.monitor.index')
+                    ->with('success', 'Bienvenu sur CODEheures '. auth()->user()->name . '. Merci de votre confiance. Vous pouvez desormais profiter de votre espace client');
+            } else {
+                return redirect()->route('customer.monitor.index');
+            }
         }
     }
 
@@ -240,11 +258,34 @@ class AuthController extends Controller
      */
     private function findOrCreateUser($user, $provider)
     {
-        if($provider == 'facebook' || $provider == 'google'){
+        $providers = [
+            'facebook',
+            'google',
+            'twitter',
+            'github'
+        ];
+        if(in_array($provider, $providers)){
             $keyId = $provider.'_id';
             $authUser = User::where($keyId, $user->id)->first();
             if ($authUser){
                 return $authUser;
+            }
+
+            if($user->email && $user->email != '') {
+                $existEmail = User::where('email', '=' , $user->email)->first();
+                if($existEmail) {
+                    $refOauth = '';
+                    foreach ($providers as $testId) {
+                        $column = $testId.'_id';
+                        if($existEmail->$column){
+                            $refOauth = $testId;
+                        }
+                    }
+                    if($refOauth == '') {
+                        $refOauth = 'un autre utilisateur';
+                    }
+                    return redirect(route('login'))->with('error', 'un email identique est enregistré sur un compte ouvert par ' . $refOauth);
+                }
             }
 
             try {
@@ -255,12 +296,7 @@ class AuthController extends Controller
                     'avatar' => $user->avatar,
                     'confirmed' => true
                 ]);
-                $billingAddress = new Address();
-                $billingAddress->type = 'billing';
-                $shippingAddress = new Address();
-                $shippingAddress->type = 'shipping';
-                $newUser->save();
-                $newUser->addresses()->saveMany([$billingAddress,$shippingAddress]);
+                $this->addAdresses($newUser);
                 $this->isNewOauthUser = true;
                 return $newUser;
             } catch (Exception $e) {

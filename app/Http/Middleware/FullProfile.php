@@ -17,9 +17,14 @@ class FullProfile
      */
     public function handle($request, Closure $next)
     {
+        $testEmail = false;
         $testName = false;
         $testEnterprise = false;
         $testAddress = false;
+
+        if(auth()->user()->email <>''){
+            $testEmail = true;
+        }
 
         if(auth()->user()->firstName <>'' && auth()->user()->lastName <> ''){
             $testName = true;
@@ -35,6 +40,12 @@ class FullProfile
                     $testAddress = true;
                 }
             }
+        }
+
+        if($testEmail==false){
+            return redirect(route('customer.account.edit'))
+                ->with('info', 'Completez votre profil SVP. Vous devez remplir votre email 
+                avant de pouvoir afficher cette page');
         }
 
 

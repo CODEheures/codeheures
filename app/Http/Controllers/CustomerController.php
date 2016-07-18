@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Common\DataGraph;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Requests\PhoneAccountRequest;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ use App\Http\Requests\UpdateAccountAddressRequest;
 use App\Http\Requests\SaleChoiceRequest;
 use App\Purchase;
 use App\Product;
+use Illuminate\Support\Facades\Auth;
 use PayPal\Api\CreditCard;
 use PayPal\Api\FundingInstrument;
 use PayPal\Api\PayerInfo;
@@ -73,14 +75,21 @@ class CustomerController extends Controller
 
     public function update(UpdateAccountRequest $request){
 
-        $updates = $request->only(['name', 'phone', 'firstName', 'lastName', 'enterprise', 'siret']);
+        $updates = $request->only(['email', 'name', 'phone', 'firstName', 'lastName', 'enterprise', 'siret']);
         $updates['phone'] = (str_replace('+33','0',str_replace('-','',filter_var($updates['phone'],FILTER_SANITIZE_NUMBER_INT))));
         if ($request->get('phone') == ""){
             $updates['phone']=null;
         }
         $user = $this->auth->user();
-        $user->update($updates);
-        return redirect()->back()->with('success', 'informations enregistrées');
+
+        if($user->email != $updates['email']) {
+            $user->update($updates);
+            AuthController::setNewToken($user, $this->mailer);
+            return redirect()->back()->with('success', 'merci de valider votre nouvel email par le lien reçu');
+        } else {
+            $user->update($updates);
+            return redirect()->back()->with('success', 'informations enregistrées');
+        }
     }
 
     /**
