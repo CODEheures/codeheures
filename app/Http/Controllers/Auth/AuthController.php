@@ -37,6 +37,7 @@ class AuthController extends Controller
     protected $routeUser = 'customer.monitor.index';
     protected $routeAdmin = 'admin.monitor.index';
     protected $redirectTo = '/';
+    private $isNewOauthUser = false;
 
     /**
      * Create a new authentication controller instance.
@@ -223,7 +224,12 @@ class AuthController extends Controller
 
         Auth::login($authUser, true);
 
-        return redirect()->route('customer.monitor.index');
+        if($this->isNewOauthUser) {
+            return redirect()->route('customer.monitor.index')
+                ->with('success', 'Bienvenu sur CODEheures '. auth()->user()->name . '. Merci de votre confiance. Vous pouvez desormais profiter de votre espace client');
+        } else {
+            return redirect()->route('customer.monitor.index');
+        }
     }
 
     /**
@@ -235,13 +241,13 @@ class AuthController extends Controller
     private function findOrCreateUser($user, $provider)
     {
         if($provider == 'facebook' || $provider == 'google'){
-            $authUser = User::where('facebook_id', $user->id)->first();
+            $keyId = $provider.'_id';
+            $authUser = User::where($keyId, $user->id)->first();
             if ($authUser){
                 return $authUser;
             }
 
             try {
-                $keyId = $provider.'_id';
                 $newUser =  User::create([
                     'name' => $user->name,
                     'email' => $user->email,
@@ -255,12 +261,13 @@ class AuthController extends Controller
                 $shippingAddress->type = 'shipping';
                 $newUser->save();
                 $newUser->addresses()->saveMany([$billingAddress,$shippingAddress]);
-
+                $this->isNewOauthUser = true;
                 return $newUser;
             } catch (Exception $e) {
-
+                return redirect(route('login'))->with('error', 'une erreur est survenue pendant votre inscription. Merci de contacter l\'administrateur du site');
             }
+        } else {
+            return redirect(route('login'))->with('error', 'une erreur est survenue pendant votre connexion/inscription. Merci de contacter l\'administrateur du site');
         }
-
     }
 }
