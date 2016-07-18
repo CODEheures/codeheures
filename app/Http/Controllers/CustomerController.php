@@ -148,6 +148,7 @@ class CustomerController extends Controller
                     ->orWhere('value', '=', 10)
                     ->orWhere('value', '=', 50);
             })
+            ->orderBy('value')
             ->get();
         $user = $this->auth->user();
         $purchases = $user->validPuchases();

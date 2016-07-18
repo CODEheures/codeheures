@@ -246,6 +246,12 @@ ul.circle {
   color: white;
 }
 
+.btn-google-login {
+  border: 0.1rem solid $color-google;
+  background-color: $color-google;
+  color: white;
+}
+
 .input {
   max-width: none;
   margin: 1.5rem;

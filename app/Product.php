@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Product extends Model
 {
@@ -22,5 +23,10 @@ class Product extends Model
         }
 
         return true;
+    }
+
+    public function getReservedUser() {
+        $user = User::where('id', '=', $this->reservedForUserId)->first();
+        return $user;
     }
 }

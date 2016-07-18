@@ -117,8 +117,10 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function() {
     Route::post('register', ['as' => 'register.post', 'uses' => 'AuthController@postRegister']);
 
     //Oauth Routes
-    Route::get('facebook', ['as' => 'facebook.login', 'uses' => 'AuthController@redirectToProvider']);
-    Route::get('facebook/callback', ['as' => 'facebook.callback', 'uses' => 'AuthController@handleProviderCallback']);
+    Route::get('social/{provider}', ['as' => 'social.login', 'uses' => 'AuthController@redirectToProvider'])
+        ->where(['provider'=>'[a-zA-Z]+']);
+    Route::get('social/callback/{provider}', ['as' => 'social.callback', 'uses' => 'AuthController@handleProviderCallback'])
+        ->where(['provider'=>'[a-zA-Z]+']);
 
     //Account confirmation
     Route::get('account-confirm/{id}/{token}', ['as' => 'account.confirm', 'uses' => 'AuthController@accountConfirm']);

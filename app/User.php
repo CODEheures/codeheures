@@ -40,6 +40,7 @@ class User extends Model implements AuthenticatableContract,
         'phone',
         'confirmed',
         'facebook_id',
+        'google_id',
         'avatar',
         'quota',
         'is_admin_valid'

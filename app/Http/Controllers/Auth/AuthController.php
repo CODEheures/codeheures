@@ -58,7 +58,7 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|min:3|max:255|alpha_num|unique:users',
+            'name' => array('required', 'regex:/^[A-Za-z0-9_[:space:]]{3,255}$/'),
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);
@@ -162,7 +162,7 @@ class AuthController extends Controller
         //}
         //----------------OLD AUTENTICATE-------------------------------------//
 
-        $user = User::where('name', $request->get('name'))->orWhere('email', $request->get('name'))->first();
+        $user = User::where('email', $request->get('name'))->first();
 
         if ($user && !$user->confirmed) {
             return redirect($this->loginPath())
@@ -201,9 +201,9 @@ class AuthController extends Controller
      *
      * @return Response
      */
-    public function redirectToProvider()
+    public function redirectToProvider($provider)
     {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver($provider)->redirect();
     }
 
     /**
@@ -211,15 +211,15 @@ class AuthController extends Controller
      *
      * @return Response
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback($provider)
     {
         try {
-            $user = Socialite::driver('facebook')->user();
+            $user = Socialite::driver($provider)->user();
         } catch (Exception $e) {
-            return redirect(route('facebook.login'));
+            return redirect(route('login'));
         }
 
-        $authUser = $this->findOrCreateUser($user);
+        $authUser = $this->findOrCreateUser($user, $provider);
 
         Auth::login($authUser, true);
 
@@ -232,20 +232,35 @@ class AuthController extends Controller
      * @param $facebookUser
      * @return User
      */
-    private function findOrCreateUser($facebookUser)
+    private function findOrCreateUser($user, $provider)
     {
-        $authUser = User::where('facebook_id', $facebookUser->id)->first();
+        if($provider == 'facebook' || $provider == 'google'){
+            $authUser = User::where('facebook_id', $user->id)->first();
+            if ($authUser){
+                return $authUser;
+            }
 
-        if ($authUser){
-            return $authUser;
+            try {
+                $keyId = $provider.'_id';
+                $newUser =  User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    $keyId => $user->id,
+                    'avatar' => $user->avatar,
+                    'confirmed' => true
+                ]);
+                $billingAddress = new Address();
+                $billingAddress->type = 'billing';
+                $shippingAddress = new Address();
+                $shippingAddress->type = 'shipping';
+                $newUser->save();
+                $newUser->addresses()->saveMany([$billingAddress,$shippingAddress]);
+
+                return $newUser;
+            } catch (Exception $e) {
+
+            }
         }
 
-        return User::create([
-            'name' => $facebookUser->name,
-            'email' => $facebookUser->email,
-            'facebook_id' => $facebookUser->id,
-            'avatar' => $facebookUser->avatar,
-            'confirmed' => true
-        ]);
     }
 }

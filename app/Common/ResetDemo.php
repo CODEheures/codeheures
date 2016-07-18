@@ -87,29 +87,11 @@ Class ResetDemo
 
 
         //création des produits
-        $product1 = Product::create([
-            'description' => '1 h de webmastering',
-            'type' => 'time',
-            'value' => 1,
-            'price' => 60,
-            'unit' => 'heure(s)',
-            'reservedForUserId' => $user->id
-        ]);
-
         $product2 = Product::create([
             'description' => '5 h de webmastering',
             'type' => 'time',
             'value' => 5,
             'price' => 240,
-            'unit' => 'heure(s)',
-            'reservedForUserId' => $user->id
-        ]);
-
-        $product3 = Product::create([
-            'description' => '10 h de webmastering',
-            'type' => 'time',
-            'value' => 10,
-            'price' => 399,
             'unit' => 'heure(s)',
             'reservedForUserId' => $user->id
         ]);

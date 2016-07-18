@@ -51,6 +51,8 @@
     <div class="form-submit">
         <div class="submit">
             <input type="submit" class="btn-yellow2" value="S'inscrire" />
+            <a href="{{ route('social.login', ['provider' => 'facebook']) }}" class="btn-facebook-login">S'inscrire avec Facebook</a>
+            <a href="{{ route('social.login', ['provider' => 'google']) }}" class="btn-google-login">S'inscrire avec Google</a>
         </div>
     </div>
 

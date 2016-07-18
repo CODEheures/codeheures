@@ -9,10 +9,10 @@
 
     <div class="form-group">
         <span class="input input--fumi">
-            {!! Form::text('name', null, ['class' => 'input__field input__field--fumi', 'placeholder' => 'jacksp24']) !!}
+            {!! Form::text('name', null, ['class' => 'input__field input__field--fumi', 'placeholder' => 'jacksp24@bl.pl']) !!}
             <label for="name" class="input__label input__label--fumi">
                 <i class="fa fa-fw fa-user icon icon--fumi"></i>
-                <span class="input__label-content input__label-content--fumi">Pseudo ou email</span>
+                <span class="input__label-content input__label-content--fumi">email</span>
             </label>
         </span>
     </div>
@@ -31,7 +31,8 @@
     <div class="form-submit">
         <div class="submit">
             <input type="submit" class="btn-yellow2" value="Connexion" />
-            <a href="{{ route('facebook.login') }}" class="btn-facebook-login">Se connecter avec Facebook</a>
+            <a href="{{ route('social.login', ['provider' => 'facebook']) }}" class="btn-facebook-login">Se connecter avec Facebook</a>
+            <a href="{{ route('social.login', ['provider' => 'google']) }}" class="btn-google-login">Se connecter avec Google</a>
         </div>
         <div class="checkbox">
             <span>Se souvenir de moi</span>
