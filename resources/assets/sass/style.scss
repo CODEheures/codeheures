@@ -91,6 +91,11 @@ ul.circle {
 @import "fa-icons/font-awesome";
 @import "cookieconsent/light-floating";
 
+.introjs_class1 {
+  background-color: rgba(255,255,255,0.15);
+  border: 0.1rem white solid;
+}
+
 .container {
   $width: 100%;
   @include mycontainer($width, $container-gutters);
@@ -267,6 +272,20 @@ ul.circle {
 .input {
   max-width: none;
   margin: 1.5rem;
+}
+
+@keyframes toDown {
+  0% {
+    transform: translateY(0);
+  }
+
+  70% {
+    transform: translateY(-1rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
 /*
@@ -468,6 +487,8 @@ body > header {
       text-align: center;
       & a {
         color: $color1;
+        position: absolute;
+        animation: toDown 2s infinite;
       }
 
     }
@@ -544,6 +565,10 @@ body > header {
       & small {
         display: flex;
         font-size: 60%;
+      }
+      & a#visite {
+        text-transform: none;
+        padding-left: 2rem;
       }
     }
 

@@ -11,7 +11,6 @@ namespace App\Common;
 trait DataGraph
 {
     public function dataGraph($consommations) {
-        //TODO STACKER LES CONSOMMATIONS DE LA MËME DATE
         $consommations = $consommations->sortBy('created_at');
         $conso = [];
         foreach($consommations as $consommation){
@@ -27,13 +26,13 @@ trait DataGraph
                     $conso[] = [
                         "category" => $consommation->created_at->format('Y-m-d'),
                         "Temps passé" => $consommation->value,
-                        "Temps de référence" => $consommation->prestation->duration,
-                        "type" => $consommation->prestation->name
+                        "Temps de référence" => $consommation->prestation->duration*$consommation->ratio_prestation,
+                        "type" => $consommation->prestation->name . '(x' . ($consommation->ratio_prestation) . ')'
                     ];
                 } else {
                     $conso[count($conso)-1]['Temps passé'] = $conso[count($conso)-1]['Temps passé']  + $consommation->value;
-                    $conso[count($conso)-1]['Temps de référence'] = $conso[count($conso)-1]['Temps de référence']  + $consommation->prestation->duration;
-                    $conso[count($conso)-1]['type'] = $conso[count($conso)-1]['type']  . " + " . $consommation->prestation->name;
+                    $conso[count($conso)-1]['Temps de référence'] = $conso[count($conso)-1]['Temps de référence']  + $consommation->prestation->duration*$consommation->ratio_prestation;
+                    $conso[count($conso)-1]['type'] = $conso[count($conso)-1]['type']  . " + " . $consommation->prestation->name . '(x' . ($consommation->ratio_prestation) . ')';
                 }
             } else {
                 if(!$flag_add) {

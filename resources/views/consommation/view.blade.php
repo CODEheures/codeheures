@@ -24,17 +24,16 @@
             </tr>
             </tfoot>
             <tbody>
-
             <?php $reste = (int) $purchase->product->value*$purchase->quantity; ?>
             @foreach($consommations as $consommation)
                 <?php $reste =  round($reste - round($consommation->value,2),2); ?>
                 @if($consommation->id == $consommationToEdit->id)
                     <tr>
-                        {!! $consommationToEdit->prestation_id != null ? $max = $consommationToEdit->prestation->duration : $max = '' !!}
+                        <?php $consommationToEdit->prestation_id != null ? $max = $consommationToEdit->prestation->duration*$consommationToEdit->ratio_prestation : $max = ''; ?>
                         <td>{!! Form::input('date', 'created_at', $consommationToEdit->created_at->formatLocalized('%Y-%m-%d'), ['class' => 'form-control', 'placeholder' => '10-11-2015']) !!}</td>
                         <td>{!! Form::text('comment', null, ['class' => 'form-control', 'placeholder' => 'Ajout d\'un texte en page d\'accueil']) !!}</td>
-                        <td>{!! Form::select('prestation_id', $prestations, null, ['class' => 'input__field input__field--fumi', 'data-assist' => 'assist1']) !!}</td>
-                        <td>{!! Form::number('value', null, ['class' => 'form-control', 'placeholder' => '2.4', 'min' => '0', 'max' => $max, 'step' => '0.05', 'data-isAssistBy' => 'assist1']) !!}</td>
+                        <td>{!! Form::select('prestation_id', $prestations, null, ['class' => 'input__field input__field--fumi', 'data-assist' => 'assist1']) !!} x {!! Form::number('ratio_prestation', null, ['class' => 'input__field input__field--fumi', 'placeholder' => '2.4', 'min' => '0', 'step' => '0.01', 'data-assist' => 'assist1b']) !!}</td>
+                        <td>{!! Form::number('value', null, ['class' => 'form-control', 'placeholder' => '2.4', 'min' => '0', 'max' => $max, 'step' => '0.01', 'data-isAssistBy' => 'assist1']) !!}</td>
                         <td>{{ $reste }}</td>
                         <td>
                             <input type="submit" class="btn-yellow2" value="Modifier" />
@@ -46,7 +45,7 @@
                         <td>{{ $consommation->created_at->formatLocalized('%d-%m-%Y') }}</td>
                         <td>{{ $consommation->comment }}</td>
                         @if($consommation->prestation_id != null)
-                            <td>{{ $consommation->prestation->name }} ({{ $consommation->prestation->duration }}h)</td>
+                            <td>{{ $consommation->prestation->name }} ({{ $consommation->prestation->duration }}h) x {{ $consommation->ratio_prestation }}</td>
                         @else
                             <td>-</td>
                         @endif

@@ -34,7 +34,9 @@ class AdminController extends Controller
         $user = $this->auth->user();
         $purchases = Purchase::orderBy('user_id', 'DESC')->orderBy('created_at', 'DESC')->get();
         $purchases->load('product');
-        $purchases->load('consommations');
+        $purchases->load(['consommations' => function($query){
+            $query->orderBy('created_at');
+        }]);
 
 
         //data pour le graphique conso

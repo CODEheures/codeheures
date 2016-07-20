@@ -241,11 +241,17 @@ class AuthController extends Controller
         } else {
             Auth::login($authUser, true);
 
+            if ($authUser->role == 'admin') {
+                $route = route('admin.monitor.index');
+            } else {
+                $route = route('customer.monitor.index');
+            }
+
             if($this->isNewOauthUser) {
-                return redirect()->route('customer.monitor.index')
+                return redirect($route)
                     ->with('success', 'Bienvenu sur CODEheures '. auth()->user()->name . '. Merci de votre confiance. Vous pouvez desormais profiter de votre espace client');
             } else {
-                return redirect()->route('customer.monitor.index');
+                return redirect($route);
             }
         }
     }

@@ -123,7 +123,9 @@ class CustomerController extends Controller
         $user = $this->auth->user();
         $purchases = $user->validPuchases();
         $purchases->load('product');
-        $purchases->load('consommations');
+        $purchases->load(['consommations' => function($query){
+            $query->orderBy('created_at');
+        }]);
 
 
         //data pour le graphique conso

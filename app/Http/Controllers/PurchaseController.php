@@ -65,7 +65,9 @@ class PurchaseController extends Controller
         $purchase = Purchase::findOrFail($id);
         if($this->auth->user()->role =='admin' || $purchase->user->id == $this->auth->user()->id){
             $purchase->load('product');
-            $purchase->load('consommations');
+            $purchase->load(['consommations' => function ($query) {
+                $query->orderBy('created_at');
+            }]);
             $purchase->load('user');
 
             $totalLeft=0;

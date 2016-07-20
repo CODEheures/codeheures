@@ -69,6 +69,7 @@ class ConsommationController extends Controller
         $purchase->consommations()->save($consommation);
 
         if($request->get('prestation_id') && $request->get('prestation_id') > 0) {
+            $consommation->ratio_prestation = $request->get('ratio_prestation');
             $prestation = Prestation::findOrFail($request->get('prestation_id'));
             $prestation->consommations()->save($consommation);
         }
@@ -105,7 +106,7 @@ class ConsommationController extends Controller
         }]);
         $purchase->load('product');
 
-        $consommations = $purchase->consommations()->get();
+        $consommations = $purchase->consommations()->orderBy('created_at')->get();
         $consommations->load('prestation');
         $data = $this->dataGraph($consommations);
 
@@ -132,10 +133,14 @@ class ConsommationController extends Controller
         $consommation = Consommation::findOrFail($id);
         $consommation->update($request->only(['created_at', 'comment', 'value']));
 
-
         if($request->get('prestation_id') && $request->get('prestation_id') > 0) {
+            $consommation->ratio_prestation = $request->get('ratio_prestation');
             $prestation = Prestation::findOrFail($request->get('prestation_id'));
             $prestation->consommations()->save($consommation);
+        } else {
+            $consommation->ratio_prestation = $request->get('ratio_prestation');
+            $consommation->prestation_id = 0;
+            $consommation->save();
         }
 
         return redirect(route('purchase.show', ['id' => $consommation->purchase->id]))->with('success', 'Consommation mise à jour');
@@ -158,7 +163,9 @@ class ConsommationController extends Controller
 
     private function redirectNoneConformConsommation($request, $updateId=0){
         $purchase = Purchase::findOrFail($request->get('purchase_id'));
-        $purchase->load('consommations');
+        $purchase->load(['consommations' => function($query){
+            $query->orderBy('created_at');
+        }]);
         $purchase->load('product');
 
         $totalConsommation = 0;
@@ -185,14 +192,19 @@ class ConsommationController extends Controller
         //Traitement en cas de prestation de référence
         //TODO: Placer tous les findOrfail dans des blocs try/catch
         if($request->get('prestation_id') && $request->get('prestation_id') > 0) {
-            try {
-                $prestationReference = Prestation::findOrFail($request->get('prestation_id'));
-            } catch (ModelNotFoundException $e) {
-                return 'Pointage refusé, prestation de référence inexistante';
+            if($request->get('ratio_prestation') && $request->get('ratio_prestation') > 0) {
+                try {
+                    $prestationReference = Prestation::findOrFail($request->get('prestation_id'));
+                } catch (ModelNotFoundException $e) {
+                    return 'Pointage refusé, prestation de référence inexistante';
+                }
+                if($request->get('value') > $prestationReference->duration*$request->get('ratio_prestation')) {
+                    return 'Pointage interdit: votre valeure est plus élévée que la référence indiquéé';
+                }
+            } else {
+                return 'Pointage interdit: le ratio de la prestation de référence doit être un nombre positif';
             }
-            if($request->get('value') > $prestationReference->duration) {
-                return 'Pointage interdit: votre valeure est plus élévée que la référence indiquéé';
-            }
+
         }
         return null;
     }

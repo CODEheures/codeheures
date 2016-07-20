@@ -40,9 +40,9 @@
                 <?php $reste =  round($reste - round($consommation->value,2),2); ?>
                 <tr>
                     <td>{{ $consommation->created_at->formatLocalized('%d-%m-%Y') }}</td>
-                    <td {!! auth()->user()->role == 'admin' ? null: 'width="50%"' !!}>{{ $consommation->comment }}</td>
+                    <td {!! auth()->user()->role == 'admin' ? null: 'width="40%"' !!}>{{ $consommation->comment }}</td>
                     @if($consommation->prestation_id != null)
-                        <td>{{ $consommation->prestation->name }} ({{ $consommation->prestation->duration }}h)</td>
+                        <td>{{ $consommation->prestation->name }} ({{ $consommation->prestation->duration }}h) x {{ $consommation->ratio_prestation }}</td>
                     @else
                         <td>-</td>
                     @endif
@@ -123,13 +123,22 @@
                 </label>
             </span>
     </div>
+    <div class="form-group">
+        <span class="input input--fumi">
+            {!! Form::number('ratio_prestation', null, ['class' => 'input__field input__field--fumi', 'placeholder' => '2.4', 'min' => '0', 'step' => '0.01', 'data-assist' => 'assist1b']) !!}
+            <label for="ratio_prestation" class="input__label input__label--fumi">
+                <i class="fa fa-fw fa-calculator icon icon--fumi"></i>
+                <span class="input__label-content input__label-content--fumi">Quantité de la prestation de référence</span>
+            </label>
+        </span>
+    </div>
     @endif
 
     <div class="form-group">
         <span class="input input--fumi">
-            {!! Form::number('value', null, ['class' => 'input__field input__field--fumi', 'placeholder' => '2.4', 'min' => '0', 'step' => '0.05', 'data-isAssistBy' => 'assist1']) !!}
+            {!! Form::number('value', null, ['class' => 'input__field input__field--fumi', 'placeholder' => '2.4', 'min' => '0', 'step' => '0.01', 'data-isAssistBy' => 'assist1']) !!}
             <label for="value" class="input__label input__label--fumi">
-                <i class="fa fa-fw fa-user icon icon--fumi"></i>
+                <i class="fa fa-fw fa-clock-o icon icon--fumi"></i>
                 <span class="input__label-content input__label-content--fumi">Pointage @if($purchase->product->type=='time')(h) @else() (unités) @endif</span>
             </label>
         </span>
@@ -139,7 +148,7 @@
         <span class="input input--fumi">
             {!! Form::text('comment', null, ['class' => 'input__field input__field--fumi', 'placeholder' => 'Ajout d\'un texte de justification']) !!}
             <label for="comment" class="input__label input__label--fumi">
-                <i class="fa fa-fw fa-user icon icon--fumi"></i>
+                <i class="fa fa-fw fa-bullhorn icon icon--fumi"></i>
                 <span class="input__label-content input__label-content--fumi">Commentaire</span>
             </label>
         </span>
@@ -149,7 +158,7 @@
         <span class="input input--fumi">
             {!! Form::input('date', 'created_at', Carbon\Carbon::now()->formatLocalized('%Y-%m-%d'), ['class' => 'input__field input__field--fumi', 'placeholder' => '10-11-2015']) !!}
             <label for="date" class="input__label input__label--fumi">
-                <i class="fa fa-fw fa-user icon icon--fumi"></i>
+                <i class="fa fa-fw fa-calendar-o icon icon--fumi"></i>
                 <span class="input__label-content input__label-content--fumi">Date</span>
             </label>
         </span>

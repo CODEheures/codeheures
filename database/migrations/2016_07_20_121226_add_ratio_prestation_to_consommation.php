@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangeEmailParamsToUsers extends Migration
+class AddRatioPrestationToConsommation extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class ChangeEmailParamsToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('email')->change()->nullable()->default(null);
+        Schema::table('consommations', function (Blueprint $table) {
+            $table->decimal('ratio_prestation',4,2)->default(1);
         });
     }
 
@@ -24,8 +24,8 @@ class ChangeEmailParamsToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
+        Schema::table('consommations', function (Blueprint $table) {
+            $table->dropColumn(['ratio_prestation']);
         });
     }
 }

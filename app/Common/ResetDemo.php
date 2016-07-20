@@ -144,13 +144,47 @@ Class ResetDemo
         $purchase1->updated_at = Carbon::now()->subDay(15);
         $purchase1->save();
 
+        //creation des prestations standard demo
+        $prestation1 = Prestation::create([
+            'name' => 'changer une image',
+            'description' => 'changer une image par une autre fournie par le client',
+            'duration' => 0.1,
+            'isPublished' => true,
+            'isObsolete' => true
+        ]);
+
+        $prestation2 = Prestation::create([
+            'name' => 'changer un texte',
+            'description' => 'changer une texte par un autre fourni par le client',
+            'duration' => 0.2,
+            'isPublished' => true,
+            'isObsolete' => true
+        ]);
+
+        $prestation3 = Prestation::create([
+            'name' => 'changement theme prestation',
+            'description' => 'changer le theme d\'un site prestashop (achat non inclu)',
+            'duration' => 2.5,
+            'isPublished' => true,
+            'isObsolete' => true
+        ]);
+
+        $prestation4 = Prestation::create([
+            'name' => 'mettre des tarifs à jour',
+            'description' => 'mise à jour des tarifs (jusqu\'à 100 articles)',
+            'duration' => 2,
+            'isPublished' => true,
+            'isObsolete' => true
+        ]);
+
 
         //Consommation de l'achat n°1
         $consommation11 = Consommation::create([
             'purchase_id' => $purchase1->id,
-            'value' => 0.05,
-            'comment' => 'changer photos sur le site',
-            'prestation_id' => 1
+            'value' => 0.25,
+            'comment' => 'changer 3 photos sur le site',
+            'prestation_id' => $prestation1->id,
+            'ratio_prestation' => 3
         ]);
         $consommation11->created_at = Carbon::now()->subDay(2);
         $consommation11->updated_at = Carbon::now()->subDay(2);
@@ -158,9 +192,9 @@ Class ResetDemo
 
         $consommation12 = Consommation::create([
             'purchase_id' => $purchase1->id,
-            'value' => 2.3,
+            'value' => 2.1,
             'comment' => 'changer le theme de la boutique prestashop',
-            'prestation_id' => 4
+            'prestation_id' => $prestation3->id
         ]);
         $consommation12->created_at = Carbon::now()->subDay(4);
         $consommation12->updated_at = Carbon::now()->subDay(4);
@@ -170,7 +204,7 @@ Class ResetDemo
             'purchase_id' => $purchase1->id,
             'value' => 0.2,
             'comment' => 'changer le texte de la page d\'accueil',
-            'prestation_id' => 2
+            'prestation_id' => $prestation2->id
         ]);
         $consommation13->created_at = Carbon::now()->subDay(6);
         $consommation13->updated_at = Carbon::now()->subDay(6);
@@ -180,7 +214,7 @@ Class ResetDemo
             'purchase_id' => $purchase1->id,
             'value' => 1.9,
             'comment' => 'mise à jour des tarifs',
-            'prestation_id' => 5
+            'prestation_id' => $prestation4->id
         ]);
         $consommation14->created_at = Carbon::now()->subDay(7);
         $consommation14->updated_at = Carbon::now()->subDay(7);
@@ -190,7 +224,7 @@ Class ResetDemo
             'purchase_id' => $purchase1->id,
             'value' => 0.05,
             'comment' => 'mise à jour photo',
-            'prestation_id' => 1
+            'prestation_id' => $prestation1->id
         ]);
         $consommation15->created_at = Carbon::now()->subDay(7);
         $consommation15->updated_at = Carbon::now()->subDay(7);

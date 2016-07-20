@@ -194,23 +194,53 @@ $(function() {
 
     //Assistance au remplissage consommation client
     //En cas de modif du champ prestation standard AJAX pour récup valeur et mise à jour auto du pointage
+    var $durationRef = 0;
     $('[data-assist="assist1"]').change(function () {
+        var $ratio = $('[data-assist="assist1b"]');
+        if($ratio.val()=='') {
+            $ratio.val(1);
+            if($ratio.parent().is('span.input--fumi')){
+                $ratio.parent().addClass('input--filled');
+            }
+        }
         //AJAX pour recup valeurs prestation standard
-        if($('[data-assist="assist1"]').val() != 0) {
-            $.ajax('/admin/prestation/' + $('[data-assist="assist1"]').val())
+        if($(this).val() != 0) {
+            $.ajax('/admin/prestation/' + $(this).val())
                 .done(function (data) {
+                    $durationRef = data.duration;
                     var $assist = $('[data-isAssistBy="assist1"]');
-                    $assist.attr('max', data.duration);
-                    $assist.val(data.duration);
+                    $assist.attr('max', Math.round($durationRef*$ratio.val()*100)/100);
+                    $assist.val(Math.round($durationRef*$ratio.val()*100)/100);
                     if($assist.parent().is('span.input--fumi')){
                         $assist.parent().addClass('input--filled');
-                        $assist.attr('data-placeholder', 'maxi: ' + data.duration);
+                        $assist.attr('data-placeholder', 'maxi: ' + Math.round($durationRef*$ratio.val()*100)/100);
                     }
                 });
         } else {
+            $durationRef = 0;
             var $assist = $('[data-isAssistBy="assist1"]');
-            $assist.attr('data-placeholder', '2.4');
+            if($assist.parent().is('span.input--fumi')){
+                $assist.parent().addClass('input--filled');
+                $assist.attr('data-placeholder', '2.4h');
+            }
             $assist.attr('max', '');
+            $ratio.val('');
+            if($ratio.parent().is('span.input--fumi')){
+                $ratio.parent().addClass('input--filled');
+            }
+        }
+    });
+
+    $('[data-assist="assist1b"]').change(function () {
+        var $ref = $('[data-assist="assist1"]');
+        if ($ref.val() != 0) {
+            var $assist = $('[data-isAssistBy="assist1"]');
+            $assist.attr('max', Math.round($durationRef*$(this).val()*100)/100);
+            $assist.val(Math.round($durationRef*$(this).val()*100)/100);
+            if($assist.parent().is('span.input--fumi')){
+                $assist.parent().addClass('input--filled');
+                $assist.attr('data-placeholder', 'maxi: ' + Math.round($durationRef*$(this).val()*100)/100);
+            }
         }
     });
 
@@ -350,4 +380,22 @@ $(function() {
         link: '/mentions-legales',
         theme: null
     }
+
+    /*****************************************************************************************************/
+    /*                                      IntroJs                                                      */
+    /*****************************************************************************************************/
+    $('#visite').click(function (e) {
+        e.preventDefault();
+        var $introJs = new introJs();
+        $introJs.setOptions({
+            'nextLabel': 'suivant',
+            'prevLabel': 'précédent',
+            'skipLabel': 'passer',
+            'showStepNumbers': true,
+            'showProgress': true,
+            'scrollToElement': true,
+            'doneLabel': 'Sortir'
+        });
+        $introJs.start();
+    });
 });
