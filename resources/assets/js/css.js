@@ -91,7 +91,16 @@ $(function() {
 
     //GLOBAL
     setHeightHeader();
+
+    if($hamburger.css('display') === 'block'){
+        $navbarMenu.css('display', 'none');
+    }
     $(window).resize(function() {
+        if($hamburger.css('display') === 'none'){
+            $navbarMenu.css('display', 'flex');
+        } else {
+            $navbarMenu.css('display', 'none');
+        }
         setHeightHeader();
     });
 
@@ -126,7 +135,6 @@ $(function() {
         //Action sur la clé la plus proche du scroll
         $('.navbar-menu a').each(function(){
             if($memo_key != '' && $(this).attr('href').indexOf('#'+$ancres[$memo_key]['name']) > -1 && !$(this).hasClass('active')){
-                console.log($ancres[$memo_key]['name']);
                 if($ancres[$memo_key]['name'] != 'contact') {
                     $(this).trigger('click');
                 } else if ($ancres[$memo_key]['name'] == 'contact' && $total_scroll == $window_scrollTop) {
@@ -164,7 +172,7 @@ $(function() {
     $hamburger.on('click', function(e){
         e.preventDefault();
         if($navbarMenu.css('display')==='flex'){
-            $navbarMenu.css('display', '');
+            $navbarMenu.css('display', 'none');
         } else {
             $navbarMenu.css('display','flex');
         }
@@ -379,7 +387,7 @@ $(function() {
         learnMore: "Plus d'info",
         link: '/mentions-legales',
         theme: null
-    }
+    };
 
     /*****************************************************************************************************/
     /*                                      IntroJs                                                      */

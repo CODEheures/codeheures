@@ -43,7 +43,7 @@ $font3 : Flamenco, sans-serif;
 ****** General ******
 */
 html {
-  font-size: 62.5%;
+  font-size: 35%;
 }
 
 body {
@@ -312,6 +312,7 @@ ul.circle {
     max-width: 75%;
     img {
       max-height: 8rem;
+      max-width: 75vw;
       width: auto;
       height: auto;
       min-width: 0;
@@ -444,9 +445,9 @@ body > header {
           display: block;
           padding: 1rem;
           border-radius: 0.35rem;
-          margin-left: 3.2rem;
-          margin-right: 3.2rem;
-          margin-top: 1.6rem;
+          margin-left: 1rem;
+          margin-right: 1rem;
+          margin-top: 1rem;
           font-weight: 100;
           & strong {
             font-weight: 500;
@@ -459,7 +460,7 @@ body > header {
         line-height: 2.4rem;
         font-size: 1.8rem;
         font-weight: 300;
-        padding: 5rem 10%;
+        padding: 2rem 5%;
         & a {
           color: $color1;
           text-decoration: underline;
@@ -1477,6 +1478,29 @@ body > footer {
       & p {
         & img {
           width: 3.5rem;
+        }
+      }
+
+    }
+  }
+}
+
+@media screen and(min-width: 480px) {
+  html {
+    font-size: 62.5%;
+    & body >header {
+      & .bg-cover {
+        & .header-content {
+          & h2 {
+            &.presentation {
+              margin-left: 3.2rem;
+              margin-right: 3.2rem;
+              margin-top: 1.6rem;
+            }
+          }
+          & p {
+            padding: 5rem 10%;
+          }
         }
       }
 
