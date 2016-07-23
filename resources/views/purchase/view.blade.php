@@ -3,9 +3,9 @@
         <div class="purchase-title">
             <h2><i class="ion-ios-information-outline"></i>Commande N°{{ $purchase->hash_key }}:</h2>
         </div>
-        @if($purchase->havePaypalBilling())
-        <nav class="purchase-get-billing-pdf">
-            <p><a href="{{ route('customer.billing', ['id' => $purchase->id]) }}"><i class="ion-archive"></i>Télécharger la facture</a></p>
+        @if($purchase->havePaypalInvoice())
+        <nav class="purchase-get-invoice-pdf">
+            <p><a href="{{ route('invoice.get', ['type' => 'isSold', 'origin' => 'purchase','origin_id' => $purchase->id]) }}"><i class="ion-archive"></i>Télécharger la facture</a></p>
         </nav>
         @else
         @endif

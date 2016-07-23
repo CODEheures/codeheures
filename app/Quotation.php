@@ -12,7 +12,21 @@ class Quotation extends Model
     private $max_sms_tentative_code = 2;
     private $max_time_validity = 15;
 
-    protected $fillable = ['validity', 'user_id', 'isPublished', 'isViewed', 'isOrdered', 'isRefused', 'isArchived', 'sms_code', 'sms_validity', 'sms_tentatives', 'orderDate', 'downPercentPayment', 'phoneUsedForOrder'];
+    protected $fillable = [
+        'validity',
+        'user_id',
+        'isPublished',
+        'isViewed',
+        'isOrdered',
+        'isRefused',
+        'isArchived',
+        'sms_code',
+        'sms_validity',
+        'sms_tentatives',
+        'orderDate',
+        'downPercentPayment',
+        'phoneUsedForOrder'
+    ];
 
     public function __construct(array $attributes =[]) {
         parent::__construct($attributes);
@@ -34,12 +48,16 @@ class Quotation extends Model
         return $this->hasMany('App\LineQuote');
     }
 
-    public function purchase() {
-        return $this->hasOne('App\Purchase');
+    public function purchases() {
+        return $this->hasMany('App\Purchase');
+    }
+
+    public function invoices() {
+        return $this->hasMany('App\Invoice');
     }
 
     public function getPublicNumber() {
-        return $this->created_at->format('Ymd') .'-'. sprintf('%03d',$this->id);
+        return $this->created_at->format('Ymd') .'-'. sprintf('%0'.env('NB_CHIFFRES_VISIBLES_NUM_DEVIS').'d',$this->id);
     }
 
     public function canEdit() {
@@ -63,8 +81,35 @@ class Quotation extends Model
         return false;
     }
 
+    public function haveDownPercent() {
+        return ($this->downPercentPayment && $this->downPercentPayment > 0);
+    }
+
+    public function existInvoice($type) {
+        foreach ($this->invoices as $invoice) {
+            if($invoice->$type == true) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function isPayed($type) {
+        foreach ($this->invoices as $invoice) {
+            if($invoice->$type && $invoice->isPayed){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public function canArchive() {
-        if($this->isOrdered){
+        if($this->isOrdered && $this->existInvoice('isSold')){
+            foreach ($this->invoices as $invoice){
+                if(!$invoice->isPayed){
+                    return false;
+                }
+            }
             return true;
         } elseif ($this->validity < Carbon::today()->format('Y-m-d')) {
             return true;

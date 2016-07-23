@@ -10,6 +10,6 @@
 <a href="{{ route('purchase.show', ['id' => $purchase->id]) }}" style="color: #3880aa;">Votre Achat de ce jour</a></p>
 
 <p>Vous pouvez récuperer votre facture en format PDF en pièce jointe de ce mail et à tout moment sur l'consommation sur votre espace client à l'adresse suivante:<br />
-<a href="{{ route('customer.billing', ['id' => $purchase->id]) }}" style="color: #3880aa;">Votre facture</a></p>
+<a href="{{ route('invoice.get', ['type' => 'isSold', 'origin' => 'purchase','origin_id' => $purchase->id]) }}" style="color: #3880aa;">Votre facture</a></p>
 
 <p>A tout de suite!</p>

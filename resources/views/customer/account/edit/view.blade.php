@@ -87,7 +87,7 @@
 
 
 @foreach($addresses as $address)
-    @if($address->type == 'billing')
+    @if($address->type == 'invoice')
         <div class="form-title">
             <p>Adresse de facturation</p>
         </div>

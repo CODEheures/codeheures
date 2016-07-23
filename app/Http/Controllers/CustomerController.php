@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Common\DataGraph;
+use App\Common\InvoiceTools;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Requests\PhoneAccountRequest;
 use Illuminate\Contracts\Auth\Guard;
@@ -123,6 +124,7 @@ class CustomerController extends Controller
         $user = $this->auth->user();
         $purchases = $user->validPuchases();
         $purchases->load('product');
+        $purchases->load('invoices');
         $purchases->load(['consommations' => function($query){
             $query->orderBy('created_at');
         }]);
@@ -197,7 +199,7 @@ class CustomerController extends Controller
 
         $adresses = $this->auth->user()->addresses;
         foreach ($adresses as $adress) {
-            if($adress->type == 'billing') {
+            if($adress->type == 'invoice') {
                 $paypalAdress = new ShippingAddress();
                 $paypalAdress->setLine1($adress->address);
                 $paypalAdress->setLine2($adress->complement);
@@ -326,105 +328,34 @@ class CustomerController extends Controller
                 $purchase->save();
 
                 //envoi du mail de la facture
-                $mpdf = $this->generateMPDF($purchase);
-                $pdfFileName = storage_path() . '/pdf/' . $purchase->hash_key.'.pdf';
-                $mpdf->Output($pdfFileName, 'F');
-
                 $user = $this->auth->user();
-                $this->mailer->send(['text' => 'emails.sale.text-confirm', 'html' => 'emails.sale.html-confirm'], compact('user', 'purchase'), function($message) use($user, $purchase){
-                    $message->to($user->email);
-                    $message->subject('Votre achat sur ' . env('APP_NAME'));
-                    $message->attach(storage_path() . '/pdf/' . $purchase->hash_key.'.pdf');
-                });
-
-                file_exists($pdfFileName) ? unlink($pdfFileName) : null;
-
-                session('info_url', route('customer.billing', ['id' => $purchase->id]));
-                session('info_url_txt', 'voir ma facture');
-                return redirect(route('customer.monitor.index'))
-                    ->with('success', 'Merci pour votre paiement. Votre compte est crédité. Votre facture est disponible dans votre espace client sur le détail de votre commande sur le lien suivant: ')
-                    ->with('info_url', route('customer.billing', ['id' => $purchase->id]))
-                    ->with('info_url_txt', 'voir ma facture');
-            }
-
-            return redirect(route('customer.monitor.index'))
-                ->with('error', 'Ho non! Le paiement à échoué \':(');
-        } else {
-            return redirect(route('customer.monitor.index'))
-                ->with('error', 'Ho non! Le paiement à échoué \':(');
-        }
-    }
-
-    public function getBillingPdf($id) {
-        $purchase = Purchase::findOrFail($id);
-        if($this->auth->user()->id != $purchase->user_id) {
-            return redirect('/');
-        } else {
-            if($purchase->havePaypalBilling()) {
+                $invoiceTool = new InvoiceTools($this->_api_context);
                 try {
-                    $mpdf = $this->generateMPDF($purchase);
-                    $mpdf->Output();
-                } catch (Exception $ex) {
+                    $fileName = $invoiceTool->create('isSold', 'purchase', $purchase->id, true);
+                    $this->mailer->send(['text' => 'emails.sale.text-confirm', 'html' => 'emails.sale.html-confirm'], compact('user', 'purchase'), function($message) use($user, $purchase, $fileName){
+                        $message->to($user->email);
+                        $message->subject('Votre achat sur ' . env('APP_NAME'));
+                        $message->attach($fileName);
+                    });
                     return redirect(route('customer.monitor.index'))
-                        ->with('error', 'Ho non! La génération de la facture a échoué \':(');
+                        ->with('success', 'Merci pour votre paiement. Votre compte est crédité. Votre facture est disponible dans votre espace client sur le détail de votre commande sur le lien suivant: ')
+                        ->with('info_url', route('invoice.get', ['type' => 'isSold', 'origin' => 'purchase', 'id' => $purchase->id]))
+                        ->with('info_url_txt', 'voir ma facture');
+                } catch (\Exception $e) {
+                    $this->mailer->send(['text' => 'emails.sale.text-confirm', 'html' => 'emails.sale.html-confirm'], compact('user', 'purchase'), function($message) use($user, $purchase){
+                        $message->to($user->email);
+                        $message->subject('Votre achat sur ' . env('APP_NAME'));
+                    });
+                    return redirect(route('customer.monitor.index'))
+                        ->with('success', 'Merci pour votre paiement. Votre compte est crédité.' .$e);
                 }
-            } else {
-                return redirect(route('customer.monitor.index'))
-                    ->with('error', 'Ho non! La génération de la facture a échoué \':(');
             }
+
+            return redirect(route('customer.monitor.index'))
+                ->with('error', 'Ho non! Le paiement à échoué \':(');
+        } else {
+            return redirect(route('customer.monitor.index'))
+                ->with('error', 'Ho non! Le paiement à échoué \':(');
         }
-    }
-
-    private function generateMPDF($purchase) {
-        $paymentId = json_decode($purchase->paypal_result)->id;
-        $payment = Payment::get($paymentId, $this->_api_context);
-
-        $content = view('pdf.purchase.billing.index', compact('payment', 'purchase'))->__toString();
-        $header = view('header.pdf', compact('quotation'))->__toString();
-        $footer = view('footer.pdf')->__toString();
-        $css = file_get_contents(asset('css/pdf.min.css'));
-
-        $mpdf = new \mPDF();
-
-        $mpdf->SetHTMLHeader($header);
-        $mpdf->SetHTMLFooter($footer);
-        //$mpdf->Bookmark('Start of the document');
-        $mpdf->AddPageByArray([
-            'margin-left' => 10,
-            'margin-right' => 10,
-            'margin-top' => 30,
-            'margin-bottom' => 30,
-            'margin-header' => 10,
-            'margin-footer' => 10
-        ]);
-        $mpdf->WriteHTML($css,1);
-        $mpdf->WriteHTML($content,2);
-
-        return $mpdf;
-    }
-
-    public function testPdf() {
-        //choisir le n° de purchase pour le test
-        $purchase = Purchase::findOrFail(237);
-
-
-        $paypal_conf = config('paypal_sandbox');
-        $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_conf['client_id'], $paypal_conf['secret']));
-        $this->_api_context->setConfig($paypal_conf['settings']);
-
-        $pdfFileName = storage_path() . '/pdf/' . $purchase->hash_key.'.pdf';
-        $mpdf = $this->generateMPDF($purchase);
-        $mpdf->Output($pdfFileName, 'F');
-
-        $user = $this->auth->user();
-
-        $this->mailer->send(['text' => 'emails.sale.text-confirm', 'html' => 'emails.sale.html-confirm'], compact('user', 'purchase'), function($message) use($user, $purchase){
-            $message->to($user->email);
-            $message->subject('Votre achat sur ' . env('APP_NAME'));
-            $message->attach(storage_path() . '/pdf/' . $purchase->hash_key.'.pdf');
-        });
-
-        file_exists($pdfFileName) ? unlink($pdfFileName) : null;
-        return redirect('/')->with('info', 'mail de test envoyé avec pdf en piece jointe');
     }
 }

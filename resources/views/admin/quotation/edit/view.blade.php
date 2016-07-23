@@ -212,22 +212,32 @@
             @if($quotation->canPublish())
                 <a href="{{ route('admin.quotation.publish', ['id' => $quotation->id]) }}" class="btn-yellow2">Publier</a>
             @else
-                <a href="{{ route('admin.quotation.publish', ['id' => $quotation->id]) }}" class="btn-disable">Publier</a>
+                <a href="#" class="btn-disable">Publier</a>
             @endif
             @if($quotation->canUnpublish())
                 <a href="{{ route('admin.quotation.unPublish', ['id' => $quotation->id]) }}" class="btn-yellow2">Dépublier</a>
             @else
-                <a href="{{ route('admin.quotation.unPublish', ['id' => $quotation->id]) }}" class="btn-disable">Dépublier</a>
+                <a href="#" class="btn-disable">Dépublier</a>
             @endif
             @if($quotation->canDelete())
                 <a href="{{ route('admin.quotation.delete', ['id' => $quotation->id]) }}" class="btn-yellow2">Supprimer</a>
             @else
-                <a href="{{ route('admin.quotation.delete', ['id' => $quotation->id]) }}" class="btn-disable">Supprimer</a>
+                <a href="#" class="btn-disable">Supprimer</a>
+            @endif
+            @if($quotation->isOrdered && $quotation->haveDownPercent() && !$quotation->existInvoice('isDown'))
+                <a href="{{ route('admin.quotation.invoice.create', ['id' => $quotation->id, 'type' => 'isDown']) }}" class="btn-yellow2">Générer Facture d'acompte</a>
+            @else
+                <a href="#" class="btn-disable">Générer Facture d'acompte</a>
+            @endif
+            @if($quotation->isOrdered && !$quotation->existInvoice('isSold') && ((!$quotation->haveDownPercent()) || ($quotation->haveDownPercent() && $quotation->isPayed('isDown') )))
+                <a href="{{ route('admin.quotation.invoice.create', ['id' => $quotation->id, 'type' => 'isSold']) }}" class="btn-yellow2">Générer Facture de solde</a>
+            @else
+                <a href="#" class="btn-disable">Générer Facture de solde</a>
             @endif
             @if($quotation->canArchive())
                 <a href="{{ route('admin.quotation.archive', ['id' => $quotation->id]) }}" class="btn-yellow2">Archiver</a>
             @else
-                <a href="{{ route('admin.quotation.archive', ['id' => $quotation->id]) }}" class="btn-disable">Archiver</a>
+                <a href="#" class="btn-disable">Archiver</a>
             @endif
         </div>
     </div>

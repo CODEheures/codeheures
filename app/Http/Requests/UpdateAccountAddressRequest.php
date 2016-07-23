@@ -29,7 +29,7 @@ class UpdateAccountAddressRequest extends Request
             'complement' => "min:3|max:38",
             'zipCode' => 'max:99999|numeric',
             'town' => "min:3|max:32",
-            'type' => "in:shipping,billing"
+            'type' => "in:shipping,invoice"
         ];
     }
 }

@@ -24,6 +24,10 @@ class Purchase extends Model
         return $this->belongsTo('App\Quotation');
     }
 
+    public function invoices() {
+        return $this->hasMany('App\Invoice');
+    }
+
     public function generateHashKey() {
         $key = str_random(12);
         while (Purchase::where('hash_key', '=', $key)->count() > 0) {
@@ -33,7 +37,7 @@ class Purchase extends Model
         return $key;
     }
 
-    public function havePaypalBilling() {
+    public function havePaypalInvoice() {
         if($this->paypal_result) {
            return true;
         } else {

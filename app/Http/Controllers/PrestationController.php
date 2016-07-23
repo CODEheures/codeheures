@@ -152,8 +152,8 @@ class PrestationController extends Controller
     public function pdf() {
         $prestations = Prestation::where('isObsolete', '=', 'false')->orderBy('name', 'DESC')->get();
         $content = view('pdf.prestation.index', compact('prestations'))->__toString();
-        $header = view('header.pdf', compact('prestations'))->__toString();
-        $footer = view('footer.pdf')->__toString();
+        $header = view('pdf.header.view', compact('prestations'))->__toString();
+        $footer = view('pdf.footer.view')->__toString();
         $css = file_get_contents(asset('css/pdf.min.css'));
 
         $mpdf = new \mPDF();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Common\InvoiceTools;
 use App\Common\SmsFreeMobile;
 use App\Http\Requests\QuotationRequest;
 use App\LineQuote;
@@ -16,18 +17,21 @@ use App\Quotation;
 use App\Common\ListEnum;
 use App\Common\UserList;
 use PhpSpec\Util\Filesystem;
+use Illuminate\Contracts\Mail\Mailer;
 
 class QuotationController extends Controller
 {
 
     private $auth;
+    private $mailer;
 
-    public function __construct(Guard $auth) {
+    public function __construct(Guard $auth, Mailer $mailer) {
         $this->middleware('auth');
         $this->middleware('haveNewQuotation');
         $this->middleware('fullProfile', ['only' => ['customerIndex', 'order', 'refuse', 'pdf']]);
         $this->middleware('admin', ['except' => ['customerIndex', 'order', 'refuse', 'orderPost', 'pdf']]);
         $this->auth = $auth;
+        $this->mailer = $mailer;
     }
 
     use ListEnum;
@@ -85,8 +89,8 @@ class QuotationController extends Controller
             $isPdf = true;
 
             $content = view('pdf.quotation.index', compact('quotation', 'totalPrice', 'totalTva', 'isPdf'))->__toString();
-            $header = view('header.pdf', compact('quotation'))->__toString();
-            $footer = view('footer.pdf')->__toString();
+            $header = view('pdf.header.view', compact('quotation'))->__toString();
+            $footer = view('pdf.footer.view')->__toString();
             $css = file_get_contents(asset('css/pdf.min.css'));
 
             $mpdf = new \mPDF();
@@ -244,6 +248,7 @@ class QuotationController extends Controller
     {
         $quotation = Quotation::findOrFail($id);
         $quotation->load('lineQuotes');
+        $quotation->load('invoices');
         $totalPrice = $this->totalPrice($quotation);
         $userList = UserList::userList();
         $productList = Product::where('isObsolete', '=', false)
@@ -370,6 +375,28 @@ class QuotationController extends Controller
         return redirect()->back()->withErrors('Devis non signé, archivage interdite');
     }
 
+
+    public function invoiceCreate($id, $type) {
+        $invoiceTool = new InvoiceTools();
+        try {
+            $fileName = $invoiceTool->create($type, 'quotation', $id);
+            $quotation = Quotation::findOrFail($id);
+            $quotation->load('purchases');
+            $user = $quotation->user;
+            $this->mailer->send(['text' => 'emails.quotation.invoice.text-confirm', 'html' => 'emails.quotation.invoice.html-confirm'], compact('user', 'quotation', 'type'), function($message) use($user, $quotation, $fileName){
+                $message->to($user->email);
+                $message->subject('Votre achat sur ' . env('APP_NAME'));
+                $message->attach($fileName);
+            });
+            return redirect()->back()
+                ->with('success', 'Facture générée')
+                ->with('info_url', route('invoice.get', ['type' => $type, 'origin' => 'quotation', 'id' => $id]))
+                ->with('info_url_txt', 'voir la facture');
+
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors($e);
+        }
+    }
 
 
     private function totalPrice(Quotation $quotation, $tva=false){

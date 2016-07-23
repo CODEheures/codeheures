@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Faker\Factory;
 use App\Address;
 use App\Prestation;
+use App\Common\InvoiceTools;
 
 Class ResetDemo
 {
@@ -38,11 +39,17 @@ Class ResetDemo
         $products = Product::where('reservedForUserId', '=', $demoUser->id);
         //deleting all
         foreach($quotations as $quotation){
+            $quotation->invoices()->delete();
             $quotation->lineQuotes()->delete();
             $quotation->delete();
         }
         foreach($purchases as $purchase){
+            foreach ($purchase->consommations as $consommation) {
+                $prestation = Prestation::where('id', $consommation->prestation_id);
+                if($prestation){ $prestation->delete(); }
+            }
             $purchase->consommations()->delete();
+            $purchase->invoices()->delete();
             $purchase->delete();
         }
         $demoUser->addresses()->delete();
@@ -73,17 +80,17 @@ Class ResetDemo
         $user->is_admin_valid = true;
         $user->quota = 15;
 
-        $billingAddress = new Address();
-        $billingAddress->type = 'billing';
-        $billingAddress->address = $fake->streetAddress;
-        $billingAddress->complement = 'BP525';
-        $billingAddress->zipCode = $fake->postcode;
-        $billingAddress->town = $fake->city;
+        $invoiceAddress = new Address();
+        $invoiceAddress->type = 'invoice';
+        $invoiceAddress->address = $fake->streetAddress;
+        $invoiceAddress->complement = 'BP525';
+        $invoiceAddress->zipCode = $fake->postcode;
+        $invoiceAddress->town = $fake->city;
 
         $shippingAddress = new Address();
         $shippingAddress->type = 'shipping';
         $user->save();
-        $user->addresses()->saveMany([$billingAddress,$shippingAddress]);
+        $user->addresses()->saveMany([$invoiceAddress,$shippingAddress]);
 
 
         //création des produits

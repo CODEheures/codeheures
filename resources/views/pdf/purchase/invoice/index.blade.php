@@ -24,5 +24,5 @@
         </div>
     </div>
     <div class="clear"></div>
-    @include('pdf.purchase.billing.view')
+    @include('pdf.purchase.invoice.view')
 @endsection

@@ -9,6 +9,6 @@ Vous pouvez suivre la consommation de cet achat sur votre espace client à l'adr
 {{ route('purchase.show', ['id' => $purchase->id]) }}
 
 Vous pouvez récupere votre facture en format PDF en pièce jointe de ce mail et à tout moment sur l'consommation sur votre espace client à l'adresse suivante:
-{{ route('customer.billing', ['id' => $purchase->id]) }}
+{{ route('invoice.get', ['type' => 'isSold', 'origin' => 'purchase','origin_id' => $purchase->id]) }}
 
-<p>A tout de suite!</p>
+A tout de suite!

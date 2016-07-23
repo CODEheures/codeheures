@@ -20,7 +20,6 @@ Route::group(['prefix' => 'customer'], function() {
     Route::post('/sale/recapitulation', ['as' => 'customer.sale.recapitulation', 'uses' => 'CustomerController@saleRecapitulation']);
     Route::get('/sale/payment/{id}', ['as' => 'customer.sale.payment', 'uses' => 'CustomerController@salePayment'])->where(['id'=>'[0-9]+']);
     Route::get('/sale/payment/status', ['as' => 'customer.sale.payment.status', 'uses' => 'CustomerController@salePaymentStatus']);
-    Route::get('/billing/{id}', ['as' => 'customer.billing', 'uses' => 'CustomerController@getBillingPdf'])->where(['id'=>'[0-9]+']);
     
     //customer monitor index
     Route::get('/monitor', ['as' => 'customer.monitor.index', 'uses' => 'CustomerController@monitor']);
@@ -67,6 +66,8 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/quotation/{id}/publish', ['as' => 'admin.quotation.publish', 'uses' => 'QuotationController@publish'])->where(['id'=>'[0-9]+']);
     Route::get('/quotation/{id}/unPublish', ['as' => 'admin.quotation.unPublish', 'uses' => 'QuotationController@unPublish'])->where(['id'=>'[0-9]+']);
     Route::get('/quotation/{id}/archive', ['as' => 'admin.quotation.archive', 'uses' => 'QuotationController@archive'])->where(['id'=>'[0-9]+']);
+    Route::get('/quotation/{id}/invoice/create/{type}', ['as' => 'admin.quotation.invoice.create', 'uses' => 'QuotationController@invoiceCreate'])
+        ->where(['id'=>'[0-9]+'])->where(['type' => '\b(isDown|isSold)\b']);
 
     //lineQuotes
     Route::post('/lineQuote', ['as' => 'admin.lineQuote.store', 'uses' => 'LineQuoteController@store']);
@@ -109,6 +110,15 @@ Route::group(['prefix' => 'purchase'], function() {
        ->where(['id'=>'[0-9]+']);
 });
 
+//Invoice routes
+Route::group(['prefix' => 'invoice'], function () {
+    Route::get('/validatePayment/{id}/', ['as' => 'invoice.validate.payment', 'uses' => 'InvoiceController@validatePayment'])
+        ->where(['id'=>'[0-9]+']);
+    Route::get('/{type}/{origin}/{origin_id}/', ['as' => 'invoice.get', 'uses' => 'InvoiceController@get'])
+        ->where(['type' => '\b(isDown|isSold)\b'])->where(['origin' => '\b(quotation|purchase)\b'])->where(['id'=>'[0-9]+']);
+
+});
+
 // Authentication routes...
 Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function() {
 
@@ -149,6 +159,5 @@ Route::get('/home', function(){
 //Tests Routes
 Route::group(['prefix' => 'test'], function() {
     Route::get('email', 'TestController@testMail');
-    Route::get('mailbillingpdf',  'CustomerController@testPdf');
     Route::get('sms', 'AdminController@sms');
 });

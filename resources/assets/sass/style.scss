@@ -869,7 +869,7 @@ body > header {
 
       & nav.quotation-get-pdf,
       & nav.prestation-get-pdf,
-      & nav.purchase-get-billing-pdf {
+      & nav.purchase-get-invoice-pdf {
         margin-left: 1.95rem;
         & p {
           padding: 0;
@@ -1669,7 +1669,7 @@ body > footer {
       &#user {
         & nav.quotation-get-pdf,
         & nav.prestation-get-pdf,
-        & nav.purchase-get-billing-pdf {
+        & nav.purchase-get-invoice-pdf {
           position: relative;
           top: -1.3rem;
           left: 4.2rem;

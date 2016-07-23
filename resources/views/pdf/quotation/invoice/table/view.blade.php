@@ -9,15 +9,8 @@
         <th>Total TTC ligne</th>
     </tr>
     </thead>
-    @if(!isset($isPdf) || !$isPdf)
-    <tfoot>
-    <tr>
-        <td colspan="6">détails<br /><i class="ion-chevron-up"></i></td>
-    </tr>
-    </tfoot>
-    @endif
     <tbody>
-    @foreach($quotation->lineQuotes as $lineQuote)
+    @foreach($entity->lineQuotes as $lineQuote)
         <tr>
             <td>{{ $lineQuote->product->description }}</td>
             <td>{{ number_format($lineQuote->product->price,2,'.',' ') }}€</td>
@@ -48,16 +41,4 @@
     @endforeach
     </tbody>
 </table>
-<p class="tva-info">TVA non applicable, article 293B du code général des impôts. Ce devis contient {{ count($quotation->lineQuotes) }} lignes.</p>
-<div class="quotation-total">
-    <div class="quotation-total-title">
-        <p class="ht">Total HT</p>
-        <p class="tva">Total TVA</p>
-        <p class="ttc">Total TTC</p>
-    </div>
-    <div class="quotation-total-value">
-        <p class="ht">{{ number_format($totalPrice,2,'.',' ') }}€</p>
-        <p class="tva">{{ number_format($totalTva,2,'.',' ') }}€</p>
-        <p class="ttc">{{ number_format($totalPrice+$totalTva,2,'.',' ') }}€</p>
-    </div>
-</div>
+<p class="tva-info">TVA non applicable, article 293B du code général des impôts. Ce devis contient {{ count($entity->lineQuotes) }} lignes.</p>

@@ -90,12 +90,12 @@ class AuthController extends Controller
     }
 
     private function addAdresses($user) {
-        $billingAddress = new Address();
-        $billingAddress->type = 'billing';
+        $invoiceAddress = new Address();
+        $invoiceAddress->type = 'invoice';
         $shippingAddress = new Address();
         $shippingAddress->type = 'shipping';
         $user->save();
-        $user->addresses()->saveMany([$billingAddress,$shippingAddress]);
+        $user->addresses()->saveMany([$invoiceAddress,$shippingAddress]);
     }
 
     public static function setNewToken($user, Mailer $mailer) {

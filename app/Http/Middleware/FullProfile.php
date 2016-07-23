@@ -35,7 +35,7 @@ class FullProfile
         }
 
         foreach(auth()->user()->addresses as $address){
-            if($address->type == 'billing'){
+            if($address->type == 'invoice'){
                 if($address->address <>'' && $address->zipCode <>'' && $address->town <>''){
                     $testAddress = true;
                 }
