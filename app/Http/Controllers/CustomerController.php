@@ -45,14 +45,17 @@ class CustomerController extends Controller
     private $mailer;
     private $auth;
     private $_api_context;
+    private $invoiceTools;
 
-    public function __construct(Mailer $mailer, Guard $auth) {
+    public function __construct(Mailer $mailer, Guard $auth, InvoiceTools $invoiceTools) {
         $this->middleware('auth');
         $this->middleware('haveNewQuotation');
         $this->middleware('fullProfile', ['only' => ['saleChoice', 'saleRecapitulation']]);
         $this->middleware('admin', ['only' => ['testPdf']]);
         $this->mailer = $mailer;
         $this->auth = $auth;
+        $this->invoiceTools = $invoiceTools;
+
 
         // setup PayPal api context
         if(auth()->check() && auth()->user()->email != env('DEMO_USER_MAIL')){
@@ -62,6 +65,7 @@ class CustomerController extends Controller
         }
         $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_conf['client_id'], $paypal_conf['secret']));
         $this->_api_context->setConfig($paypal_conf['settings']);
+        $this->invoiceTools->setApiContext($this->_api_context);
     }
 
     use DataGraph;
@@ -328,24 +332,14 @@ class CustomerController extends Controller
                 $purchase->save();
 
                 //envoi du mail de la facture
-                $user = $this->auth->user();
-                $invoiceTool = new InvoiceTools($this->_api_context);
                 try {
-                    $fileName = $invoiceTool->create('isSold', 'purchase', $purchase->id, true);
-                    $this->mailer->send(['text' => 'emails.sale.text-confirm', 'html' => 'emails.sale.html-confirm'], compact('user', 'purchase'), function($message) use($user, $purchase, $fileName){
-                        $message->to($user->email);
-                        $message->subject('Votre achat sur ' . env('APP_NAME'));
-                        $message->attach($fileName);
-                    });
+                    $this->invoiceTools->create('isSold', 'purchase', $purchase->id, true);
+                    $this->invoiceTools->sendMail();
                     return redirect(route('customer.monitor.index'))
                         ->with('success', 'Merci pour votre paiement. Votre compte est crédité. Votre facture est disponible dans votre espace client sur le détail de votre commande sur le lien suivant: ')
                         ->with('info_url', route('invoice.get', ['type' => 'isSold', 'origin' => 'purchase', 'id' => $purchase->id]))
                         ->with('info_url_txt', 'voir ma facture');
                 } catch (\Exception $e) {
-                    $this->mailer->send(['text' => 'emails.sale.text-confirm', 'html' => 'emails.sale.html-confirm'], compact('user', 'purchase'), function($message) use($user, $purchase){
-                        $message->to($user->email);
-                        $message->subject('Votre achat sur ' . env('APP_NAME'));
-                    });
                     return redirect(route('customer.monitor.index'))
                         ->with('success', 'Merci pour votre paiement. Votre compte est crédité.' .$e);
                 }

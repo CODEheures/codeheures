@@ -19,6 +19,7 @@ Class ResetDemo
 {
     private $email;
     private $name;
+    private $demouser;
 
     public function __construct() {
         $this->email = env('DEMO_USER_MAIL');
@@ -26,14 +27,34 @@ Class ResetDemo
     }
 
     public function reset() {
-        $this->destroyDatas($this->email);
-        $this->createDatas($this->email, $this->name);
+        $reset = false;
+        $this->demoUser = User::where('email','=', $this->email)->first();
+
+        //Condition du reset
+        //1°) Si les devis ont été signés ou refusé
+        foreach($this->demouser->quotations as $quotation){
+            if($quotation->isOrdered || $quotation->isRefused){
+                $reset = true;
+            }
+        }
+
+        //2°) si le user a un numero de tel dans son profil
+        if($this->demouser->phone){
+            $reset = true;
+        }
+
+        //3°) Si un achat a été fait
+        if(count($this->demouser->purchases)>1){
+            $reset = true;
+        }
+
+        if($reset){
+            $this->destroyDatas($this->demouser);
+            $this->createDatas($this->email, $this->name);
+        }
     }
 
-    private function destroyDatas($email) {
-
-        //recherche du user demo
-        $demoUser = User::where('email','=', $email)->first();
+    private function destroyDatas($demoUser) {
         $quotations = $demoUser->quotations;
         $purchases = $demoUser->purchases;
         $products = Product::where('reservedForUserId', '=', $demoUser->id);

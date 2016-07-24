@@ -1,3 +1,4 @@
+@if(!$isAdmin)
 @if($type == 'isDown')
 Merci pour votre achat sur CODEheures :-)
 
@@ -28,3 +29,9 @@ Vous pouvez récuperer votre facture en format PDF en pièce jointe de ce mail e
 {{ route('invoice.get', ['type' => $type, 'origin' => 'quotation','origin_id' => $quotation->id]) }}
 
 A tout de suite!
+@else
+Une facture a été envoyé à {{ $user->email }} :-)
+
+La facture n° {{ $invoice->number }} en PJ a été envoyée au client {{ $user->email }}:
+La facture est aussi ici: route('invoice.get', ['type' => $type, 'origin' => 'quotation', 'origin_id' => $quotation->id]) }}
+@endif

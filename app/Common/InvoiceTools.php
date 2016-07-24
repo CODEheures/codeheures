@@ -10,6 +10,9 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Quotation;
 use PayPal\Api\Payment;
+use Illuminate\Contracts\Mail\Mailer;
+use Illuminate\Contracts\Bus\SelfHandling;
+
 
 class InvoiceTools
 {
@@ -24,11 +27,16 @@ class InvoiceTools
     private $_entity;
     private $_entity_user;
     private $_invoice;
+    private $mailer;
 
 
-    public function __construct($api_context = null) {
-        $this->_api_context = $api_context;
+    public function __construct(Mailer $mailer) {
+        $this->mailer = $mailer;
         $this->_isDemoUser = true;
+    }
+
+    public function setApiContext ($api_context) {
+        $this->_api_context = $api_context;
     }
 
     /**
@@ -64,6 +72,8 @@ class InvoiceTools
             $this->_entity_user = $entity->user;
             if($this->_entity_user->email != env('DEMO_USER_MAIL')) {
                 $this->_isDemoUser = false;
+            } else {
+                $this->_isDemoUser = true;
             }
 
 
@@ -132,6 +142,60 @@ class InvoiceTools
             }
         }
         return $nextNumber;
+    }
+
+    public function sendMail($type=null, $origin=null, $orign_id=null) {
+        if($type==null && $origin==null && $orign_id==null) {
+            $existInvoice = $this->_invoice;
+        } else {
+            try {
+                $this->setEntity($type, $origin, $orign_id);
+            } catch (\Exception $e) {
+                throw new \Exception('Probleme dans l\'envoi du mail de la facture');
+            }
+            $existInvoice = $this->setExistInvoice();
+        }
+        if($existInvoice) {
+            $fileName =  $this->getFileName();
+            if(file_exists($fileName)){
+                $user = $this->_entity_user;
+                $invoice = $this->_invoice;
+                if($this->_origin == 'quotation'){
+                    $quotation = $this->_entity;
+                    $quotation->load('purchases');
+                    $isAdmin = false;
+                    $this->mailer->send(['text' => 'emails.quotation.invoice.text-confirm', 'html' => 'emails.quotation.invoice.html-confirm'], compact('user', 'quotation', 'type', 'isAdmin'), function($message) use($user, $quotation, $fileName){
+                        $message->to($user->email);
+                        $message->subject('Votre achat sur ' . env('APP_NAME'));
+                        $message->attach($fileName);
+                    });
+                    $isAdmin = true;
+                    $this->mailer->send(['text' => 'emails.quotation.invoice.text-confirm', 'html' => 'emails.quotation.invoice.html-confirm'], compact('user', 'quotation', 'type', 'isAdmin'), function($message) use($user, $quotation, $fileName, $invoice){
+                        $message->to(env('INVOICE_MAIL_ADMIN'));
+                        $message->subject('Facture ' . $invoice->number .' envoyée pour ' . $user->email);
+                        $message->attach($fileName);
+                    });
+                } elseif ($this->_origin == 'purchase') {
+                    $purchase = $this->_entity;
+                    $isAdmin = false;
+                    $this->mailer->send(['text' => 'emails.sale.text-confirm', 'html' => 'emails.sale.html-confirm'], compact('user', 'purchase', 'isAdmin'), function($message) use($user, $purchase, $fileName){
+                        $message->to($user->email);
+                        $message->subject('Votre achat sur ' . env('APP_NAME'));
+                        $message->attach($fileName);
+                    });
+                    $isAdmin = true;
+                    $this->mailer->send(['text' => 'emails.sale.text-confirm', 'html' => 'emails.sale.html-confirm'], compact('user', 'purchase', 'isAdmin'), function($message) use($user, $purchase, $fileName, $invoice){
+                        $message->to(env('INVOICE_MAIL_ADMIN'));
+                        $message->subject('Facture ' . $invoice->number .' envoyée pour nouvel Achat direct par ' . $user->email);
+                        $message->attach($fileName);
+                    });
+                }
+            } else {
+                throw new \Exception('Envoi email de la facture impossible. Le fichier de cette facture n\'existe pas');
+            }
+        } else {
+            throw new \Exception('Envoi email de la facture impossible. Cette facture n\'existe pas');
+        }
     }
 
     /**

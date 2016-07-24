@@ -1,4 +1,5 @@
 <img src="{{  asset('css/images/codeheures.svg') }}" width="300px" height="auto">
+@if(!$isAdmin)
 <h3>Merci pour votre achat sur CODEheures :-)</h3>
 
 <p>Votre achat sur CODEheures est confirmé</p>
@@ -13,3 +14,9 @@
 <a href="{{ route('invoice.get', ['type' => 'isSold', 'origin' => 'purchase','origin_id' => $purchase->id]) }}" style="color: #3880aa;">Votre facture</a></p>
 
 <p>A tout de suite!</p>
+@else
+    <h3>Une facture pour un nouvel achat direct a été envoyé à {{ $user->email }} :-)</h3>
+
+    <p>La facture n°{{ $invoice->number }} en PJ a été envoyée au client {{ $user->email }}:<br />
+        <a href="{{ route('invoice.get', ['type' => $type, 'origin' => 'quotation', 'origin_id' => $quotation->id]) }}" style="color: #3880aa;">Voir la facture</a></p>
+@endif

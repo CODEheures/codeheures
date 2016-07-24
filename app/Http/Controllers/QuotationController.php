@@ -24,14 +24,16 @@ class QuotationController extends Controller
 
     private $auth;
     private $mailer;
+    private $invoiceTools;
 
-    public function __construct(Guard $auth, Mailer $mailer) {
+    public function __construct(Guard $auth, Mailer $mailer, InvoiceTools $invoiceTools) {
         $this->middleware('auth');
         $this->middleware('haveNewQuotation');
         $this->middleware('fullProfile', ['only' => ['customerIndex', 'order', 'refuse', 'pdf']]);
         $this->middleware('admin', ['except' => ['customerIndex', 'order', 'refuse', 'orderPost', 'pdf']]);
         $this->auth = $auth;
         $this->mailer = $mailer;
+        $this->invoiceTools = $invoiceTools;
     }
 
     use ListEnum;
@@ -377,17 +379,8 @@ class QuotationController extends Controller
 
 
     public function invoiceCreate($id, $type) {
-        $invoiceTool = new InvoiceTools();
         try {
-            $fileName = $invoiceTool->create($type, 'quotation', $id);
-            $quotation = Quotation::findOrFail($id);
-            $quotation->load('purchases');
-            $user = $quotation->user;
-            $this->mailer->send(['text' => 'emails.quotation.invoice.text-confirm', 'html' => 'emails.quotation.invoice.html-confirm'], compact('user', 'quotation', 'type'), function($message) use($user, $quotation, $fileName){
-                $message->to($user->email);
-                $message->subject('Votre achat sur ' . env('APP_NAME'));
-                $message->attach($fileName);
-            });
+            $this->invoiceTools->create($type, 'quotation', $id);
             return redirect()->back()
                 ->with('success', 'Facture générée')
                 ->with('info_url', route('invoice.get', ['type' => $type, 'origin' => 'quotation', 'id' => $id]))
