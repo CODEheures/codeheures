@@ -79,7 +79,6 @@ class CustomerController extends Controller
     }
 
     public function update(UpdateAccountRequest $request){
-
         $updates = $request->only(['email', 'name', 'phone', 'firstName', 'lastName', 'enterprise', 'siret']);
         $updates['phone'] = (str_replace('+33','0',str_replace('-','',filter_var($updates['phone'],FILTER_SANITIZE_NUMBER_INT))));
         if ($request->get('phone') == ""){
@@ -87,13 +86,19 @@ class CustomerController extends Controller
         }
         $user = $this->auth->user();
 
+        $withInfoPlus = '';
+        if($user->email != $updates['email'] && $user->email ==  env('DEMO_USER_MAIL')) {
+            $updates['email'] = env('DEMO_USER_MAIL');
+            $withInfoPlus = '(l\'email du compte de demonstration n\'est pas modifiable)';
+        }
+
         if($user->email != $updates['email']) {
             $user->update($updates);
             AuthController::setNewToken($user, $this->mailer);
             return redirect()->back()->with('success', 'merci de valider votre nouvel email par le lien reçu');
         } else {
             $user->update($updates);
-            return redirect()->back()->with('success', 'informations enregistrées');
+            return redirect()->back()->with('success', 'informations enregistrées'.$withInfoPlus);
         }
     }
 
@@ -312,16 +317,22 @@ class CustomerController extends Controller
                     ->with('error', 'Ho non! Le paiement à échoué \':(');
             }
 
-            $payment = Payment::get($payment_id, $this->_api_context);
+            try {
+                $payment = Payment::get($payment_id, $this->_api_context);
 
-            // PaymentExecution object includes information necessary
-            // to execute a PayPal account payment.
-            // The payer_id is added to the request query parameters
-            // when the user is redirected from paypal back to your site
-            $execution = new PaymentExecution();
-            $execution->setPayerId($request->input('PayerID'));
-            //Execute the payment
-            $result = $payment->execute($execution, $this->_api_context);
+                // PaymentExecution object includes information necessary
+                // to execute a PayPal account payment.
+                // The payer_id is added to the request query parameters
+                // when the user is redirected from paypal back to your site
+                $execution = new PaymentExecution();
+                $execution->setPayerId($request->input('PayerID'));
+                //Execute the payment
+                $result = $payment->execute($execution, $this->_api_context);
+            } catch (\Exception $e) {
+                return redirect(route('customer.monitor.index'))
+                    ->with('error', 'Ho non! Le paiement à échoué \':(');
+            }
+
 
 
 
@@ -341,7 +352,7 @@ class CustomerController extends Controller
                         ->with('info_url_txt', 'voir ma facture');
                 } catch (\Exception $e) {
                     return redirect(route('customer.monitor.index'))
-                        ->with('success', 'Merci pour votre paiement. Votre compte est crédité.' .$e);
+                        ->with('success', 'Merci pour votre paiement. Votre compte est crédité.');
                 }
             }
 

@@ -28,7 +28,7 @@ Class ResetDemo
 
     public function reset() {
         $reset = false;
-        $this->demoUser = User::where('email','=', $this->email)->first();
+        $this->demouser = User::where('email','=', $this->email)->first();
 
         //Condition du reset
         //1°) Si les devis ont été signés ou refusé
