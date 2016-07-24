@@ -93,8 +93,7 @@ Class ResetDemo
             'lastName' => $fake->lastName,
             'firstName' => $fake->firstName,
             'enterprise' => 'SAS ' . $fake->company,
-            'siret' => '28652145210001',
-            'phone' => '695022010'
+            'siret' => '28652145210001'
         ]);
 
         $user->confirmed = true;
