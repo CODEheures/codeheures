@@ -112,13 +112,12 @@ Route::group(['prefix' => 'purchase'], function() {
 
 //Invoice routes
 Route::group(['prefix' => 'invoice'], function () {
-    Route::get('/validatePayment/{id}/', ['as' => 'invoice.validate.payment', 'uses' => 'InvoiceController@validatePayment'])
-        ->where(['id'=>'[0-9]+']);
     Route::get('/{type}/{origin}/{origin_id}/', ['as' => 'invoice.get', 'uses' => 'InvoiceController@get'])
         ->where(['type' => '\b(isDown|isSold)\b'])->where(['origin' => '\b(quotation|purchase)\b'])->where(['id'=>'[0-9]+']);
     Route::get('/sendMail/{type}/{origin}/{origin_id}/', ['as' => 'invoice.sendMail', 'uses' => 'InvoiceController@sendMail'])
         ->where(['type' => '\b(isDown|isSold)\b'])->where(['origin' => '\b(quotation|purchase)\b'])->where(['id'=>'[0-9]+']);
-
+    Route::get('/validatePayment/{type}/{origin}/{origin_id}/', ['as' => 'invoice.validatePayment', 'uses' => 'InvoiceController@validatePayment'])
+        ->where(['type' => '\b(isDown|isSold)\b'])->where(['origin' => '\b(quotation|purchase)\b'])->where(['id'=>'[0-9]+']);
 });
 
 // Authentication routes...

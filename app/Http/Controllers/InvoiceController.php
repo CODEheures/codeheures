@@ -16,7 +16,7 @@ class InvoiceController extends Controller
 
     public function __construct(Guard $auth, InvoiceTools $invoiceTools) {
         $this->middleware('auth');
-        $this->middleware('admin', ['only' => ['sendInvoiceMail']]);
+        $this->middleware('admin', ['except' => ['get']]);
         $this->auth = $auth;
         $this->invoiceTools = $invoiceTools;
     }
@@ -49,5 +49,14 @@ class InvoiceController extends Controller
             return redirect()->back()->withErrors($e);
         }
         return redirect()->back()->with('success', 'Facture envoyée');
+    }
+
+    public function validatePayment($type, $origin, $origin_id) {
+        try {
+            $this->invoiceTools->validatePayment($type, $origin , $origin_id);
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors($e);
+        }
+        return redirect()->back()->with('success', 'Paiement validé');
     }
 }

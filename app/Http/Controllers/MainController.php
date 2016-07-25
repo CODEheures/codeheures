@@ -39,10 +39,11 @@ class MainController extends Controller
         $user = User::where('email', '=', env('DEMO_USER_MAIL'))->first();
         auth()->login($user);
 
+        $diff = 60 - Carbon::now()->minute;
+
         return redirect(route('customer.monitor.index'))
             ->with('info', 'Bienvenue dans l\'espace client de démonstration.
-                Par sécurité cet espace est régénéré toutes les heures.
-                Prochaine régération dans '. Carbon::parse($user->created_at)->addHour(1)->diffInMinutes(Carbon::now(),true). 'minute(s)');
+                Prochaine régération dans '. $diff . 'minute(s)');
     }
 
     public function cgv() {

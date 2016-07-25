@@ -369,7 +369,7 @@ class QuotationController extends Controller
     public function archive($id)
     {
         $quotation = Quotation::findOrFail($id);
-        if($quotation->canArchive){
+        if($quotation->canArchive()){
             $quotation->isArchived = true;
             $quotation->save();
             return redirect(route('admin.quotation.index'))->with('info', 'Devis archivé');

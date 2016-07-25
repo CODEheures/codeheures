@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 use App\Quotation;
 use PayPal\Api\Payment;
 use Illuminate\Contracts\Mail\Mailer;
-use Illuminate\Contracts\Bus\SelfHandling;
 
 
 class InvoiceTools
@@ -144,12 +143,12 @@ class InvoiceTools
         return $nextNumber;
     }
 
-    public function sendMail($type=null, $origin=null, $orign_id=null) {
-        if($type==null && $origin==null && $orign_id==null) {
+    public function sendMail($type=null, $origin=null, $origin_id=null) {
+        if($type==null && $origin==null && $origin_id==null) {
             $existInvoice = $this->_invoice;
         } else {
             try {
-                $this->setEntity($type, $origin, $orign_id);
+                $this->setEntity($type, $origin, $origin_id);
             } catch (\Exception $e) {
                 throw new \Exception('Probleme dans l\'envoi du mail de la facture');
             }
@@ -170,11 +169,21 @@ class InvoiceTools
                         $message->attach($fileName);
                     });
                     $isAdmin = true;
-                    $this->mailer->send(['text' => 'emails.quotation.invoice.text-confirm', 'html' => 'emails.quotation.invoice.html-confirm'], compact('user', 'quotation', 'type', 'isAdmin'), function($message) use($user, $quotation, $fileName, $invoice){
+                    $this->mailer->send(['text' => 'emails.quotation.invoice.text-confirm', 'html' => 'emails.quotation.invoice.html-confirm'], compact('user', 'quotation', 'type', 'isAdmin','invoice'), function($message) use($user, $quotation, $fileName, $invoice){
                         $message->to(env('INVOICE_MAIL_ADMIN'));
                         $message->subject('Facture ' . $invoice->number .' envoyée pour ' . $user->email);
                         $message->attach($fileName);
                     });
+                    //tracabilité des mails
+                    $mails = json_decode($this->_invoice->mails,true);
+                    $mails ? null:$mails=array();
+                    $newMail = [
+                        'userMail' => $user->email,
+                        'date' => Carbon::now()
+                    ];
+                    array_push($mails, $newMail);
+                    $this->_invoice->mails = json_encode($mails);
+                    $this->_invoice->save();
                 } elseif ($this->_origin == 'purchase') {
                     $purchase = $this->_entity;
                     $isAdmin = false;
@@ -184,11 +193,21 @@ class InvoiceTools
                         $message->attach($fileName);
                     });
                     $isAdmin = true;
-                    $this->mailer->send(['text' => 'emails.sale.text-confirm', 'html' => 'emails.sale.html-confirm'], compact('user', 'purchase', 'isAdmin'), function($message) use($user, $purchase, $fileName, $invoice){
+                    $this->mailer->send(['text' => 'emails.sale.text-confirm', 'html' => 'emails.sale.html-confirm'], compact('user', 'purchase', 'isAdmin','invoice'), function($message) use($user, $purchase, $fileName, $invoice){
                         $message->to(env('INVOICE_MAIL_ADMIN'));
                         $message->subject('Facture ' . $invoice->number .' envoyée pour nouvel Achat direct par ' . $user->email);
                         $message->attach($fileName);
                     });
+                    //tracabilité des mails
+                    $mails = json_decode($this->_invoice->mails,true);
+                    $mails ? null:$mails=array();
+                    $newMail = [
+                        'userMail' => $user->email,
+                        'date' => Carbon::now()
+                    ];
+                    array_push($mails, $newMail);
+                    $this->_invoice->mails = json_encode($mails);
+                    $this->_invoice->save();
                 }
             } else {
                 throw new \Exception('Envoi email de la facture impossible. Le fichier de cette facture n\'existe pas');
@@ -297,8 +316,19 @@ class InvoiceTools
         }
     }
 
-    public function validatePayment($id) {
-        dd($id);
+    public function validatePayment($type, $origin, $origin_id) {
+        try {
+            $this->setEntity($type, $origin, $origin_id);
+            $existInvoice = $this->setExistInvoice();
+        } catch (\Exception $e) {
+            throw new \Exception('Probleme dans l\'envoi du mail de la facture');
+        }
+        if($existInvoice) {
+            $this->_invoice->isPayed = true;
+            $this->_invoice->save();
+            return true;
+        }
+        return false;
     }
 
 

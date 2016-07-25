@@ -22,9 +22,7 @@ class CreateInvoicesTable extends Migration
             $table->boolean('isDown')->default(false);
             $table->boolean('isSold')->default(false);
             $table->boolean('isPayed')->default(false);
-            $table->string('mail')->default(null);
-            $table->integer('nbMailBefore')->default(0);
-            $table->integer('nbMailAfter')->default(0);
+            $table->json('mails')->default(null);
             $table->timestamps();
         });
     }

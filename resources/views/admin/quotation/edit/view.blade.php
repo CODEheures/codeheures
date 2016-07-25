@@ -231,12 +231,19 @@
             @else
                 <a href="#" class="btn-disable">Facture d'acompte déja payée</a>
             @endif
+            @if($quotation->isOrdered && $quotation->haveDownPercent() && $quotation->existInvoice('isDown') && !$quotation->isPayed('isDown'))
+                <a href="{{ route('invoice.validatePayment', ['type' => 'isDown', 'origin' => 'quotation', 'id' => $quotation->id]) }}" class="btn-yellow2">Valider le paiement d'acompte</a>
+            @endif
             @if($quotation->isOrdered && !$quotation->existInvoice('isSold') && ((!$quotation->haveDownPercent()) || ($quotation->haveDownPercent() && $quotation->isPayed('isDown') )))
                 <a href="{{ route('admin.quotation.invoice.create', ['id' => $quotation->id, 'type' => 'isSold']) }}" class="btn-yellow2">Générer Facture de solde</a>
-            @elseif($quotation->isOrdered && $quotation->existInvoice('isSold'))
+            @elseif($quotation->isOrdered && $quotation->existInvoice('isSold') && !$quotation->isPayed('isSold'))
                 <a href="{{ route('invoice.sendMail', ['type' => 'isSold', 'origin' => 'quotation', 'id' => $quotation->id]) }}" class="btn-yellow2">Envoyer la Facture de solde</a>
+            @elseif($quotation->isOrdered && $quotation->haveDownPercent() && !$quotation->isPayed('isDown'))
             @else
                 <a href="#" class="btn-disable">Facture de solde déja payée</a>
+            @endif
+            @if($quotation->isOrdered && $quotation->existInvoice('isSold') && !$quotation->isPayed('isSold'))
+                <a href="{{ route('invoice.validatePayment', ['type' => 'isSold', 'origin' => 'quotation', 'id' => $quotation->id]) }}" class="btn-yellow2">Valider le paiement du solde</a>
             @endif
             @if($quotation->canArchive())
                 <a href="{{ route('admin.quotation.archive', ['id' => $quotation->id]) }}" class="btn-yellow2">Archiver</a>
