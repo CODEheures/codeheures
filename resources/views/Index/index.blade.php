@@ -250,7 +250,7 @@
                     </p>
                     <p class="exit">
                         <a href="{{ route('demo') }}" class="btn-yellow2">Espace client de démonstration & tarifs</a>
-                        <a href="#" class="btn-yellow2">Voir les réalisations</a>
+                        <a href="{{ route('realisations') }}" class="btn-yellow2">Voir les réalisations</a>
                     </p>
                 </footer>
                 <p class="space-top change-section two">
@@ -385,7 +385,7 @@
                     </p>
                     <p class="exit">
                         <a href="{{ route('demo') }}" class="btn-yellow2">Espace client de démonstration & tarifs</a>
-                        <a href="#" class="btn-yellow2">Voir les réalisations</a>
+                        <a href="{{ route('realisations') }}" class="btn-yellow2">Voir les réalisations</a>
                     </p>
                 </footer>
                 <p class="space-top change-section one-left">

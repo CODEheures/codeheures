@@ -6,6 +6,7 @@ Route::post('/contact', ['as' => 'contact.post', 'uses' => 'MainController@conta
 Route::get('/demo', ['as' => 'demo', 'uses' => 'MainController@demoCustomerSpace']);
 Route::get('/conditions-generales-de-ventes', ['as' => 'cgv', 'uses' => 'MainController@cgv']);
 Route::get('/mentions-legales', ['as' => 'mentions', 'uses' => 'MainController@mentions']);
+Route::get('/realisations', ['as' => 'realisations', 'uses' => 'MainController@realisations']);
 
 //Espace client
 Route::group(['prefix' => 'customer'], function() {

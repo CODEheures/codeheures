@@ -46,6 +46,10 @@ class MainController extends Controller
                 Prochaine régération dans '. $diff . 'minute(s)');
     }
 
+    public function realisations() {
+        return view('realisations.index');
+    }
+
     public function cgv() {
         return view('legal.cgv.index');
     }

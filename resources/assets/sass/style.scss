@@ -1351,6 +1351,50 @@ body > header {
           list-style-position: inside;
         }
       }
+      & .realisations {
+        @include cncc;
+        width: 100%;
+        margin-bottom: 3rem;
+        & .realisation {
+          $border-radius: 0.6rem;
+          margin: 1rem;
+          border-radius: $border-radius;
+          box-shadow: 0 0 2rem 0 rgba(0,0,0,0.5);
+          width: 21%;
+          min-width: 35rem;
+          min-height: 41.5rem;
+          background-color: $color3;
+          position: relative;
+          & .header-realisation {
+            @include cncc;
+            height: 5rem;
+            background-color: $color7;
+            border-top-left-radius: $border-radius;
+            border-top-right-radius: $border-radius;
+            color: white;
+            font-size: 2.1rem;
+            font-weight: 400;
+          }
+          & .body-realisation {
+            @include cnfsc;
+            font-size: 1.5rem;
+            overflow: hidden;
+            & img {
+              min-height: 20rem;
+              height: 20rem;
+            }
+            & p {
+              padding-left: 2rem;
+              padding-right: 2rem;
+              min-height: 10rem;
+              height: 10rem;
+            }
+            & .link {
+              @include rwfsc;
+            }
+          }
+        }
+      }
     }
 
     & footer {
@@ -1527,6 +1571,9 @@ body > footer {
             width: 45%;
             font-size: 1.9rem;
           }
+        }
+        & .realisations {
+          @include rwsas;
         }
       }
     }
