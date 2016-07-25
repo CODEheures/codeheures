@@ -5,7 +5,7 @@
         <p>
             <span class="purchase-date">Achat du {{ $purchase->created_at->formatLocalized('%A %e %B %Y') }}
                 :</span> {{ $purchase->quantity }}x "{{ $purchase->product->description }}"
-            @if($purchase->quotation_id)<a href="{{ route('customer.quotation.pdf', ['id'=>$purchase->quotation_id]) }}" class="quotation-number">(devis {{ $purchase->quotation->getPublicNumber() }})</a>@endif
+            @if($purchase->quotation_id)<a href="{{ route('customer.quotation.showPdf', ['id'=>$purchase->quotation_id]) }}" class="quotation-number">(devis {{ $purchase->quotation->getPublicNumber() }})</a>@endif
         </p>
         <table class="purchase-table">
             <thead>

@@ -8,7 +8,7 @@
 </div>
 @if(!isset($isPdf) || !$isPdf)
 <nav class="quotation-get-pdf">
-    <p><a href="{{ route('customer.quotation.pdf', ['id' => $quotation->id]) }}"><i class="ion-archive"></i>Télécharger ce devis</a></p>
+    <p><a href="{{ route('customer.quotation.showPdf', ['id' => $quotation->id]) }}"><i class="ion-archive"></i>Télécharger ce devis</a></p>
 </nav>
 @endif
 <div class="quotation">

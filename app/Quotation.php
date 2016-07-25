@@ -128,6 +128,17 @@ class Quotation extends Model
         return false;
     }
 
+    public function canCancel() {
+        if ($this->isOrdered){
+            foreach ($this->invoices as $invoice) {
+                if($invoice->isPayed == true) { return false; }
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function canPurchase() {
         if(
             $this->user_id == auth()->user()->id

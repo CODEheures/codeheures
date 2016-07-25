@@ -25,12 +25,16 @@ class QuotationController extends Controller
     private $auth;
     private $mailer;
     private $invoiceTools;
+    private $_storage;
+    private $_postName;
+    private $_ext;
+    private $_isDemoUser;
 
     public function __construct(Guard $auth, Mailer $mailer, InvoiceTools $invoiceTools) {
         $this->middleware('auth');
         $this->middleware('haveNewQuotation');
         $this->middleware('fullProfile', ['only' => ['customerIndex', 'order', 'refuse', 'pdf']]);
-        $this->middleware('admin', ['except' => ['customerIndex', 'order', 'refuse', 'orderPost', 'pdf']]);
+        $this->middleware('admin', ['except' => ['customerIndex', 'order', 'refuse', 'orderPost', 'showPdf']]);
         $this->auth = $auth;
         $this->mailer = $mailer;
         $this->invoiceTools = $invoiceTools;
@@ -76,14 +80,30 @@ class QuotationController extends Controller
     }
 
     /**
+     * @param string
+     */
+    private function getFileName(Quotation $quotation) {
+        $user = $quotation->user;
+        $this->_postName = '-quotation';
+        $this->_ext = '.pdf';
+        if($user->email != env('DEMO_USER_MAIL')) {
+            $this->_storage = storage_path() . '/pdf/quotation/';
+        } else {
+            $this->_storage = storage_path() . '/pdf/demo_quotation/';
+        }
+        $fileName = $this->_storage . $quotation->id . $this->_postName . $this->_ext;
+        return $fileName;
+    }
+
+    /**
      * Return PDF of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function pdf($id)
+    private function pdf(Quotation $quotation)
     {
-        $quotation = Quotation::findOrFail($id);
-        if($quotation->user_id == $this->auth->user()->id) {
+        $fileName = $this->getFileName($quotation);
+        if(!file_exists($fileName)) {
             $quotation->load('lineQuotes');
             $quotation->load('user');
             $totalPrice = $this->totalPrice($quotation);
@@ -110,11 +130,30 @@ class QuotationController extends Controller
             ]);
             $mpdf->WriteHTML($css,1);
             $mpdf->WriteHTML($content,2);
-            $mpdf->Output();
-
-        } else {
-            return redirect(route('home'));
+            $mpdf->Output($fileName, 'F');
         }
+        return $fileName;
+    }
+
+    private function sendMail($quotation, $fileName=null, $isCreate=false) {
+        //Envoi du mail
+        $user = $this->auth->user();
+        $isAdmin = false;
+        $this->mailer->send(['text' => 'emails.quotation.createOrSign.text-inform', 'html' => 'emails.quotation.createOrSign.html-inform'], compact('user', 'quotation', 'isAdmin', 'isCreate'), function($message) use($user, $quotation, $fileName, $isCreate){
+            $message->to($user->email);
+            $message->subject('Votre devis sur ' . env('APP_NAME'));
+            $fileName ? $message->attach($fileName) : null;
+        });
+        $isAdmin = true;
+        $this->mailer->send(['text' => 'emails.quotation.createOrSign.text-inform', 'html' => 'emails.quotation.createOrSign.html-inform'], compact('user', 'quotation', 'isAdmin', 'isCreate'), function($message) use($user, $quotation, $fileName, $isCreate){
+            $message->to(env('QUOTATION_MAIL_ADMIN'));
+            if($isCreate){
+                $message->subject('Nouveau devis ' . $quotation->id . ' envoyé à ' . $user->email);
+            } else {
+                $message->subject('Devis ' . $quotation->id . ' signé numeriquement par ' . $user->email);
+            }
+            $fileName ? $message->attach($fileName) : null;
+        });
     }
 
     /**
@@ -172,7 +211,8 @@ class QuotationController extends Controller
                 $quotation->orderDate = Carbon::now();
                 $quotation->phoneUsedForOrder = auth()->user()->phone;
                 $quotation->save();
-                //TODO MAIL AVEC PDF
+
+                //creation des achats
                 $lineQuotes = $quotation->lineQuotes;
                 foreach ($lineQuotes as $lineQuote) {
                     $purchase = Purchase::create([
@@ -185,6 +225,13 @@ class QuotationController extends Controller
                     ]);
                     $purchase->save();
                 }
+
+                //creation du pdf
+                $fileName = $this->pdf($quotation);
+
+                //Envoi du mail
+                $this->sendMail($quotation, $fileName, false);
+
                 return redirect(route('customer.quotation.index'))->with('success', 'Votre devis est desormais numériquement signé,
                 merci de votre confiance. Merci de nous renvoyer un devis papier signé d\'ici 15 jours. Ce devis vous a
                 été envoyé dans votre boite mail et est disponible en téléchargement sur votre compte CODEheures dans la rubrique
@@ -235,9 +282,17 @@ class QuotationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showPdf($id)
     {
-        //
+        $quotation = Quotation::findOrFail($id);
+        if($quotation->user_id == auth()->user()->id || auth()->user()->role == 'admin') {
+            $fileName = $this->pdf($quotation);
+            if ($fileName) {
+                return response(file_get_contents($fileName))
+                    ->header('Content-Type', 'application/pdf');
+            }
+        }
+        return back();
     }
 
     /**
@@ -303,6 +358,28 @@ class QuotationController extends Controller
             return redirect(route('admin.quotation.index'))->with('info', 'Devis supprimé');
         }
 
+        return redirect()->back()->withErrors('Interdiction de supprimer un devis signé par le client');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function cancel($id)
+    {
+        $quotation = Quotation::findOrFail($id);
+        if($quotation->canCancel()) {
+            foreach($quotation->purchases as $purchase) {
+                $purchase->consommations()->delete();
+                $purchase->delete();
+            }
+            $quotation->isArchived = true;
+            $quotation->save();
+            return redirect(route('admin.quotation.index'))->with('info', 'Consommations et achats supprimés. Devis et factures conservés en archive');
+        }
+
         return redirect()->back()->withErrors('Interdiction de supprimer un devis payé par le client');
     }
 
@@ -318,6 +395,8 @@ class QuotationController extends Controller
         if($quotation->canPublish()){
             $quotation->isPublished = true;
             $quotation->save();
+            //Envoi du mail
+            $this->sendMail($quotation, null, true);
             return redirect()->back()->with('info', 'Devis publié');
         }
 
@@ -354,6 +433,8 @@ class QuotationController extends Controller
         if($quotation->canRefuse() && $quotation->user_id == auth()->user()->id){
             $quotation->isRefused = true;
             $quotation->save();
+            //creation du pdf pour memo...
+            $this->pdf($quotation);
             return redirect()->back()->with('info', "Ho non '-(. Vous venez de refuser notre devis. 
             Nous vous remerçions de votre confiance et restons à votre disposition pour toute question");
         }

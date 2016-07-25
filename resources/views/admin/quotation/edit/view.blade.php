@@ -228,8 +228,10 @@
                 <a href="{{ route('admin.quotation.invoice.create', ['id' => $quotation->id, 'type' => 'isDown']) }}" class="btn-yellow2">Générer Facture d'acompte</a>
             @elseif($quotation->isOrdered && $quotation->haveDownPercent() && $quotation->existInvoice('isDown') && !$quotation->isPayed('isDown'))
                 <a href="{{ route('invoice.sendMail', ['type' => 'isDown', 'origin' => 'quotation', 'id' => $quotation->id]) }}" class="btn-yellow2">Envoyer la Facture d'acompte</a>
-            @else
+            @elseif($quotation->isOrdered && $quotation->haveDownPercent() && $quotation->existInvoice('isDown') && $quotation->isPayed('isDown'))
                 <a href="#" class="btn-disable">Facture d'acompte déja payée</a>
+            @else
+                <a href="#" class="btn-disable">Facture d'acompte</a>
             @endif
             @if($quotation->isOrdered && $quotation->haveDownPercent() && $quotation->existInvoice('isDown') && !$quotation->isPayed('isDown'))
                 <a href="{{ route('invoice.validatePayment', ['type' => 'isDown', 'origin' => 'quotation', 'id' => $quotation->id]) }}" class="btn-yellow2">Valider le paiement d'acompte</a>
@@ -239,8 +241,10 @@
             @elseif($quotation->isOrdered && $quotation->existInvoice('isSold') && !$quotation->isPayed('isSold'))
                 <a href="{{ route('invoice.sendMail', ['type' => 'isSold', 'origin' => 'quotation', 'id' => $quotation->id]) }}" class="btn-yellow2">Envoyer la Facture de solde</a>
             @elseif($quotation->isOrdered && $quotation->haveDownPercent() && !$quotation->isPayed('isDown'))
-            @else
+            @elseif($quotation->isOrdered && $quotation->existInvoice('isSold') && $quotation->isPayed('isSold'))
                 <a href="#" class="btn-disable">Facture de solde déja payée</a>
+            @else
+                <a href="#" class="btn-disable">Facture de solde</a>
             @endif
             @if($quotation->isOrdered && $quotation->existInvoice('isSold') && !$quotation->isPayed('isSold'))
                 <a href="{{ route('invoice.validatePayment', ['type' => 'isSold', 'origin' => 'quotation', 'id' => $quotation->id]) }}" class="btn-yellow2">Valider le paiement du solde</a>
@@ -249,6 +253,11 @@
                 <a href="{{ route('admin.quotation.archive', ['id' => $quotation->id]) }}" class="btn-yellow2">Archiver</a>
             @else
                 <a href="#" class="btn-disable">Archiver</a>
+            @endif
+            @if($quotation->canCancel())
+                <a href="{{ route('admin.quotation.cancel', ['id' => $quotation->id]) }}" class="btn-yellow2">Annuler</a>
+            @else
+                <a href="#" class="btn-disable">Annuler</a>
             @endif
         </div>
     </div>

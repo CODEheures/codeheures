@@ -1477,6 +1477,7 @@ body > footer {
       align-self: flex-end;
       padding-top: 3rem;
       & p {
+        @include rncc;
         & img {
           width: 3.5rem;
         }

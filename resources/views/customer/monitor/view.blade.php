@@ -34,10 +34,10 @@
     @if($purchase->product->type == 'time')
     <div class="purchase" @if(auth()->user()->email == env('DEMO_USER_MAIL'))data-intro="Chacun de vos achats apparait ici" data-step="6" data-position="top" @endif>
         <p>
-            <span class="purchase-date">Achat du {{ $purchase->created_at->formatLocalized('%A %e %B %Y') }}:</span> {{ $purchase->quantity }}x "{{ $purchase->product->description }}"
+            <span class="purchase-date">@if($purchase->quotation) Devis signé le @else Achat du @endif {{ $purchase->created_at->formatLocalized('%A %e %B %Y') }}:</span> {{ $purchase->quantity }}x "{{ $purchase->product->description }}"
             <a href="{{ route('purchase.show', ['id' => $purchase->id]) }}" class="purchase-number"
                @if(auth()->user()->email == env('DEMO_USER_MAIL'))data-intro="Ce lien vous donne accès au graphique de consommation de cette commande ainsi qu'à la facture" data-step="9" data-position="top" @endif>(Commande {{ $purchase->hash_key }})</a>
-            @if($purchase->quotation_id)<a href="{{ route('customer.quotation.pdf', ['id'=>$purchase->quotation_id]) }}" class="quotation-number">(devis {{ $purchase->quotation->getPublicNumber() }})</a>@endif
+            @if($purchase->quotation_id)<a href="{{ route('customer.quotation.showPdf', ['id'=>$purchase->quotation_id]) }}" class="quotation-number">(devis {{ $purchase->quotation->getPublicNumber() }})</a>@endif
         </p>
         <table class="purchase-table" @if(auth()->user()->email == env('DEMO_USER_MAIL')) data-intro="Le tableau synthétise les consommations CODEheures justifiées sur cette achat" data-step="7" data-position="top" @endif>
             <thead>
@@ -92,9 +92,9 @@
                 <tr>
                     <td class="presta-perso">
                         <i class="ion-minus-round"></i>
-                        <span class="purchase-date">Achat du {{ $purchase->created_at->formatLocalized('%A %e %B %Y') }}:</span> "{{ $purchase->product->description }}"
+                        <span class="purchase-date">@if($purchase->quotation) Devis signé le @else Achat du @endif {{ $purchase->created_at->formatLocalized('%A %e %B %Y') }}:</span> "{{ $purchase->product->description }}"
                         <a href="{{ route('purchase.show', ['id' => $purchase->id]) }}" class="purchase-number">(Commande {{ $purchase->hash_key }})</a>
-                        @if($purchase->quotation_id)<a href="{{ route('customer.quotation.pdf', ['id'=>$purchase->quotation_id]) }}" class="quotation-number">(devis {{ $purchase->quotation->getPublicNumber() }})</a>@endif
+                        @if($purchase->quotation_id)<a href="{{ route('customer.quotation.showPdf', ['id'=>$purchase->quotation_id]) }}" class="quotation-number">(devis {{ $purchase->quotation->getPublicNumber() }})</a>@endif
                     </td>
                 </tr>
             @endif

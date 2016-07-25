@@ -7,7 +7,7 @@ Merci de proceder au paiement de celui-ci dans les delais indiqués afin d'initi
 @elseif($quotation->haveDownPercent())
 La prestation de votre devis est achevée :-)
 
-La prestation concernant votre devis n°{{ $quotation->getPublicNumber() }} est achevée (devis disponible ici: {{ route('customer.quotation.pdf', ['id' => $quotation->id]) }})
+La prestation concernant votre devis n°{{ $quotation->getPublicNumber() }} est achevée (devis disponible ici: {{ route('customer.quotation.showPdf', ['id' => $quotation->id]) }})
 Merci de proceder au paiement de celui-ci dans les delais indiqués afin d'obtenir tous les droits prévus aux conditions de celui-ci
 @else
 Merci pour votre achat sur CODEheures :-)

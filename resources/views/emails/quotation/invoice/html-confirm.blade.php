@@ -8,7 +8,7 @@
     @elseif($quotation->haveDownPercent())
     <h3>La prestation de votre devis est achevée :-)</h3>
 
-    <p>La prestation concernant <a href="{{ route('customer.quotation.pdf', ['id' => $quotation->id]) }}">votre devis n°{{ $quotation->getPublicNumber() }}</a> est achevée</p>
+    <p>La prestation concernant <a href="{{ route('customer.quotation.showPdf', ['id' => $quotation->id]) }}">votre devis n°{{ $quotation->getPublicNumber() }}</a> est achevée</p>
     <p>Merci de proceder au paiement de celui-ci dans les delais indiqués afin d'obtenir tous les droits prévus aux conditions de celui-ci</p>
     @else
     <h3>Merci pour votre achat sur CODEheures :-)</h3>

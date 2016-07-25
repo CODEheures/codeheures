@@ -28,7 +28,7 @@ Route::group(['prefix' => 'customer'], function() {
     Route::get('/quotation', ['as' => 'customer.quotation.index', 'uses' => 'QuotationController@customerIndex']);
     Route::get('/quotation/{id}/order', ['as' => 'customer.quotation.order', 'uses' => 'QuotationController@order'])->where(['id'=>'[0-9]+']);
     Route::get('/quotation/{id}/refuse', ['as' => 'customer.quotation.refuse', 'uses' => 'QuotationController@refuse'])->where(['id'=>'[0-9]+']);
-    Route::get('/quotation/{id}/pdf', ['as' => 'customer.quotation.pdf', 'uses' => 'QuotationController@pdf'])->where(['id'=>'[0-9]+']);
+    Route::get('/quotation/{id}', ['as' => 'customer.quotation.showPdf', 'uses' => 'QuotationController@showPdf'])->where(['id'=>'[0-9]+']);
     Route::post('/quotation/{id}/order', ['as' => 'customer.quotation.order.post', 'uses' => 'QuotationController@orderPost'])->where(['id'=>'[0-9]+']);
 
     //customer prestations
@@ -58,6 +58,7 @@ Route::group(['prefix' => 'admin'], function() {
     //quotations
     Route::get('/quotation', ['as' => 'admin.quotation.index', 'uses' => 'QuotationController@index']);
     Route::post('/quotation', ['as' => 'admin.quotation.store', 'uses' => 'QuotationController@store']);
+    Route::get('/quotation/{id}/cancel', ['as' => 'admin.quotation.cancel', 'uses' => 'QuotationController@cancel'])->where(['id'=>'[0-9]+']);
     Route::get('/quotation/{id}/delete', ['as' => 'admin.quotation.delete', 'uses' => 'QuotationController@destroy'])->where(['id'=>'[0-9]+']);
     Route::delete('/quotation/{id}', ['as' => 'admin.quotation.destroy', 'uses' => 'QuotationController@destroy'])->where(['id'=>'[0-9]+']);
     Route::get('/quotation/create', ['as' => 'admin.quotation.create', 'uses' => 'QuotationController@create']);

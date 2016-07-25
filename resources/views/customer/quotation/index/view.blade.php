@@ -42,7 +42,7 @@
         <nav class="quotation-get-pdf">
             <p @if(auth()->user()->email == env('DEMO_USER_MAIL') && $quotation==$quotations[0]) data-intro="Vous pouvez le télécharger ici en PDF pour le consulter"
                data-step="2" data-position="bottom"  @endif
-            ><a href="{{ route('customer.quotation.pdf', ['id' => $quotation->id]) }}"><i class="ion-archive"></i>Télécharger ce devis</a></p>
+            ><a href="{{ route('customer.quotation.showPdf', ['id' => $quotation->id]) }}"><i class="ion-archive"></i>Télécharger ce devis</a></p>
         </nav>
         <div class="quotation" @if(auth()->user()->email == env('DEMO_USER_MAIL') && $quotation==$quotations[0]) data-intro="Voici le détail de votre devis"
              data-step="1" data-position="bottom"  @endif>
