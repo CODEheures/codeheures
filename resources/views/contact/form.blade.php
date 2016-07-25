@@ -13,7 +13,7 @@
             </span>
         </div>
     @endif
-        <div class="form-group">
+        <div class="form-group @if(auth()->check()) full-width @endif">
             <span class="input input--fumi">
                 {!! Form::textarea('content', null, ['class' => 'input__field input__field--fumi', 'placeholder' => 'Votre message ici...', 'rows' => '3']) !!}
                 <label for="content" class="input__label input__label--fumi">
