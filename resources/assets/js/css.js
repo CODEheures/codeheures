@@ -300,6 +300,25 @@ $(function() {
         choiced($(this));
     });
 
+    //Approuve des CGV
+    var $payoutLink = $('.payout a');
+    var $payoutRoute = $payoutLink.attr('href');
+    var $payoutImg = $payoutLink.children('img');
+    var $payoutImgSrcDisable = $payoutImg.attr('src');
+    var $payoutImgSrcEnable = $payoutImgSrcDisable.split('_')[0] + '.' +  $payoutImgSrcDisable.split('.')[$payoutImgSrcDisable.split('.').length-1];
+    $payoutLink.attr('href', '');
+    $('#approuve').change(function (e) {
+        if($(this).prop('checked')){
+            $payoutLink.removeClass('disable');
+            $payoutLink.attr('href', $payoutRoute);
+            $payoutImg.attr('src', $payoutImgSrcEnable)
+        } else {
+            $payoutLink.addClass('disable');
+            $payoutLink.attr('href', '');
+            $payoutImg.attr('src', $payoutImgSrcDisable)
+        }
+    });
+
     /*****************************************************************************************************/
     /*                                              SELECT 2                                             */
     /*****************************************************************************************************/

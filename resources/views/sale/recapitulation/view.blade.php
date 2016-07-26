@@ -27,9 +27,18 @@
     </div>
 </article>
 <article>
+    <div class="checkbox">
+        <span>Je reconnais avoir pris connaissance des <a href="{{ route('cgv') }}" target="_blank">Conditions générales de vente</a></span>
+        <div class="check-style3">
+            <input type="checkbox" id="approuve" value="approuve">
+            <label for="approuve"></label>
+        </div>
+    </div>
+</article>
+<article>
     <div class="payout">
-        <a href="{{ route('customer.sale.payment', ['id' => $product->id]) }}" data-paypal-button="true" title="PayPal, le réflexe sécurité pour payer en ligne">
-            <img src="{{ asset('/css/images/frenchPayButton2.png') }}" alt="PayPal, le réflexe sécurité pour payer en ligne" />
+        <a href="{{ route('customer.sale.payment', ['id' => $product->id]) }}" class="disable" data-paypal-button="true" title="PayPal, le réflexe sécurité pour payer en ligne">
+            <img src="{{ asset('/css/images/frenchPayButton2_disable.png') }}" alt="PayPal, le réflexe sécurité pour payer en ligne" />
         </a>
     </div>
 </article>

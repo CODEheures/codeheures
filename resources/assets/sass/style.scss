@@ -1336,10 +1336,16 @@ body > header {
       & .payout {
         @include cncfe;
         width: 100%;
-        & a img{
-          width: 24rem;
-          &:active {
-            transform: scale(0.95);
+        & a {
+          &.disable {
+            cursor: not-allowed;
+            pointer-events: none;
+          }
+          & img {
+            width: 24rem;
+            &:active {
+              transform: scale(0.95);
+            }
           }
         }
         & p, ul {
@@ -1475,6 +1481,22 @@ body > header {
         max-width: 100%;
         width: 100%;
         height: auto;
+      }
+    }
+
+    & div.cgv {
+      & h2 {
+        @include rnfsc;
+        & i {
+          padding-right: 1rem;
+          padding-top: 0.4rem;
+        }
+      }
+      & ol {
+        & li {
+          font-size: 1.6rem;
+          padding-top: 1.7rem;
+        }
       }
     }
   }
