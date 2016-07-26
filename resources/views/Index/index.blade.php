@@ -7,6 +7,7 @@
 @section('css')
     @parent
     @include('plugins.inputEffect.css')
+    @include('plugins.twentytwenty.css')
 @endsection
 
 @section('navbar')
@@ -408,6 +409,10 @@
             @include('contact.form')
         </section>
     </div>
+    <div id="skills" class="skills">
+        <img src="./css/images/skills/logos1d.png" alt="compétences floutées">
+        <img src="./css/images/skills/logos2.png" alt="compétences floutées">
+    </div>
 @endsection
 
 @section('footer')
@@ -417,5 +422,5 @@
 
 @section('script')
     @parent
-
+    @include('plugins.twentytwenty.scripts')
 @endsection
