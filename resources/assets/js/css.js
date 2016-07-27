@@ -31,12 +31,20 @@ $(function() {
         });
     }
 
+    function animLogo() {
+        var $logo = $('a.navbar-logo');
+        $logo.removeClass("hidden");
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        $logo.addClass("animated bounceInLeft").one(animationEnd, function() {
+            setHeightHeader();
+        });
+    }
+
     function defAncre($name) {
 
         var $obj = {};
         var $jQobj = $('#'+$name);
 
-        //console.log($jQobj);
         if($jQobj.length == 0){
             return null;
         }
@@ -91,7 +99,7 @@ $(function() {
 
     //GLOBAL
     setHeightHeader();
-
+    animLogo();
     if($hamburger.css('display') === 'block'){
         $navbarMenu.css('display', 'none');
     }

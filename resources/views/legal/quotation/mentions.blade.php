@@ -2,7 +2,7 @@
     <h2>A propos de ce devis</h2>
     <ul>
         <li>Le présent devis prévoit l’intégralité des prestations que le prestataire s’engage à réaliser pour le Client.</li>
-        <li>Toute prestation supplémentaire demandée par le Client donnera lieu à l'émission d’un nouveau devis ou avenant.</li>
+        <li>Toute prestation supplémentaire demandée par le Client donnera lieu à l'émission d’un nouveau devis.</li>
         <li>Le présent devis est valable jusqu'au {{ \Carbon\Carbon::parse($quotation->validity)->formatLocalized('%A %e %B %Y') }} inclu.
         <li>Une fois validé par le Client, le présent devis a valeur de contrat.</li>
         <li>Dans l’hypothèse d’une rupture de contrat à l’initiative du Client, ce dernier s’engage à régler les prestations réalisées.</li>
@@ -23,5 +23,11 @@
         <li>Le prestataire ne cède que les droits d’exploitation de la création limités aux termes du présent document.</li>
         <li>Le prestataire reste propriétaire de l’intégralité des créations tant que la prestation n’est pas entièrement réglée.</li>
         <li>Toute utilisation sortant du cadre initialement prévu dans ce devis est interdite; sauf autorisation expresse et écrite du prestataire.</li>
+    </ul>
+    <h2>Conditions Générales de vente:</h2>
+    <ul>
+        <li>L'acceptation de ce devis entraine l'acceptation des conditions générales de vente (disponible à
+            l'adresse: <a href="{{ route('customer.prestation.pdf') }}">http://codeheures.fr/conditions-generales-de-ventes</a>)
+        </li>
     </ul>
 </div>

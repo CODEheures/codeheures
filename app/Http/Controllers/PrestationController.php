@@ -17,7 +17,7 @@ class PrestationController extends Controller
     private $auth;
 
     public function __construct(Guard $auth) {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['pdf']]);
         $this->middleware('admin', ['except' => ['pdf']]);
         $this->auth = $auth;
     }

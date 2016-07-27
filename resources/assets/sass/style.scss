@@ -311,6 +311,9 @@ ul.circle {
     @include rnfsc;
     padding-right: 0.5rem;
     max-width: 75%;
+    &.hidden {
+      display: none;
+    }
     img {
       max-height: 8rem;
       max-width: 75vw;
@@ -394,9 +397,12 @@ ul.circle {
 ***** Header Home *****
 */
 body > header {
+
   background: url('images/2.jpg') no-repeat top center fixed;
   background-size: cover;
   width: 100%;
+  transition-property: height;
+  transition-duration: 500ms;
   .bg-cover {
     position: absolute;
     left: 0;
@@ -1495,7 +1501,16 @@ body > header {
       & ol {
         & li {
           font-size: 1.6rem;
+          letter-spacing: 0.08rem;
+          line-height: 1.5;
           padding-top: 1.7rem;
+          & ul {
+            list-style-type: circle;
+            padding-left: 2rem;
+            & li {
+              padding-top: 0;
+            }
+          }
         }
       }
     }

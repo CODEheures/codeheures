@@ -269,12 +269,15 @@ div.quotation, div.prestation, div.purchase {
     font-size: 0.8em;
     & h2 {
       font-weight: bold;
+      font-size: 18px;
       padding-top: 20px;
+      padding-bottom: 8px;
     }
 
     & ul {
       padding-left: 6px;
       & li {
+        font-size: 12px ;
         list-style-type: square;
         list-style-position: inside;
       }
