@@ -72,7 +72,7 @@ $(function() {
 
         var $xScroll = ($(this).data('from')-$(this).data('to'))*100;
 
-        $('html,body').animate({scrollTop: $from.offset().top}, function () {
+        $('html body').animate({scrollTop: $from.offset().top}, function () {
             if($xScroll < 0) {
                 $to.slideDown({
                     start: function () {

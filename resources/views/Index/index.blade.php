@@ -52,6 +52,9 @@
                     <small>pour une meilleure maîtrise de votre budget</small>
                 </h1>
                 <h2 class="fa fa-quote-left">Combien coûte un site web?</h2>
+                <div class="video">
+                    <iframe src="https://player.vimeo.com/video/97753338?color=ff9933&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
                 <p>
                     Bonne question! <br/>
                     Saviez-vous qu'un bon webmaster ne code que 30% de son temps? Le reste du temps etant consacré à la
@@ -82,9 +85,149 @@
                 <p class="space-top change-section one-right"><a href="#" class="btn-yellow2-invert next" data-from="0" data-to="1">Tarifs et Devis accréditifs <i class="fa fa-arrow-circle-o-right"></i></a></p>
             </section>
 
+            <!-- section integration -->
+            <section>
+                <h2 class="fa fa-quote-left">Qu'est-ce que le devis accréditif?</h2>
+                <div class="video">
+                    <iframe src="https://player.vimeo.com/video/97675496?color=ff9933&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
+                <h3>Création de site web: un devis accréditif qui vous offre des heures de maintenance</h3>
+                <article class="cards">
+                    <div class="card">
+                        <img src="{{ asset('css/images/card1.png') }}" alt="mon image">
+                        <div class="card_description">
+                            <p>
+                                vitrine<br/>
+                                e-commerce<br/>
+                                professionnel<br/>
+                            </p>
+                            <a class="btn-transparent" href="#">En savoir plus</a>
+                        </div>
+                    </div>
+                    <aside class="digest">
+                        <ul>
+                            <li>
+                                <hr/>
+                            </li>
+                            <li><i class="ion-ios-lightbulb-outline"> </i><span>vous avez une idée de site web, mais vous ne possedez pas les compétences requises pour sa réalisation?</span>
+                            </li>
+                            <li>
+                                <hr/>
+                            </li>
+                            <li><i class="ion-ios-color-wand-outline"> </i><span>Vous possedez un site que vous souhaitez moderniser?</span>
+                            </li>
+                            <li>
+                                <hr/>
+                            </li>
+                            <li><i class="ion-ios-gear-outline"> </i><span>Vous souhaitez ajouter de nouvelles fonctionnalités?</span>
+                            </li>
+                            <li>
+                                <hr/>
+                            </li>
+                        </ul>
+                        <div class="clear"></div>
+                    </aside>
+                </article>
+                <h4 class="space-top">Le principe du devis accréditif se base sur 2 constats</h4>
+                <ol class="argument">
+                    <li>
+                        Il est très difficile (pour ne pas dire impossible) de jauger au plus juste l'expression d'un besoin
+                        dans le domaine du web. Le probleme etant que l'erreur de chiffrage peut aller dans les 2 sens.
+                    </li>
+                    <li>
+                        Le webmaster va palier ce defaut soit en exagerant le tarif, soit en dépensant un temps inconsidéré
+                        à la réalisation du devis qui se repercutera sur le tarif.
+                    </li>
+                </ol>
+                <p class="center">
+                <span class="solution">
+                    <a href="/" title="site codeheures.fr" class="a-invert">CODEheures.fr</a>
+                    répond à ces 2 constats par un mécanisme innovant: <strong>le devis accréditif</strong></span>
+                </p>
+                <h4>Un devis en 2 sections + une transformation des heures non consommées en maintenance</h4>
+                <ol class="argument">
+                    <li>
+                        <strong>Le devis est établi en 2 sections</strong> pour une totale transparence:
+                        <ul class="circle">
+                            <li>les achats (maquettes, templates, plugs-ins, nom de domaine, hebergement...)</li>
+                            <li>Un temps de travail estimé sur la base du besoin</li>
+                        </ul>
+                        <div class="clear"></div>
+                    </li>
+                    <li>
+                        <strong>Le reliquat d'heures est transformé en heures de maintenance</strong> lorsque le developpement
+                        du site se termine sans avoir consommer toutes les heures.
+                        Afin de rester transparent je mets à disposition sur
+                        <a href="{{ route('customer.monitor.index')}}" title="espace client" class="a-invert">
+                            votre compte client</a>
+                        un graphique des temps de developpement du site.
+                    </li>
+                </ol>
+                <h4>Vos avantages</h4>
+                <ul class="advantage argument">
+                    <li>
+                        <div class="top">
+                            <i class="fa fa-2x fa-clock-o rot90"></i>
+                            <p>
+                                Vous avez l'assurance que la totalité du temps de travail estimé dans le devis sera converti.
+
+                            </p>
+                        </div>
+                        <ul class="circle">
+                            <li>Soit le temps de travail est surestimé et vous bénéficierai d'un report en heures de maintenance</li>
+                            <li>Soit le temps de travail est sous-estimé et <a href="/" title="site codeheures.fr" class="a-invert">CODEheures.fr</a>
+                                prendra à sa charge ce dépassement. </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="top">
+                            <i class="fa fa-2x fa-rocket"></i>
+                            <p>Un démarrage plus rapide du projet axé sur l'obtention concrète. Le temps gagné à l'élaboration
+                                du devis est bénéfique pour le démarrage.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="top">
+                            <i class="fa fa-2x fa-magic"></i>
+                            <p>La possibilité de transformer l'éventuel reliquat des heures en fonctionnalités,
+                                en plug-ins, template supplémentaire...
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="top">
+                            <i class="fa fa-2x fa-reply"></i>
+                            <p>En cas d'insatisfaction ou de n'importe quelle autre cause, la possibilité sur simple demande
+                                par mail de vous faire rembourser sans délai et sans condition le crédit d'heures restant
+                                au prix d'achat.
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+                <footer>
+                    <p>
+                        Professionnels, associations, comité d'entreprise, chaque cas est unique et les technologies
+                        disponibles sont nombreuses. Il convient donc d'adapter la réponse à chaque demande. Pour en savoir
+                        plus visitez le "lab" CODEheures.
+                    </p>
+                    <p class="exit">
+                        <a href="{{ route('demo') }}" class="btn-yellow2">Espace client de démonstration & tarifs</a>
+                        <a href="{{ route('realisations') }}" class="btn-yellow2">Voir les réalisations</a>
+                    </p>
+                </footer>
+                <p class="space-top change-section two">
+                    <a href="#" class="btn-yellow2-invert back" data-from="1" data-to="0"><i class="fa fa-arrow-circle-o-left"></i>Combien coûte un site web</a>
+                    <a href="#" class="btn-yellow2-invert next" data-from="1" data-to="2">Tarifs accréditifs<i class="fa fa-arrow-circle-o-right"></i></a>
+                </p>
+            </section>
+
             <!-- section webmastering -->
             <section>
                 <h2 class="fa fa-quote-left">Qu'est-ce que le tarif accréditif?</h2>
+                <div class="video">
+                    <iframe src="https://player.vimeo.com/video/97742868?color=ff9933&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
                 <h3>Maintenance site web: reportez vos heures non consommées</h3>
                 <article>
                     <div class="card">
@@ -254,143 +397,8 @@
                         <a href="{{ route('realisations') }}" class="btn-yellow2">Voir les réalisations</a>
                     </p>
                 </footer>
-                <p class="space-top change-section two">
-                    <a href="#" class="btn-yellow2-invert back" data-from="1" data-to="0"><i class="fa fa-arrow-circle-o-left"></i>Combien coûte un site web</a>
-                    <a href="#" class="btn-yellow2-invert next" data-from="1" data-to="2">Devis accréditifs<i class="fa fa-arrow-circle-o-right"></i></a>
-                </p>
-            </section>
-
-
-            <!-- section integration -->
-            <section>
-                <h2 class="fa fa-quote-left">Qu'est-ce que le devis accréditif?</h2>
-                <h3>Création de site web: un devis accréditif qui vous offre des heures de maintenance</h3>
-                <article class="cards">
-                    <div class="card">
-                        <img src="{{ asset('css/images/card1.png') }}" alt="mon image">
-                        <div class="card_description">
-                            <p>
-                                vitrine<br/>
-                                e-commerce<br/>
-                                professionnel<br/>
-                            </p>
-                            <a class="btn-transparent" href="#">En savoir plus</a>
-                        </div>
-                    </div>
-                    <aside class="digest">
-                        <ul>
-                            <li>
-                                <hr/>
-                            </li>
-                            <li><i class="ion-ios-lightbulb-outline"> </i><span>vous avez une idée de site web, mais vous ne possedez pas les compétences requises pour sa réalisation?</span>
-                            </li>
-                            <li>
-                                <hr/>
-                            </li>
-                            <li><i class="ion-ios-color-wand-outline"> </i><span>Vous possedez un site que vous souhaitez moderniser?</span>
-                            </li>
-                            <li>
-                                <hr/>
-                            </li>
-                            <li><i class="ion-ios-gear-outline"> </i><span>Vous souhaitez ajouter de nouvelles fonctionnalités?</span>
-                            </li>
-                            <li>
-                                <hr/>
-                            </li>
-                        </ul>
-                        <div class="clear"></div>
-                    </aside>
-                </article>
-                <h4 class="space-top">Le principe du devis accréditif se base sur 2 constats</h4>
-                <ol class="argument">
-                    <li>
-                        Il est très difficile (pour ne pas dire impossible) de jauger au plus juste l'expression d'un besoin
-                        dans le domaine du web. Le probleme etant que l'erreur de chiffrage peut aller dans les 2 sens.
-                    </li>
-                    <li>
-                        Le webmaster va palier ce defaut soit en exagerant le tarif, soit en dépensant un temps inconsidéré
-                        à la réalisation du devis qui se repercutera sur le tarif.
-                    </li>
-                </ol>
-                <p class="center">
-                <span class="solution">
-                    <a href="/" title="site codeheures.fr" class="a-invert">CODEheures.fr</a>
-                    répond à ces 2 constats par un mécanisme innovant: <strong>le devis accréditif</strong></span>
-                </p>
-                <h4>Un devis en 2 sections + une transformation des heures non consommées en maintenance</h4>
-                <ol class="argument">
-                    <li>
-                        <strong>Le devis est établi en 2 sections</strong> pour une totale transparence:
-                        <ul class="circle">
-                            <li>les achats (maquettes, templates, plugs-ins, nom de domaine, hebergement...)</li>
-                            <li>Un temps de travail estimé sur la base du besoin</li>
-                        </ul>
-                        <div class="clear"></div>
-                    </li>
-                    <li>
-                        <strong>Le reliquat d'heures est transformé en heures de maintenance</strong> lorsque le developpement
-                        du site se termine sans avoir consommer toutes les heures.
-                        Afin de rester transparent je mets à disposition sur
-                        <a href="{{ route('customer.monitor.index')}}" title="espace client" class="a-invert">
-                            votre compte client</a>
-                        un graphique des temps de developpement du site.
-                    </li>
-                </ol>
-                <h4>Vos avantages</h4>
-                <ul class="advantage argument">
-                    <li>
-                        <div class="top">
-                            <i class="fa fa-2x fa-clock-o rot90"></i>
-                            <p>
-                                Vous avez l'assurance que la totalité du temps de travail estimé dans le devis sera converti.
-
-                            </p>
-                        </div>
-                        <ul class="circle">
-                            <li>Soit le temps de travail est surestimé et vous bénéficierai d'un report en heures de maintenance</li>
-                            <li>Soit le temps de travail est sous-estimé et <a href="/" title="site codeheures.fr" class="a-invert">CODEheures.fr</a>
-                                prendra à sa charge ce dépassement. </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <div class="top">
-                            <i class="fa fa-2x fa-rocket"></i>
-                            <p>Un démarrage plus rapide du projet axé sur l'obtention concrète. Le temps gagné à l'élaboration
-                                du devis est bénéfique pour le démarrage.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="top">
-                            <i class="fa fa-2x fa-magic"></i>
-                            <p>La possibilité de transformer l'éventuel reliquat des heures en fonctionnalités,
-                                en plug-ins, template supplémentaire...
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="top">
-                            <i class="fa fa-2x fa-reply"></i>
-                            <p>En cas d'insatisfaction ou de n'importe quelle autre cause, la possibilité sur simple demande
-                                par mail de vous faire rembourser sans délai et sans condition le crédit d'heures restant
-                                au prix d'achat.
-                            </p>
-                        </div>
-                    </li>
-                </ul>
-                <footer>
-                    <p>
-                        Professionnels, associations, comité d'entreprise, chaque cas est unique et les technologies
-                        disponibles sont nombreuses. Il convient donc d'adapter la réponse à chaque demande. Pour en savoir
-                        plus visitez le "lab" CODEheures.
-                    </p>
-                    <p class="exit">
-                        <a href="{{ route('demo') }}" class="btn-yellow2">Espace client de démonstration & tarifs</a>
-                        <a href="{{ route('realisations') }}" class="btn-yellow2">Voir les réalisations</a>
-                    </p>
-                </footer>
                 <p class="space-top change-section one-left">
-                    <a href="#" class="btn-yellow2-invert back" data-from="2" data-to="1"><i class="fa fa-arrow-circle-o-left"></i>Tarifs accréditifs</a>
+                    <a href="#" class="btn-yellow2-invert back" data-from="2" data-to="1"><i class="fa fa-arrow-circle-o-left"></i>Devis accréditifs</a>
                 </p>
             </section>
         </div>

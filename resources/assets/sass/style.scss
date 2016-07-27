@@ -512,9 +512,6 @@ body > header {
   padding-top: $height_nav_shrink;
   padding-bottom: 5rem;
   color: $color4;
-  &.container {
-    @include cnfsc;
-  }
 
   & .tunnel {
     @include rnfsfs;
@@ -524,26 +521,34 @@ body > header {
       padding-left: 1rem;
       padding-right: 1rem;
       position: relative;
+
+      & p.exit {
+        & a {
+          margin-bottom: 1rem;
+        }
+      }
     }
 
     & p.change-section {
+      width: 100%;
       &.two {
-        @include rwsbc;
+        @include cncc;
+        & a {
+          margin-bottom: 1rem;
+          &.next {
+            align-self: flex-end;
+          }
+          &.back {
+            align-self: flex-start;
+          }
+        }
+
       }
       &.one-right {
         @include rwfec;
       }
       &.one-left {
         @include rwfsc;
-      }
-      width: 100%;
-      & a {
-        &.next {
-          right: 0;
-        }
-        &.back {
-          left: 0;
-        }
       }
     }
 
@@ -556,6 +561,7 @@ body > header {
   & section {
     @include cnfsfs;
     padding-top: 6rem;
+    padding-bottom: 0.1rem;
     color: $color4;
     font-weight: 100;
     max-width: 100%;
@@ -1514,6 +1520,13 @@ body > header {
         }
       }
     }
+
+    & div.video {
+      @include rncc;
+      width: 100%;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
   }
 
   & a.registration {
@@ -1522,6 +1535,10 @@ body > header {
     text-align: right;
     color: $color8;
     padding-top: 1rem;
+  }
+
+  &.container {
+    @include cnfsc;
   }
 }
 
@@ -1554,6 +1571,9 @@ body > footer {
       max-width: 50%;
       & .links {
         @include rwsbc;
+        & a:first-of-type {
+          padding-right: 1rem;
+        }
       }
       & h3 {
         font-size: 1.4rem;
@@ -1580,6 +1600,18 @@ body > footer {
   }
 }
 
+@media screen and(min-width: 360px) {
+  .main {
+    & .tunnel {
+      & p.change-section {
+        &.two {
+          @include rwsbc;
+        }
+      }
+    }
+  }
+}
+
 @media screen and(min-width: 480px) {
   html {
     font-size: 62.5%;
@@ -1601,6 +1633,15 @@ body > footer {
 
     }
   }
+  .main {
+    & .tunnel {
+      & p.change-section {
+        &.two {
+          @include cncc;
+        }
+      }
+    }
+  }
 }
 
 @media screen and(min-width: 530px) {
@@ -1620,6 +1661,18 @@ body > footer {
         }
         & .realisations {
           @include rwsas;
+        }
+      }
+    }
+  }
+}
+
+@media screen and(min-width: 610px) {
+  .main {
+    & .tunnel {
+      & p.change-section {
+        &.two {
+          @include rwsbc;
         }
       }
     }
