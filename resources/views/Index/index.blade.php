@@ -21,7 +21,7 @@
                 <div class="header-content">
                     <h1><span class="code">CODE</span><span class="heures">heures</span> - SITES WEB</h1>
                     <h2 class="presentation">
-                        Ma philosophie: proposer des tarifs/devis accréditifs en
+                        Ma philosophie: proposer des devis/tarifs accréditifs en
                         <strong><a href="#prestations">reportant les heures</a></strong> non consommées.
                     </h2>
                     <p>
@@ -48,12 +48,15 @@
         <div class="tunnel" id="prestations">
             <!-- section générale -->
             <section>
-                <h1><span>Tarifs & Devis accréditifs</span>
+                <h1><span>Devis & Tarifs accréditifs</span>
                     <small>pour une meilleure maîtrise de votre budget</small>
                 </h1>
                 <h2 class="fa fa-quote-left">Combien coûte un site web?</h2>
                 <div class="video">
-                    <iframe src="https://player.vimeo.com/video/97753338?color=ff9933&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    {{--<iframe src="https://player.vimeo.com/video/97753338?color=ff9933&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>--}}
+                    <video controls="controls" height="360" width="640" poster="./video/poster1.jpg" id="video1">
+                        <source src="./video/1.mp4" type="video/mp4" />
+                    </video>
                 </div>
                 <p>
                     Bonne question! <br/>
@@ -64,22 +67,23 @@
                 </p>
                 <ul class="circle">
                     <li>
-                        1200€ pour site vitrine simple sans intervention d'un graphiste
+                        Entre 500€ et 2500€ pour site vitrine simple
                     </li>
                     <li>
-                        4000€ pour un site e-commerce, une application web personnalisée, ou une application mobile simple
+                        Entre 2500€ et 5000€ (voir plus) pour un site e-commerce, une application web personnalisée, ou une application mobile simple
                     </li>
                     <li>
                         60€/heure pour toute intervention de mise à jour, maintenance
                     </li>
                 </ul>
                 <p>
+                    Tout dépend du degré de personnalisation.<br />
                     <strong>C'est un investisement relativement important mais incontournable et très rentable.</strong>
                 </p>
                 <p class="center">
                 <span class="solution">
                     Pour cela <a href="/" title="site codeheures.fr" class="a-invert">CODEheures.fr</a>
-                    vous offre une solution innovante et gagnant/gagnant: <strong>les tarifs et devis accréditif</strong>
+                    vous offre une solution innovante et gagnant/gagnant: <strong>les devis et tarifs accréditif</strong>
                 </span>
                 </p>
                 <p class="space-top change-section one-right"><a href="#" class="btn-yellow2-invert next" data-from="0" data-to="1">Tarifs et Devis accréditifs <i class="fa fa-arrow-circle-o-right"></i></a></p>

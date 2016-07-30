@@ -33,6 +33,7 @@ class QuotationController extends Controller
     public function __construct(Guard $auth, Mailer $mailer, InvoiceTools $invoiceTools) {
         $this->middleware('auth');
         $this->middleware('haveNewQuotation');
+        $this->middleware('isEmailConfirmed');
         $this->middleware('fullProfile', ['only' => ['customerIndex', 'order', 'refuse', 'pdf']]);
         $this->middleware('admin', ['except' => ['customerIndex', 'order', 'refuse', 'orderPost', 'showPdf']]);
         $this->auth = $auth;

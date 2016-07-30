@@ -330,6 +330,18 @@ $(function() {
         });
     }
 
+    //retur to poster at the end of video
+    var $videos=document.getElementsByTagName('video');
+    if($videos.length) {
+        for(var $i = 0; $i < $videos.length ; $i++) {
+            $videos[$i].addEventListener("ended", resetVideo, false);
+            function resetVideo() {
+                this.load();
+            }
+        }
+    }
+
+
 
     /*****************************************************************************************************/
     /*                                              SELECT 2                                             */

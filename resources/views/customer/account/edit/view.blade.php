@@ -1,3 +1,8 @@
+@if(!$user->confirmed)
+    <nav class="quotation-get-pdf">
+        <p><a href="{{ route('email.resendToken') }}"><i class="ion-archive"></i>Renvoyer le lien de confimation de l'email</a></p>
+    </nav>
+@endif
 <div class="form-title">
     <p>Mes informations</p>
 </div>

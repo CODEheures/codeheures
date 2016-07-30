@@ -34,5 +34,6 @@ class Kernel extends HttpKernel
         'haveNewQuotation' => \App\Http\Middleware\HaveNewQuotation::class,
         'fullProfile' => \App\Http\Middleware\FullProfile::class,
         'isNotOauth' => \App\Http\Middleware\IsNotOauth::class,
+        'isEmailConfirmed' => \App\Http\Middleware\IsEmailConfirmed::class,
     ];
 }

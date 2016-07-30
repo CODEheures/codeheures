@@ -142,6 +142,9 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function() {
 
     //Account confirmation
     Route::get('account-confirm/{id}/{token}', ['as' => 'account.confirm', 'uses' => 'AuthController@accountConfirm']);
+
+    //Email resend confirmation
+    Route::get('email/resendToken', ['as' => 'email.resendToken', 'uses' => 'AuthController@resendToken']);
 });
 
 // Password reset link request routes...

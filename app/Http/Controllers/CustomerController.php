@@ -50,6 +50,7 @@ class CustomerController extends Controller
     public function __construct(Mailer $mailer, Guard $auth, InvoiceTools $invoiceTools) {
         $this->middleware('auth');
         $this->middleware('haveNewQuotation');
+        $this->middleware('isEmailConfirmed', ['only' => ['saleChoice', 'saleRecapitulation']]);
         $this->middleware('fullProfile', ['only' => ['saleChoice', 'saleRecapitulation']]);
         $this->middleware('admin', ['only' => ['testPdf']]);
         $this->mailer = $mailer;

@@ -47,7 +47,7 @@ class AuthController extends Controller
      */
     public function __construct(Mailer $mailer)
     {
-        $this->middleware('guest', ['except' => ['getLogout', 'accountConfirm']]);
+        $this->middleware('guest', ['except' => ['getLogout', 'accountConfirm', 'resendToken']]);
         $this->mailer = $mailer;
     }
 
@@ -84,7 +84,7 @@ class AuthController extends Controller
         $user->save();
         $this->addAdresses($user);
 
-        $this->setNewToken($user, $this->mailer);
+        self::setNewToken($user, $this->mailer);
 
         return $user;
     }
@@ -106,11 +106,23 @@ class AuthController extends Controller
         $user->confirmation_token = $token;
         $user->save();
 
+        self::sendToken($user, $mailer);
+    }
+
+    public static function sendToken($user, Mailer $mailer) {
         //Envoi du mail de confirmation
-       $mailer->send(['text' => 'emails.account.text-confirm', 'html' => 'emails.account.html-confirm'],compact('user'), function($message) use($user){
+        $mailer->send(['text' => 'emails.account.text-confirm', 'html' => 'emails.account.html-confirm'],compact('user'), function($message) use($user){
             $message->to($user->email);
             $message->subject('Confirmez votre compte ' . env('APP_NAME'));
         });
+    }
+
+    public function resendToken(){
+        $user = auth()->user();
+        if(!$user->confirmed) {
+            self::sendToken($user, $this->mailer);
+        }
+        return redirect()->back()->with('info','Le lien de confirmation de votre email vous a été renvoyé');
     }
 
     public function accountConfirm($id, $token){
