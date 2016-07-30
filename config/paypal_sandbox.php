@@ -1,8 +1,8 @@
 <?php
 return array(
     // set your paypal credential
-    'client_id' => 'AQBBrRMEbQGRk0AnLqqbN95-6CcjJ2yKvfE9OooTTn6hsB_Atp7QKfZTQhb0QJl7wJF2JfajyhbTHx9x',
-    'secret' => 'EIpSSwesXONYqVyUOJj8er6ayyyepc995WGM3emGCdlYh95h8j7K2wyP5xBp0suL6_cFZAB7PdrBguVJ',
+    'client_id' => env('PAYPAL_CLIENT_ID_SANDBOX'),
+    'secret' => env('PAYPAL_KEY_SANDBOX'),
     /**
      * SDK configuration
      */
