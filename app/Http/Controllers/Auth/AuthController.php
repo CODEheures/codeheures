@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Address;
 use App\User;
-use Exception;
 use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Validator;
@@ -243,7 +242,7 @@ class AuthController extends Controller
     {
         try {
             $user = Socialite::driver($provider)->user();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return redirect(route('login'));
         }
 
@@ -306,7 +305,7 @@ class AuthController extends Controller
                 $this->addAdresses($newUser);
                 $this->isNewOauthUser = true;
                 return $newUser;
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 return redirect(route('login'))->with('error', 'une erreur est survenue pendant votre inscription. Merci de contacter l\'administrateur du site');
             }
         } else {

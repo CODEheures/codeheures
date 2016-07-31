@@ -68,6 +68,10 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany('App\Quotation');
     }
 
+    public function sms() {
+        return $this->hasMany('App\Sms');
+    }
+
     public function validPuchases() {
         $purchases = Purchase::where('user_id', '=', $this->id)
             ->where(function($query) {

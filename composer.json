@@ -13,7 +13,9 @@
         "mikehaertl/phpwkhtmltopdf": "^2.2",
         "mpdf/mpdf": "^6.1",
         "paypal/rest-api-sdk-php": "*",
-        "Laravel/socialite": "^2.0"
+        "Laravel/socialite": "^2.0",
+        "smsapi.com/php-client": "1.4.*",
+        "ovh/ovh": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -64,7 +64,7 @@ class AdminController extends Controller
         try {
             // envoi d'un message
             $sms->send("Hello World 1");
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             // le monde n'est pas parfait, il y aura
             // peut-être des erreurs.
             echo "Erreur sur envoi de SMS: (".$e->getCode().") ".$e->getMessage();

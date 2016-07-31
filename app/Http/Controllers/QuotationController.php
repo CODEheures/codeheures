@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Common\InvoiceTools;
+use App\Common\SmsSender;
 use App\Common\SmsFreeMobile;
 use App\Http\Requests\QuotationRequest;
 use App\LineQuote;
@@ -184,9 +185,14 @@ class QuotationController extends Controller
                         $quotation->sms_code = $randomSMSConfirmCode;
                         $quotation->sms_validity = Carbon::now();
                         $quotation->sms_tentatives = 0;
-                        $quotation->save();
-                        $this->sms('Votre code de confirmation est: ' . $randomSMSConfirmCode);
-                        $request->session()->flash('status', 'Vous allez recevoir un SMS avec un code de confirmation valable pendant 15minutes à renseigner en bas de cette page');
+                        try {
+                            $this->sms('Votre code de confirmation est: ' . $randomSMSConfirmCode, $this->auth->user()->phone);
+                            $quotation->save();
+                            $request->session()->flash('status', 'Vous allez recevoir un SMS avec un code de confirmation valable pendant 15minutes à renseigner en bas de cette page');
+                        } catch (\Exception $e) {
+                            return redirect()->back()->withErrors("SMS Error: " . $e);
+                        }
+
                     } else {
                         $error = 'Nombre de tentatives atteint. Attendre ' . $quotation->getLeftTimeCodeValidity() .
                             'secondes avant génération et envoi d\'un nouveau code';
@@ -490,14 +496,12 @@ class QuotationController extends Controller
         return $totalPrice;
     }
 
-    private function sms($message){
-        $sms = new SmsFreeMobile();
-        $sms->setKey(env('FREE_SMS_PASS'))
-            ->setUser(env('FREE_SMS_USER'));
+    private function sms($message, $destinataire){
         try {
-            $sms->send($message);
-        } catch (Exception $e) {
-            echo "Erreur sur envoi de SMS: (".$e->getCode().") ".$e->getMessage();
+            $sms = new SmsSender($message, $destinataire);
+            $sms->send();
+        } catch (\Exception $e) {
+            throw new \Exception($e);
         }
     }
 }

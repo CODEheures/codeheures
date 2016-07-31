@@ -19,6 +19,8 @@ class SmsFreeMobile
     public function __construct()
     {
         $this->_curl = curl_init();
+        env('FREE_SMS_USER') ? $this->_user = env('FREE_SMS_USER'): null;
+        env('FREE_SMS_PASS') ? $this->_key = env('FREE_SMS_PASS'): null;
         curl_setopt($this->_curl, CURLOPT_SSL_VERIFYPEER, false);
     }
 
@@ -32,7 +34,7 @@ class SmsFreeMobile
      * @param string $msg
      * @throws \Exception
      */
-    public function send($msg)
+    public function send($msg, $dest=null)
     {
         $msg = trim($msg);
         if (!$this->_user || !$this->_key || empty($msg)) {
@@ -52,7 +54,7 @@ class SmsFreeMobile
             }
             throw new \Exception($message, $code);
         }
-        return $this;
+        return [',,200'];
     }
 
     /**
