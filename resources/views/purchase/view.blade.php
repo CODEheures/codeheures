@@ -8,7 +8,7 @@
             <p><a href="{{ route('invoice.get', ['type' => 'isSold', 'origin' => 'purchase','origin_id' => $purchase->id]) }}"><i class="ion-archive"></i>Télécharger la facture</a></p>
         </nav>
         @else
-            @if(count($purchase->quotation->invoices)>0)
+            @if($purchase->quotation && count($purchase->quotation->invoices)>0)
                 <nav class="purchase-get-invoice-pdf"><p>
                 @foreach($purchase->quotation->invoices as $invoice)
                     @if($invoice->isDown)

@@ -53,10 +53,10 @@
                 </h1>
                 <h2 class="fa fa-quote-left">Combien coûte un site web?</h2>
                 <div class="video">
-                    {{--<iframe src="https://player.vimeo.com/video/97753338?color=ff9933&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>--}}
-                    <video controls="controls" height="360" width="640" poster="./video/poster1.jpg" id="video1">
-                        <source src="./video/1.mp4" type="video/mp4" />
-                    </video>
+                    {{--<video controls="controls" height="360" width="640" poster="./video/poster1.jpg" id="video1">--}}
+                        {{--<source src="./video/1.mp4" type="video/mp4" />--}}
+                    {{--</video>--}}
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/XGerQywUCSo?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <p>
                     Bonne question! <br/>
@@ -93,7 +93,10 @@
             <section>
                 <h2 class="fa fa-quote-left">Qu'est-ce que le devis accréditif?</h2>
                 <div class="video">
-                    <iframe src="https://player.vimeo.com/video/97675496?color=ff9933&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    {{--<video controls="controls" height="360" width="640" poster="./video/poster2.jpg" id="video1">--}}
+                        {{--<source src="./video/2.mp4" type="video/mp4" />--}}
+                    {{--</video>--}}
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/WE1g_r5FoXk?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <h3>Création de site web: un devis accréditif qui vous offre des heures de maintenance</h3>
                 <article class="cards">
@@ -230,7 +233,10 @@
             <section>
                 <h2 class="fa fa-quote-left">Qu'est-ce que le tarif accréditif?</h2>
                 <div class="video">
-                    <iframe src="https://player.vimeo.com/video/97742868?color=ff9933&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    {{--<video controls="controls" height="360" width="640" poster="./video/poster3.jpg" id="video1">--}}
+                        {{--<source src="./video/3.mp4" type="video/mp4" />--}}
+                    {{--</video>--}}
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/1PHwD6XBkTg?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <h3>Maintenance site web: reportez vos heures non consommées</h3>
                 <article>
