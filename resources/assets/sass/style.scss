@@ -18,6 +18,7 @@ $h1_height: 1.47;
 $font1: "Open sans", sans-serif;
 $font2 : Arvo, sans-serif;
 $font3 : Flamenco, sans-serif;
+$font4 : Lato, sans-serif;
 
 /*
 *********reset css *******
@@ -47,7 +48,7 @@ html {
 }
 
 body {
-  font-family: 'open sans', sans-serif;
+  font-family: $font1;
   font-size: 1.8rem;
   line-height: 1.24;
   background: url('images/bg3.png') repeat fixed;
@@ -478,6 +479,33 @@ body > header {
         @include rncc;
         text-align: center;
         margin: 1rem 0;
+      }
+
+      & div.info {
+        @include cnfsc;
+        width: auto;
+        font-family: $font1;
+        font-weight: 300;
+        background-color: rgba(255,255,255,0.1);
+        border-radius: 0.75rem;
+        border: 0.1rem solid rgba(255,255,255,0.8);
+        padding: 1rem 4rem;
+        & div.clock-down {
+          @include rncfs;
+          & div.part {
+            @include cnfsfs;
+            font-size: 4rem;
+            &:not(:last-of-type) {
+              margin-right: 2rem;
+            }
+            & span {
+              width: 100%;
+              font-size: 2rem;
+              border-top: 0.1rem solid white;
+              text-align: left;
+            }
+          }
+        }
       }
     }
 
@@ -996,7 +1024,7 @@ body > header {
         & tfoot tr td {
           text-align: center;
           padding: 0.5rem;
-          font-family: 'open sans', sans-serif;
+          font-family: $font1;
           color: $color1;
           background-color: $color6;
           font-size: 1.2rem;

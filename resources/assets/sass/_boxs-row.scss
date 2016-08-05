@@ -172,6 +172,14 @@
   justify-content: center;
   align-items: flex-end;
 }
+
+@mixin rncfs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+}
 /*--------------------------------------------------*/
 /*                REVERSE ROW                       */
 /*--------------------------------------------------*/

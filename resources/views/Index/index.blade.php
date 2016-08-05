@@ -20,6 +20,7 @@
             <div class="container">
                 <div class="header-content">
                     <h1><span class="code">CODE</span><span class="heures">heures</span> - SITES WEB</h1>
+                    <div class="info">Démarrage dans:<div class="clock-down"></div></div>
                     <h2 class="presentation">
                         Ma philosophie: proposer des devis/tarifs BackTimes en
                         <strong><a href="#prestations">reportant les heures</a></strong> non consommées.
@@ -440,5 +441,6 @@
 
 @section('script')
     @parent
+    @include('plugins.countdown.scripts')
     @include('plugins.twentytwenty.scripts')
 @endsection
