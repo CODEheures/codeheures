@@ -206,4 +206,35 @@ class Quotation extends Model
         return false;
     }
 
+    public function totalPrice($tva=false) {
+        $totalPrice = 0;
+        foreach($this->lineQuotes as $lineQuote){
+            if ($tva) {
+                $totalPrice += $lineQuote->totalPriceTTC();
+            } else {
+                $totalPrice += $lineQuote->totalPriceHt();
+            }
+        }
+        return (int) $totalPrice;
+    }
+
+    public function remise() {
+        $totalRemise = 0;
+        foreach($this->lineQuotes as $lineQuote){
+            $totalRemise += $lineQuote->remise();
+        }
+        return (int) $totalRemise;
+    }
+
+    public function totalDownPercent($tva=false) {
+        $totalDownPercent = 0;
+        foreach($this->lineQuotes as $lineQuote){
+            if ($tva) {
+                $totalDownPercent += $lineQuote->totalPriceTTC()*$this->downPercentPayment;
+            } else {
+                $totalDownPercent += $lineQuote->totalPriceHt()*$this->downPercentPayment;
+            }
+        }
+        return (int) ($totalDownPercent/100);
+    }
 }

@@ -54,11 +54,7 @@ class QuotationController extends Controller
     {
         $quotations = Quotation::where('isArchived', '=', 'false')->orderBy('created_at', 'DESC')->get();
         $quotations->load('lineQuotes');
-        $totalPrice = [];
-        foreach($quotations as $quotation){
-            $totalPrice[$quotation->id] = $this->totalPrice($quotation);
-        }
-        return view('admin.quotation.index', compact('quotations', 'totalPrice'));
+        return view('admin.quotation.index', compact('quotations'));
     }
 
     /**
@@ -70,15 +66,11 @@ class QuotationController extends Controller
     {
         $quotations = Quotation::where('user_id', '=', $this->auth->user()->id)->where('isPublished', '=', true)->where('isRefused', '=', false)->where('isArchived', '=', false)->where('validity', '>=', Carbon::today()->format('Y-m-d'))->get();
         $quotations->load('lineQuotes');
-        $totalPrices = [];
-        $totalTvas = [];
         foreach($quotations as $quotation){
-            $totalPrices[$quotation->id] = $this->totalPrice($quotation);
-            $totalTvas[$quotation->id] = $this->totalPrice($quotation, true);
             $quotation->isViewed = true;
             $quotation->save();
-    }
-        return view('customer.quotation.index', compact('quotations', 'totalPrices', 'totalTvas'));
+        }
+        return view('customer.quotation.index', compact('quotations'));
     }
 
     /**
@@ -89,9 +81,9 @@ class QuotationController extends Controller
         $this->_postName = '-quotation';
         $this->_ext = '.pdf';
         if($user->email != env('DEMO_USER_MAIL')) {
-            $this->_storage = storage_path() . '/pdf/quotation/';
+            $this->_storage = storage_path() . env('STORAGE_QUOTATION');
         } else {
-            $this->_storage = storage_path() . '/pdf/demo_quotation/';
+            $this->_storage = storage_path() . env('STORAGE_QUOTATION_DEMO');
         }
         $fileName = $this->_storage . $quotation->id . $this->_postName . $this->_ext;
         return $fileName;
@@ -102,17 +94,15 @@ class QuotationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    private function pdf(Quotation $quotation)
+    private function pdf(Quotation $quotation, $force=false)
     {
         $fileName = $this->getFileName($quotation);
-        if(!file_exists($fileName)) {
+        if(!file_exists($fileName) || $force) {
             $quotation->load('lineQuotes');
             $quotation->load('user');
-            $totalPrice = $this->totalPrice($quotation);
-            $totalTva = $this->totalPrice($quotation, true);
             $isPdf = true;
 
-            $content = view('pdf.quotation.index', compact('quotation', 'totalPrice', 'totalTva', 'isPdf'))->__toString();
+            $content = view('pdf.quotation.index', compact('quotation', 'isPdf'))->__toString();
             $header = view('pdf.header.view', compact('quotation'))->__toString();
             $footer = view('pdf.footer.view')->__toString();
             $css = file_get_contents(asset('css/pdf.min.css'));
@@ -174,9 +164,6 @@ class QuotationController extends Controller
         $quotation = Quotation::findOrFail($id);
         if($quotation->user_id == $this->auth->user()->id) {
             $quotation->load('lineQuotes');
-            $totalPrice = $this->totalPrice($quotation);
-            $totalTva = $this->totalPrice($quotation, true);
-
             if ($quotation->canPurchase()) {
                 if (!$quotation->hasValidCode()) {
                     if ($quotation->canHaveNewCode()) {
@@ -200,7 +187,7 @@ class QuotationController extends Controller
                     }
 
                 }
-                return view('customer.quotation.order', compact('quotation', 'totalPrice', 'totalTva'));
+                return view('customer.quotation.order', compact('quotation'));
             }
         } else {
             return redirect(route('home'));
@@ -234,7 +221,7 @@ class QuotationController extends Controller
                 }
 
                 //creation du pdf
-                $fileName = $this->pdf($quotation);
+                $fileName = $this->pdf($quotation, true);
 
                 //Envoi du mail
                 $this->sendMail($quotation, $fileName, false);
@@ -313,7 +300,6 @@ class QuotationController extends Controller
         $quotation = Quotation::findOrFail($id);
         $quotation->load('lineQuotes');
         $quotation->load('invoices');
-        $totalPrice = $this->totalPrice($quotation);
         $userList = UserList::userList();
         $productList = Product::where('isObsolete', '=', false)
             ->where(function($query) use($quotation) {
@@ -324,7 +310,7 @@ class QuotationController extends Controller
 
         $newLineQuote = new LineQuote();
         $listEnumDiscountType = $this->getEnumValues('line_quotes', 'discount_type');
-        return view('admin.quotation.edit', compact('quotation', 'lineQuoteId', 'userList', 'productList', 'newLineQuote', 'listEnumDiscountType', 'totalPrice'));
+        return view('admin.quotation.edit', compact('quotation', 'lineQuoteId', 'userList', 'productList', 'newLineQuote', 'listEnumDiscountType'));
     }
 
     /**
@@ -479,22 +465,6 @@ class QuotationController extends Controller
         }
     }
 
-
-    private function totalPrice(Quotation $quotation, $tva=false){
-        $totalPrice = 0;
-        foreach($quotation->lineQuotes as $lineQuote){
-            if($lineQuote->discount > 0) {
-                if($lineQuote->discount_type == 'percent') {
-                    $totalPrice += $lineQuote->product->price*$lineQuote->quantity*(1-$lineQuote->discount/100)*($tva ? $lineQuote->product->tva/100 :1);
-                } else {
-                    $totalPrice += ($lineQuote->product->price*$lineQuote->quantity -$lineQuote->discount)*($tva ? $lineQuote->product->tva/100 :1);
-                }
-            } else {
-                $totalPrice += $lineQuote->product->price*$lineQuote->quantity*($tva ? $lineQuote->product->tva/100 :1);
-            }
-        }
-        return $totalPrice;
-    }
 
     private function sms($message, $destinataire){
         try {

@@ -31,9 +31,9 @@
                     @endif
                 </div>
                 <div class="price-price">
-                    {{ round(($product->price + round(($product->price*$product->tva/100),2)),2) }}<span class="money">€</span>
+                    {{ \App\Common\FormatManager::price($product->priceTTC()) }}<span class="money">€</span>
                 </div>
-                <p class="tva">prix TTC TVA = {{ round(($product->price*$product->tva/100),2) }}€</p>
+                <p class="tva">prix TTC TVA = {{ \App\Common\FormatManager::price($product->tvaPrice()) }}€</p>
                 <p class="tva">TVA non applicable, article 293B du code général des impôts.</p>
                 @if(auth()->user()->is_admin_valid && auth()->user()->quota >= $totalLeft+$product->value)
                 <label for="product-id{{$product->id}}" class="btn-yellow2-invert">
@@ -49,7 +49,7 @@
             @endif
             @if(auth()->user()->is_admin_valid && auth()->user()->quota < $totalLeft+$product->value)
                 <div class="disable">
-                    <p>Votre plafond de crédit est déjà atteind :-)</p>
+                    <p>Votre plafond de crédit serait dépassé :-)</p>
                 </div>
             @endif
         </div>

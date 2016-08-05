@@ -19,7 +19,7 @@
                     @include('admin.quotation.progressicon.view')
                 </div>
                 <div class="price">
-                    <span class="total-price-quotation">{{ $totalPrice[$quotation->id] }} €</span>
+                    <span class="total-price-quotation">{{ \App\Common\FormatManager::price($quotation->totalPrice(true)) }} €</span>
                 </div>
             </div>
         @endforeach

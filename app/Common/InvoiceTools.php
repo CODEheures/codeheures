@@ -92,10 +92,10 @@ class InvoiceTools
         $this->_ext = '.pdf';
 
         if(!$this->_isDemoUser) {
-            $this->_storage = storage_path() . '/pdf/invoice/';
+            $this->_storage = storage_path() . env('STORAGE_INVOICE');
             $fileName = $this->_storage . $this->_invoice->number . $this->_postName . $this->_ext;
         } else {
-            $this->_storage = storage_path() . '/pdf/demo_invoice/';
+            $this->_storage = storage_path() . env('STORAGE_INVOICE_DEMO');
             $fileName = $this->_storage . $this->_invoice->demo_number . $this->_postName . $this->_ext;
         }
         return $fileName;
@@ -260,13 +260,11 @@ class InvoiceTools
         if($this->_origin == 'quotation') {
             if ($this->_entity->isOrdered) {
                 $this->_entity->load('lineQuotes');
-                $totalPrice = $this->totalPrice($this->_entity);
-                $totalTva = $this->totalPrice($this->_entity, true);
                 if($this->_type == 'isDown') {
                     if($this->_entity->haveDownPercent()) {
                         try {
                             $entity = $this->_entity;
-                            $content = view('pdf.quotation.invoice.index', compact('entity', 'totalPrice', 'totalTva', 'invoice'))->__toString();
+                            $content = view('pdf.quotation.invoice.index', compact('entity', 'invoice'))->__toString();
                             $header = view('pdf.header.view', compact('entity', 'invoice'))->__toString();
                             $footer = view('pdf.footer.view')->__toString();
                             $this->createPdf($content, $header, $footer, $fileName);
@@ -329,23 +327,6 @@ class InvoiceTools
             return true;
         }
         return false;
-    }
-
-
-    private function totalPrice(Quotation $quotation, $tva=false){
-        $totalPrice = 0;
-        foreach($quotation->lineQuotes as $lineQuote){
-            if($lineQuote->discount > 0) {
-                if($lineQuote->discount_type == 'percent') {
-                    $totalPrice += $lineQuote->product->price*$lineQuote->quantity*(1-$lineQuote->discount/100)*($tva ? $lineQuote->product->tva/100 :1);
-                } else {
-                    $totalPrice += ($lineQuote->product->price*$lineQuote->quantity -$lineQuote->discount)*($tva ? $lineQuote->product->tva/100 :1);
-                }
-            } else {
-                $totalPrice += $lineQuote->product->price*$lineQuote->quantity*($tva ? $lineQuote->product->tva/100 :1);
-            }
-        }
-        return $totalPrice;
     }
 
     private function createPdf($content, $header, $footer, $fileName) {

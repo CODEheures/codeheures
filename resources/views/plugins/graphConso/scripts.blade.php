@@ -15,6 +15,7 @@
                 "type": "serial",
                 "categoryField": "category",
                 "dataDateFormat": "YYYY-MM-DD",
+                "mouseWheelZoomEnabled": true,
                 "startDuration": 1,
                 "theme": "light",
                 "export": {

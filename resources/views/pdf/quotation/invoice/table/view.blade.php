@@ -13,10 +13,10 @@
     @foreach($entity->lineQuotes as $lineQuote)
         <tr>
             <td>{{ $lineQuote->product->description }}</td>
-            <td>{{ number_format($lineQuote->product->price,2,'.',' ') }}€</td>
+            <td>{{ \App\Common\FormatManager::price($lineQuote->product->price) }}€</td>
             <td>{{ $lineQuote->quantity }}</td>
             <td>
-                @if($lineQuote->discount > 0)-{{ $lineQuote->discount }}
+                @if($lineQuote->discount > 0)-{{ \App\Common\FormatManager::price($lineQuote->discount) }}
                 @if($lineQuote->discount_type == 'percent')
                     %
                 @else
@@ -26,17 +26,8 @@
                     -
                 @endif
             </td>
-            <td>{{ $lineQuote->product->tva }}%</td>
-            @if($lineQuote->discount > 0 && $lineQuote->discount_type == 'devise')
-                <td>{{ number_format(($lineQuote->product->price*$lineQuote->quantity - $lineQuote->discount)+
-                        ($lineQuote->product->price*$lineQuote->quantity - $lineQuote->discount)*$lineQuote->product->tva/100,2,'.',' ')}}€</td>
-            @elseif($lineQuote->discount > 0 && $lineQuote->discount_type == 'percent')
-                <td>{{ number_format(($lineQuote->product->price*$lineQuote->quantity*(1-$lineQuote->discount/100))+
-                        ($lineQuote->product->price*$lineQuote->quantity*(1-$lineQuote->discount/100))*$lineQuote->product->tva/100,2,'.',' ')}}€</td>
-            @else
-                <td>{{ number_format(($lineQuote->product->price*$lineQuote->quantity)+
-                         ($lineQuote->product->price*$lineQuote->quantity)*$lineQuote->product->tva/100,2,'.',' ')}}€</td>
-            @endif
+            <td>{{ \App\Common\FormatManager::price($lineQuote->tvaPercent()) }}%</td>
+            <td>{{ \App\Common\FormatManager::price($lineQuote->totalPriceTTC()) }}€</td>
         </tr>
     @endforeach
     </tbody>

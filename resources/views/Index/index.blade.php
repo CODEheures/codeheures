@@ -21,13 +21,13 @@
                 <div class="header-content">
                     <h1><span class="code">CODE</span><span class="heures">heures</span> - SITES WEB</h1>
                     <h2 class="presentation">
-                        Ma philosophie: proposer des devis/tarifs accréditifs en
+                        Ma philosophie: proposer des devis/tarifs BackTimes en
                         <strong><a href="#prestations">reportant les heures</a></strong> non consommées.
                     </h2>
                     <p>
                         Programmeur WEB indépendant, j'interviens pour toute création et maintenance de site web et
                         d'application mobile. <a href="{{ route('demo') }}" class="">Visitez l'espace client
-                            de démonstration</a> et retrouvez-y tous les tarifs accréditifs.
+                            de démonstration</a> et retrouvez-y tous les tarifs BackTimes.
                     </p>
                     <div class="header-btn">
                         <a href="#prestations" class="btn-transparent">En savoir plus</a>
@@ -48,7 +48,7 @@
         <div class="tunnel" id="prestations">
             <!-- section générale -->
             <section>
-                <h1><span>Devis & Tarifs accréditifs</span>
+                <h1><span>Devis & Tarifs BackTimes</span>
                     <small>pour une meilleure maîtrise de votre budget</small>
                 </h1>
                 <h2 class="fa fa-quote-left">Combien coûte un site web?</h2>
@@ -56,21 +56,21 @@
                     {{--<video controls="controls" height="360" width="640" poster="./video/poster1.jpg" id="video1">--}}
                         {{--<source src="./video/1.mp4" type="video/mp4" />--}}
                     {{--</video>--}}
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/XGerQywUCSo?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/yi07gkcQcRQ?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <p>
                     Bonne question! <br/>
                     Saviez-vous qu'un bon webmaster ne code que 30% de son temps? Le reste du temps etant consacré à la
                     formation, la veille technologique, mais aussi à la gestion, à la prospection, à la relation
                     client...<br/>
-                    <br/>Alors soyons bref, et concis. Comptez à partir de:
+                    <br/>Alors soyons bref, et concis. Comptez:
                 </p>
                 <ul class="circle">
                     <li>
-                        Entre 500€ et 2500€ pour site vitrine simple
+                        Entre 1000€ et 2500€ pour site vitrine simple
                     </li>
                     <li>
-                        Entre 2500€ et 5000€ (voir plus) pour un site e-commerce, une application web personnalisée, ou une application mobile simple
+                        Entre 2500€ et 8000€ (voir plus) pour un site e-commerce, une application web personnalisée, ou une application mobile simple
                     </li>
                     <li>
                         60€/heure pour toute intervention de mise à jour, maintenance
@@ -83,22 +83,22 @@
                 <p class="center">
                 <span class="solution">
                     Pour cela <a href="/" title="site codeheures.fr" class="a-invert">CODEheures.fr</a>
-                    vous offre une solution innovante et gagnant/gagnant: <strong>les devis et tarifs accréditif</strong>
+                    vous offre une solution innovante : <strong>les devis et tarifs BackTime</strong>
                 </span>
                 </p>
-                <p class="space-top change-section one-right"><a href="#" class="btn-yellow2-invert next" data-from="0" data-to="1">Tarifs et Devis accréditifs <i class="fa fa-arrow-circle-o-right"></i></a></p>
+                <p class="space-top change-section one-right"><a href="#" class="btn-yellow2-invert next" data-from="0" data-to="1">Tarifs et Devis BackTimes <i class="fa fa-arrow-circle-o-right"></i></a></p>
             </section>
 
             <!-- section integration -->
             <section>
-                <h2 class="fa fa-quote-left">Qu'est-ce que le devis accréditif?</h2>
+                <h2 class="fa fa-quote-left">Qu'est-ce que le devis BackTime?</h2>
                 <div class="video">
                     {{--<video controls="controls" height="360" width="640" poster="./video/poster2.jpg" id="video1">--}}
                         {{--<source src="./video/2.mp4" type="video/mp4" />--}}
                     {{--</video>--}}
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/WE1g_r5FoXk?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/bLGRLSz-uxU?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
                 </div>
-                <h3>Création de site web: un devis accréditif qui vous offre des heures de maintenance</h3>
+                <h3>Création de site web: un devis BackTime qui vous offre des heures de maintenance</h3>
                 <article class="cards">
                     <div class="card">
                         <img src="{{ asset('css/images/card1.png') }}" alt="mon image">
@@ -135,7 +135,7 @@
                         <div class="clear"></div>
                     </aside>
                 </article>
-                <h4 class="space-top">Le principe du devis accréditif se base sur 2 constats</h4>
+                <h4 class="space-top">Le principe du devis BackTime se base sur 2 constats</h4>
                 <ol class="argument">
                     <li>
                         Il est très difficile (pour ne pas dire impossible) de jauger au plus juste l'expression d'un besoin
@@ -149,7 +149,7 @@
                 <p class="center">
                 <span class="solution">
                     <a href="/" title="site codeheures.fr" class="a-invert">CODEheures.fr</a>
-                    répond à ces 2 constats par un mécanisme innovant: <strong>le devis accréditif</strong></span>
+                    répond à ces 2 constats par un mécanisme innovant: <strong>le devis BackTime</strong></span>
                 </p>
                 <h4>Un devis en 2 sections + une transformation des heures non consommées en maintenance</h4>
                 <ol class="argument">
@@ -225,18 +225,18 @@
                 </footer>
                 <p class="space-top change-section two">
                     <a href="#" class="btn-yellow2-invert back" data-from="1" data-to="0"><i class="fa fa-arrow-circle-o-left"></i>Combien coûte un site web</a>
-                    <a href="#" class="btn-yellow2-invert next" data-from="1" data-to="2">Tarifs accréditifs<i class="fa fa-arrow-circle-o-right"></i></a>
+                    <a href="#" class="btn-yellow2-invert next" data-from="1" data-to="2">Tarifs BackTimes<i class="fa fa-arrow-circle-o-right"></i></a>
                 </p>
             </section>
 
             <!-- section webmastering -->
             <section>
-                <h2 class="fa fa-quote-left">Qu'est-ce que le tarif accréditif?</h2>
+                <h2 class="fa fa-quote-left">Qu'est-ce que le tarif BackTime?</h2>
                 <div class="video">
                     {{--<video controls="controls" height="360" width="640" poster="./video/poster3.jpg" id="video1">--}}
                         {{--<source src="./video/3.mp4" type="video/mp4" />--}}
                     {{--</video>--}}
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/1PHwD6XBkTg?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/zG2iwIMkYRM?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <h3>Maintenance site web: reportez vos heures non consommées</h3>
                 <article>
@@ -274,7 +274,7 @@
                         </ul>
                     </aside>
                 </article>
-                <h4 class="space-top">Le principe du tarif accréditif se base sur 2 priorités</h4>
+                <h4 class="space-top">Le principe du tarif BackTime se base sur 2 priorités</h4>
                 <ol class="argument">
                     <li>
                         Il est inutile et improductif de fournir un devis pour toutes les prestations récurrentes.
@@ -287,7 +287,7 @@
                 <p class="center">
                 <span class="solution">
                     <a href="/" title="site codeheures.fr" class="a-invert">CODEheures.fr</a>
-                    répond à ces 2 priorités par un mécanisme innovant: <strong>le tarif accréditif</strong></span>
+                    répond à ces 2 priorités par un mécanisme innovant: <strong>le tarif BackTime</strong></span>
                 </p>
                 <h4>Une grille de temps pré-établis + un report des minutes</h4>
                 <ol class="argument">
@@ -408,7 +408,7 @@
                     </p>
                 </footer>
                 <p class="space-top change-section one-left">
-                    <a href="#" class="btn-yellow2-invert back" data-from="2" data-to="1"><i class="fa fa-arrow-circle-o-left"></i>Devis accréditifs</a>
+                    <a href="#" class="btn-yellow2-invert back" data-from="2" data-to="1"><i class="fa fa-arrow-circle-o-left"></i>Devis BackTimes</a>
                 </p>
             </section>
         </div>

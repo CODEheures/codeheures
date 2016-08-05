@@ -23,6 +23,9 @@ class LineQuoteRequest extends Request
      */
     public function rules()
     {
+
+        $this->sanitize();
+
         return [
             'quotation_id' => 'required|numeric|exists:quotations,id',
             'product_id' => 'required|numeric|exists:products,id',
@@ -30,5 +33,11 @@ class LineQuoteRequest extends Request
             'discount' => 'numeric',
             'discount_type' =>'required'
         ];
+    }
+
+    public function sanitize() {
+        $input = $this->all();
+        $input['discount'] = (int) round(($input['discount']*100),0);
+        $this->replace($input);
     }
 }

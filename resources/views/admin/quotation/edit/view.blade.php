@@ -1,7 +1,7 @@
 <div class="quotation-title">
     <h2><i class="ion-ios-information-outline"></i>Informations devis</h2>
     <div class="btn-fake total-price-quotation-info">
-        Coût total: {{ $totalPrice }}€
+        Coût total: {{ \App\Common\FormatManager::price($quotation->totalPrice()) }}€
     </div>
 </div>
 @include('admin.quotation.progressbar.view')
@@ -77,19 +77,13 @@
                 {!! Form::hidden('product_id', $lineQuote->product->id) !!}
                 <tr>
                     <td>{{ $lineQuote->product->description }}</td>
-                    <td>{{ $lineQuote->product->price }}</td>
+                    <td>{{ \App\Common\FormatManager::price($lineQuote->product->price) }}</td>
                     <td>{!! Form::input('number', 'quantity', null, ['class' => 'form-control'. ($quotation->canEdit() == false ? ' form-disable':''), 'placeholder' => '3']) !!}</td>
                     <td>
-                        {!! Form::input('number', 'discount', null, ['class' => 'form-control'. ($quotation->canEdit() == false ? ' form-disable':''), 'placeholder' => '20']) !!}
+                        {!! Form::input('number', 'discount', \App\Common\FormatManager::inputPrice($lineQuote->discount), ['class' => 'form-control'. ($quotation->canEdit() == false ? ' form-disable':''), 'placeholder' => '20', 'step' => 0.01]) !!}
                         {!! Form::select('discount_type', $listEnumDiscountType , null, ['class' => 'form-control'. ($quotation->canEdit() == false ? ' form-disable':'')]) !!}
                     </td>
-                    @if($lineQuote->discount > 0 && $lineQuote->discount_type == 'devise')
-                        <td>{{ $lineQuote->product->price*$lineQuote->quantity - $lineQuote->discount}}</td>
-                    @elseif($lineQuote->discount > 0 && $lineQuote->discount_type == 'percent')
-                        <td>{{ $lineQuote->product->price*$lineQuote->quantity*(1-$lineQuote->discount/100)}}</td>
-                    @else
-                        <td>{{ $lineQuote->product->price*$lineQuote->quantity }}</td>
-                    @endif
+                    <td>{{ \App\Common\FormatManager::price($lineQuote->totalPriceHt()) }}</td>
                     <td>
                         @if(!$quotation->canEdit())
                             <input type="submit" class="btn-disable" value="Modifier" />
@@ -102,10 +96,10 @@
             @else
             <tr>
                 <td>{{ $lineQuote->product->description }}</td>
-                <td>{{ $lineQuote->product->price }}</td>
+                <td>{{ \App\Common\FormatManager::price($lineQuote->product->price) }}</td>
                 <td>{{ $lineQuote->quantity }}</td>
                 <td>
-                    @if($lineQuote->discount > 0)-{{ $lineQuote->discount }}
+                    @if($lineQuote->discount > 0)-{{ \App\Common\FormatManager::price($lineQuote->discount) }}
                         @if($lineQuote->discount_type == 'percent')
                             %
                         @else
@@ -115,13 +109,7 @@
                         -
                     @endif
                 </td>
-                @if($lineQuote->discount > 0 && $lineQuote->discount_type == 'devise')
-                    <td>{{ $lineQuote->product->price*$lineQuote->quantity - $lineQuote->discount}}</td>
-                @elseif($lineQuote->discount > 0 && $lineQuote->discount_type == 'percent')
-                    <td>{{ $lineQuote->product->price*$lineQuote->quantity*(1-$lineQuote->discount/100)}}</td>
-                @else
-                    <td>{{ $lineQuote->product->price*$lineQuote->quantity }}</td>
-                @endif
+                <td>{{ \App\Common\FormatManager::price($lineQuote->totalPriceHt()) }}</td>
                 <td>
                     @if(!$quotation->canEdit())
                     @else

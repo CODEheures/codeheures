@@ -1,7 +1,5 @@
 @if(count($quotations)>0)
     @foreach($quotations as $quotation)
-        <?php $totalPrice = $totalPrices[$quotation->id];
-         $totalTva = $totalTvas[$quotation->id] ?>
         <div class="quotation-title">
             <div class="left">
                 <h2><i class="ion-ios-information-outline"></i>Devis N°{{ $quotation->getPublicNumber() }}:</h2>
@@ -35,7 +33,7 @@
             </div>
             <div class="price-quotation">
                 <div class="btn-fake total-price-quotation-info">
-                    Coût total: {{ number_format($totalPrice+$totalTva,2,'.',' ') }}€
+                    Coût total: {{ \App\Common\FormatManager::price($quotation->totalPrice(true)) }}€
                 </div>
             </div>
         </div>

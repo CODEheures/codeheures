@@ -19,9 +19,9 @@
             <p>Votre achat</p>
             <ul class="disc">
                 <li><span class="data-type">Désignation:</span>{{ $product->description }} </li>
-                <li><span class="data-type">Prix HT</span>{{ number_format($product->price,2,',',' ') }} €</li>
-                <li><span class="data-type">TVA ({{ $product->tva }}%)</span>{{ number_format(round(($product->price*$product->tva),2),2,',',' ') }} €</li>
-                <li><span class="data-type">Prix TTC</span>{{ number_format(round(($product->price + round(($product->price*$product->tva),2)),2),2,',',' ') }} €</li>
+                <li><span class="data-type">Prix HT</span>{{ \App\Common\FormatManager::price($product->price) }} €</li>
+                <li><span class="data-type">TVA ({{ $product->tva }}%)</span>{{ \App\Common\FormatManager::price($product->tvaPrice()) }} €</li>
+                <li><span class="data-type">Prix TTC</span>{{ \App\Common\FormatManager::price($product->priceTTC()) }} €</li>
             </ul>
         </div>
     </div>

@@ -33,7 +33,7 @@ Route::group(['prefix' => 'customer'], function() {
     Route::post('/quotation/{id}/order', ['as' => 'customer.quotation.order.post', 'uses' => 'QuotationController@orderPost'])->where(['id'=>'[0-9]+']);
 
     //customer prestations
-    Route::get('/prestation/pdf', ['as' => 'customer.prestation.pdf', 'uses' => 'PrestationController@pdf']);
+    Route::get('/prestations/pdf', ['as' => 'customer.prestation.pdf', 'uses' => 'PrestationController@pdf']);
 
     //customer prestations
     Route::get('/test/pdf', ['as' => 'test.pdf', 'uses' => 'CustomerController@testPdf']);
@@ -103,7 +103,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/prestation/{id}', ['as' => 'admin.prestation.show', 'uses' => 'PrestationController@show'])->where(['id'=>'[0-9]+']);
 
     //reset DemoUser
-    Route::get('/resetDemo', 'AdminController@resetDemo');
+    Route::get('/resetDemo', ['as' => 'admin.resetDemo', 'uses'=>'AdminController@resetDemo']);
 });
 
 //Purchases routes

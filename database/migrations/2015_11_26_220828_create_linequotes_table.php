@@ -18,7 +18,7 @@ class CreateLinequotesTable extends Migration
             $table->integer('quotation_id')->unsigned()->index();
             $table->integer('product_id')->unsigned()->index();
             $table->integer('quantity')->unsigned();
-            $table->float('discount')->unsigned();
+            $table->integer('discount')->unsigned();
             $table->enum('discount_type', ['devise', 'percent']);
         });
     }

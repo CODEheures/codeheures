@@ -13,7 +13,7 @@ class AddTvaToProduct extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->float('tva',4,2)->unsigned()->default(0);
+            $table->integer('tva')->unsigned()->default(0);
         });
     }
 

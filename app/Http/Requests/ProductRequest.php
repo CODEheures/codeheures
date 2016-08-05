@@ -23,9 +23,20 @@ class ProductRequest extends Request
      */
     public function rules()
     {
+        $this->sanitize();
+
         return [
             'description' =>'required|min:3',
-            'url' => 'url'
+            'url' => 'url',
+            'price' => 'numeric',
+            'tva' => 'numeric',
         ];
+    }
+
+    public function sanitize() {
+        $input = $this->all();
+        $input['price'] = (int)  ($input['price']*100);
+        $input['tva'] = (int)  ($input['tva']*100);
+        $this->replace($input);
     }
 }

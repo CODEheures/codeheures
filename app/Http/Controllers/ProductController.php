@@ -59,7 +59,7 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        Product::create($request->only(['description', 'type', 'unit', 'value', 'price', 'reservedForUserId', 'url']));
+        Product::create($request->only(['description', 'type', 'unit', 'value', 'price', 'tva', 'reservedForUserId', 'url']));
         return redirect(route('admin.product.index'))->with('success', 'Modifications enregistrées');
     }
 
@@ -103,7 +103,7 @@ class ProductController extends Controller
         //dd($request->all());
         $product = Product::findOrFail($id);
         if($product->canEdit()){
-            $product->update($request->only(['description', 'type', 'unit', 'value', 'price', 'reservedForUserId', 'url']));
+            $product->update($request->only(['description', 'type', 'unit', 'value', 'price', 'tva', 'reservedForUserId', 'url']));
             return redirect()->back()->with('success', 'Modifications enregistrées');
         }
 

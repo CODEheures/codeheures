@@ -136,7 +136,7 @@ class LineQuoteController extends Controller
     }
 
     private function redirectNonConformDiscount($request){
-        if($request->discount > 100 && $request->discount_type == 'percent') {
+        if($request->discount > 10000 && $request->discount_type == 'percent') {
             return 'Reduction supérieur à 100% impossible';
         }
 

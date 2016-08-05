@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Common\DataGraph;
+use App\Common\FormatManager;
 use App\Common\InvoiceTools;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Requests\PhoneAccountRequest;
@@ -202,7 +203,9 @@ class CustomerController extends Controller
         $purchase->quantity = 1;
         $purchase->save();
 
-        $price = round(($product->price + round(($product->price*$product->tva/100),2)),2);
+        $tva = round($product->tvaPrice()/100,2);
+
+        $price = round($product->priceTTC()/100,2);
 
 
         $payerInfo = new PayerInfo();
@@ -234,7 +237,7 @@ class CustomerController extends Controller
         $item_1->setName($product->description) // item name
             ->setCurrency('EUR')
             ->setQuantity(1)
-            ->setTax(round(($product->tva*$product->price/100),2))
+            ->setTax($tva)
             ->setPrice($price); // unit price
 
         // add item to list

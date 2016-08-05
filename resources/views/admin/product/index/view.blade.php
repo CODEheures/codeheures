@@ -5,6 +5,7 @@
                 <tr>
                     <th>Désignation</th>
                     <th>Utilisé</th>
+                    <th>Obsolète</th>
                     <th>Réserve à</th>
                     <th>Prix</th>
                 </tr>
@@ -21,12 +22,15 @@
                         @include('admin.product.isUsedIcon.view')
                     </td>
                     <td>
+                        @include('admin.product.isObsoleteIcon.view')
+                    </td>
+                    <td>
                         @if($product->reservedForUserId && $product->reservedForUserId > 0)
                             {{ $product->getReservedUser()->name }}
                         @endif
                     </td>
                     <td>
-                        <span class="product-price">{{ $product->price }} €</span>
+                        <span class="product-price">{{ \App\Common\FormatManager::price($product->price) }} €</span>
                     </td>
                 </tr>
             @endforeach

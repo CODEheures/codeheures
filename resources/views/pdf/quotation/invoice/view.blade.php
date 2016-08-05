@@ -11,7 +11,7 @@
             <p class="ttc">Total TTC</p>
         </div>
         <div class="quotation-total-value">
-            <p class="ttc">{{ number_format($totalPrice+$totalTva,2,'.',' ') }}€</p>
+            <p class="ttc">{{ \App\Common\FormatManager::price($entity->totalPrice(true)) }}€</p>
         </div>
     </div>
     @if($invoice->isDown || ($invoice->isSold && $haveDown))
@@ -23,9 +23,9 @@
                 <p class="ttc">Acompte TTC</p>
             </div>
             <div class="quotation-total-value">
-                <p class="ht">{{ number_format($totalPrice*$entity->downPercentPayment/100,2,'.',' ') }} €</p>
-                <p class="tva">{{ number_format($totalTva*$entity->downPercentPayment/100,2,'.',' ') }} €</p>
-                <p class="ttc">{{ number_format($totalPrice*$entity->downPercentPayment/100+$totalTva*$entity->downPercentPayment/100,2,'.',' ') }} €</p>
+                <p class="ht">{{ \App\Common\FormatManager::price($entity->totalDownPercent()) }} €</p>
+                <p class="tva">{{ \App\Common\FormatManager::price($entity->totalDownPercent(true)-$entity->totalDownPercent()) }} €</p>
+                <p class="ttc">{{ \App\Common\FormatManager::price($entity->totalDownPercent(true)) }} €</p>
             </div>
         </div>
     @endif
@@ -39,9 +39,9 @@
             </div>
 
             <div class="quotation-total-value">
-                <p class="ht">@if($haveDown) {{ number_format($totalPrice - $totalPrice*$entity->downPercentPayment/100,2,'.',' ') }} @else {{ number_format($totalPrice,2,'.',' ') }} @endif €</p>
-                <p class="tva">@if($haveDown) {{ number_format($totalTva - $totalTva*$entity->downPercentPayment/100,2,'.',' ') }} @else {{ number_format($totalTva,2,'.',' ') }} @endif €</p>
-                <p class="ttc">@if($haveDown) {{ number_format($totalPrice - $totalPrice*$entity->downPercentPayment/100+ $totalTva - $totalTva*$entity->downPercentPayment/100,2,'.',' ') }} @else {{ number_format($totalPrice+$totalTva,2,'.',' ') }} @endif €</p>
+                <p class="ht">@if($haveDown) {{ \App\Common\FormatManager::price($entity->totalPrice()-$entity->totalDownPercent()) }} @else {{ \App\Common\FormatManager::price($entity->totalPrice()) }} @endif €</p>
+                <p class="tva">@if($haveDown) {{ \App\Common\FormatManager::price($entity->totalPrice(true)-$entity->totalPrice()-($entity->totalDownPercent(true)-$entity->totalDownPercent())) }} @else {{ \App\Common\FormatManager::price($entity->totalPrice(true)-$entity->totalPrice()) }} @endif €</p>
+                <p class="ttc">@if($haveDown) {{ \App\Common\FormatManager::price($entity->totalPrice(true)-$entity->totalDownPercent(true)) }} @else {{ \App\Common\FormatManager::price($entity->totalPrice(true)) }} @endif €</p>
             </div>
         </div>
     @endif

@@ -1,7 +1,7 @@
 <div class="product-title">
     <h2><i class="ion-ios-information-outline"></i>Informations produit</h2>
     <div class="btn-fake total-price-quotation-info">
-        Prix HT: {{ $product->price }}€
+        Prix HT: {{ \App\Common\FormatManager::price($product->price) }}€
     </div>
 </div>
 <div class="product">
@@ -78,7 +78,7 @@
 
         <div class="form-group">
             <span class="input input--fumi">
-                {!! Form::input('number','price', null, ['class' => 'input__field input__field--fumi'. ($product->canEdit() == false ? ' form-disable':''), 'min' => 0, 'step' => '0.01']) !!}
+                {!! Form::input('number','price', \App\Common\FormatManager::inputPrice($product->price), ['class' => 'input__field input__field--fumi'. ($product->canEdit() == false ? ' form-disable':''), 'min' => 0, 'step' => '0.01']) !!}
                 <label for="price" class="input__label input__label--fumi">
                     <i class="fa fa-fw fa-euro icon icon--fumi"></i>
                     <span class="input__label-content input__label-content--fumi">Prix HT</span>
@@ -88,7 +88,7 @@
 
         <div class="form-group">
             <span class="input input--fumi">
-                {!! Form::input('number','tva', null, ['class' => 'input__field input__field--fumi'. ($product->canEdit() == false ? ' form-disable':''), 'min' => 0, 'step' => 0.1]) !!}
+                {!! Form::input('number','tva', \App\Common\FormatManager::inputPrice($product->tva), ['class' => 'input__field input__field--fumi'. ($product->canEdit() == false ? ' form-disable':''), 'min' => 0, 'step' => 0.1]) !!}
                 <label for="tva" class="input__label input__label--fumi">
                     <i class="fa fa-fw fa-percent icon icon--fumi"></i>
                     <span class="input__label-content input__label-content--fumi">TVA</span>

@@ -64,6 +64,13 @@ Class ResetDemo
             $quotation->lineQuotes()->delete();
             $quotation->delete();
         }
+        //Effacement des fichiers pdf devis
+        $dir = storage_path() . env('STORAGE_QUOTATION_DEMO');
+        $this->delFiles($dir);
+        //Effacement des factures
+        $dir = storage_path() . env('STORAGE_INVOICE_DEMO');
+        $this->delFiles($dir);
+
         foreach($purchases as $purchase){
             foreach ($purchase->consommations as $consommation) {
                 $prestation = Prestation::where('id', $consommation->prestation_id);
@@ -77,6 +84,15 @@ Class ResetDemo
         $demoUser->delete();
         $products->delete();
         return null;
+    }
+
+    private function delFiles($dir) {
+        $files = scandir($dir);
+        foreach ($files as $file) {
+            if(substr($file, -4) == '.pdf'){
+                unlink($dir . $file);
+            }
+        }
     }
 
     private function createDatas($email, $name) {
@@ -118,7 +134,7 @@ Class ResetDemo
             'description' => '5 h de webmastering',
             'type' => 'time',
             'value' => 5,
-            'price' => 240,
+            'price' => 24000,
             'unit' => 'heure(s)',
             'reservedForUserId' => $user->id
         ]);
@@ -127,7 +143,7 @@ Class ResetDemo
             'description' => '150h de webmastering pour creation e-commerce selon cahier des charge founi',
             'type' => 'time',
             'value' => 150,
-            'price' => 4000,
+            'price' => 400000,
             'unit' => 'heure(s)',
             'reservedForUserId' => $user->id
         ]);
@@ -136,7 +152,7 @@ Class ResetDemo
            'description' => '1 theme baby kid store Prestashop',
             'type' => 'one_shot',
             'value' => 1,
-            'price' => 79.99,
+            'price' => 7999,
             'url' => 'http://addons.prestashop.com/demo/FO15619.html',
             'reservedForUserId' => $user->id
         ]);
@@ -145,7 +161,7 @@ Class ResetDemo
             'description' => '1 module Mercanet BNP prestashop',
             'type' => 'one_shot',
             'value' => 1,
-            'price' => 149.99,
+            'price' => 14999,
             'url' => 'http://addons.prestashop.com/fr/22144-bnp-paribas-mercanet-officiel.html',
             'reservedForUserId' => $user->id
         ]);
@@ -154,7 +170,7 @@ Class ResetDemo
             'description' => '1 module Paiement ATOS prestashop',
             'type' => 'one_shot',
             'value' => 1,
-            'price' => 199.99,
+            'price' => 19999,
             'url' => 'http://addons.prestashop.com/fr/1-sips-atos-worldine.html',
             'reservedForUserId' => $user->id
         ]);
@@ -315,7 +331,7 @@ Class ResetDemo
             'quotation_id' => $quotation2->id,
             'product_id' => $product4->id,
             'quantity' => 1,
-            'discount' => 2.5,
+            'discount' => 300,
             'discount_type' => 'percent'
         ]);
         $lineQuote4->created_at = Carbon::now()->subDays(11);

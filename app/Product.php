@@ -29,4 +29,12 @@ class Product extends Model
         $user = User::where('id', '=', $this->reservedForUserId)->first();
         return $user;
     }
+
+    public function tvaPrice() {
+        return (int) ($this->price*$this->tva/10000);
+    }
+
+    public function priceTTC() {
+        return (int) ($this->price + $this->tvaPrice());
+    }
 }
