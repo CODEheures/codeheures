@@ -55,10 +55,6 @@
                 <h2 class="fa fa-quote-left">Combien coûte un site web?</h2>
                 <div class="video">
                     <div id="yt0"></div>
-                    {{--<video controls="controls" height="360" width="640" poster="./video/poster1.jpg" id="video1">--}}
-                        {{--<source src="./video/1.mp4" type="video/mp4" />--}}
-                    {{--</video>--}}
-                    {{--<iframe width="560" height="315" src="https://www.youtube.com/embed/yi07gkcQcRQ?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>--}}
                 </div>
                 <p>
                     Bonne question! <br/>
@@ -96,10 +92,6 @@
                 <h2 class="fa fa-quote-left">Qu'est-ce que le devis BackTime?</h2>
                 <div class="video">
                     <div id="yt1"></div>
-                    {{--<video controls="controls" height="360" width="640" poster="./video/poster2.jpg" id="video1">--}}
-                        {{--<source src="./video/2.mp4" type="video/mp4" />--}}
-                    {{--</video>--}}
-                    {{--<iframe id="yt2" width="560" height="315" src="https://www.youtube.com/embed/bLGRLSz-uxU?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>--}}
                 </div>
                 <h3>Création de site web: un devis BackTime qui vous offre des heures de maintenance</h3>
                 <article class="cards">
@@ -215,21 +207,21 @@
                         </div>
                     </li>
                 </ul>
-                <footer>
-                    <p>
-                        Professionnels, associations, comité d'entreprise, chaque cas est unique et les technologies
-                        disponibles sont nombreuses. Il convient donc d'adapter la réponse à chaque demande. Pour en savoir
-                        plus visitez le "lab" CODEheures.
-                    </p>
-                    <p class="exit">
-                        <a href="{{ route('demo') }}" class="btn-yellow2">Espace client de démonstration & tarifs</a>
-                        <a href="{{ route('realisations') }}" class="btn-yellow2">Voir les réalisations</a>
-                    </p>
-                </footer>
                 <p class="space-top change-section two">
                     <a href="#" class="btn-yellow2-invert back" data-from="1" data-to="0"><i class="fa fa-arrow-circle-o-left"></i>Combien coûte un site web</a>
-                    <a href="#" class="btn-yellow2-invert next" data-from="1" data-to="2">Tarifs BackTimes<i class="fa fa-arrow-circle-o-right"></i></a>
+                    <a href="#" class="btn-yellow2-invert next" data-from="1" data-to="2">Tarifs<i class="fa fa-arrow-circle-o-right"></i></a>
                 </p>
+                {{--<footer>--}}
+                    {{--<p>--}}
+                        {{--Professionnels, associations, comité d'entreprise, chaque cas est unique et les technologies--}}
+                        {{--disponibles sont nombreuses. Il convient donc d'adapter la réponse à chaque demande. Pour en savoir--}}
+                        {{--plus visitez le "lab" CODEheures.--}}
+                    {{--</p>--}}
+                    {{--<p class="exit">--}}
+                        {{--<a href="{{ route('demo') }}" class="btn-yellow2">Espace client de démonstration & tarifs</a>--}}
+                        {{--<a href="{{ route('realisations') }}" class="btn-yellow2">Voir les réalisations</a>--}}
+                    {{--</p>--}}
+                {{--</footer>--}}
             </section>
 
             <!-- section webmastering -->
@@ -237,10 +229,6 @@
                 <h2 class="fa fa-quote-left">Qu'est-ce que le tarif BackTime?</h2>
                 <div class="video">
                     <div id="yt2"></div>
-                    {{--<video controls="controls" height="360" width="640" poster="./video/poster3.jpg" id="video1">--}}
-                        {{--<source src="./video/3.mp4" type="video/mp4" />--}}
-                    {{--</video>--}}
-                    {{--<iframe width="560" height="315" src="https://www.youtube.com/embed/zG2iwIMkYRM?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>--}}
                 </div>
                 <h3>Maintenance site web: reportez vos heures non consommées</h3>
                 <article>
@@ -400,6 +388,9 @@
                         </div>
                     </li>
                 </ul>
+                <p class="space-top change-section one-left">
+                    <a href="#" class="btn-yellow2-invert back" data-from="2" data-to="1"><i class="fa fa-arrow-circle-o-left"></i>Devis BackTimes</a>
+                </p>
                 <footer>
                     <p>
                         Que vos besoins en webmastering soient ponctuels ou récurrents, vous bénéficierez d'un système de
@@ -411,9 +402,6 @@
                         <a href="{{ route('realisations') }}" class="btn-yellow2">Voir les réalisations</a>
                     </p>
                 </footer>
-                <p class="space-top change-section one-left">
-                    <a href="#" class="btn-yellow2-invert back" data-from="2" data-to="1"><i class="fa fa-arrow-circle-o-left"></i>Devis BackTimes</a>
-                </p>
             </section>
         </div>
 
