@@ -60,7 +60,7 @@ class CustomerController extends Controller
 
 
         // setup PayPal api context
-        if(auth()->check() && auth()->user()->email != env('DEMO_USER_MAIL')){
+        if(auth()->check() && !auth()->user()->isDemo){
             $paypal_conf = config('paypal');
         } else {
             $paypal_conf = config('paypal_sandbox');
@@ -89,7 +89,7 @@ class CustomerController extends Controller
         $user = $this->auth->user();
 
         $withInfoPlus = '';
-        if($user->email != $updates['email'] && $user->email ==  env('DEMO_USER_MAIL')) {
+        if($user->email != $updates['email'] && $user->isDemo) {
             $updates['email'] = env('DEMO_USER_MAIL');
             $withInfoPlus = '(l\'email du compte de demonstration n\'est pas modifiable)';
         }
@@ -150,7 +150,7 @@ class CustomerController extends Controller
     }
 
     public function customerDemoToRegister(){
-        if(auth()->user()->email == env('DEMO_USER_MAIL')){
+        if(auth()->user()->isDemo){
             auth()->logout();
             return redirect(route('register'));
         }

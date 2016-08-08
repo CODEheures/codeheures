@@ -76,7 +76,7 @@ class AdminController extends Controller
     public function resetDemo(){
         $resetClass = new ResetDemo();
         $resetClass->reset();
-        return redirect('/')->with('info', 'reset du compte démo effectué');
+        return redirect()->back()->with('info', 'reset du compte démo effectué');
     }
 
     public function updateCustomerQuota(UpdateCustomerQuotaRequest $request, $id) {

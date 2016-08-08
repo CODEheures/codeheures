@@ -34,7 +34,7 @@
             {!! Form::hidden('email', auth()->user()->email, ['class' => 'form-control form-disable']) !!}
             {!! Form::hidden('phone', '0'.auth()->user()->phone, ['class' => 'form-control form-disable']) !!}
 
-        <div class="form-group" @if(auth()->user()->email == env('DEMO_USER_MAIL')) data-intro="rentrez ici le code SMS
+        <div class="form-group" @if(auth()->user()->isDemo) data-intro="rentrez ici le code SMS
             et le compte client est mis à jour. Ainsi CODEheures peut commencer à travailler sur votre projet de suite
             en attendant le retour courrier signé"
              data-step="2" data-position="bottom" @endif>

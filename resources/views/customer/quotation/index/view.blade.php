@@ -8,7 +8,7 @@
                         <a href="{{ route('customer.quotation.order', ['id' => $quotation->id]) }}"
                            title="En cliquant, vous pourrez lire les conditions du présent devis et vous recevrez
                            un sms avec un code de confirmation à utiliser à la prochaine étape pour signer ce devis"
-                           class="btn-yellow2" @if(auth()->user()->email == env('DEMO_USER_MAIL') && $quotation==$quotations[0])
+                           class="btn-yellow2" @if(auth()->user()->isDemo && $quotation==$quotations[0])
                            data-intro="Vous pouvez signer numeriquement ce devis par SMS en recevant un code à confirmer
                            en page suivante. La version de demonstration ici présente ne vous engagera evidement
                            en rien si vous souhaitez tester, les données du devis n'etant pas valides"
@@ -22,7 +22,7 @@
                     <div class="refuse-quotation">
                         <a href="{{ route('customer.quotation.refuse', ['id' => $quotation->id]) }}"
                            title="En cliquant, vous refuserez definitivement à ce devis" class="btn-transparent"
-                           @if(auth()->user()->email == env('DEMO_USER_MAIL') && $quotation==$quotations[0])
+                           @if(auth()->user()->isDemo && $quotation==$quotations[0])
                            data-intro="Un clic ici et votre devis est définitivement refusé"
                            data-step="4" data-position="bottom"  @endif
                         >
@@ -38,11 +38,11 @@
             </div>
         </div>
         <nav class="quotation-get-pdf">
-            <p @if(auth()->user()->email == env('DEMO_USER_MAIL') && $quotation==$quotations[0]) data-intro="Vous pouvez le télécharger ici en PDF pour le consulter"
+            <p @if(auth()->user()->isDemo && $quotation==$quotations[0]) data-intro="Vous pouvez le télécharger ici en PDF pour le consulter"
                data-step="2" data-position="bottom"  @endif
             ><a href="{{ route('customer.quotation.showPdf', ['id' => $quotation->id]) }}"><i class="ion-archive"></i>Télécharger ce devis</a></p>
         </nav>
-        <div class="quotation" @if(auth()->user()->email == env('DEMO_USER_MAIL') && $quotation==$quotations[0]) data-intro="Voici le détail de votre devis"
+        <div class="quotation" @if(auth()->user()->isDemo && $quotation==$quotations[0]) data-intro="Voici le détail de votre devis"
              data-step="1" data-position="bottom"  @endif>
             @if($quotation->canPurchase())
             <p>

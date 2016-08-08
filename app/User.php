@@ -46,7 +46,9 @@ class User extends Model implements AuthenticatableContract,
         'linkedin_id',
         'avatar',
         'quota',
-        'is_admin_valid'
+        'is_admin_valid',
+        'isDemo',
+        'ip'
     ];
 
     /**

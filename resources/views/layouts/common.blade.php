@@ -12,7 +12,7 @@
 @section('main')
     <div class="main container" id="main">
         <!-- section formulaire -->
-        @if(auth()->check() && auth()->user()->email == env('DEMO_USER_MAIL'))
+        @if(auth()->check() && auth()->user()->isDemo)
         <a href="{{ route('customer.demoToRegister') }}" class="registration"><i class="ion-person-add"></i>S'inscrire sur {{ env('APP_NAME') }}</a>
         @endif
         @if(auth()->check() && auth()->user()->role == 'admin')

@@ -105,6 +105,7 @@ Class ResetDemo
         $user = User::create([
             'name' => $name,
             'email' => $email,
+            'isDemo' => true,
             'password' => bcrypt($passwd),
             'lastName' => $fake->lastName,
             'firstName' => $fake->firstName,

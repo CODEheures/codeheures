@@ -1,7 +1,7 @@
 @extends('layouts.pdf')
 
 @section('user.action')
-    @if(auth()->user()->email == env('DEMO_USER_MAIL'))
+    @if(auth()->user()->isDemo)
         <div class="specimen"><img src="{{ asset('css/images/specimen.png') }}"></div>
     @endif
     <div class="seller">

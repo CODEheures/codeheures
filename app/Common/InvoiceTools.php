@@ -69,7 +69,7 @@ class InvoiceTools
             $this->_entity = $entity;
             $this->_entity->load('user');
             $this->_entity_user = $entity->user;
-            if($this->_entity_user->email != env('DEMO_USER_MAIL')) {
+            if(!$this->_entity_user->isDemo) {
                 $this->_isDemoUser = false;
             } else {
                 $this->_isDemoUser = true;

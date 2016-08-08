@@ -80,7 +80,7 @@ class QuotationController extends Controller
         $user = $quotation->user;
         $this->_postName = '-quotation';
         $this->_ext = '.pdf';
-        if($user->email != env('DEMO_USER_MAIL')) {
+        if(!$user->isDemo) {
             $this->_storage = storage_path() . env('STORAGE_QUOTATION');
         } else {
             $this->_storage = storage_path() . env('STORAGE_QUOTATION_DEMO');

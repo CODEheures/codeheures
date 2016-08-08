@@ -42,7 +42,7 @@
         </a>
     </div>
 </article>
-@if(auth()->user()->email == env('DEMO_USER_MAIL'))
+@if(auth()->user()->isDemo)
 <article>
     <div class="payout">
         <p>
