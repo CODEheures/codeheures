@@ -54,10 +54,11 @@
                 </h1>
                 <h2 class="fa fa-quote-left">Combien coûte un site web?</h2>
                 <div class="video">
+                    <div id="yt0"></div>
                     {{--<video controls="controls" height="360" width="640" poster="./video/poster1.jpg" id="video1">--}}
                         {{--<source src="./video/1.mp4" type="video/mp4" />--}}
                     {{--</video>--}}
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/yi07gkcQcRQ?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                    {{--<iframe width="560" height="315" src="https://www.youtube.com/embed/yi07gkcQcRQ?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>--}}
                 </div>
                 <p>
                     Bonne question! <br/>
@@ -94,10 +95,11 @@
             <section>
                 <h2 class="fa fa-quote-left">Qu'est-ce que le devis BackTime?</h2>
                 <div class="video">
+                    <div id="yt1"></div>
                     {{--<video controls="controls" height="360" width="640" poster="./video/poster2.jpg" id="video1">--}}
                         {{--<source src="./video/2.mp4" type="video/mp4" />--}}
                     {{--</video>--}}
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/bLGRLSz-uxU?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                    {{--<iframe id="yt2" width="560" height="315" src="https://www.youtube.com/embed/bLGRLSz-uxU?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>--}}
                 </div>
                 <h3>Création de site web: un devis BackTime qui vous offre des heures de maintenance</h3>
                 <article class="cards">
@@ -234,10 +236,11 @@
             <section>
                 <h2 class="fa fa-quote-left">Qu'est-ce que le tarif BackTime?</h2>
                 <div class="video">
+                    <div id="yt2"></div>
                     {{--<video controls="controls" height="360" width="640" poster="./video/poster3.jpg" id="video1">--}}
                         {{--<source src="./video/3.mp4" type="video/mp4" />--}}
                     {{--</video>--}}
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/zG2iwIMkYRM?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                    {{--<iframe width="560" height="315" src="https://www.youtube.com/embed/zG2iwIMkYRM?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>--}}
                 </div>
                 <h3>Maintenance site web: reportez vos heures non consommées</h3>
                 <article>
@@ -443,4 +446,5 @@
     @parent
     @include('plugins.countdown.scripts')
     @include('plugins.twentytwenty.scripts')
+    @include('plugins.youtube.scripts')
 @endsection

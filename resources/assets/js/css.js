@@ -448,5 +448,5 @@ $(function() {
             'doneLabel': 'Sortir'
         });
         $introJs.start();
-    });
+    })
 });

@@ -243,7 +243,7 @@ class AuthController extends Controller
         try {
             $user = Socialite::driver($provider)->user();
         } catch (\Exception $e) {
-            return redirect(route('login'));
+            return redirect(route('login'))->withErrors('Probleme de connexion avec ' . $provider);
         }
 
         $authUser = $this->findOrCreateUser($user, $provider);
