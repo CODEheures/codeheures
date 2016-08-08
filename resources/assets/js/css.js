@@ -98,6 +98,7 @@ $(function() {
 
 
     //GLOBAL
+    $('#main').css('min-height', 'calc(100vh - ' + $('footer').outerHeight() + 'px)');
     setHeightHeader();
     animLogo();
     if($hamburger.css('display') === 'block'){

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Common\DemoManager;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -35,15 +36,16 @@ class MainController extends Controller
         return redirect()->to(URL::previous() . "#contact")->with('success', 'Merci, votre mail est envoyé. Nous vous répondrons dans les plus brefs délais');
     }
 
-    public function demoCustomerSpace() {
-        $user = User::where('email', '=', env('DEMO_USER_MAIL'))->first();
+    public function demoCustomerSpace(Request $request) {
+        $demoManager = new DemoManager($request->ip());
+        $user = $demoManager->getUser();
         auth()->login($user);
 
-        $diff = 60 - Carbon::now()->minute;
+        $diff = env('DEMO_VALIDITY')-Carbon::now()->diffInMinutes($user->created_at);
 
         return redirect(route('customer.monitor.index'))
-            ->with('info', 'Bienvenue dans l\'espace client de démonstration.
-                Prochaine régération dans '. $diff . 'minute(s)');
+            ->with('info', 'Bienvenue dans l\'espace client de démonstration. Toutes les actions sont sans engagement et
+                ce compte fictif sera detruit dans '. $diff . 'minute(s)');
     }
 
     public function realisations() {

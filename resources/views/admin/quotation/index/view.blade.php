@@ -7,7 +7,7 @@
                         <i class="ion-minus-round"></i>
                         N°{{ $quotation->getPublicNumber() }}
                         <span class="quotation-date"> du {{ $quotation->created_at->formatLocalized('%d-%m-%Y') }}:</span>
-                        "{{ $quotation->user->name }}"
+                        "{{ $quotation->user->email }}"
                     </a>
                     <ul>
                         @foreach($quotation->lineQuotes as $lineQuote)

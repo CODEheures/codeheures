@@ -4,7 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Common\ResetDemo;
+use App\Common\DemoManager;
 
 class Kernel extends ConsoleKernel
 {
@@ -26,8 +26,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function(){
-            $reset = new ResetDemo();
-            $reset->reset();
-        })->hourly();
+            $reset = new DemoManager();
+            $reset->destroyDatas();
+        })->everyMinute();
     }
 }

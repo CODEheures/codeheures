@@ -9,93 +9,106 @@ use App\Purchase;
 use App\Quotation;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory;
 use App\Address;
 use App\Prestation;
 use App\Common\InvoiceTools;
 
-Class ResetDemo
+Class DemoManager
 {
+    private $ip;
     private $email;
     private $name;
-    private $demouser;
+    private $nbDemoUsers;
 
-    public function __construct() {
-        $this->email = env('DEMO_USER_MAIL');
+    public function __construct($ip=null) {
+        $this->ip = $ip;
+        $this->nbDemoUsers = $this->countExistDemo();
+        $this->email = 'demo' . $this->nbDemoUsers . env('DEMO_USER_MAIL');
         $this->name = env('DEMO_USER_NAME');
     }
 
-    public function reset() {
-        $reset = false;
-        $this->demouser = User::where('email','=', $this->email)->first();
+    /**
+     * @return User
+     */
+    private function isExistDemo() {
+        $user = User::where('isDemo', '=', true)->where('ip', '=', $this->ip)->first();
+        return $user;
+    }
 
-        //Condition du reset
-        //1°) Si les devis ont été signés ou refusé
-        foreach($this->demouser->quotations as $quotation){
-            if($quotation->isOrdered || $quotation->isRefused){
-                $reset = true;
-            }
-        }
+    public function countExistDemo() {
+        $user = User::where('isDemo', '=', true)->count();
+        return $user;
+    }
 
-        //2°) si le user a un numero de tel dans son profil
-        if($this->demouser->phone){
-            $reset = true;
-        }
-
-        //3°) Si un achat a été fait
-        if(count($this->demouser->purchases)>1){
-            $reset = true;
-        }
-
-        if($reset){
-            $this->destroyDatas($this->demouser);
-            $this->createDatas($this->email, $this->name);
+    /**
+     * @return User
+     */
+    public function getUser() {
+        $user = $this->isExistDemo();
+        if($user){
+            return $user;
+        } else {
+            $user = $this->createDatas();
+            return $user;
         }
     }
 
-    private function destroyDatas($demoUser) {
-        $quotations = $demoUser->quotations;
-        $purchases = $demoUser->purchases;
-        $products = Product::where('reservedForUserId', '=', $demoUser->id);
-        //deleting all
-        foreach($quotations as $quotation){
-            $quotation->invoices()->delete();
-            $quotation->lineQuotes()->delete();
-            $quotation->delete();
-        }
-        //Effacement des fichiers pdf devis
-        $dir = storage_path() . env('STORAGE_QUOTATION_DEMO');
-        $this->delFiles($dir);
-        //Effacement des factures
-        $dir = storage_path() . env('STORAGE_INVOICE_DEMO');
-        $this->delFiles($dir);
+    public function destroyDatas($force=false) {
+        $demoUsers = User::where('isDemo', '=', true)->get();
+        foreach ($demoUsers as $demoUser){
+            if(Carbon::now()->diffInMinutes($demoUser->created_at) >= env('DEMO_VALIDITY') || (auth()->check() &&  auth()->user()->role == 'admin' && $force == true)){
+                $quotations = $demoUser->quotations;
+                $purchases = $demoUser->purchases;
+                $products = Product::where('reservedForUserId', '=', $demoUser->id);
+                //deleting all
+                foreach($quotations as $quotation){
+                    //Effacement des fichiers pdf devis
+                    $dir = storage_path() . env('STORAGE_QUOTATION_DEMO');
+                    $file = $dir . $quotation->id . '-quotation.pdf';
+                    $this->delFiles($file);
 
-        foreach($purchases as $purchase){
-            foreach ($purchase->consommations as $consommation) {
-                $prestation = Prestation::where('id', $consommation->prestation_id);
-                if($prestation){ $prestation->delete(); }
+                    foreach ($quotation->invoices as $invoice){
+                        //Effacement des factures
+                        $dir = storage_path() . env('STORAGE_INVOICE_DEMO');
+                        $invoice->isDown ? $type = 'isDown' : $type = 'isSold';
+                        $file = $dir . $invoice->demo_number . '-invoice-' . $type .'.pdf';
+                        $this->delFiles($file);
+                    }
+                    $quotation->invoices()->delete();
+                    $quotation->lineQuotes()->delete();
+                    $quotation->delete();
+                }
+
+                foreach($purchases as $purchase){
+                    foreach ($purchase->consommations as $consommation) {
+                        $prestation = Prestation::where('id', $consommation->prestation_id);
+                        if($prestation){ $prestation->delete(); }
+                    }
+                    $purchase->consommations()->delete();
+                    $purchase->invoices()->delete();
+                    $purchase->delete();
+                }
+                $demoUser->addresses()->delete();
+                $demoUser->delete();
+                $products->delete();
+                return null;
             }
-            $purchase->consommations()->delete();
-            $purchase->invoices()->delete();
-            $purchase->delete();
         }
-        $demoUser->addresses()->delete();
-        $demoUser->delete();
-        $products->delete();
-        return null;
     }
 
-    private function delFiles($dir) {
-        $files = scandir($dir);
-        foreach ($files as $file) {
-            if(substr($file, -4) == '.pdf'){
-                unlink($dir . $file);
-            }
+    private function delFiles($file) {
+        if(file_exists($file)){
+            unlink($file);
         }
     }
 
-    private function createDatas($email, $name) {
+    /**
+     * @return User
+     */
+    private function createDatas() {
 
         //creation de l'utilisateur
         $fake = Factory::create('fr_FR');
@@ -103,9 +116,10 @@ Class ResetDemo
         $passwd = str_random(14);
 
         $user = User::create([
-            'name' => $name,
-            'email' => $email,
+            'name' => $this->name,
+            'email' => $this->email,
             'isDemo' => true,
+            'ip' => $this->ip,
             'password' => bcrypt($passwd),
             'lastName' => $fake->lastName,
             'firstName' => $fake->firstName,
@@ -361,6 +375,6 @@ Class ResetDemo
         $lineQuote5->updated_at = Carbon::now()->subDays(11);
         $lineQuote5->save();
 
-        return null;
+        return $user;
     }
 }

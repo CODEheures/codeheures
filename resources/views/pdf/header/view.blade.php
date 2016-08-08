@@ -12,7 +12,7 @@
     </p>
     @elseif(isset($invoice) && $invoice->origin == 'quotation')
         <p class="navbar-menu">
-            <a href="{{ route('customer.quotation.order', ['id' => $invoice->quotation_id]) }}">@if($invoice->isDown) Facture d'acompte @else Facture de solde @endif n°{{ $invoice->number }} selon Devis n°{{ $invoice->quotation->getPublicNumber() }}<br/>
+            <a href="{{ route('customer.quotation.showPdf', ['id' => $invoice->quotation_id]) }}">@if($invoice->isDown) Facture d'acompte @else Facture de solde @endif n°{{ $invoice->number }} selon Devis n°{{ $invoice->quotation->getPublicNumber() }}<br/>
                 <span class="created_at">Emise le {{ \Carbon\Carbon::now()->formatLocalized('%A %e %B %Y') }}</span></a>
         </p>
     @elseif(isset($invoice) && $invoice->origin == 'purchase')

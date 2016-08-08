@@ -55,7 +55,7 @@ body {
   background-color: $bg-color1;
   color: $color3;
   min-height: 100vh;
-  @include cnsbc;
+  @include cnfsc;
 }
 
 a {

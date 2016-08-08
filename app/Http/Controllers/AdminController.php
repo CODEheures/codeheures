@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Common\ResetDemo;
+use App\Common\DemoManager;
 use App\Consommation;
 
 use App\User;
@@ -74,9 +74,9 @@ class AdminController extends Controller
     }
 
     public function resetDemo(){
-        $resetClass = new ResetDemo();
-        $resetClass->reset();
-        return redirect()->back()->with('info', 'reset du compte démo effectué');
+        $resetClass = new DemoManager();
+        $resetClass->destroyDatas(true);
+        return redirect(route('admin.monitor.index'))->with('info', 'reset des comptes démos effectué');
     }
 
     public function updateCustomerQuota(UpdateCustomerQuotaRequest $request, $id) {
