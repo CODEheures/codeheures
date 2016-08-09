@@ -282,7 +282,7 @@ class QuotationController extends Controller
         if($quotation->user_id == auth()->user()->id || auth()->user()->role == 'admin') {
             $fileName = $this->pdf($quotation);
             if ($fileName) {
-                return response(file_get_contents($fileName),false,stream_context_create(array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false))))
+                return response(file_get_contents($fileName,false,stream_context_create(array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false)))))
                     ->header('Content-Type', 'application/pdf');
             }
         }

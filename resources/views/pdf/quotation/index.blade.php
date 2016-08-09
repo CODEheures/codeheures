@@ -2,7 +2,7 @@
 
 @section('user.action')
     @if(auth()->user()->isDemo)
-        <div class="specimen"><img src="{{ asset('css/images/specimen.png') }}"></div>
+        <div class="specimen"><img src="./css/images/specimen.png"></div>
     @endif
     <div class="seller">
         <div class="from-seller">Designation du vendeur</div>
