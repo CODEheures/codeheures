@@ -21,6 +21,10 @@ class MainController extends Controller
         $this->mailer = $mailer;
     }
 
+    public function redirectHome() {
+        return redirect('/',301);
+    }
+
     public function index() {
         return view('Index.index');
     }

@@ -158,9 +158,7 @@ Route::group(['prefix' => 'password', 'namespace' => 'Auth'], function(){
 });
 
 //Redirection permanente
-Route::get('/home', function(){
-    return redirect(url('/'),301);
-});
+Route::get('/home', ['uses' => 'MainController@redirectHome']);
 
 //Tests Routes
 Route::group(['prefix' => 'test'], function() {
