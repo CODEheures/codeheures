@@ -1,1 +1,1 @@
-<link rel="stylesheet" type="text/css" href="./css/twentytwenty.min.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/twentytwenty.min.css') }}">

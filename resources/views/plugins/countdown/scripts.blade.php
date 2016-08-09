@@ -1,4 +1,4 @@
-<script type="text/javascript" src="/js/jquery.countdown.min.js"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.countdown.min.js') }}"></script>
 <script type="text/javascript">
     $(function() {
         $('.clock-down').countdown({
