@@ -105,7 +105,7 @@ class QuotationController extends Controller
             $content = view('pdf.quotation.index', compact('quotation', 'isPdf'))->__toString();
             $header = view('pdf.header.view', compact('quotation'))->__toString();
             $footer = view('pdf.footer.view')->__toString();
-            $css = file_get_contents(asset('css/pdf.min.css'));
+            $css = file_get_contents(asset('css/pdf.min.css'),false,stream_context_create(array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false))));
 
             $mpdf = new \mPDF();
 
@@ -282,7 +282,7 @@ class QuotationController extends Controller
         if($quotation->user_id == auth()->user()->id || auth()->user()->role == 'admin') {
             $fileName = $this->pdf($quotation);
             if ($fileName) {
-                return response(file_get_contents($fileName))
+                return response(file_get_contents($fileName),false,stream_context_create(array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false))))
                     ->header('Content-Type', 'application/pdf');
             }
         }

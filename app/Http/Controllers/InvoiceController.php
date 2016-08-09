@@ -29,7 +29,7 @@ class InvoiceController extends Controller
             if($existInvoice) {
                 $fileName = $invoiceTools->getFileName();
                 if(file_exists($fileName)){
-                    return response(file_get_contents($fileName))
+                    return response(file_get_contents($fileName,false,stream_context_create(array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false)))))
                         ->header('Content-Type', 'application/pdf');
                 } else {
                     return redirect()->back()->withErrors('Le fichier de cette facture n\'existe pas');
