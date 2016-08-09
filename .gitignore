@@ -3,6 +3,7 @@
 Homestead.yaml
 Homestead.json
 .env
+.env.prod
 /.idea
 /storage/pdf
 /public/video/*.mp4
