@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="">
     <meta name="author" content="CODEheures | Sylvain Gagnot">
+    <meta property="fb:app_id" content="15371656505019"/>
     <meta property="og:site_name" content="CODEheures"/>
     <meta property="og:title" content="Développeur WEB indépendant"/>
     <meta property="og:description" content="CODEheures propose une solution innovante: les Devis et Tarifs BackTime. Vos heures non consommées seront reportées."/>
