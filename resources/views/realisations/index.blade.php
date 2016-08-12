@@ -90,7 +90,7 @@
                     <p>Intégration d'une fiche produit et son menu en responsive design (mobile first). Technologie Flexbox.
                     </p>
                     <div class="link">
-                        <a target="_blank" href="http://unistra.codeheures.fr/lpatc17/integration/index.html" class="btn-yellow2-invert">Voir le site</a>
+                        <a target="_blank" href="http://ficheproduit.codeheures.fr" class="btn-yellow2-invert">Voir le site</a>
                     </div>
                 </div>
             </div>
