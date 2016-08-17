@@ -49,7 +49,7 @@
             Vous êtes sur une page de test et vous pouvez continuer le test en payant sur paypal avec le compte de test suivant:
         </p>
         <ul>
-            <li>user: demo1@codeheures.fr</li>
+            <li>user: demo2@codeheures.fr</li>
             <li>mot de passe: paypaltest+</li>
         </ul>
     </div>

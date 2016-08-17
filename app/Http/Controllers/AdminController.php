@@ -15,6 +15,7 @@ use App\Http\Controllers\Controller;
 use App\Purchase;
 use App\Product;
 use \App\Common\DataGraph;
+use App\Common\Credit;
 use \App\Common\SmsFreeMobile;
 use App\Http\Requests\UpdateCustomerQuotaRequest;
 
@@ -29,10 +30,14 @@ class AdminController extends Controller
     }
 
     use DataGraph;
+    use Credit;
 
     public function monitor(){
         $user = $this->auth->user();
-        $purchases = Purchase::orderBy('user_id', 'DESC')->orderBy('created_at', 'DESC')->get();
+        $purchases = Purchase::where(function($query) {
+            $query->where('payed', '=', true)
+                ->orWhere('quotation_id', '<>', 'null');
+        })->orderBy('user_id', 'DESC')->orderBy('created_at', 'DESC')->get();
         $purchases->load('product');
         $purchases->load(['consommations' => function($query){
             $query->orderBy('created_at');
@@ -40,7 +45,8 @@ class AdminController extends Controller
 
 
         //data pour le graphique conso
-        $consommations = Consommation::orderBy('created_at', 'DESC')->get();
+        $consommations = $this->consosAndtotalLeft($purchases)[0];
+        //$consommations = Consommation::orderBy('created_at', 'DESC')->get();
         $data = $this->dataGraph($consommations);
 
         $customersList = User::where('role', '=', 'user')->get();
