@@ -87,6 +87,13 @@ Class DemoManager
                         $prestation = Prestation::where('id', $consommation->prestation_id);
                         if($prestation){ $prestation->delete(); }
                     }
+                    foreach ($purchase->invoices as $invoice){
+                        //Effacement des factures
+                        $dir = storage_path() . env('STORAGE_INVOICE_DEMO');
+                        $invoice->isDown ? $type = 'isDown' : $type = 'isSold';
+                        $file = $dir . $invoice->demo_number . '-invoice-' . $type .'.pdf';
+                        $this->delFiles($file);
+                    }
                     $purchase->consommations()->delete();
                     $purchase->invoices()->delete();
                     $purchase->delete();
