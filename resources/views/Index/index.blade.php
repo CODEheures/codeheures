@@ -28,7 +28,7 @@
                     <p>
                         Programmeur WEB indépendant, j'interviens pour toute création et maintenance de site web et
                         d'application mobile. <a href="{{ route('demo') }}" class="">Visitez l'espace client
-                            de démonstration</a> et retrouvez-y tous les tarifs BackTimes.
+                            de démonstration</a> et découvrer l'outil de suivi de vos investissements.
                     </p>
                     <div class="header-btn">
                         <a href="#prestations" class="btn-transparent">En savoir plus</a>
@@ -55,6 +55,17 @@
                 <div class="video">
                     <div id="yt0"></div>
                 </div>
+                <footer>
+                    <p>
+                        Que vos besoins en webmastering soient ponctuels ou récurrents, vous bénéficierez d'un système de
+                        suivi de votre consommation horaire. Accedez à la démonstration en visitant l'espace client de
+                        démonstration.
+                    </p>
+                    <p class="exit">
+                        <a href="{{ route('demo') }}" class="btn-yellow2">Espace client de démonstration & tarifs</a>
+                        <a href="{{ route('realisations') }}" class="btn-yellow2">Voir les réalisations</a>
+                    </p>
+                </footer>
                 <h2 class="fa fa-quote-left home">Combien coûte un site web?</h2>
                 <div class="collapse">
                     <p>
@@ -370,17 +381,6 @@
                         </li>
                     </ul>
                 </div>
-                <footer>
-                    <p>
-                        Que vos besoins en webmastering soient ponctuels ou récurrents, vous bénéficierez d'un système de
-                        suivi de votre consommation horaire. Accedez à la démonstration en visitant l'espace client de
-                        démonstration.
-                    </p>
-                    <p class="exit">
-                        <a href="{{ route('demo') }}" class="btn-yellow2">Espace client de démonstration & tarifs</a>
-                        <a href="{{ route('realisations') }}" class="btn-yellow2">Voir les réalisations</a>
-                    </p>
-                </footer>
             </section>
         </div>
 
