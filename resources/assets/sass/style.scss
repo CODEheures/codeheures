@@ -543,7 +543,7 @@ body > header {
   color: $color4;
 
   & .tunnel {
-    @include rnfsfs;
+    @include cnfsfs;
     width: 100%;
     overflow: hidden;
     & > section {
@@ -555,29 +555,6 @@ body > header {
         & a {
           margin-bottom: 1rem;
         }
-      }
-    }
-
-    & p.change-section {
-      width: 100%;
-      &.two {
-        @include cncc;
-        & a {
-          margin-bottom: 1rem;
-          &.next {
-            align-self: flex-end;
-          }
-          &.back {
-            align-self: flex-start;
-          }
-        }
-
-      }
-      &.one-right {
-        @include rwfec;
-      }
-      &.one-left {
-        @include rwfsc;
       }
     }
 
@@ -596,6 +573,9 @@ body > header {
     max-width: 100%;
     min-width: 100%;
     width: 100%;
+    & div.collapse {
+      @include cnfsfs;
+    }
     & h1 {
       @include rwfsbl;
       text-transform: uppercase;
@@ -619,6 +599,13 @@ body > header {
       @include rnfsc;
       font-size: 2.8rem;
       padding-top: 2.5rem;
+      &.home {
+        cursor: pointer;
+        width: 100%;
+        padding: 1rem;
+        margin-top: 2.5rem;
+        margin-bottom: 2.5rem;
+      }
     }
 
     & h3 {

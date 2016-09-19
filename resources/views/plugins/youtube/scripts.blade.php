@@ -13,7 +13,7 @@
         yt = new YT.Player('yt0', {
             height: '315',
             width: '560',
-            videoId: 'yi07gkcQcRQ',
+            videoId: 'KGbQIQVFO_w',
             playerVars: {'rel':0, 'showinfo':0},
             events: {
                 'onReady': onPlayerReady
@@ -33,44 +33,44 @@
 //        }
 //    }
 
-    $(function () {
-        var next = $('.next');
-        var back = $('.back');
-
-        next.click(function () {
-            yt.stopVideo();
-            yt.destroy();
-            var to = this.dataset.to;
-            var videoId;
-            to == 1 ? videoId = 'bLGRLSz-uxU' : videoId = 'zG2iwIMkYRM';
-            yt = new YT.Player('yt'+to, {
-                height: '315',
-                width: '560',
-                videoId: videoId,
-                playerVars: {'rel':0, 'showinfo':0},
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
-        });
-
-        back.click(function () {
-            yt.stopVideo();
-            yt.destroy();
-            var to = this.dataset.to;
-            var videoId;
-            to == 1 ? videoId = 'bLGRLSz-uxU' : videoId = 'yi07gkcQcRQ';
-            yt = new YT.Player('yt'+to, {
-                height: '315',
-                width: '560',
-                videoId: videoId,
-                playerVars: {'rel':0, 'showinfo':0},
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
-        });
-    });
+//    $(function () {
+//        var next = $('.next');
+//        var back = $('.back');
+//
+//        next.click(function () {
+//            yt.stopVideo();
+//            yt.destroy();
+//            var to = this.dataset.to;
+//            var videoId;
+//            to == 1 ? videoId = 'bLGRLSz-uxU' : videoId = 'zG2iwIMkYRM';
+//            yt = new YT.Player('yt'+to, {
+//                height: '315',
+//                width: '560',
+//                videoId: videoId,
+//                playerVars: {'rel':0, 'showinfo':0},
+//                events: {
+//                    'onReady': onPlayerReady
+//                }
+//            });
+//        });
+//
+//        back.click(function () {
+//            yt.stopVideo();
+//            yt.destroy();
+//            var to = this.dataset.to;
+//            var videoId;
+//            to == 1 ? videoId = 'bLGRLSz-uxU' : videoId = 'yi07gkcQcRQ';
+//            yt = new YT.Player('yt'+to, {
+//                height: '315',
+//                width: '560',
+//                videoId: videoId,
+//                playerVars: {'rel':0, 'showinfo':0},
+//                events: {
+//                    'onReady': onPlayerReady
+//                }
+//            });
+//        });
+//    });
 
 
 
