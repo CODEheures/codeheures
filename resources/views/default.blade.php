@@ -14,7 +14,6 @@
     <meta property="og:url" content="{{ route('home') }}">
     <meta property="og:type" content="website"/>
     <meta name="google-site-verification" content="SOhQHlo2EkGzHyFGOdWB3ih7ydb7CdaRg92y606qEkU" />
-    <meta name="google-site-verification" content="SOhQHlo2EkGzHyFGOdWB3ih7ydb7CdaRg92y606qEkU" />
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('favicon-32x32.png') }}" sizes="32x32">
     <link rel="icon" type="image/png" href="{{ asset('favicon-16x16.png') }}" sizes="16x16">
