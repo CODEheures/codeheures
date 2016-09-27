@@ -55,57 +55,11 @@ $(function() {
         return $obj;
     }
 
-    function collapseHomeDivs() {
-        //$('div.collapse').hide();
-    }
-
-
-    //Gestion du tunnel page acceuil
-    // var $tunnel = $('.tunnel');
-    // var $sections = $tunnel.children('section');
-    // $sections.each(function (index) {
-    //     if(index > 0) {
-    //         $(this).hide();
-    //     }
-    // });
-    //
-    // $('a[data-from]').click(function (e) {
-    //     e.preventDefault();
-    //
-    //     var $from = $sections.eq($(this).data('from'));
-    //     var $to = $sections.eq($(this).data('to'));
-    //
-    //     var $xScroll = ($(this).data('from')-$(this).data('to'))*100;
-    //
-    //     $('html, body').animate({scrollTop: $from.offset().top}, function () {
-    //         if($xScroll < 0) {
-    //             $to.slideDown({
-    //                 start: function () {
-    //                     $from.animate({'margin-left': $xScroll+'%'}, 800, function () {
-    //                         $from.slideUp(function () {
-    //                             $from.css({'margin-left': '0'});
-    //                         });
-    //                     });
-    //                 }
-    //             });
-    //         } else {
-    //             $to.css({'margin-left': (-$xScroll)+'%'});
-    //             $to.slideDown({
-    //                 start: function () {
-    //                     $to.animate({'margin-left': 0}, 800, 'swing', function () {
-    //                         $from.slideUp(800);
-    //                     });
-    //                 }
-    //             });
-    //         }
-    //     });
-    // });
 
 
     //GLOBAL
     $('#main').css('min-height', 'calc(100vh - ' + $('footer').outerHeight() + 'px)');
     setHeightHeader();
-    collapseHomeDivs();
     animLogo();
     if($hamburger.css('display') === 'block'){
         $navbarMenu.css('display', 'none');

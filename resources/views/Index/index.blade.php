@@ -139,41 +139,11 @@
                             <div class="clear"></div>
                         </aside>
                     </article>
-                    {{--<h4 class="space-top">Le principe du devis BackTime se base sur 2 constats</h4>--}}
-                    {{--<ol class="argument">--}}
-                        {{--<li>--}}
-                            {{--Il est très difficile (pour ne pas dire impossible) de jauger au plus juste l'expression d'un besoin--}}
-                            {{--dans le domaine du web. Le probleme etant que l'erreur de chiffrage peut aller dans les 2 sens.--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                            {{--Le webmaster va palier ce defaut soit en exagerant le tarif, soit en dépensant un temps inconsidéré--}}
-                            {{--à la réalisation du devis qui se repercutera sur le tarif.--}}
-                        {{--</li>--}}
-                    {{--</ol>--}}
                     <p class="center">
                 <span class="solution">
                     <a href="/" title="site codeheures.fr" class="a-invert">CODEheures.fr</a>
                     ce sont des devis avec: <strong>report des heures non utilisées</strong></span>
                     </p>
-                    {{--<h4>Un devis en 2 sections + une transformation des heures non consommées en maintenance</h4>--}}
-                    {{--<ol class="argument">--}}
-                        {{--<li>--}}
-                            {{--<strong>Le devis est établi en 2 sections</strong> pour une totale transparence:--}}
-                            {{--<ul class="circle">--}}
-                                {{--<li>les achats (maquettes, templates, plugs-ins, nom de domaine, hebergement...)</li>--}}
-                                {{--<li>Un temps de travail estimé sur la base du besoin</li>--}}
-                            {{--</ul>--}}
-                            {{--<div class="clear"></div>--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                            {{--<strong>Le reliquat d'heures est transformé en heures de maintenance</strong> lorsque le developpement--}}
-                            {{--du site se termine sans avoir consommer toutes les heures.--}}
-                            {{--Afin de rester transparent je mets à disposition sur--}}
-                            {{--<a href="{{ route('customer.monitor.index')}}" title="espace client" class="a-invert">--}}
-                                {{--votre compte client</a>--}}
-                            {{--un graphique des temps de developpement du site.--}}
-                        {{--</li>--}}
-                    {{--</ol>--}}
                     <h4>Vos avantages</h4>
                     <ul class="advantage argument">
                         <li>
@@ -258,99 +228,12 @@
                             </ul>
                         </aside>
                     </article>
-                    {{--<h4 class="space-top">Le principe du tarif BackTime se base sur 2 priorités</h4>--}}
-                    {{--<ol class="argument">--}}
-                        {{--<li>--}}
-                            {{--Il est inutile et improductif de fournir un devis pour toutes les prestations récurrentes.--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                            {{--Le client doit être facturé au plus proche de la réalité du temps passé pour la prestation.--}}
-                        {{--</li>--}}
-                    {{--</ol>--}}
 
                     <p class="center">
                 <span class="solution">
                     <a href="/" title="site codeheures.fr" class="a-invert">CODEheures.fr</a>
                     des tarifs pré-établis: <strong>pour une maîtrise de votre budget</strong></span>
                     </p>
-                    {{--<h4>Une grille de temps pré-établis + un report des minutes</h4>--}}
-                    {{--<ol class="argument">--}}
-                        {{--<li>--}}
-                            {{--<strong>Une grille de temps pré-établis</strong> (=temps facturé) pour les prestations récurrentes.--}}
-                            {{--<div class="table">--}}
-                                {{--<table class="grille-example">--}}
-                                    {{--<thead>--}}
-                                    {{--<tr>--}}
-                                        {{--<th>Prestation</th>--}}
-                                        {{--<th>Temps pré-établi</th>--}}
-                                    {{--</tr>--}}
-                                    {{--</thead>--}}
-                                    {{--<tbody>--}}
-                                    {{--<tr>--}}
-                                        {{--<td>Changer une image sur le site</td>--}}
-                                        {{--<td>20mn</td>--}}
-                                    {{--</tr>--}}
-                                    {{--<tr>--}}
-                                        {{--<td>Publier un article sur le site avec texte fourni</td>--}}
-                                        {{--<td>40mn</td>--}}
-                                    {{--</tr>--}}
-                                    {{--<tr>--}}
-                                        {{--<td>Mise à jour fiche produit</td>--}}
-                                        {{--<td>10mn</td>--}}
-                                    {{--</tr>--}}
-                                    {{--<tr>--}}
-                                        {{--<td>...</td>--}}
-                                        {{--<td>...</td>--}}
-                                    {{--</tr>--}}
-                                    {{--</tbody>--}}
-                                {{--</table>--}}
-                            {{--</div>--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                            {{--<strong>Un report des minutes</strong> lorsque le temps passé réel est inférieur au temps pré-établi.--}}
-                            {{--<div class="table">--}}
-                                {{--<table class="report-example">--}}
-                                    {{--<thead>--}}
-                                    {{--<tr>--}}
-                                        {{--<th>Prestation</th>--}}
-                                        {{--<th>Temps pré-établi (=temps facturé)</th>--}}
-                                        {{--<th>Temps réalisé</th>--}}
-                                        {{--<th>Minutes reportées</th>--}}
-                                        {{--<th>à votre avantage</th>--}}
-                                    {{--</tr>--}}
-                                    {{--</thead>--}}
-                                    {{--<tbody>--}}
-                                    {{--<tr>--}}
-                                        {{--<td>Changer une image sur le site</td>--}}
-                                        {{--<td>20mn</td>--}}
-                                        {{--<td class="lost">32mn</td>--}}
-                                        {{--<td class="win">0mn</td>--}}
-                                        {{--<td class="win">12mn</td>--}}
-                                    {{--</tr>--}}
-                                    {{--<tr>--}}
-                                        {{--<td>Changer une image sur le site</td>--}}
-                                        {{--<td>20mn</td>--}}
-                                        {{--<td class="">12mn</td>--}}
-                                        {{--<td class="win">8mn</td>--}}
-                                        {{--<td class="win">8mn</td>--}}
-                                    {{--</tr>--}}
-                                    {{--</tbody>--}}
-                                {{--</table>--}}
-                            {{--</div>--}}
-
-                            {{--<p>Afin de rester transparent je mets à disposition sur <a--}}
-                                        {{--href="{{ route('customer.monitor.index')}}" title="espace client" class="a-invert">votre--}}
-                                    {{--compte client</a>:</p>--}}
-                            {{--<ul class="circle">--}}
-                                {{--<li>--}}
-                                    {{--La grille des temps pré-établis--}}
-                                {{--</li>--}}
-                                {{--<li>--}}
-                                    {{--Un graphique des consommations horaires facturées--}}
-                                {{--</li>--}}
-                            {{--</ul>--}}
-                        {{--</li>--}}
-                    {{--</ol>--}}
                     <h4>Vos avantages</h4>
                     <ul class="advantage argument">
                         <li>

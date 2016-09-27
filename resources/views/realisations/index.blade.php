@@ -2,7 +2,6 @@
 
 @section('css')
     @parent
-    {{--@include('plugins.inputEffect.css') <!-- uniquement pour l'apelle à fa-icon! -->--}}
     @include('plugins.twentytwenty.css')
 @endsection
 
