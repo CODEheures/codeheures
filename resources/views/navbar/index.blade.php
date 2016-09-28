@@ -6,12 +6,12 @@
 
 @section('links')
     @if(isset($navOptions['active']) && $navOptions['active'] === 'home')
-        <a href="{{ route('home') }}#accueil" aria-selected="true">Accueil<div class="activeplus"></div></a>
+        <a href="{{ route('home') }}#accueil" aria-selected="true" data-entrie="accueil">Accueil<div class="activeplus"></div></a>
     @else
-        <a href="{{ route('home') }}#accueil" aria-selected="false">Accueil<div class="activeplus"></div></a>
+        <a href="{{ route('home') }}#accueil" aria-selected="false" data-entrie="accueil">Accueil<div class="activeplus"></div></a>
     @endif
-    <a href="{{ route('home') }}#prestations" aria-selected="false">Prestations<div class="activeplus"></div></a>
-    <a href="{{ route('home') }}#contact" aria-selected="false">Contact<div class="activeplus"></div></a>
+    <a href="{{ route('home') }}#prestations" aria-selected="false" data-entrie="prestations">Prestations<div class="activeplus"></div></a>
+    <a href="{{ route('home') }}#contact" aria-selected="false" data-entrie="contact">Contact<div class="activeplus"></div></a>
     @if(auth()->check() && auth()->user()->role == 'user')
         <a href="{{ route('customer.monitor.index') }}" aria-selected="false">Espace client<div class="activeplus"></div></a>
     @elseif(auth()->check() && auth()->user()->role == 'admin')

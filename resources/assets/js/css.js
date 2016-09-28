@@ -40,93 +40,94 @@ $(function() {
         });
     }
 
-    function defAncre($name) {
-
-        var $obj = {};
-        var $jQobj = $('#'+$name);
-
-        if($jQobj.length == 0){
-            return null;
-        }
-
-        $obj['name'] = $name;
-        $obj['top'] = Math.abs($jQobj.offset().top / $(document).height());
-
-        return $obj;
+    //Observer du menu
+    var nameMenuObserved = ['accueil', 'prestations', 'contact'];
+    var menuObserved = [];
+    for(var indice=0; indice<nameMenuObserved.length; indice++) {
+        menuObserved[indice] = document.getElementById(nameMenuObserved[indice]);
     }
 
+    var lastIndex = 0;
+    var newIndex;
+    var currentIndex = 0;
+    var menuObserver = new IntersectionObserver(function (entries) {
+        for(var indice=0; indice<entries.length; indice++) {
+            if (entries[indice].intersectionRatio > 0){
+                newIndex = nameMenuObserved.indexOf(entries[indice].target.id);
+                lastIndex = currentIndex;
+                currentIndex = newIndex;
+            } else {
+                var quitteIndex = nameMenuObserved.indexOf(entries[indice].target.id);
+                if(currentIndex == quitteIndex){
+                    currentIndex = lastIndex;
+                }
+            }
+            var $target = $('.navbar-menu a[data-entrie="' + nameMenuObserved[currentIndex] + '"]');
+            if(!$target.hasClass('active')){
+                $target.trigger('click');
+            }
+        }
+    }, {
+
+    });
+
+    for(var indice=0; indice< menuObserved.length; indice++) {
+        menuObserver.observe(menuObserved[indice]);
+    }
+
+    //Observer des cards
+    //animation des descriptions des cartes
+    var cardsObserver = new IntersectionObserver(function (entries) {
+        for(var indice=0; indice<entries.length; indice++) {
+            var $elem = $(entries[indice].target).children('.card_description');
+            if($elem.css('opacity') == 0) {
+                $elem.css('opacity', 1);
+            } else {
+                $elem.css('opacity', 0);
+            }
+            $elem.toggleClass('animated slideInRight');
+        }
+    }, {
+        threshold: 0.5
+    });
+
+    var $cardsObserved = document.getElementsByClassName('card');
+    for(var indice=0; indice<$cardsObserved.length; indice++) {
+        cardsObserver.observe($cardsObserved[indice]);
+    }
 
 
     //GLOBAL
     $('#main').css('min-height', 'calc(100vh - ' + $('footer').outerHeight() + 'px)');
+    var $window_scrollTop = $(window).scrollTop();
+
     setHeightHeader();
     animLogo();
+    shrinkNavBar($window_scrollTop);
+
+
     if($hamburger.css('display') === 'block'){
         $navbarMenu.css('display', 'none');
     }
+
     $(window).resize(function() {
+        $window_scrollTop = $(window).scrollTop();
+        console.log($window_scrollTop);
         if($hamburger.css('display') === 'none'){
             $navbarMenu.css('display', 'flex');
         } else {
             $navbarMenu.css('display', 'none');
         }
         setHeightHeader();
+        shrinkNavBar($window_scrollTop);
     });
 
     $(window).scroll(function() {
-
-        var $total_scroll = $(document).height()-$(window).height();
-        var $window_scrollTop = $(window).scrollTop();
-        var $rate_scroll = $window_scrollTop/$total_scroll;
-
+        $window_scrollTop = $(window).scrollTop();
         //adaptation de la navbar
         shrinkNavBar($window_scrollTop);
-
         //adaptation du fond
         setOpacityHeader($window_scrollTop);
-
-        //definition des ancres  mettre dans l'ordre de hauteur
-        var $name_ancres = ['accueil','prestations', 'contact'];
-        var $ancres = [];
-        for(var $key in $name_ancres){
-            $def_ancre = defAncre($name_ancres[$key]);
-            $def_ancre != null ? $ancres.push($def_ancre):null;
-        }
-
-        //Recherche de l'ancre la plus proche du scroll
-        var $memo_key = '';
-        for(var $key in $ancres) {
-            if ($rate_scroll >= $ancres[$key]['top']) {
-                $memo_key = $key
-            }
-        }
-
-        //Action sur la clé la plus proche du scroll
-        $('.navbar-menu a').each(function(){
-            if($memo_key != '' && $(this).attr('href').indexOf('#'+$ancres[$memo_key]['name']) > -1 && !$(this).hasClass('active')){
-                if($ancres[$memo_key]['name'] != 'contact') {
-                    $(this).trigger('click');
-                } else if ($ancres[$memo_key]['name'] == 'contact' && $total_scroll == $window_scrollTop) {
-                    $(this).trigger('click');
-                } else {
-                    $(this).prev().trigger('click');
-                }
-            }
-        });
-
-        //animation des descriptions des cartes
-        var $card = $('.card');
-
-        $card.each(function(){
-
-            if($(this).offset().top - $(window).height() + $(this).height() - $window_scrollTop <= 0){
-                $(this).children('.card_description').css({'opacity': '1'}).addClass('animated slideInRight')
-            }
-
-            if($(this).offset().top - $(window).height() - $window_scrollTop >= 0){
-                $(this).children('.card_description').css({'opacity': '0'}).removeClass('animated slideInRight')
-            }
-        });
     });
 
     //Gestion du menu principal

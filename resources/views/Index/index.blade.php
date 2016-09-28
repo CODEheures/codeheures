@@ -294,6 +294,7 @@
 
 @section('script')
     @parent
+    @include('plugins.intersectionObserver.scripts')
     @include('plugins.countdown.scripts')
     @include('plugins.twentytwenty.scripts')
     @include('plugins.youtube.scripts')
