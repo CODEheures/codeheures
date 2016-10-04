@@ -47,55 +47,60 @@ $(function() {
         menuObserved[indice] = document.getElementById(nameMenuObserved[indice]);
     }
 
-    var lastIndex = 0;
-    var newIndex;
-    var currentIndex = 0;
-    var menuObserver = new IntersectionObserver(function (entries) {
-        for(var indice=0; indice<entries.length; indice++) {
-            if (entries[indice].intersectionRatio > 0){
-                newIndex = nameMenuObserved.indexOf(entries[indice].target.id);
-                lastIndex = currentIndex;
-                currentIndex = newIndex;
-            } else {
-                var quitteIndex = nameMenuObserved.indexOf(entries[indice].target.id);
-                if(currentIndex == quitteIndex){
-                    currentIndex = lastIndex;
+    if(menuObserved.length>0) {
+        var lastIndex = 0;
+        var newIndex;
+        var currentIndex = 0;
+        var menuObserver = new IntersectionObserver(function (entries) {
+            for(var indice=0; indice<entries.length; indice++) {
+                if (entries[indice].intersectionRatio > 0){
+                    newIndex = nameMenuObserved.indexOf(entries[indice].target.id);
+                    lastIndex = currentIndex;
+                    currentIndex = newIndex;
+                } else {
+                    var quitteIndex = nameMenuObserved.indexOf(entries[indice].target.id);
+                    if(currentIndex == quitteIndex){
+                        currentIndex = lastIndex;
+                    }
+                }
+                var $target = $('.navbar-menu a[data-entrie="' + nameMenuObserved[currentIndex] + '"]');
+                if(!$target.hasClass('active')){
+                    $target.trigger('click');
                 }
             }
-            var $target = $('.navbar-menu a[data-entrie="' + nameMenuObserved[currentIndex] + '"]');
-            if(!$target.hasClass('active')){
-                $target.trigger('click');
-            }
+        }, {
+
+        });
+
+        for(var indice=0; indice< menuObserved.length; indice++) {
+            menuObserver.observe(menuObserved[indice]);
         }
-    }, {
-
-    });
-
-    for(var indice=0; indice< menuObserved.length; indice++) {
-        menuObserver.observe(menuObserved[indice]);
     }
 
     //Observer des cards
     //animation des descriptions des cartes
-    var cardsObserver = new IntersectionObserver(function (entries) {
-        for(var indice=0; indice<entries.length; indice++) {
-            var $elem = $(entries[indice].target).children('.card_description');
-            if($elem.css('opacity') == 0) {
-                $elem.css('opacity', 1);
-            } else {
-                $elem.css('opacity', 0);
-            }
-            $elem.toggleClass('animated slideInRight');
-        }
-    }, {
-        threshold: 0.5
-    });
-
     var $cardsObserved = document.getElementsByClassName('card');
-    for(var indice=0; indice<$cardsObserved.length; indice++) {
-        cardsObserver.observe($cardsObserved[indice]);
-    }
 
+    if($cardsObserved.length>0) {
+        var cardsObserver = new IntersectionObserver(function (entries) {
+            for(var indice=0; indice<entries.length; indice++) {
+                var $elem = $(entries[indice].target).children('.card_description');
+                if($elem.css('opacity') == 0) {
+                    $elem.css('opacity', 1);
+                } else {
+                    $elem.css('opacity', 0);
+                }
+                $elem.toggleClass('animated slideInRight');
+            }
+        }, {
+            threshold: 0.5
+        });
+
+
+        for(var indice=0; indice<$cardsObserved.length; indice++) {
+            cardsObserver.observe($cardsObserved[indice]);
+        }
+    }
 
     //GLOBAL
     $('#main').css('min-height', 'calc(100vh - ' + $('footer').outerHeight() + 'px)');
@@ -221,6 +226,7 @@ $(function() {
             }
         }
     });
+
 
     //Assistance au slider quota admin customer
     var $ranges = $('[data-assist="assist2"]');
