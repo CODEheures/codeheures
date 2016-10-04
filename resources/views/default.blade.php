@@ -9,7 +9,7 @@
     <meta name="author" content="CODEheures | Sylvain Gagnot">
     <meta property="og:site_name" content="CODEheures"/>
     <meta property="og:title" content="Développeur WEB indépendant"/>
-    <meta property="og:description" content="CODEheures propose une solution innovante: les Devis et Tarifs BackTime. Vos heures non consommées seront reportées."/>
+    <meta property="og:description" content="Avec CODEheures je vous propose des Devis et Tarifs intégrant une solution de report des heures non utilisées."/>
     <meta property="og:image" content="{{ asset('css/images/codeheures_thumbnail.jpg') }}">
     <meta property="og:url" content="{{ route('home') }}">
     <meta property="og:type" content="website"/>
