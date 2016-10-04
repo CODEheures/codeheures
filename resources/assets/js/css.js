@@ -47,7 +47,7 @@ $(function() {
         menuObserved[indice] = document.getElementById(nameMenuObserved[indice]);
     }
 
-    if(menuObserved.length>0) {
+    if(document.querySelector('#prestations') != undefined) {
         var lastIndex = 0;
         var newIndex;
         var currentIndex = 0;
@@ -117,7 +117,6 @@ $(function() {
 
     $(window).resize(function() {
         $window_scrollTop = $(window).scrollTop();
-        console.log($window_scrollTop);
         if($hamburger.css('display') === 'none'){
             $navbarMenu.css('display', 'flex');
         } else {
