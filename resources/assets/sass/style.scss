@@ -395,6 +395,11 @@ ul.circle {
 
 }
 
+a.a-invert {
+  color: $color5;
+  text-decoration: underline;
+}
+
 /*
 ***** Header Home *****
 */
@@ -434,18 +439,9 @@ body > header {
         font-size: 7vw;
         line-height: 6rem;
         font-weight: 600;
-        & span.code {
-          font-family: $font2;
-        }
-        & span.heures {
-          font-family: $font3;
-          font-weight: 100;
-          font-size: 4.5rem;
-          padding-left: 0.5rem;
-        }
       }
 
-      & h2 {
+      & h2, & p {
         &.presentation {
           background-color: rgba(217, 112, 58, 0.63);
           color: #FFFFFF;
@@ -458,6 +454,18 @@ body > header {
           margin-right: 1rem;
           margin-top: 1rem;
           font-weight: 100;
+          & span.code {
+            font-family: $font2;
+            font-weight: 100;
+          }
+          & span.heures {
+            font-family: $font3;
+            font-weight: 100;
+            padding-left: 0.5rem;
+          }
+          & a:not(.a-invert) {
+            color: #FFF;
+          }
           & strong {
             font-weight: 500;
             text-decoration: underline;
@@ -465,12 +473,12 @@ body > header {
         }
       }
 
-      p {
+      p, h2.important {
         line-height: 2.4rem;
         font-size: 1.8rem;
         font-weight: 300;
         padding: 2rem 5%;
-        & a {
+        & a:not(.a-invert) {
           color: $color1;
           text-decoration: underline;
         }
@@ -650,11 +658,6 @@ body > header {
           }
         }
       }
-    }
-
-    & a.a-invert {
-      color: $color5;
-      text-decoration: underline;
     }
 
     & .argument {
@@ -1705,7 +1708,7 @@ body > footer {
     .bg-cover {
       .header-content {
         h1 {
-          font-size: 5.6rem;
+          font-size: 4.6rem;
         }
       }
     }

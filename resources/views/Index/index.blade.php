@@ -19,17 +19,17 @@
         <div class="bg-cover">
             <div class="container">
                 <div class="header-content">
-                    <h1><span class="code">CODE</span><span class="heures">heures</span> - SITES WEB</h1>
+                    <h1>CREATIONS DE SITES INTERNET</h1>
                     <div class="info">Démarrage dans:<div class="clock-down"></div></div>
-                    <h2 class="presentation">
-                        Ma philosophie: Vous proposer des outils de suivi et
-                        <strong><a href="#prestations">reporter les heures</a></strong> non utilisées.
-                    </h2>
-                    <p>
-                        Programmeur WEB indépendant, j'interviens pour toute création et maintenance de site web et
-                        d'application mobile. <a href="{{ route('demo') }}" class="">Visitez l'espace client
-                            de démonstration</a> et découvrer l'outil de suivi de vos investissements.
+                    <p class="presentation">
+                        Les avantages de l'offre <a href="{{ route('home') }}" class="a-invert">CODEheures</a>:
+                        <strong><a href="#prestations">Le report des heures</a></strong> non utilisées.
                     </p>
+                    <h2 class="important">
+                        Developpeur WEB indépendant, j'interviens pour toute création et maintenance de site internet et
+                        d'application internet mobile. <a href="{{ route('demo') }}" class="">Visitez l'espace client
+                            de démonstration</a> et découvrer l'outil de suivi de vos investissements.
+                    </h2>
                     <div class="header-btn">
                         <a href="#prestations" class="btn-transparent">En savoir plus</a>
                         <a href="#contact" class="btn-yellow">Me contacter</a>
@@ -66,29 +66,29 @@
                         <a href="{{ route('realisations') }}" class="btn-yellow2">Voir les réalisations</a>
                     </p>
                 </footer>
-                <h2 class="fa fa-quote-left home">Combien coûte un site web?</h2>
+                <h2 class="fa fa-quote-left home">Combien coûte un site internet?</h2>
                 <div class="collapse">
                     <p>
                         Bonne question! <br/>
-                        Saviez-vous qu'un bon webmaster ne code que 30% de son temps? Le reste du temps etant consacré à la
+                        Saviez-vous qu'un bon créateur de sites internet ne code que 30% de son temps? Le reste du temps etant consacré à la
                         formation, la veille technologique, mais aussi à la gestion, à la prospection, à la relation
                         client...<br/>
                         <br/>Alors soyons bref, et concis. Comptez:
                     </p>
                     <ul class="circle">
                         <li>
-                            Entre 1000€ et 2500€ pour site vitrine simple
+                            Entre 1000€ et 2500€ pour la création d'un site vitrine simple
                         </li>
                         <li>
-                            Entre 2500€ et 8000€ (voir plus) pour un site e-commerce, une application web personnalisée, ou une application mobile simple
+                            Entre 2500€ et 8000€ (voir plus) pour le developpement d'un site e-commerce ou d'une application internet mobile personnalisée
                         </li>
                         <li>
-                            60€/heure pour toute intervention de mise à jour, maintenance
+                            60€/heure pour toute intervention de mise à jour, débugage ou maintenance de site internet, application web mobile, de base de données...
                         </li>
                     </ul>
                     <p>
                         Tout dépend du degré de personnalisation.<br />
-                        <strong>C'est un investisement relativement important mais incontournable et très rentable.</strong>
+                        <strong>La création d'un site internet est un investisement relativement important mais incontournable et très rentable.</strong>
                     </p>
                     <p class="center">
                 <span class="solution">
@@ -101,7 +101,7 @@
 
             <!-- section integration -->
             <section>
-                <h2 class="fa fa-quote-left home">Création de sites web et applications mobiles</h2>
+                <h2 class="fa fa-quote-left home">Création de sites internet et applications mobiles</h2>
                 <div class="collapse">
                     <article class="cards">
                         <div class="card">
@@ -120,17 +120,17 @@
                                 <li>
                                     <hr/>
                                 </li>
-                                <li><i class="ion-ios-lightbulb-outline"> </i><span>vous avez une idée de site web, mais vous ne possedez pas les compétences requises pour sa réalisation?</span>
+                                <li><i class="ion-ios-lightbulb-outline"> </i><span>vous avez une idée de création de site internet, mais vous ne possedez pas les compétences requises pour sa réalisation?</span>
                                 </li>
                                 <li>
                                     <hr/>
                                 </li>
-                                <li><i class="ion-ios-color-wand-outline"> </i><span>Vous possedez un site que vous souhaitez moderniser?</span>
+                                <li><i class="ion-ios-color-wand-outline"> </i><span>Vous possedez un site internet que vous souhaitez moderniser?</span>
                                 </li>
                                 <li>
                                     <hr/>
                                 </li>
-                                <li><i class="ion-ios-gear-outline"> </i><span>Vous souhaitez ajouter de nouvelles fonctionnalités?</span>
+                                <li><i class="ion-ios-gear-outline"> </i><span>Vous souhaitez ajouter de nouvelles fonctionnalités à votre site internet?</span>
                                 </li>
                                 <li>
                                     <hr/>
@@ -191,7 +191,7 @@
 
             <!-- section webmastering -->
             <section>
-                <h2 class="fa fa-quote-left home">Maintenance</h2>
+                <h2 class="fa fa-quote-left home">Maintenance de votre site internet</h2>
                 <div class="collapse">
                     <article>
                         <div class="card">
@@ -210,17 +210,17 @@
                                 <li>
                                     <hr/>
                                 </li>
-                                <li><i class="ion-ios-compose-outline"> </i><span>Le contenu de votre site a besoin d'être mis à jour?</span>
+                                <li><i class="ion-ios-compose-outline"> </i><span>Le contenu de votre site internet a besoin d'être mis à jour?</span>
                                 </li>
                                 <li>
                                     <hr/>
                                 </li>
-                                <li><i class="ion-ios-settings"> </i><span>Votre site web présente un problème de fonctionnement?</span>
+                                <li><i class="ion-ios-settings"> </i><span>Votre site internet présente un problème de fonctionnement?</span>
                                 </li>
                                 <li>
                                     <hr/>
                                 </li>
-                                <li><i class="ion-ios-people-outline"> </i><span>Vous souhaitez déléguer la modération de votre site web ou de vos pages sociales?</span>
+                                <li><i class="ion-ios-people-outline"> </i><span>Vous souhaitez déléguer la modération de votre site internet ou de vos pages sociales?</span>
                                 </li>
                                 <li>
                                     <hr/>
