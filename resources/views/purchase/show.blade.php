@@ -10,6 +10,10 @@
     CODEheures | Commande {{ $purchase->hash_key }}
 @endsection
 
+@section('description')
+    Pour le suivi de la création de votre application internet, CODEheures vous met à disposition un dashboard client.
+@endsection
+
 @section('navbar')
     @if(auth()->user()->role == 'admin')
         @include('navbar.admin', ['active' => 'monitor'])

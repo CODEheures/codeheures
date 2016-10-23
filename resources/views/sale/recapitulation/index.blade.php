@@ -7,6 +7,10 @@
     CODEheures | Recapitulation commande
 @endsection
 
+@section('description')
+    Récapitulation de votre commande pour la création de sites Internet, sites mobiles, web applications, en région de Tours, 37.
+@endsection
+
 @section('navbar')
     @include('navbar.customer', ['active' => null])
 @endsection

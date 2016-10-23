@@ -6,7 +6,11 @@
 @endsection
 
 @section('title')
-    CODEheures | Réalisations
+    Création site internet | Réalisations
+@endsection
+
+@section('description')
+    Réalisations de sites Internet, sites mobiles, web applications, en région de Tours, 37. Spécialiste Laravel, Vue-Js
 @endsection
 
 @section('navbar')

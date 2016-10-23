@@ -5,7 +5,11 @@
 @endsection
 
 @section('title')
-    CODEheures | Conditions générales de vente
+    Conditions générales de vente | CODEheures développeur sites internet
+@endsection
+
+@section('description')
+    Developpeur freelance pour la création de sites web, sites mobiles, applications internet, en région de Tours, 37.
 @endsection
 
 @section('navbar')

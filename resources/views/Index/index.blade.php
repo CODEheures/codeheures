@@ -1,7 +1,11 @@
 @extends('default')
 
 @section('title')
-    CODEheures | Accueil
+    Création de sites internet et sites mobiles à Tours
+@endsection
+
+@section('description')
+    Développeur indépendant pour la création de sites internet, sites mobiles, applications web, en région de Tours, 37.
 @endsection
 
 @section('css')

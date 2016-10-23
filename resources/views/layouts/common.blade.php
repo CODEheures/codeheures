@@ -3,7 +3,11 @@
 @section('css')@endsection
 
 @section('title')
-    CODEheures | Espace Client
+    Création de sites internet et sites mobiles | Espace Client
+@endsection
+
+@section('description')
+    Developpeur indépendant pour la création de sites Internet, sites mobiles, web applications, en région de Tours, 37.
 @endsection
 
 @section('navbar')@endsection
