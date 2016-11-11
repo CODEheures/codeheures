@@ -1,2 +1,5 @@
 User-agent: *
-Disallow:
+Disallow: /mentions-legales*
+Disallow: /conditions-generales-de-ventes*
+Disallow: /customer*
+Disallow: /auth*
