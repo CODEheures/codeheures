@@ -11,7 +11,6 @@
     <meta name="language" CONTENT="{{ \Illuminate\Support\Facades\App::getLocale() }}" />
     <meta name="publisher" content="CODEheures | Sylvain Gagnot" />
     <meta name="copyright" content="2016 CODEheures. Tous droits réservés.">
-    <meta name="robots" content="index,follow" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="google-site-verification" content="SOhQHlo2EkGzHyFGOdWB3ih7ydb7CdaRg92y606qEkU" />
     <link rel="canonical" href="{{ \Illuminate\Support\Facades\Request::getFacadeRoot()->url() }}" />
