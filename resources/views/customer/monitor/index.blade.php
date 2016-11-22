@@ -1,5 +1,9 @@
 @extends('layouts.common')
 
+@section('meta-index')
+    <meta name="robots" content="noindex, nofollow">
+@endsection
+
 @section('css')
     @include('plugins.graphConso.css')
     @include('plugins.introJs.css')

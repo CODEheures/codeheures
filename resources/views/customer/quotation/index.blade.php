@@ -1,5 +1,9 @@
 @extends('layouts.common')
 
+@section('meta-index')
+    <meta name="robots" content="noindex, nofollow">
+@endsection
+
 @section('css')
     @parent
     @include('plugins.qtip.css')
