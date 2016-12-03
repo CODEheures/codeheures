@@ -25,7 +25,8 @@ class QuotationRequest extends Request
     {
         return [
             'user_id' => 'required|numeric|exists:users,id',
-            'validity' =>'required|date'
+            'validity' =>'required|date',
+            'upload' => 'mimes:pdf'
         ];
     }
 }

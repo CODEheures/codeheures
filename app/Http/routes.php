@@ -7,6 +7,7 @@ Route::get('/demo', ['as' => 'demo', 'uses' => 'MainController@demoCustomerSpace
 Route::get('/conditions-generales-de-ventes', ['as' => 'cgv', 'uses' => 'MainController@cgv']);
 Route::get('/mentions-legales', ['as' => 'mentions', 'uses' => 'MainController@mentions']);
 Route::get('/realisations', ['as' => 'realisations', 'uses' => 'MainController@realisations']);
+Route::get('/cqa/{hashName}', ['as' => 'customer.quotation.attachment', 'uses' => 'QuotationController@getAttachment'])->where(['hashName'=>'[a-zA-Z0-9]{32}']);
 
 //Espace client
 Route::group(['prefix' => 'customer'], function() {

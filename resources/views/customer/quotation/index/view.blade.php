@@ -38,9 +38,14 @@
             </div>
         </div>
         <nav class="quotation-get-pdf">
-            <p @if(auth()->user()->isDemo && $quotation==$quotations[0]) data-intro="Vous pouvez le télécharger ici en PDF pour le consulter"
+            <p @if(auth()->user()->isDemo && $quotation==$quotations[0]) data-intro="Vous pouvez le télécharger ici en PDF pour le consulter ainsi que sa pièce jointe s'il en a une"
                data-step="2" data-position="bottom"  @endif
-            ><a href="{{ route('customer.quotation.showPdf', ['id' => $quotation->id]) }}"><i class="ion-archive"></i>Télécharger ce devis</a></p>
+            >
+                <a href="{{ route('customer.quotation.showPdf', ['id' => $quotation->id]) }}"><i class="ion-archive"></i>Télécharger ce devis</a>
+                @if($quotation->file)
+                    <br /><a href="{{ route('customer.quotation.attachment', ['hashName' => $quotation->file]) }}"><i class="ion-archive"></i>Télécharger le contrat commerciale de ce devis</a>
+                @endif
+            </p>
         </nav>
         <div class="quotation" @if(auth()->user()->isDemo && $quotation==$quotations[0]) data-intro="Voici le détail de votre devis"
              data-step="1" data-position="bottom"  @endif>

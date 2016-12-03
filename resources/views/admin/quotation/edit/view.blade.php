@@ -6,7 +6,7 @@
 </div>
 @include('admin.quotation.progressbar.view')
 <div class="quotation">
-    {!! Form::model($quotation, ['method'=>'put', 'class' => 'form-horizontal', 'url' => route('admin.quotation.update', ['id' => $quotation->id])]) !!}
+    {!! Form::model($quotation, ['method'=> 'PUT', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data', 'url' => route('admin.quotation.update', ['id' => $quotation->id])]) !!}
         <div class="form-group">
             <span class="input input--fumi">
                 {!! Form::select('user_id', $userList, null, ['class' => 'input__field input__field--fumi'. ($quotation->canEdit() == false ? ' form-disable':'')]) !!}
@@ -33,6 +33,16 @@
                 <label for="downPercentPayment" class="input__label input__label--fumi">
                     <i class="fa fa-fw fa-percent icon icon--fumi"></i>
                     <span class="input__label-content input__label-content--fumi">Acompte demandé en %</span>
+                </label>
+            </span>
+        </div>
+
+        <div class="form-group">
+            <span class="input input--fumi">
+                {!! Form::input('file', 'upload', null, ['accept' => 'application/pdf', 'class' => 'input__field input__field--fumi'. ($quotation->canEdit() == false ? ' form-disable':'')]) !!}
+                <label for="file" class="input__label input__label--fumi">
+                    <i class="fa fa-fw fa-gift icon icon--fumi"></i>
+                    <span class="input__label-content input__label-content--fumi">Un fichier</span>
                 </label>
             </span>
         </div>

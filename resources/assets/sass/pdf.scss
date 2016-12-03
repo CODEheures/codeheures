@@ -142,6 +142,16 @@ div.quotation-title, div.prestation-title, div.purchase-title {
     }
   }
 
+  & p.cc-info {
+    font-size: 12px;
+    font-weight: 100;
+    line-height: 12px;
+
+    & a {
+      color: $color8;
+    }
+  }
+
 }
 
 div.prestation-title {

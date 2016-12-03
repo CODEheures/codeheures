@@ -31,12 +31,11 @@
                     </p>
                     <h2 class="important">
                         Developpeur WEB indépendant, j'interviens pour toute création et maintenance de site internet et
-                        d'application internet mobile. <a href="{{ route('demo') }}" class="">Visitez l'espace client
-                            de démonstration</a> et découvrez l'outil de suivi de vos investissements.
+                        d'application internet mobile.
                     </h2>
                     <div class="header-btn">
                         <a href="#prestations" class="btn-transparent">En savoir plus</a>
-                        <a href="#contact" class="btn-yellow">Me contacter</a>
+                        <a href="{{ route('demo') }}" class="btn-yellow">Tester l'espace client</a>
                     </div>
                 </div>
                 <div class="scroll-down">

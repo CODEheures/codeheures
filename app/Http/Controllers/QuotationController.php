@@ -17,6 +17,8 @@ use App\Http\Controllers\Controller;
 use App\Quotation;
 use App\Common\ListEnum;
 use App\Common\UserList;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 use PhpSpec\Util\Filesystem;
 use Illuminate\Contracts\Mail\Mailer;
 
@@ -32,11 +34,11 @@ class QuotationController extends Controller
     private $_isDemoUser;
 
     public function __construct(Guard $auth, Mailer $mailer, InvoiceTools $invoiceTools) {
-        $this->middleware('auth');
-        $this->middleware('haveNewQuotation');
-        $this->middleware('isEmailConfirmed');
+        $this->middleware('auth', ['except' => ['getAttachment']]);
+        $this->middleware('haveNewQuotation', ['except' => ['getAttachment']]);
+        $this->middleware('isEmailConfirmed', ['except' => ['getAttachment']]);
         $this->middleware('fullProfile', ['only' => ['customerIndex', 'order', 'refuse', 'pdf']]);
-        $this->middleware('admin', ['except' => ['customerIndex', 'order', 'refuse', 'orderPost', 'showPdf']]);
+        $this->middleware('admin', ['except' => ['customerIndex', 'order', 'refuse', 'orderPost', 'showPdf', 'getAttachment']]);
         $this->auth = $auth;
         $this->mailer = $mailer;
         $this->invoiceTools = $invoiceTools;
@@ -325,8 +327,30 @@ class QuotationController extends Controller
         if(Carbon::createFromFormat('Y-m-d', $request->get('validity'))->isFuture()){
             $quotation = Quotation::findOrFail($id);
             if($quotation->canEdit()){
+                //sauvegarde du fichier joint
+                $fileName = null;
+                if($request->hasFile('upload') && $request->file('upload')->isValid()){
+                    if(!$quotation->file){
+                        $fileName = str_random(32);
+                        $limit = 100;
+                        $compt = 0;
+                        while(file_exists(storage_path() . env('STORAGE_ATTACHMENT') . $fileName . '.pdf') && $compt<$limit){
+                            $fileName = str_random(32);
+                            $compt++;
+                        }
+                    } else {
+                        $fileName = $quotation->file;
+                    }
+                    $file = $request->file('upload')->move(storage_path() . env('STORAGE_ATTACHMENT'), $fileName.'.pdf');
+                } else {
+                    if($quotation->file && file_exists(storage_path() . env('STORAGE_ATTACHMENT') . $quotation->file.'.pdf')){
+                        unlink(storage_path() . env('STORAGE_ATTACHMENT') . $quotation->file.'.pdf');
+                    }
+                }
+
                 $quotation->update($request->only(['user_id', 'validity', 'downPercentPayment']));
                 $quotation->isViewed = false;
+                $quotation->file = $fileName;
                 $quotation->save();
                 return redirect()->back()->with('info', 'informations sauvegardées');
             }
@@ -472,6 +496,16 @@ class QuotationController extends Controller
             $sms->send();
         } catch (\Exception $e) {
             throw new \Exception($e);
+        }
+    }
+
+    public function getAttachment($hashName) {
+        $fileName = storage_path() . env('STORAGE_ATTACHMENT') . $hashName . '.pdf';
+        if(file_exists($fileName)){
+            $file = file_get_contents($fileName);
+            return response($file,200)->header("Content-Type", "application/pdf");
+        } else {
+            return Response::view('errors.404', array(), 404);
         }
     }
 }
