@@ -19,3 +19,4 @@ Une facture a été envoyé à {{ $user->email }} :-)
 La facture n°{{ $invoice->number }} en PJ a été envoyée au client {{ $user->email }}:
 La facture est aussi ici: {{ route('invoice.get', ['type' => 'isSold', 'origin' => 'purchase','origin_id' => $purchase->id]) }}
 @endif
+@include('emails/footer/text')

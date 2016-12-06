@@ -222,31 +222,6 @@
             @else
                 <a href="#" class="btn-disable">Supprimer</a>
             @endif
-            @if($quotation->isOrdered && $quotation->haveDownPercent() && !$quotation->existInvoice('isDown'))
-                <a href="{{ route('admin.quotation.invoice.create', ['id' => $quotation->id, 'type' => 'isDown']) }}" class="btn-yellow2">Générer Facture d'acompte</a>
-            @elseif($quotation->isOrdered && $quotation->haveDownPercent() && $quotation->existInvoice('isDown') && !$quotation->isPayed('isDown'))
-                <a href="{{ route('invoice.sendMail', ['type' => 'isDown', 'origin' => 'quotation', 'id' => $quotation->id]) }}" class="btn-yellow2">Envoyer la Facture d'acompte</a>
-            @elseif($quotation->isOrdered && $quotation->haveDownPercent() && $quotation->existInvoice('isDown') && $quotation->isPayed('isDown'))
-                <a href="#" class="btn-disable">Facture d'acompte déja payée</a>
-            @else
-                <a href="#" class="btn-disable">Facture d'acompte</a>
-            @endif
-            @if($quotation->isOrdered && $quotation->haveDownPercent() && $quotation->existInvoice('isDown') && !$quotation->isPayed('isDown'))
-                <a href="{{ route('invoice.validatePayment', ['type' => 'isDown', 'origin' => 'quotation', 'id' => $quotation->id]) }}" class="btn-yellow2">Valider le paiement d'acompte</a>
-            @endif
-            @if($quotation->isOrdered && !$quotation->existInvoice('isSold') && ((!$quotation->haveDownPercent()) || ($quotation->haveDownPercent() && $quotation->isPayed('isDown') )))
-                <a href="{{ route('admin.quotation.invoice.create', ['id' => $quotation->id, 'type' => 'isSold']) }}" class="btn-yellow2">Générer Facture de solde</a>
-            @elseif($quotation->isOrdered && $quotation->existInvoice('isSold') && !$quotation->isPayed('isSold'))
-                <a href="{{ route('invoice.sendMail', ['type' => 'isSold', 'origin' => 'quotation', 'id' => $quotation->id]) }}" class="btn-yellow2">Envoyer la Facture de solde</a>
-            @elseif($quotation->isOrdered && $quotation->haveDownPercent() && !$quotation->isPayed('isDown'))
-            @elseif($quotation->isOrdered && $quotation->existInvoice('isSold') && $quotation->isPayed('isSold'))
-                <a href="#" class="btn-disable">Facture de solde déja payée</a>
-            @else
-                <a href="#" class="btn-disable">Facture de solde</a>
-            @endif
-            @if($quotation->isOrdered && $quotation->existInvoice('isSold') && !$quotation->isPayed('isSold'))
-                <a href="{{ route('invoice.validatePayment', ['type' => 'isSold', 'origin' => 'quotation', 'id' => $quotation->id]) }}" class="btn-yellow2">Valider le paiement du solde</a>
-            @endif
             @if($quotation->canArchive())
                 <a href="{{ route('admin.quotation.archive', ['id' => $quotation->id]) }}" class="btn-yellow2">Archiver</a>
             @else
@@ -259,4 +234,101 @@
             @endif
         </div>
     </div>
+</div>
+
+<div class="quotation-title">
+    <h2><i class="ion-ios-calculator-outline"></i>Facturation</h2>
+</div>
+<div class="quotation">
+@if($quotation->isOrdered)
+    <table class="quotation-table">
+        <thead>
+        <tr>
+            <th>Payment Id</th>
+            <th>Type</th>
+            <th>Poucentage</th>
+            <th>HT</th>
+            <th>TTC</th>
+            <th>Acquitée?</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+            @if($quotation->haveDownPercent())
+                <tr>
+                    @if(!$quotation->haveDownInvoice())
+                        <td colspan="7">
+                            <a href="{{ route('admin.quotation.invoice.create', ['id' => $quotation->id, 'type' => 'isDown', 'percent'=>$quotation->downPercentPayment]) }}" class="btn-yellow2">Générer la facture d'acompte</a>
+                        </td>
+                    @else
+                        <td>{{ $quotation->downInvoice->id }}</td>
+                        <td>Acompte</td>
+                        <td>{{ $quotation->downInvoice->percent }}</td>
+                        <td>{{ \App\Common\FormatManager::price($quotation->downInvoice->amountHT) }}€</td>
+                        <td>{{ \App\Common\FormatManager::price($quotation->downInvoice->amountTTC) }}€</td>
+                        @if($quotation->downInvoice->isPayed)
+                            <td>OUI</td>
+                        @else
+                            <td><a href="{{ route('invoice.validatePayment', ['type' => 'isDown', 'origin' => 'quotation', 'origin_id' => $quotation->id]) }}" class="btn-yellow">Valider paiement</a></td>
+                        @endif
+                        <td>
+                            <a href="{{ route('invoice.get', ['type' => 'isDown', 'origin' => 'quotation', 'origin_id' => $quotation->id]) }}" >Voir</a><br />
+                            <a href="{{ route('invoice.sendMail', ['type' => 'isDown', 'origin' => 'quotation', 'origin_id' => $quotation->id]) }}" >Envoyer par mail</a>
+                        </td>
+                    @endif
+                </tr>
+            @endif
+            @foreach($quotation->invoices as $invoice)
+                @if($invoice->isIntermediate)
+                    <tr>
+                        <td>{{ $invoice->id }}</td>
+                        <td>Intermédiaire</td>
+                        <td>{{ $invoice->percent }}</td>
+                        <td>{{ \App\Common\FormatManager::price($invoice->amountHT) }}€</td>
+                        <td>{{ \App\Common\FormatManager::price($invoice->amountTTC) }}€</td>
+                        @if($invoice->isPayed)
+                            <td>OUI</td>
+                        @else
+                            <td><a href="{{ route('invoice.validatePayment', ['type' => 'isIntermediate', 'origin' => 'quotation', 'origin_id' => $quotation->id, 'intermediateNumber' => $invoice->intermediateNumber]) }}" class="btn-yellow">Valider paiement</a></td>
+                        @endif
+                        <td>
+                            <a href="{{ route('invoice.get', ['type' => 'isIntermediate', 'origin' => 'quotation', 'origin_id' => $quotation->id, 'intermediateNumber' => $invoice->intermediateNumber]) }}" >Voir</a><br />
+                            <a href="{{ route('invoice.sendMail', ['type' => 'isIntermediate', 'origin' => 'quotation', 'origin_id' => $quotation->id, 'intermediateNumber' => $invoice->intermediateNumber]) }}" >Envoyer par mail</a>
+                        </td>
+                    </tr>
+                @endif
+            @endforeach
+            @if($quotation->canHaveNewIntermediateInvoice())
+                <tr>
+                    <td colspan="5">
+                        20%
+                    </td>
+                    <td colspan="2">
+                        <a href="{{ route('admin.quotation.invoice.create', ['id' => $quotation->id, 'type' => 'isIntermediate', 'percent' => 20, 'intermediateNumber'=>$quotation->nextIntermediateInvoiceNumber()]) }}" class="btn-yellow2">Générer une facture intermédiaire</a>
+                    </td>
+                </tr>
+            @endif
+            @if($quotation->canGenerateSoldInvoice())
+                <td colspan="7">
+                    <a href="{{ route('admin.quotation.invoice.create', ['id' => $quotation->id, 'type' => 'isSold', 'percent'=>$quotation->soldPercent]) }}" class="btn-yellow2">Générer Facture de solde</a>
+                </td>
+            @elseif($quotation->haveSoldInvoice())
+                <td>{{ $quotation->soldInvoice->id }}</td>
+                <td>Solde</td>
+                <td>{{ $quotation->soldInvoice->percent }}</td>
+                <td>{{ \App\Common\FormatManager::price($quotation->soldInvoice->amountHT) }}€</td>
+                <td>{{ \App\Common\FormatManager::price($quotation->soldInvoice->amountTTC) }}€</td>
+                @if($quotation->soldInvoice->isPayed)
+                    <td>OUI</td>
+                @else
+                    <td><a href="{{ route('invoice.validatePayment', ['type' => 'isSold', 'origin' => 'quotation', 'origin_id' => $quotation->id]) }}" class="btn-yellow">Valider paiement</a></td>
+                @endif
+                <td>
+                    <a href="{{ route('invoice.get', ['type' => 'isSold', 'origin' => 'quotation', 'origin_id' => $quotation->id]) }}" >Voir</a><br />
+                    <a href="{{ route('invoice.sendMail', ['type' => 'isSold', 'origin' => 'quotation', 'origin_id' => $quotation->id]) }}" >Envoyer par mail</a>
+                </td>
+            @endif
+        </tbody>
+    </table>
+@endif
 </div>

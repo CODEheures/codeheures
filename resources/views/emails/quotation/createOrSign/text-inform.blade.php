@@ -37,3 +37,4 @@ Le devis n°{{ $quotation->getPublicNumber() }} a été envoyée au client {{ $u
 {{ route('admin.quotation.edit', ['id' => $quotation->id]) }}
 @endif
 @endif
+@include('emails/footer/text')

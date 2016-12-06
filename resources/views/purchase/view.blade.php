@@ -14,8 +14,11 @@
                     @if($invoice->isDown)
                         <a href="{{ route('invoice.get', ['type' => 'isDown', 'origin' => 'quotation','origin_id' => $purchase->quotation_id]) }}"><i class="ion-archive"></i>Télécharger la facture d'acompte</a>
                     @endif
+                    @if($invoice->isIntermediate)
+                        <br /><a href="{{ route('invoice.get', ['type' => 'isIntermediate', 'origin' => 'quotation','origin_id' => $purchase->quotation_id, 'intermediateNumber' => $invoice->intermediateNumber]) }}"><i class="ion-archive"></i>Télécharger la facture intermédiaire {{ $invoice->intermediateNumber }}</a>
+                    @endif
                     @if($invoice->isSold)
-                        <a href="{{ route('invoice.get', ['type' => 'isSold', 'origin' => 'quotation','origin_id' => $purchase->quotation_id]) }}"><i class="ion-archive"></i>Télécharger la facture de solde</a>
+                        <br /><a href="{{ route('invoice.get', ['type' => 'isSold', 'origin' => 'quotation','origin_id' => $purchase->quotation_id]) }}"><i class="ion-archive"></i>Télécharger la facture de solde</a>
                     @endif
                 @endforeach
                 </p></nav>

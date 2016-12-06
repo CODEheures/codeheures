@@ -25,6 +25,7 @@ class InvoiceTools
     private $_origin;
     private $_entity;
     private $_entity_user;
+    private $_intermediateNumber=null;
     private $_invoice;
     private $mailer;
 
@@ -45,8 +46,8 @@ class InvoiceTools
      * @return boolean
      * @throws \Exception
      */
-    public function setEntity($type, $origin, $origin_id) {
-        if ($type != 'isDown' && $type != 'isSold') {
+    public function setEntity($type, $origin, $origin_id, $intermediateNumber) {
+        if ($type != 'isDown' && $type != 'isSold' && $type != 'isIntermediate') {
             throw new \Exception('Ce type de facturation n\'existe pas.');
         } else {
             $this->_type = $type;
@@ -69,6 +70,9 @@ class InvoiceTools
             $this->_entity = $entity;
             $this->_entity->load('user');
             $this->_entity_user = $entity->user;
+            if($intermediateNumber){
+                $this->_intermediateNumber=$intermediateNumber;
+            }
             if(!$this->_entity_user->isDemo) {
                 $this->_isDemoUser = false;
             } else {
@@ -93,10 +97,10 @@ class InvoiceTools
 
         if(!$this->_isDemoUser) {
             $this->_storage = storage_path() . env('STORAGE_INVOICE');
-            $fileName = $this->_storage . $this->_invoice->number . $this->_postName . $this->_ext;
+            $fileName = $this->_storage . $this->_invoice->number . $this->_postName . $this->_intermediateNumber . $this->_ext;
         } else {
             $this->_storage = storage_path() . env('STORAGE_INVOICE_DEMO');
-            $fileName = $this->_storage . $this->_invoice->demo_number . $this->_postName . $this->_ext;
+            $fileName = $this->_storage . $this->_invoice->demo_number . $this->_postName . $this->_intermediateNumber . $this->_ext;
         }
         return $fileName;
     }
@@ -114,8 +118,15 @@ class InvoiceTools
         foreach ($this->_entity->invoices as $invoice) {
             $invoiceType = $this->_type;
             if ($invoice->$invoiceType == true) {
-                $this->_invoice = $invoice;
-                return true;
+                if(!$this->_intermediateNumber){
+                    $this->_invoice = $invoice;
+                    return true;
+                } else {
+                    if($invoice->intermediateNumber == $this->_intermediateNumber){
+                        $this->_invoice = $invoice;
+                        return true;
+                    }
+                }
             }
         }
         return false;
@@ -143,12 +154,12 @@ class InvoiceTools
         return $nextNumber;
     }
 
-    public function sendMail($type=null, $origin=null, $origin_id=null) {
+    public function sendMail($type=null, $origin=null, $origin_id=null, $intermediateNumber=null) {
         if($type==null && $origin==null && $origin_id==null) {
             $existInvoice = $this->_invoice;
         } else {
             try {
-                $this->setEntity($type, $origin, $origin_id);
+                $this->setEntity($type, $origin, $origin_id, $intermediateNumber);
             } catch (\Exception $e) {
                 throw new \Exception('Probleme dans l\'envoi du mail de la facture');
             }
@@ -163,7 +174,7 @@ class InvoiceTools
                     $quotation = $this->_entity;
                     $quotation->load('purchases');
                     $isAdmin = false;
-                    $this->mailer->send(['text' => 'emails.quotation.invoice.text-confirm', 'html' => 'emails.quotation.invoice.html-confirm'], compact('user', 'quotation', 'type', 'isAdmin'), function($message) use($user, $quotation, $fileName){
+                    $this->mailer->send(['text' => 'emails.quotation.invoice.text-confirm', 'html' => 'emails.quotation.invoice.html-confirm'], compact('user', 'quotation', 'type', 'isAdmin', 'invoice'), function($message) use($user, $quotation, $fileName){
                         $message->to($user->email);
                         $message->subject('Votre achat sur ' . env('APP_NAME'));
                         $message->attach($fileName);
@@ -222,11 +233,11 @@ class InvoiceTools
      *
      * @return string
      */
-    public function create($type, $origin, $origin_id, $isPayed=false) {
+    public function create($type, $origin, $origin_id, $isPayed=false, $percent=100, $intermediateNumber=null) {
 
         //Entité qui porte la création de la facture
         try {
-            $this->setEntity($type, $origin, $origin_id);
+            $this->setEntity($type, $origin, $origin_id, $intermediateNumber);
         } catch (\Exception $e) {
             throw new \Exception($e);
         }
@@ -250,9 +261,29 @@ class InvoiceTools
         $invoice->origin = $this->_origin;
         $invoiceType = $this->_type;
         $invoice->$invoiceType = true;
+        $invoice->intermediateNumber = $this->_intermediateNumber;
         $fillable_origin = $this->_origin . '_id';
         $invoice->$fillable_origin = $this->_entity->id;
         $invoice->isPayed = $isPayed;
+        $invoice->percent = $percent;
+        if($this->_type!='isSold'){
+            $invoice->amountHT = $this->_entity->totalPercent(false, $invoice->percent);
+            $invoice->amountTTC = $this->_entity->totalPercent(true, $invoice->percent);
+        } else {
+            if($this->_origin == 'quotation') {
+                $invoice->amountHT = $this->_entity->totalSoldPrice();
+                $invoice->amountTTC = $this->_entity->totalSoldPrice(true);
+            }  elseif ($this->_origin == 'purchase') {
+                $paymentId = json_decode($this->_entity->paypal_result)->id;
+                $payment = Payment::get($paymentId, $this->_api_context);
+                $totalTVA = 0;
+                foreach($payment->getTransactions()[0]->getItemList()->getItems() as $item) {
+                    $totalTVA = $totalTVA + $item->getTax() * $item->getQuantity();
+                }
+                $invoice->amountTTC = (int)($payment->getTransactions()[0]->getAmount()->getTotal()*100);
+                $invoice->amountHT = (int)($invoice->amountTTC - $totalTVA*100);
+            }
+        }
         $invoice->save();
         $this->_invoice = $invoice;
 
@@ -260,47 +291,23 @@ class InvoiceTools
         if($this->_origin == 'quotation') {
             if ($this->_entity->isOrdered) {
                 $this->_entity->load('lineQuotes');
-                if($this->_type == 'isDown') {
-                    if($this->_entity->haveDownPercent()) {
-                        try {
-                            $entity = $this->_entity;
-                            $content = view('pdf.quotation.invoice.index', compact('entity', 'invoice'))->__toString();
-                            $header = view('pdf.header.view', compact('entity', 'invoice'))->__toString();
-                            $footer = view('pdf.footer.view')->__toString();
-                            $this->createPdf($content, $header, $footer, $fileName);
-                            return $fileName;
-                        } catch (\Exception $e) {
-                            $this->_invoice->delete();
-                            throw new \Exception('Probleme dans la création de la facture PDF.');
-                        }
-                    } else {
-                        throw new \Exception('Pas d\'accompte à facturer sur ce devis');
-                    }
-                } elseif ($this->_type == 'isSold') {
-                    if($this->_entity->haveDownPercent()) {
-                        $haveDown = true;
-                    } else {
-                        $haveDown= false;
-                    }
-                    try {
-                        $entity = $this->_entity;
-                        $content = view('pdf.quotation.invoice.index', compact('entity', 'totalPrice', 'totalTva', 'invoice', 'haveDown'))->__toString();
-                        $header = view('pdf.header.view', compact('entity', 'invoice'))->__toString();
-                        $footer = view('pdf.footer.view')->__toString();
-                        $this->createPdf($content, $header, $footer, $fileName);
-                        return $fileName;
-                    } catch (\Exception $e) {
-                        $this->_invoice->delete();
-                        throw new \Exception('Probleme dans la création de la facture PDF');
-                    }
+                $this->_entity->load('invoices');
+                try {
+                    $entity = $this->_entity;
+                    $content = view('pdf.quotation.invoice.index', compact('entity', 'invoice'))->__toString();
+                    $header = view('pdf.header.view', compact('entity', 'invoice'))->__toString();
+                    $footer = view('pdf.footer.view')->__toString();
+                    $this->createPdf($content, $header, $footer, $fileName);
+                    return $fileName;
+                } catch (\Exception $e) {
+                    $this->_invoice->delete();
+                    throw new \Exception('Probleme dans la création de la facture PDF.');
                 }
             } else {
                 throw new \Exception('Facturation interdite. Devis non signé');
             }
         } elseif ($this->_origin == 'purchase') {
             try {
-                $paymentId = json_decode($this->_entity->paypal_result)->id;
-                $payment = Payment::get($paymentId, $this->_api_context);
                 $entity = $this->_entity;
                 $content = view('pdf.purchase.invoice.index', compact('payment', 'entity', 'invoice'))->__toString();
                 $header = view('pdf.header.view', compact('entity', 'invoice'))->__toString();
@@ -314,9 +321,9 @@ class InvoiceTools
         }
     }
 
-    public function validatePayment($type, $origin, $origin_id) {
+    public function validatePayment($type, $origin, $origin_id, $intermediateNumber=null) {
         try {
-            $this->setEntity($type, $origin, $origin_id);
+            $this->setEntity($type, $origin, $origin_id, $intermediateNumber);
             $existInvoice = $this->setExistInvoice();
         } catch (\Exception $e) {
             throw new \Exception('Probleme dans l\'envoi du mail de la facture');

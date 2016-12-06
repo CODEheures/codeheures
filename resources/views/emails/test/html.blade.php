@@ -8,3 +8,4 @@
     <li>Aucune variable</li>
 @endforelse
 </ol>
+@include('emails/footer/html')

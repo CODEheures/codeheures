@@ -305,7 +305,7 @@ class QuotationController extends Controller
         $userList = UserList::userList();
         $productList = Product::where('isObsolete', '=', false)
             ->where(function($query) use($quotation) {
-                $query->whereNull('reservedForUserId')
+                $query->where('reservedForUserId', '=', 0)
                     ->orWhere('reservedForUserId', '=', $quotation->user_id);
             })
             ->Lists('description', 'id');
@@ -476,12 +476,16 @@ class QuotationController extends Controller
     }
 
 
-    public function invoiceCreate($id, $type) {
+    public function invoiceCreate($id, $type, $percent, $intermediateNumber=null) {
         try {
-            $this->invoiceTools->create($type, 'quotation', $id);
+            $this->invoiceTools->create($type, 'quotation', $id, false, $percent, $intermediateNumber);
+
+            $arrayRoute = ['type' => $type, 'origin' => 'quotation', 'origin_id' => $id];
+            $type=='isIntermediate' && $intermediateNumber && (int)$intermediateNumber>=1 ? $arrayRoute['intermediateNumber']=$intermediateNumber : null;
+
             return redirect()->back()
                 ->with('success', 'Facture générée')
-                ->with('info_url', route('invoice.get', ['type' => $type, 'origin' => 'quotation', 'id' => $id]))
+                ->with('info_url', route('invoice.get', $arrayRoute))
                 ->with('info_url_txt', 'voir la facture');
 
         } catch (\Exception $e) {

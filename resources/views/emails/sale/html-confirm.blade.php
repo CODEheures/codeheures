@@ -20,3 +20,4 @@
     <p>La facture n°{{ $invoice->number }} en PJ a été envoyée au client {{ $user->email }}:<br />
         <a href="{{ route('invoice.get', ['type' => 'isSold', 'origin' => 'purchase','origin_id' => $purchase->id]) }}" style="color: #3880aa;">Voir la facture</a></p>
 @endif
+@include('emails/footer/html')

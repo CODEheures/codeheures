@@ -7,3 +7,4 @@ Pour finaliser votre inscription merci de cliquer le lien suivant:
 <a href="{{ route('account.confirm', ['id' => $user->id, 'token' => $user->confirmation_token]) }}" style="color: #3880aa;">lien de confirmation</a>
 
 A tout de suite!</p>
+@include('emails/footer/html')

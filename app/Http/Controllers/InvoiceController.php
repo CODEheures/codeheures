@@ -21,9 +21,9 @@ class InvoiceController extends Controller
         $this->invoiceTools = $invoiceTools;
     }
 
-    public function get($type, $origin, $origin_id) {
+    public function get($type, $origin, $origin_id, $intermediateNumber=null) {
         $invoiceTools = $this->invoiceTools;
-        $invoiceTools->setEntity($type, $origin, $origin_id);
+        $invoiceTools->setEntity($type, $origin, $origin_id, $intermediateNumber);
         if($this->auth->user() == $invoiceTools->getOwnerUser() || $this->auth->user()->role == 'admin'){
             $existInvoice = $invoiceTools->setExistInvoice();
             if($existInvoice) {
@@ -42,18 +42,18 @@ class InvoiceController extends Controller
         }
     }
 
-    public function sendMail($type, $origin, $origin_id) {
+    public function sendMail($type, $origin, $origin_id, $intermediateNumber=null) {
         try {
-            $this->invoiceTools->sendMail($type, $origin , $origin_id);
+            $this->invoiceTools->sendMail($type, $origin , $origin_id, $intermediateNumber);
         } catch (\Exception $e) {
             return redirect()->back()->withErrors($e);
         }
         return redirect()->back()->with('success', 'Facture envoyée');
     }
 
-    public function validatePayment($type, $origin, $origin_id) {
+    public function validatePayment($type, $origin, $origin_id, $intermediateNumber=null) {
         try {
-            $this->invoiceTools->validatePayment($type, $origin , $origin_id);
+            $this->invoiceTools->validatePayment($type, $origin , $origin_id, $intermediateNumber);
         } catch (\Exception $e) {
             return redirect()->back()->withErrors($e);
         }

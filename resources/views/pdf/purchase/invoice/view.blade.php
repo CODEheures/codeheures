@@ -13,5 +13,5 @@
 </div>
 
 <div class="purchase-title">
-    <h2><i class="ion-ios-locked-outline"></i>Facture réglée par paypal le {!! \Carbon\Carbon::parse($payment->getUpdateTime())->formatLocalized('%A %e %B %Y') !!}</h2>
+    <h2><i class="ion-ios-locked-outline"></i>Facture acquitée par paypal le {!! \Carbon\Carbon::parse($payment->getUpdateTime())->formatLocalized('%A %e %B %Y') !!}</h2>
 </div>

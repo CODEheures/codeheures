@@ -40,7 +40,7 @@
 
     <div class="form-submit">
         <div class="submit">
-            <input type="submit" class="btn-yellow2" value="S'inscrire" />
+            <input type="submit" class="btn-yellow2" value="Réinitialiser" />
         </div>
     </div>
 {!! Form::close() !!}

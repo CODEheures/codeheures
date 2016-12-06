@@ -6,7 +6,7 @@
         </div>
     </div>
     @if(isset($isPdf) && $isPdf && $quotation->file)
-        <p class="cc-info">Ce devis est exécuté dans les conditions du contrat commerciale suivant: <a href="{{ route('customer.quotation.attachment', ['hashName' => $quotation->file]) }}">{{ route('customer.quotation.attachment', ['hashName' => $quotation->file]) }}</a></p>
+        <p class="cc-info">Ce devis est exécuté dans les conditions du contrat commercial suivant: <a href="{{ route('customer.quotation.attachment', ['hashName' => $quotation->file]) }}">{{ route('customer.quotation.attachment', ['hashName' => $quotation->file]) }}</a></p>
     @endif
 </div>
 @if(!isset($isPdf) || !$isPdf)
@@ -14,7 +14,7 @@
     <p>
         <a href="{{ route('customer.quotation.showPdf', ['id' => $quotation->id]) }}"><i class="ion-archive"></i>Télécharger ce devis</a>
         @if($quotation->file)
-            <br /><a href="{{ route('customer.quotation.attachment', ['hashName' => $quotation->file]) }}"><i class="ion-archive"></i>Télécharger le contrat commerciale de ce devis</a>
+            <br /><a href="{{ route('customer.quotation.attachment', ['hashName' => $quotation->file]) }}"><i class="ion-archive"></i>Télécharger le contrat commercial de ce devis</a>
         @endif
     </p>
 </nav>

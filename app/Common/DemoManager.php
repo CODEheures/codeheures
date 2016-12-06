@@ -73,9 +73,17 @@ Class DemoManager
                     foreach ($quotation->invoices as $invoice){
                         //Effacement des factures
                         $dir = storage_path() . env('STORAGE_INVOICE_DEMO');
-                        $invoice->isDown ? $type = 'isDown' : $type = 'isSold';
-                        $file = $dir . $invoice->demo_number . '-invoice-' . $type .'.pdf';
-                        $this->delFiles($file);
+                        if($invoice->isDown) {
+                            $type = 'isDown';
+                        } elseif ($invoice->isSold) {
+                            $type = 'isSold';
+                        } elseif ($invoice->isIntermediate) {
+                            $type = 'isIntermediate';
+                        }
+                        if(isset($type)){
+                            $file = $dir . $invoice->demo_number . '-invoice-' . $type . $invoice->intermediateNumber . '.pdf';
+                            $this->delFiles($file);
+                        }
                     }
                     $quotation->invoices()->delete();
                     $quotation->lineQuotes()->delete();

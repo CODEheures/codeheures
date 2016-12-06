@@ -85,26 +85,83 @@ class Quotation extends Model
         return ($this->downPercentPayment && $this->downPercentPayment > 0);
     }
 
-    public function existInvoice($type) {
-        foreach ($this->invoices as $invoice) {
-            if($invoice->$type == true) {
-                return true;
-            }
+    public function haveDownInvoice() {
+        $result = false;
+        foreach ($this->invoices as $invoice){
+            $invoice->isDown ? $result = true : null;
         }
-        return false;
+        return $result;
     }
 
-    public function isPayed($type) {
-        foreach ($this->invoices as $invoice) {
-            if($invoice->$type && $invoice->isPayed){
-                return true;
+    public function getDownInvoiceAttribute() {
+        $result = null;
+        foreach ($this->invoices as $invoice){
+            $invoice->isDown ? $result = $invoice : null;
+        }
+        return $result;
+    }
+
+    public function getSoldInvoiceAttribute() {
+        $result = null;
+        foreach ($this->invoices as $invoice){
+            $invoice->isSold ? $result = $invoice : null;
+        }
+        return $result;
+    }
+
+    public function getSoldPercentAttribute() {
+        $result = 100;
+        foreach ($this->invoices as $invoice){
+            !$invoice->isSold ? $result = $result - $invoice->percent : null;
+        }
+        return $result;
+    }
+
+    public function nextIntermediateInvoiceNumber() {
+        $result = 1;
+        foreach ($this->invoices as $invoice){
+            $invoice->isIntermediate ? $result++ : null;
+        }
+        return $result;
+    }
+
+    public function canHaveNewIntermediateInvoice() {
+        $result = 0;
+        if($this->haveDownPercent() && !$this->haveDownInvoice()) {
+            return false;
+        }
+        foreach ($this->invoices as $invoice){
+            if($invoice->isSold || !$invoice->isPayed) {
+                return false;
+            } else {
+                $result = $result + $invoice->percent;
             }
         }
-        return false;
+        return ($result<70);
+    }
+
+    public function canGenerateSoldInvoice() {
+        $result = true;
+        if($this->haveDownPercent() && !$this->haveDownInvoice()) {
+            return false;
+        }
+        foreach ($this->invoices as $invoice){
+            $invoice->isSold ? $result = false : null;
+            !$invoice->isSold && $invoice->isPayed == false ? $result = false : null;
+        }
+        return $result;
+    }
+
+    public function haveSoldInvoice() {
+        $result = false;
+        foreach ($this->invoices as $invoice){
+            $invoice->isSold ? $result = true : null;
+        }
+        return $result;
     }
 
     public function canArchive() {
-        if($this->isOrdered && $this->existInvoice('isSold')){
+        if($this->isOrdered && $this->haveSoldInvoice()){
             foreach ($this->invoices as $invoice){
                 if(!$invoice->isPayed){
                     return false;
@@ -226,15 +283,28 @@ class Quotation extends Model
         return (int) $totalRemise;
     }
 
-    public function totalDownPercent($tva=false) {
-        $totalDownPercent = 0;
+    public function totalPercent($tva=false, $percent) {
+        $totalPercent = 0;
         foreach($this->lineQuotes as $lineQuote){
             if ($tva) {
-                $totalDownPercent += $lineQuote->totalPriceTTC()*$this->downPercentPayment;
+                $totalPercent += $lineQuote->totalPriceTTC()*$percent;
             } else {
-                $totalDownPercent += $lineQuote->totalPriceHt()*$this->downPercentPayment;
+                $totalPercent += $lineQuote->totalPriceHt()*$percent;
             }
         }
-        return (int) ($totalDownPercent/100);
+        return (int) ($totalPercent/100);
+    }
+
+    public function totalSoldPrice($tva=false) {
+        $totalDowns = 0;
+        foreach($this->invoices as $invoice){
+            if ($tva) {
+                $totalDowns = $totalDowns + $invoice->amountTTC;
+            } else {
+                $totalDowns = $totalDowns + $invoice->amountHT;
+            }
+        }
+        $totalSold = $this->totalPrice($tva)-$totalDowns;
+        return (int) $totalSold;
     }
 }

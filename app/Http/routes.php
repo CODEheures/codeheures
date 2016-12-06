@@ -69,8 +69,8 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/quotation/{id}/publish', ['as' => 'admin.quotation.publish', 'uses' => 'QuotationController@publish'])->where(['id'=>'[0-9]+']);
     Route::get('/quotation/{id}/unPublish', ['as' => 'admin.quotation.unPublish', 'uses' => 'QuotationController@unPublish'])->where(['id'=>'[0-9]+']);
     Route::get('/quotation/{id}/archive', ['as' => 'admin.quotation.archive', 'uses' => 'QuotationController@archive'])->where(['id'=>'[0-9]+']);
-    Route::get('/quotation/{id}/invoice/create/{type}', ['as' => 'admin.quotation.invoice.create', 'uses' => 'QuotationController@invoiceCreate'])
-        ->where(['id'=>'[0-9]+'])->where(['type' => '\b(isDown|isSold)\b']);
+    Route::get('/quotation/{id}/invoice/create/{type}/{percent}/{intermediateNumber?}', ['as' => 'admin.quotation.invoice.create', 'uses' => 'QuotationController@invoiceCreate'])
+        ->where(['id'=>'[0-9]+'])->where(['type' => '\b(isDown|isSold|isIntermediate)\b'])->where(['percent'=>'[0-9]{1,3}'])->where(['intermediateNumber'=>'[0-9]+']);
 
     //lineQuotes
     Route::post('/lineQuote', ['as' => 'admin.lineQuote.store', 'uses' => 'LineQuoteController@store']);
@@ -115,12 +115,12 @@ Route::group(['prefix' => 'purchase'], function() {
 
 //Invoice routes
 Route::group(['prefix' => 'invoice'], function () {
-    Route::get('/{type}/{origin}/{origin_id}/', ['as' => 'invoice.get', 'uses' => 'InvoiceController@get'])
-        ->where(['type' => '\b(isDown|isSold)\b'])->where(['origin' => '\b(quotation|purchase)\b'])->where(['id'=>'[0-9]+']);
-    Route::get('/sendMail/{type}/{origin}/{origin_id}/', ['as' => 'invoice.sendMail', 'uses' => 'InvoiceController@sendMail'])
-        ->where(['type' => '\b(isDown|isSold)\b'])->where(['origin' => '\b(quotation|purchase)\b'])->where(['id'=>'[0-9]+']);
-    Route::get('/validatePayment/{type}/{origin}/{origin_id}/', ['as' => 'invoice.validatePayment', 'uses' => 'InvoiceController@validatePayment'])
-        ->where(['type' => '\b(isDown|isSold)\b'])->where(['origin' => '\b(quotation|purchase)\b'])->where(['id'=>'[0-9]+']);
+    Route::get('/{type}/{origin}/{origin_id}/{intermediateNumber?}', ['as' => 'invoice.get', 'uses' => 'InvoiceController@get'])
+        ->where(['type' => '\b(isDown|isSold|isIntermediate)\b'])->where(['origin' => '\b(quotation|purchase)\b'])->where(['origin_id'=>'[0-9]+'])->where(['intermediateNumber'=>'[0-9]+']);
+    Route::get('/sendMail/{type}/{origin}/{origin_id}/{intermediateNumber?}', ['as' => 'invoice.sendMail', 'uses' => 'InvoiceController@sendMail'])
+        ->where(['type' => '\b(isDown|isSold|isIntermediate)\b'])->where(['origin' => '\b(quotation|purchase)\b'])->where(['origin_id'=>'[0-9]+'])->where(['intermediateNumber'=>'[0-9]+']);
+    Route::get('/validatePayment/{type}/{origin}/{origin_id}/{intermediateNumber?}', ['as' => 'invoice.validatePayment', 'uses' => 'InvoiceController@validatePayment'])
+        ->where(['type' => '\b(isDown|isSold|isIntermediate)\b'])->where(['origin' => '\b(quotation|purchase)\b'])->where(['origin_id'=>'[0-9]+'])->where(['intermediateNumber'=>'[0-9]+']);
 });
 
 // Authentication routes...

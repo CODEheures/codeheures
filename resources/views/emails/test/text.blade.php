@@ -5,3 +5,4 @@ Vous avez un message
 @empty
     Aucune variable
 @endforelse
+@include('emails/footer/text')

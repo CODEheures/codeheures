@@ -43,7 +43,7 @@
             >
                 <a href="{{ route('customer.quotation.showPdf', ['id' => $quotation->id]) }}"><i class="ion-archive"></i>Télécharger ce devis</a>
                 @if($quotation->file)
-                    <br /><a href="{{ route('customer.quotation.attachment', ['hashName' => $quotation->file]) }}"><i class="ion-archive"></i>Télécharger le contrat commerciale de ce devis</a>
+                    <br /><a href="{{ route('customer.quotation.attachment', ['hashName' => $quotation->file]) }}"><i class="ion-archive"></i>Télécharger le contrat commercial de ce devis</a>
                 @endif
             </p>
         </nav>

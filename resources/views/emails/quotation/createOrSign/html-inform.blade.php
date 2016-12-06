@@ -39,3 +39,4 @@
             <a href="{{ route('admin.quotation.edit', ['id' => $quotation->id]) }}" style="color: #3880aa;">Le devis ici</a></p>
     @endif
 @endif
+@include('emails/footer/html')
