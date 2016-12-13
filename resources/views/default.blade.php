@@ -12,6 +12,7 @@
     <meta name="language" CONTENT="{{ \Illuminate\Support\Facades\App::getLocale() }}" />
     <meta name="publisher" content="CODEheures | Sylvain Gagnot" />
     <meta name="copyright" content="2016 CODEheures. Tous droits réservés.">
+    <meta name="keywords" content="création site internet tours, agence web tours, developpeur web tours, création site vitrine tours, création e-commerce tours, développement d'applications web mobile tours, developpement laravel, developpement vuejs, programmation site internet tours, maintenance site internet tours, sous-traitant developpement web, création page facebook tours, création page twitter tours, devis création de site web Tours, 37, Indre et Loire, Région Centre" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="google-site-verification" content="SOhQHlo2EkGzHyFGOdWB3ih7ydb7CdaRg92y606qEkU" />
     <link rel="canonical" href="{{ \Illuminate\Support\Facades\Request::getFacadeRoot()->url() }}" />

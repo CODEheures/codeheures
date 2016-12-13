@@ -31,7 +31,7 @@
                     </p>
                     <h2 class="important">
                         Developpeur WEB indépendant, j'interviens pour toute création et maintenance de site internet et
-                        d'application internet mobile.
+                        d'application internet mobile. Sous traitance pour les agence web. Spécialiste <a href="https://laravel.com">Laravel</a> - <a href="https://vuejs.org">VueJS</a>
                     </h2>
                     <div class="header-btn">
                         <a href="#prestations" class="btn-transparent">En savoir plus</a>
