@@ -8,11 +8,11 @@
 @endsection
 
 @section('title')
-    Prestations webmaster | Recharger mon compte
+    <title>Prestations webmaster | Recharger mon compte</title>
 @endsection
 
 @section('description')
-    La création ou la maintenance de votre site internet ou mobile par CODEheures est accélérée en rechargeant votre compte directement en ligne
+    <meta name="description" content="La création ou la maintenance de votre site internet ou mobile par CODEheures est accélérée en rechargeant votre compte directement en ligne">
 @endsection
 
 @section('navbar')

@@ -1,11 +1,11 @@
 @extends('default')
 
 @section('title')
-    Création de sites internet et sites mobiles à Tours
+    <title>Création de sites internet et sites mobiles à Tours</title>
 @endsection
 
 @section('description')
-    Développeur indépendant pour la création de sites internet, sites mobiles, applications web, en région de Tours, 37.
+    <meta name="description" content="Développeur indépendant pour la création de sites internet, sites mobiles, applications web, en région de Tours, 37.">
 @endsection
 
 @section('css')

@@ -9,11 +9,11 @@
 @endsection
 
 @section('title')
-    Mentions légales | CODEheures developpeur web indépendant
+    <title>Mentions légales | CODEheures developpeur web indépendant</title>
 @endsection
 
 @section('description')
-    Programmeur freelance pour la création de sites Internet, sites mobiles, web applications, en région de Tours, 37.
+    <meta name="description" content="Programmeur freelance pour la création de sites Internet, sites mobiles, web applications, en région de Tours, 37.">
 @endsection
 
 @section('navbar')

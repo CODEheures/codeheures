@@ -6,11 +6,11 @@
 @endsection
 
 @section('title')
-    Création site internet | Réalisations
+    <title>Création site internet | Réalisations</title>
 @endsection
 
 @section('description')
-    Réalisations de sites Internet, sites mobiles, web applications, en région de Tours, 37. Spécialiste Laravel, Vue-Js
+    <meta name="description" content="Réalisations de sites Internet, sites mobiles, web applications, en région de Tours, 37. Spécialiste Laravel, Vue-Js">
 @endsection
 
 @section('navbar')

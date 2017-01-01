@@ -9,11 +9,11 @@
 @endsection
 
 @section('title')
-    Conditions générales de vente | CODEheures développeur sites internet
+    <title>Conditions générales de vente | CODEheures développeur sites internet</title>
 @endsection
 
 @section('description')
-    Developpeur freelance pour la création de sites web, sites mobiles, applications internet, en région de Tours, 37.
+    <meta name="description" content="Developpeur freelance pour la création de sites web, sites mobiles, applications internet, en région de Tours, 37.">
 @endsection
 
 @section('navbar')

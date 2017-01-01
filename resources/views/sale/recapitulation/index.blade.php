@@ -8,11 +8,11 @@
 @endsection
 
 @section('title')
-    CODEheures | Recapitulation commande
+    <title>CODEheures | Recapitulation commande</title>
 @endsection
 
 @section('description')
-    Récapitulation de votre commande pour la création de sites Internet, sites mobiles, web applications, en région de Tours, 37.
+    <meta name="description" content="Récapitulation de votre commande pour la création de sites Internet, sites mobiles, web applications, en région de Tours, 37.">
 @endsection
 
 @section('navbar')

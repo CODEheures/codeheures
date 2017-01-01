@@ -5,11 +5,11 @@
 @endsection
 
 @section('title')
-    Création de sites web | Espace Client
+    <title>Création de sites web | Espace Client</title>
 @endsection
 
 @section('description')
-    Inscrivez-vous pour bénéficier de tous les avantages lors de la création ou de la maintenance de votre site internet.
+    <meta name="description" content="Inscrivez-vous pour bénéficier de tous les avantages lors de la création ou de la maintenance de votre site internet.">
 @endsection
 
 @section('css')

@@ -11,7 +11,7 @@
 @endsection
 
 @section('title')
-    CODEheures | Commande {{ $purchase->hash_key }}
+    <title>CODEheures | Commande {{ $purchase->hash_key }}</title>
 @endsection
 
 @section('navbar')

@@ -3,11 +3,11 @@
 @section('css')@endsection
 
 @section('title')
-    Création de sites internet et sites mobiles | Espace Client
+    <title>Création de sites internet et sites mobiles | Espace Client</title>
 @endsection
 
 @section('description')
-    Developpeur indépendant pour la création de sites Internet, sites mobiles, web applications, en région de Tours, 37.
+    <meta name="description" content="Developpeur indépendant pour la création de sites Internet, sites mobiles, web applications, en région de Tours, 37.">
 @endsection
 
 @section('navbar')@endsection

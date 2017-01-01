@@ -6,7 +6,7 @@
 @endsection
 
 @section('title')
-    CODEheures | Ajout Produit
+    <title>CODEheures | Ajout Produit</title>
 @endsection
 
 @section('navbar')

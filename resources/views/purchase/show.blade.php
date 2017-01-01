@@ -11,11 +11,11 @@
 @endsection
 
 @section('title')
-    CODEheures | Commande {{ $purchase->hash_key }}
+    <title>CODEheures | Commande {{ $purchase->hash_key }}</title>
 @endsection
 
 @section('description')
-    Pour le suivi de la création de votre application internet, CODEheures vous met à disposition un dashboard client.
+    <meta name="description" content="Pour le suivi de la création de votre application internet, CODEheures vous met à disposition un dashboard client.">
 @endsection
 
 @section('navbar')
