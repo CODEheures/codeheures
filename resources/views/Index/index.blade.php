@@ -23,7 +23,7 @@
         <div class="bg-cover">
             <div class="container">
                 <div class="header-content">
-                    <h1>CREATIONS DE SITES INTERNET</h1>
+                    <h1>créations de sites internet</h1>
                     {{--<div class="info">Démarrage dans:<div class="clock-down"></div></div>--}}
                     <p class="presentation">
                         Les avantages de l'offre <a href="{{ route('home') }}" class="a-invert" title="développement web en région centre">CODEheures</a>:
