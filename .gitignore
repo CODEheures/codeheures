@@ -7,3 +7,4 @@ Homestead.json
 /.idea
 /storage/pdf
 /public/video/*.mp4
+/public/css/images/old/*

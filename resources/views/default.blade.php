@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.min.css') }}">
 </head>
 <body>
-https://plus.google.com/103779204092913658859
+
 @yield('navbar')
 
 
