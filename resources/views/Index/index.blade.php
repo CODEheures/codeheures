@@ -24,7 +24,7 @@
             <div class="container">
                 <div class="header-content">
                     <h1>CREATIONS DE SITES INTERNET</h1>
-                    <div class="info">Démarrage dans:<div class="clock-down"></div></div>
+                    {{--<div class="info">Démarrage dans:<div class="clock-down"></div></div>--}}
                     <p class="presentation">
                         Les avantages de l'offre <a href="{{ route('home') }}" class="a-invert">CODEheures</a>:
                         <strong><a href="#prestations">Le report des heures</a></strong> non utilisées.
@@ -298,7 +298,7 @@
 @section('script')
     @parent
     @include('plugins.intersectionObserver.scripts')
-    @include('plugins.countdown.scripts')
+    {{--@include('plugins.countdown.scripts')--}}
     @include('plugins.twentytwenty.scripts')
     @include('plugins.youtube.scripts')
 @endsection
