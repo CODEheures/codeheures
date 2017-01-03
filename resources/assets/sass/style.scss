@@ -477,11 +477,17 @@ body > header {
         line-height: 2.4rem;
         font-size: 1.8rem;
         font-weight: 300;
-        padding: 2rem 5%;
         & a:not(.a-invert) {
           color: $color1;
           text-decoration: underline;
         }
+      }
+
+      h2.important {
+        padding-top: 2rem;
+      }
+      p {
+        padding-bottom: 2rem;
       }
 
       .header-btn {
@@ -1676,8 +1682,9 @@ body > footer {
               margin-top: 1.6rem;
             }
           }
-          & p {
-            padding: 5rem 10%;
+          & h2.important {
+            padding-top: 5rem;
+            padding-bottom: 0.5rem;
           }
         }
       }

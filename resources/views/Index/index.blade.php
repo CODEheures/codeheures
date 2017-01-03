@@ -30,9 +30,9 @@
                         <strong><a href="#prestations" title="sites internet développés avec laravel et vuejs à Tours">Le report des heures</a></strong> non utilisées.
                     </p>
                     <h2 class="important">
-                        Developpeur WEB indépendant, j'interviens pour toute création et maintenance de site internet et
-                        d'application internet mobile. Sous traitance pour les agence web. Spécialiste <a href="https://laravel.com" title="développement avec laravel">Laravel</a> - <a href="https://vuejs.org" title="développement avec vuejs">VueJS</a>
+                        Developpeur WEB freelance, spécialiste <a href="https://laravel.com" title="création de sites internet avec backend laravel">Laravel</a> et <a href="https://vuejs.org" title="développement de sites web avec frontend vuejs">VueJS</a>
                     </h2>
+                    <p>J'interviens pour toute création et maintenance de site internet et d'application internet mobile. Sous traitance pour les agence web.</p>
                     <div class="header-btn">
                         <a href="#prestations" class="btn-transparent" title="sites internet développés avec laravel et vuejs à Tours">En savoir plus</a>
                         <a href="{{ route('demo') }}" class="btn-yellow" title="application web professionnelle de suivi client">Tester l'espace client</a>
