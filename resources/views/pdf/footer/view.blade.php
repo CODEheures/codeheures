@@ -1,7 +1,7 @@
 <div class="pdfFooter">
     <div class="infos">
         <address>CODEheures<br/>1 rue Milhaud<br/>37300 Joué-Lès-Tours</address>
-        <p class="phone"><i class="ion-ios-telephone-outline"> </i>06.95.02.20.10 <i class="ion-ios-email-outline"> </i>webmaster@codeheures.fr</p>
+        <p class="phone"><i class="ion-ios-telephone-outline"> </i>06.87.34.06.83 <i class="ion-ios-email-outline"> </i>webmaster@codeheures.fr</p>
     </div>
     <div class="copyright">
         <p class="page">Page <span class="page">{PAGENO}</span> sur <span class="topage">{nbpg}</span></p>
