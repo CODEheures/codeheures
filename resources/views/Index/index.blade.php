@@ -52,9 +52,9 @@
         <div class="tunnel" id="prestations">
             <!-- section générale -->
             <section>
-                <h1><span>Un espace client</span>
-                    <small>pour un suivi de vos investissements</small>
-                </h1>
+                <h2><span>Développeur de sites internet</span>
+                    <small>avec un espace client pour un suivi de vos investissements</small>
+                </h2>
                 <div class="video">
                     <div id="yt0"></div>
                 </div>
@@ -69,7 +69,7 @@
                         <a href="{{ route('realisations') }}" class="btn-yellow2" title="sites internet développés avec laravel et vuejs à Tours">Voir les réalisations</a>
                     </p>
                 </footer>
-                <h2 class="fa fa-quote-left home">Combien coûte un site internet?</h2>
+                <h3 class="fa fa-quote-left home">Combien coûte un site internet?</h3>
                 <div class="collapse">
                     <p>
                         Bonne question! <br/>
@@ -80,7 +80,7 @@
                     </p>
                     <ul class="circle">
                         <li>
-                            Entre 1000€ et 2500€ pour la création d'un site vitrine simple
+                            Entre 1000€ et 2500€ pour la création d'un site web vitrine simple
                         </li>
                         <li>
                             Entre 2500€ et 8000€ (voir plus) pour le developpement d'un site e-commerce ou d'une application internet mobile personnalisée
@@ -104,7 +104,7 @@
 
             <!-- section integration -->
             <section>
-                <h2 class="fa fa-quote-left home">Création de sites internet et applications mobiles</h2>
+                <h3 class="fa fa-quote-left home">Création de sites internet et applications mobiles</h3>
                 <div class="collapse">
                     <article class="cards">
                         <div class="card">
@@ -154,7 +154,6 @@
                                 <i class="fa fa-2x fa-clock-o rot90"></i>
                                 <p>
                                     Vous avez l'assurance que la totalité du temps de travail estimé dans le devis sera converti.
-
                                 </p>
                             </div>
                             <ul class="circle">
@@ -194,7 +193,7 @@
 
             <!-- section webmastering -->
             <section>
-                <h2 class="fa fa-quote-left home">Maintenance de votre site internet</h2>
+                <h3 class="fa fa-quote-left home">Maintenance de votre site internet</h3>
                 <div class="collapse">
                     <article>
                         <div class="card">
@@ -273,7 +272,7 @@
 
         <!-- section formulaire -->
         <section id="contact">
-            <h2>Me contacter</h2>
+            <h3>Me contacter</h3>
             <p>
                 Vous souhaitez des renseignements sur les prestations, un devis ou un avis sur un besoin en
                 webmastering?
