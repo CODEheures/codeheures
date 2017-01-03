@@ -26,20 +26,20 @@
                     <h1>CREATIONS DE SITES INTERNET</h1>
                     {{--<div class="info">Démarrage dans:<div class="clock-down"></div></div>--}}
                     <p class="presentation">
-                        Les avantages de l'offre <a href="{{ route('home') }}" class="a-invert">CODEheures</a>:
-                        <strong><a href="#prestations">Le report des heures</a></strong> non utilisées.
+                        Les avantages de l'offre <a href="{{ route('home') }}" class="a-invert" title="développement web en région centre">CODEheures</a>:
+                        <strong><a href="#prestations" title="sites internet développés avec laravel et vuejs à Tours">Le report des heures</a></strong> non utilisées.
                     </p>
                     <h2 class="important">
                         Developpeur WEB indépendant, j'interviens pour toute création et maintenance de site internet et
-                        d'application internet mobile. Sous traitance pour les agence web. Spécialiste <a href="https://laravel.com">Laravel</a> - <a href="https://vuejs.org">VueJS</a>
+                        d'application internet mobile. Sous traitance pour les agence web. Spécialiste <a href="https://laravel.com" title="développement avec laravel">Laravel</a> - <a href="https://vuejs.org" title="développement avec vuejs">VueJS</a>
                     </h2>
                     <div class="header-btn">
-                        <a href="#prestations" class="btn-transparent">En savoir plus</a>
-                        <a href="{{ route('demo') }}" class="btn-yellow">Tester l'espace client</a>
+                        <a href="#prestations" class="btn-transparent" title="sites internet développés avec laravel et vuejs à Tours">En savoir plus</a>
+                        <a href="{{ route('demo') }}" class="btn-yellow" title="application web professionnelle de suivi client">Tester l'espace client</a>
                     </div>
                 </div>
                 <div class="scroll-down">
-                    <a href="#prestations"><i class="ion-chevron-down"></i></a>
+                    <a href="#prestations" title="site développés avec laravel et vuejs à Tours"><i class="ion-chevron-down"></i></a>
                 </div>
             </div>
         </div>
@@ -65,8 +65,8 @@
                         démonstration.
                     </p>
                     <p class="exit">
-                        <a href="{{ route('demo') }}" class="btn-yellow2">Espace client de démonstration & tarifs</a>
-                        <a href="{{ route('realisations') }}" class="btn-yellow2">Voir les réalisations</a>
+                        <a href="{{ route('demo') }}" class="btn-yellow2" title="application web professionnelle de suivi client">Espace client de démonstration & tarifs</a>
+                        <a href="{{ route('realisations') }}" class="btn-yellow2" title="sites internet développés avec laravel et vuejs à Tours">Voir les réalisations</a>
                     </p>
                 </footer>
                 <h2 class="fa fa-quote-left home">Combien coûte un site internet?</h2>
@@ -95,7 +95,7 @@
                     </p>
                     <p class="center">
                 <span class="solution">
-                    Pour cela <a href="/" title="site codeheures.fr" class="a-invert">CODEheures.fr</a>
+                    Pour cela <a href="/" title="site codeheures.fr. Réalisation de sites web à Tours 37." class="a-invert">CODEheures.fr</a>
                     vous offre une solution innovante : <strong>le report des heures non utilisées</strong>
                 </span>
                     </p>
@@ -108,7 +108,7 @@
                 <div class="collapse">
                     <article class="cards">
                         <div class="card">
-                            <img src="{{ asset('css/images/card1.png') }}" alt="mon image">
+                            <img src="{{ asset('css/images/card1.png') }}" alt="Développeur web internet avec laravel et vuejs à Tours 37">
                             <div class="card_description">
                                 <p>
                                     vitrine<br/>
@@ -144,7 +144,7 @@
                     </article>
                     <p class="center">
                 <span class="solution">
-                    <a href="/" title="site codeheures.fr" class="a-invert">CODEheures.fr</a>
+                    <a href="/" title="site codeheures.fr. Agence web pour le développement de sites internet et sites mobiles à Tours 37." class="a-invert">CODEheures.fr</a>
                     ce sont des devis avec: <strong>report des heures non utilisées</strong></span>
                     </p>
                     <h4>Vos avantages</h4>
@@ -159,7 +159,7 @@
                             </div>
                             <ul class="circle">
                                 <li>Soit le temps de travail est surestimé et vous bénéficierai d'un report en heures de maintenance</li>
-                                <li>Soit le temps de travail est sous-estimé et <a href="/" title="site codeheures.fr" class="a-invert">CODEheures.fr</a>
+                                <li>Soit le temps de travail est sous-estimé et <a href="/" title="site codeheures.fr. Développeur freelance spécialiste Laravel VueJS" class="a-invert">CODEheures.fr</a>
                                     prendra à sa charge ce dépassement. </li>
                             </ul>
                         </li>
@@ -198,14 +198,14 @@
                 <div class="collapse">
                     <article>
                         <div class="card">
-                            <img src="{{ asset('css/images/card2.png') }}" alt="mon image">
+                            <img src="{{ asset('css/images/card2.png') }}" alt="maintenance de sites web php javascript et réseaux sociaux">
                             <div class="card_description">
                                 <p>
                                     mises à jour<br/>
                                     dépannages<br/>
                                     modération<br/>
                                 </p>
-                                <a class="btn-transparent" href="{{ route('demo') }}">En savoir plus</a>
+                                <a class="btn-transparent" href="{{ route('demo') }}" title="Application web développée avec Laravel et vuejs">En savoir plus</a>
                             </div>
                         </div>
                         <aside class="digest">
@@ -234,7 +234,7 @@
 
                     <p class="center">
                 <span class="solution">
-                    <a href="/" title="site codeheures.fr" class="a-invert">CODEheures.fr</a>
+                    <a href="/" title="codeheures.fr, developpeur freelance de sites internet, ecommerces et sites mobiles" class="a-invert">CODEheures.fr</a>
                     des tarifs pré-établis: <strong>pour une maîtrise de votre budget</strong></span>
                     </p>
                     <h4>Vos avantages</h4>
@@ -285,8 +285,8 @@
         </section>
     </div>
     <div id="skills" class="skills">
-        <img src="./css/images/skills/logos1d.png" alt="compétences floutées">
-        <img src="./css/images/skills/logos2.png" alt="compétences floutées">
+        <img src="./css/images/skills/logos1d.png" alt="développeur web à tours laravel vuejs">
+        <img src="./css/images/skills/logos2.png" alt="creation site internet à tours avec laravel vuejs">
     </div>
 @endsection
 
