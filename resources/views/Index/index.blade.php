@@ -22,6 +22,7 @@
     <header id="accueil">
         <div class="bg-cover">
             <div class="container">
+                <img style="display: none;" src="{{ asset('css/images/2.png') }}" alt="">
                 <div class="header-content">
                     <h1>créations de sites internet</h1>
                     {{--<div class="info">Démarrage dans:<div class="clock-down"></div></div>--}}
