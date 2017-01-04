@@ -102,6 +102,32 @@ $(function() {
         }
     }
 
+    //supervisor of header hight res backgound load
+    var domHightResImg = document.getElementById('higtResBackgound');
+    var domLowResImg = document.getElementById('lowResBackgound');
+
+    if(domHightResImg && domLowResImg){
+        var $domHightResImg = $(domHightResImg);
+        $domHightResImg.on('load', function () {
+            setHightResBackground(domHightResImg, domLowResImg);
+        });
+        if (domHightResImg.complete) {
+            $domHightResImg.off("load");
+            setHightResBackground(domHightResImg, domLowResImg);
+        }
+    }
+
+    function setHightResBackground(elem_h, elem_l) {
+        var parser = document.createElement('a');
+        parser.href = elem_h.src;
+        $('body > header').css({
+            "background-image" : 'url('+parser.pathname+')'
+        });
+        elem_h.remove();
+        elem_l.remove();
+    }
+
+
     //GLOBAL
     $('#main').css('min-height', 'calc(100vh - ' + $('footer').outerHeight() + 'px)');
     var $window_scrollTop = $(window).scrollTop();

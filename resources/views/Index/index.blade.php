@@ -22,7 +22,8 @@
     <header id="accueil">
         <div class="bg-cover">
             <div class="container">
-                <img style="display: none;" src="{{ asset('css/images/2.png') }}" alt="">
+                <img id="lowResBackgound" style="display: none;" src="{{ asset('css/images/2_low.jpg') }}" alt="">
+                <img id="higtResBackgound" style="display: none;" src="{{ asset('css/images/2.jpg') }}" alt="">
                 <div class="header-content">
                     <h1>créations de sites internet</h1>
                     {{--<div class="info">Démarrage dans:<div class="clock-down"></div></div>--}}
