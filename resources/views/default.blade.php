@@ -1,22 +1,16 @@
 <!DOCTYPE html>
-<html lang="{{ \Illuminate\Support\Facades\App::getLocale() }}">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ \Illuminate\Support\Facades\App::getLocale() }}" lang="{{ \Illuminate\Support\Facades\App::getLocale() }}">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <link rel="canonical" href="{{ \Illuminate\Support\Facades\Request::getFacadeRoot()->url() }}" >
     @yield('title')
     @yield('description')
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     @yield('meta-index')
-    <meta http-equiv="Content-Language" content="{{ \Illuminate\Support\Facades\App::getLocale() }}">
-    <meta name="language" CONTENT="{{ \Illuminate\Support\Facades\App::getLocale() }}" >
-    <meta name="publisher" content="CODEheures | Sylvain Gagnot" >
     <link href="https://plus.google.com/103779204092913658859" rel="publisher" />
-    <meta name="copyright" content="2016 CODEheures. Tous droits réservés.">
-    <meta name="keywords" content="création site internet tours, agence web tours, developpeur web tours, création site vitrine tours, création e-commerce tours, développement d'applications web mobile tours, developpement laravel, developpement vuejs, programmation site internet tours, maintenance site internet tours, sous-traitant developpement web, création page facebook tours, création page twitter tours, devis création de site web Tours, 37, Indre et Loire, Région Centre" >
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="google-site-verification" content="SOhQHlo2EkGzHyFGOdWB3ih7ydb7CdaRg92y606qEkU" >
-    <link rel="canonical" href="{{ \Illuminate\Support\Facades\Request::getFacadeRoot()->url() }}" >
     <meta property="og:site_name" content="CODEheures">
     <meta property="og:title" content="Développeur WEB indépendant">
     <meta property="og:description" content="Avec CODEheures je vous propose des Devis et Tarifs intégrant une solution de report des heures non utilisées.">
