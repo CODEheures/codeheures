@@ -78,7 +78,7 @@
                     <li>
                         Chaque compte indique aussi la liste des achats logiciels externes (thèmes, plugins, modules
                         etc...)
-                        ou les achats de services (location de serveur, nom de domaine etc...) ou la sous traitance
+                        ou les achats de services (location de serveur, nom de domaine etc...) ou la sous-traitance
                         (graphiste etc...)
                     </li>
                 </ul>
@@ -100,8 +100,8 @@
                     <li>
                         CODEheures use du crédit pour répondre aux besoins validés sur devis. Dans ce cas là, CODEheures
                         ne débitera jamais plus qu'indiqué au devis. Si CODEheures ne consomme pas toutes les heures
-                        prévues au devis pour réaliser completement celui-ci alors le client possedera un solde qu'il
-                        pourra utiliser ulterieurement pour d'autres projets ou prestations standards.
+                        prévues au devis pour réaliser complètement celui-ci alors le client possèdera un solde qu'il
+                        pourra utiliser ultèrieurement pour d'autres projets ou prestations standards.
                     </li>
                     <li>
                         CODEheures use du credit pour répondre à une prestation standard. Dans ce cas là, CODEheures
@@ -119,14 +119,14 @@
             </li>
             <li>
                 Si aucun cahier des charges n'est fourni avant le début de la commande, ou si il ne comporte pas assez
-                d'éléments explicites pour sa réalisation, la prestation est laissé à la libre interprétation du
+                d'éléments explicites pour sa réalisation, la prestation est laissée à la libre interprétation du
                 prestataire
                 CODEheures.
                 Si toutefois dans ce cas de figure, le client en refuse l'interprétation et la conception, la prestation
                 effectuée sera due par le client et toute nouvelle prestation fera l'objet d'un nouveau devis.
             </li>
         </ol>
-        <h2 class="fa"><i class="fa fa-square-o"></i> Article 5: Evolution de la liste des prestations standards</h2>
+        <h2 class="fa"><i class="fa fa-square-o"></i> Article 5: &Eacute;volution de la liste des prestations standards</h2>
         <ol>
             <li>
                 La liste des prestations standards (disponible à l'adresse: <a
@@ -139,7 +139,7 @@
                 En cas d'évolution, les clients sont prévenus par mail et sont invités à venir consulter cette nouvelle
                 liste. <strong>Si toutefois, une quelconque évolution de celle-ci ne convient pas, alors le client peut
                     demander
-                    sans condition le remboursement intégral du solde de son compte au pris d'achat de
+                    sans condition le remboursement intégral du solde de son compte au prix d'achat de
                     celui-ci.</strong>
             </li>
         </ol>
@@ -147,14 +147,14 @@
         <ol>
             <li>
                 CODEheures se réserve le droit de modifier les prix de ses tarifs de crédit d'heure à l'unité ou par lot
-                disponibles en achat direct par un lien nommé "Recharger mon compte" dans la rubrique "Mon suivi" de
+                disponible en achat direct par un lien nommé "Recharger mon compte" dans la rubrique "Mon suivi" de
                 l'espace client. Un prix obtenu à un jour donné par un client donné ne peut être exigé un autre jour
                 et/ou par un client différent.
             </li>
             <li>
                 CODEheures se réserve le droit de modifier les prix des crédits d'heures émis dans ses devis,
                 en fonction du projet de chaque client. Un prix effectué pour un crédit d'heures sur un précédent devis
-                aux mêmes clients ou à un client différent ne peut être exigés.
+                aux mêmes clients ou à un client différent ne peut être exigé.
             </li>
             <li>
                 Les prix stipulés sur le devis sont valables un mois à partir de la date d'émission de celui-ci. Ceux-ci
@@ -168,12 +168,12 @@
         <ol>
             <li>
                 Sauf modification du délai de livraison en commun accord entre les deux parties, le solde du règlement
-                de la facture doit se faire, au plus tard, 30 jour à compter de la date figurant sur la dite facture.
+                de la facture doit se faire, au plus tard, 30 jours à compter de la date figurant sur ladite facture.
             </li>
             <li>
                 Tout retard de paiement entrainera, à titre de pénalité de retard, l'application d'un intérêt égal à
                 celui appliqué par la Banque Centrale Européenne à son opération de refinancement la plus récente,
-                majoré de 10 points de pourcentage. (Soit 10,25 % (0,25 + 10) depuis le 13 novembre 2013) Une indemnité
+                majoré de 10 points de pourcentage. (Soit 10,25 % (0,25 + 10) depuis le 13 novembre 2013). Une indemnité
                 forfaitaire de 40 € est due au créancier pour frais de recouvrement, à l'occasion de tout retard de
                 paiement (L. 441-6, I, 12).
             </li>
@@ -205,8 +205,8 @@
         <ol>
             <li>
                 Toutes créations et réalisations demeure la propriété entière et exclusive du prestataire CODEheures
-                tant que la totalité des factures émises par le prestataire n'ont pas été honorées. Ceci inclus les
-                avenants au contrat, les retards de paiement et autres frais induit par la dite commande.
+                tant que la totalité des factures émises par le prestataire n'ont pas été honorées. Ceci inclut les
+                avenants au contrat, les retards de paiement et autres frais induits par ladite commande.
             </li>
             <li>
                 Le client devra s'acquitter du règlement de la facture de la commande pour devenir propriétaire des
@@ -222,7 +222,7 @@
             </li>
             <li>
                 Ainsi ne sont cédés au diffuseur que les droits patrimoniaux correspondant à l'intitulé défini par le
-                champ «cession de droits de représentation et de reproduction» et énoncé sur le présent contrat.
+                champ «cession de droits de représentation et de reproduction» et énoncés sur le présent contrat.
             </li>
             <li>
                 Selon l'article L.121-1: Toute représentation ou reproduction intégrale ou partielle faite sans le

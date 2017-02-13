@@ -405,7 +405,7 @@ a.a-invert {
 */
 body > header {
   height: 100vh;
-  background: url('images/2_low.jpg') no-repeat top center fixed;
+  background-image: url('images/2_low.jpg');
   background-size: cover;
   width: 100%;
   transition-property: height;
@@ -437,8 +437,8 @@ body > header {
         letter-spacing: 0.2rem;
         text-transform: uppercase;
         max-font-size: 5.6rem;
-        font-size: 7vw;
-        line-height: 6rem;
+        font-size: 5vw;
+        line-height: 3rem;
         font-weight: 600;
       }
 
@@ -1659,6 +1659,17 @@ body > footer {
 }
 
 @media screen and(min-width: 360px) {
+  body > header {
+    .bg-cover {
+      .header-content {
+        h1 {
+          font-size: 7vw;
+          line-height: 6rem;
+        }
+      }
+    }
+  }
+
   .main {
     & .tunnel {
       & p.change-section {
