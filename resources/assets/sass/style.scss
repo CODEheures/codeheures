@@ -541,6 +541,13 @@ body > header {
         color: $color1;
         position: absolute;
         animation: toDown 2s infinite;
+
+        & span {
+          display: block;
+          font-size: 1rem;
+          position: relative;
+          line-height: 1rem;
+        }
       }
 
     }

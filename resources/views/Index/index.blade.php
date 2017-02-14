@@ -36,12 +36,12 @@
                     </h2>
                     <p>J'interviens pour toute création et maintenance de site internet et d'application internet mobile. Sous traitance pour les agence web.</p>
                     <div class="header-btn">
-                        <a href="#prestations" class="btn-transparent" title="sites internet développés avec laravel et vuejs à Tours">En savoir plus</a>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScrk8x-0RMkt4xzhFYC0jiwbU_YNYElWBiosjyyItr7Nrb1BA/viewform" class="btn-transparent" title="devis pour votre création de sites internet développés avec laravel et vuejs à Tours" target="_blank">Demander un devis en 3mn</a>
                         <a href="{{ route('demo') }}" class="btn-yellow" title="application web professionnelle de suivi client">Tester l'espace client</a>
                     </div>
                 </div>
                 <div class="scroll-down">
-                    <a href="#prestations" title="site développés avec laravel et vuejs à Tours"><i class="ion-chevron-down"></i></a>
+                    <a href="#prestations" title="site développés avec laravel et vuejs à Tours"><span>En savoir plus</span><i class="ion-chevron-down"></i></a>
                 </div>
             </div>
         </div>
@@ -69,6 +69,7 @@
                     <p class="exit">
                         <a href="{{ route('demo') }}" class="btn-yellow2" title="application web professionnelle de suivi client">Espace client de démonstration & tarifs</a>
                         <a href="{{ route('realisations') }}" class="btn-yellow2" title="sites internet développés avec laravel et vuejs à Tours">Voir les réalisations</a>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScrk8x-0RMkt4xzhFYC0jiwbU_YNYElWBiosjyyItr7Nrb1BA/viewform" class="btn-yellow2" title="obtenir un devis pour votre création de site internet" target="_blank">Demander un devis en 3mn</a>
                     </p>
                 </footer>
                 <h3 class="fa fa-quote-left home">Combien coûte un site internet?</h3>
