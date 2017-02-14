@@ -25,7 +25,7 @@
     <meta name="theme-color" content="#ffffff">
     @yield('css')
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,800,400,600|Arvo:700|Flamenco:300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style15022017.min.css') }}">
 </head>
 <body>
 
