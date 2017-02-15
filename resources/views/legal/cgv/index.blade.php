@@ -72,7 +72,7 @@
                 Tous les clients possedent un compte personnel sur CODEheure.fr.
                 <ul>
                     <li>
-                        Chaque compte indique un solde en faveur du client dont l'unité est en heures (h) et dont la
+                        Chaque compte indique le solde au crédit du client dont l'unité est en heures (h) et dont la
                         décimale la plus fine est le centième d'heure (0,01h).
                     </li>
                     <li>
@@ -98,13 +98,13 @@
                 Le solde client peut évoluer à la baisse de 2 manières:
                 <ul>
                     <li>
-                        CODEheures use du crédit pour répondre aux besoins validés sur devis. Dans ce cas là, CODEheures
-                        ne débitera jamais plus qu'indiqué au devis. Si CODEheures ne consomme pas toutes les heures
-                        prévues au devis pour réaliser complètement celui-ci alors le client possèdera un solde qu'il
+                        CODEheures utilise le crédit pour répondre aux besoins validés sur devis. Dans ce cas, CODEheures
+                        ne débitera jamais plus qu'indiqué sur le devis. Si CODEheures ne consomme pas toutes les heures
+                        prévues au devis pour réaliser complètement celui-ci le client possèdera alors un solde qu'il
                         pourra utiliser ultèrieurement pour d'autres projets ou prestations standards.
                     </li>
                     <li>
-                        CODEheures use du credit pour répondre à une prestation standard. Dans ce cas là, CODEheures
+                        CODEheures utilise le credit pour répondre à une prestation standard. Dans ce cas, CODEheures
                         ne débitera jamais plus qu'indiqué sur la grille des prestations standards (voir 2.1).
                     </li>
                 </ul>
@@ -136,7 +136,7 @@
                 des investissements effectués par le client sur son site ou son application et permet d'éviter de longs
                 échanges de devis entre prestataire et client, améliorant fortement la réactivité du prestataire dans la
                 réponse au besoin du client. De ce fait cette liste est appelée à évoluer.
-                En cas d'évolution, les clients sont prévenus par mail et sont invités à venir consulter cette nouvelle
+                Les clients seront prévenus des éventuelles évolutions par mail et seront invités à venir consulter cette nouvelle
                 liste. <strong>Si toutefois, une quelconque évolution de celle-ci ne convient pas, alors le client peut
                     demander
                     sans condition le remboursement intégral du solde de son compte au prix d'achat de
@@ -245,8 +245,8 @@
             </li>
             <li>
                 Tout litige relatif à l'interprétation et à l'exécution des présentes conditions générales de vente est
-                soumis au droit français. A défaut de conciliation amiable, le litige pourra être porté devant un
-                Tribunal compétent.
+                soumis au droit français. &Agrave; défaut de conciliation amiable, le litige pourra être porté devant un
+                tribunal compétent.
             </li>
         </ol>
     </div>

@@ -121,7 +121,7 @@
                 </div>
                 <div class="body-realisation">
                     <img src="./css/images/realisations/frigo.jpg" alt="image du site frigo">
-                    <p>Developpement html/css/js/php complete d'une application pour gerer son frigo
+                    <p>Développement html/css/js/php d'une application pour gérer son frigo
                     </p>
                     <div class="link">
                         <a target="_blank" href="http://frigo.codeheures.fr" class="btn-yellow2-invert">Voir l'application</a>
@@ -136,7 +136,7 @@
                 </div>
                 <div class="body-realisation">
                     <img src="./css/images/realisations/ridi.jpg" alt="image du site ridi">
-                    <p>Developpement d'un site avec CMS DRUPAL dans le cadre d'un travail avec l'université de strasbourg
+                    <p>Développement d'un site avec CMS DRUPAL dans le cadre d'un travail avec l'université de strasbourg
                     </p>
                     <div class="link">
                         <a target="_blank" href="http://lpatc-cms.codeheures.fr" class="btn-yellow2-invert">Voir le site</a>

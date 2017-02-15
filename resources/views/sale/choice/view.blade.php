@@ -18,16 +18,16 @@
                 <div class="description-price">
                     @if($product->value == 1)
                         <p><strong>{{ $product->value }} heure</strong> de crédit CODEheure</p>
-                        <p>Idéal pour une demande ponctuelle sans prévision de consommation ultérieur</p>
+                        <p>Idéal pour une demande ponctuelle sans prévision de consommation ultérieure</p>
                     @elseif($product->value == 5)
                         <p><strong>{{ $product->value }} heures</strong> de crédit CODEheure</p>
-                        <p>Idéal pour un site vitrine vivant tel q'une association, un Comité d'entreprise</p>
+                        <p>Idéal pour un site vitrine vivant tel qu'une association, un comité d'entreprise</p>
                     @elseif($product->value == 10)
                         <p><strong>{{ $product->value }} heures</strong> de crédit CODEheure</p>
                         <p>Idéal pour une boutique en ligne, une application, ou pour de la modération sociale</p>
                     @elseif($product->value == 50)
                         <p><strong>{{ $product->value }} heures</strong> de crédit CODEheure</p>
-                        <p>Idéal pour les grands comptes qui présentent des besoins en developpement tout au long de l'année</p>
+                        <p>Idéal pour les grands comptes qui présentent des besoins en développement tout au long de l'année</p>
                     @endif
                 </div>
                 <div class="price-price">

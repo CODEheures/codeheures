@@ -42,8 +42,8 @@
             </tbody>
         </table>
         <p class="modification">
-            Toute révision ou modification de ce barême est communiqué automatiquement au client par mail.
-            En outre, selon les Conditions générales de ventes (disponibles à l'adresse
+            Toute révision ou modification de ce barème est communiqué automatiquement au client par mail.
+            En outre, selon les conditions générales de ventes (disponibles à l'adresse
             http://codeheures.fr/conditions-generales-de-ventes), tout client possédant un crédit d'heure garde la
             possibilité de se faire rembourser celui-ci sans délai et sans condition au prix d'achat sur simple
             demande par mail.

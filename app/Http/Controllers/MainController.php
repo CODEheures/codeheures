@@ -49,7 +49,7 @@ class MainController extends Controller
 
         return redirect(route('customer.monitor.index'))
             ->with('info', 'Bienvenue dans l\'espace client de démonstration. Toutes les actions sont sans engagement et
-                ce compte fictif sera detruit dans '. $diff . 'minute(s)');
+                ce compte fictif sera détruit dans '. $diff . 'minute(s)');
     }
 
     public function realisations() {

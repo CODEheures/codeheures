@@ -14,7 +14,7 @@
 @endsection
 
 @section('user.action')
-    <h1 @if(auth()->user()->isDemo) data-intro="Vous ici en visiteur. Toutes les actions sont
+    <h1 @if(auth()->user()->isDemo) data-intro="Vous êtes ici en visiteur. Toutes les actions sont
      accessibles sans conséquence en mode 'bac à sable'. Même le paiment paypal est mis à disposition avec un compte
      de test (utilisateur+mot de passe fournis) si vous souhaitez aller jusqu'au bout du test d'achat pour recharger ce compte"
         data-step="1" data-position="bottom" @endif

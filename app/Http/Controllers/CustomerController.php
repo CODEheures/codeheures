@@ -91,7 +91,7 @@ class CustomerController extends Controller
         $withInfoPlus = '';
         if($user->email != $updates['email'] && $user->isDemo) {
             $updates['email'] = $user->email;
-            $withInfoPlus = '(l\'email du compte de demonstration n\'est pas modifiable)';
+            $withInfoPlus = '(l\'email du compte de démonstration n\'est pas modifiable)';
         }
 
         if($user->email != $updates['email']) {

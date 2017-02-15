@@ -32,9 +32,9 @@
                         <strong><a href="#prestations" title="sites internet développés avec laravel et vuejs à Tours">Le report des heures</a></strong> non utilisées.
                     </p>
                     <h2 class="important">
-                        Developpeur WEB freelance, spécialiste <a href="https://laravel.com" title="création de sites internet avec backend laravel">Laravel</a> et <a href="https://vuejs.org" title="développement de sites web avec frontend vuejs">VueJS</a>
+                        Développeur WEB freelance, spécialiste <a href="https://laravel.com" title="création de sites internet avec backend laravel">Laravel</a> et <a href="https://vuejs.org" title="développement de sites web avec frontend vuejs">VueJS</a>
                     </h2>
-                    <p>J'interviens pour toute création et maintenance de site internet et d'application internet mobile. Sous traitance pour les agence web.</p>
+                    <p>J'interviens pour toute création et maintenance de site internet et d'application internet mobile. Sous-traitance pour les agences web.</p>
                     <div class="header-btn">
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLScrk8x-0RMkt4xzhFYC0jiwbU_YNYElWBiosjyyItr7Nrb1BA/viewform" class="btn-transparent" title="devis pour votre création de sites internet développés avec laravel et vuejs à Tours" target="_blank">Demander un devis en 3mn</a>
                         <a href="{{ route('demo') }}" class="btn-yellow" title="application web professionnelle de suivi client">Tester l'espace client</a>
@@ -63,7 +63,7 @@
                 <footer>
                     <p>
                         Que vos besoins en webmastering soient ponctuels ou récurrents, vous bénéficierez d'un système de
-                        suivi de votre consommation horaire. Accedez à la démonstration en visitant l'espace client de
+                        suivi de votre consommation horaire. Accédez à la démonstration en visitant l'espace client de
                         démonstration.
                     </p>
                     <p class="exit">
@@ -76,7 +76,7 @@
                 <div class="collapse">
                     <p>
                         Bonne question! <br/>
-                        Saviez-vous qu'un bon créateur de sites internet ne code que 30% de son temps? Le reste du temps etant consacré à la
+                        Saviez-vous qu'un bon créateur de sites internet ne code que 30% de son temps? Le reste du temps étant consacré à la
                         formation, la veille technologique, mais aussi à la gestion, à la prospection, à la relation
                         client...<br/>
                         <br/>Alors soyons bref, et concis. Comptez:
@@ -86,15 +86,15 @@
                             Entre 1000€ et 2500€ pour la création d'un site web vitrine simple
                         </li>
                         <li>
-                            Entre 2500€ et 8000€ (voir plus) pour le developpement d'un site e-commerce ou d'une application internet mobile personnalisée
+                            Entre 2500€ et 8000€ (voir plus) pour le développement d'un site e-commerce ou d'une application internet mobile personnalisée
                         </li>
                         <li>
-                            60€/heure pour toute intervention de mise à jour, débugage ou maintenance de site internet, application web mobile, de base de données...
+                            60€/heure pour toute intervention de mise à jour, débogage ou maintenance de site internet, application web mobile, de base de données...
                         </li>
                     </ul>
                     <p>
                         Tout dépend du degré de personnalisation.<br />
-                        <strong>La création d'un site internet est un investisement relativement important mais incontournable et très rentable.</strong>
+                        <strong>La création d'un site internet est un investissement relativement important mais incontournable et très rentable.</strong>
                     </p>
                     <p class="center">
                 <span class="solution">
@@ -126,12 +126,12 @@
                                 <li>
                                     <hr/>
                                 </li>
-                                <li><i class="ion-ios-lightbulb-outline"> </i><span>vous avez une idée de création de site internet, mais vous ne possedez pas les compétences requises pour sa réalisation?</span>
+                                <li><i class="ion-ios-lightbulb-outline"> </i><span>vous avez une idée de création de site internet, mais vous ne possédez pas les compétences requises pour sa réalisation?</span>
                                 </li>
                                 <li>
                                     <hr/>
                                 </li>
-                                <li><i class="ion-ios-color-wand-outline"> </i><span>Vous possedez un site internet que vous souhaitez moderniser?</span>
+                                <li><i class="ion-ios-color-wand-outline"> </i><span>Vous possédez un site internet que vous souhaitez moderniser?</span>
                                 </li>
                                 <li>
                                     <hr/>
@@ -160,7 +160,7 @@
                                 </p>
                             </div>
                             <ul class="circle">
-                                <li>Soit le temps de travail est surestimé et vous bénéficierai d'un report en heures de maintenance</li>
+                                <li>Soit le temps de travail est surestimé et vous bénéficierez d'un report en heures de maintenance</li>
                                 <li>Soit le temps de travail est sous-estimé et <a href="/" title="site codeheures.fr. Développeur freelance spécialiste Laravel VueJS" class="a-invert">CODEheures.fr</a>
                                     prendra à sa charge ce dépassement. </li>
                             </ul>
@@ -177,7 +177,7 @@
                             <div class="top">
                                 <i class="fa fa-2x fa-magic"></i>
                                 <p>La possibilité de transformer l'éventuel reliquat des heures en fonctionnalités,
-                                    en plug-ins, template supplémentaire...
+                                    en plugins, template supplémentaire...
                                 </p>
                             </div>
                         </li>
@@ -244,8 +244,8 @@
                         <li>
                             <div class="top">
                                 <i class="fa fa-2x fa-eur"></i>
-                                <p>Vous connaissez à l'avance l'investissement maximal et maîtrisez completement votre budget.<br/>
-                                    La grille des temps pré-établis definit un plafond maximum consommé pour l'action engagée.</p>
+                                <p>Vous connaissez à l'avance l'investissement maximal et maîtrisez complètement votre budget.<br/>
+                                    La grille des temps pré-établis définit un plafond maximum consommé pour l'action engagée.</p>
                             </div>
                         </li>
                         <li>
@@ -253,8 +253,8 @@
                                 <i class="fa fa-2x fa-line-chart"></i>
                                 <p>La grille des temps pré-établis est construite sur l'expérience moyenne d'un site.<br/>
                                     Du simple fait que plus j'interviens sur votre site, plus grande est l'efficacité,
-                                    et votre fidélité vous amenera au fil du temps à voir le report des minutes important et
-                                    recurrent
+                                    et votre fidélité vous amènera au fil du temps à voir le report des minutes important et
+                                    récurrent
                                 </p>
                             </div>
                         </li>
@@ -279,7 +279,7 @@
             <p>
                 Vous souhaitez des renseignements sur les prestations, un devis ou un avis sur un besoin en
                 webmastering?
-                <br/> Laissez-moi votre message avec votre adresse mail et eventuellement un numéro de téléphone par
+                <br/> Laissez-moi votre message avec votre adresse mail et éventuellement un numéro de téléphone par
                 lequel je pourrai vous recontacter.
                 <br/>
             </p>
