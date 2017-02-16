@@ -16,6 +16,7 @@ class CreateLinequotesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->integer('quotation_id')->unsigned()->index();
+            $table->foreign('quotation_id')->references('id')->on('quotations')->onDelete('cascade');
             $table->integer('product_id')->unsigned()->index();
             $table->integer('quantity')->unsigned();
             $table->integer('discount')->unsigned();

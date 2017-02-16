@@ -309,11 +309,11 @@ Class DemoManager
         $quotation1 = Quotation::create([
             'user_id' => $user->id,
             'isPublished' => true,
-            'downPercentPayment' => 30
+            'downPercentPayment' => 30,
+            'validity' => Carbon::now()->subDays(15)->addMonth(1)->format('Y-m-d')
         ]);
         $quotation1->created_at = Carbon::now()->subDays(15);
         $quotation1->updated_at = Carbon::now()->subDays(15);
-        $quotation1->validity = Carbon::now()->subDays(15)->addMonth(1)->format('Y-m-d');
         $quotation1->file = $contrat;
         $quotation1->save();
 
@@ -353,11 +353,11 @@ Class DemoManager
         $quotation2 = Quotation::create([
             'user_id' => $user->id,
             'isPublished' => true,
-            'downPercentPayment' => 30
+            'downPercentPayment' => 30,
+            'validity' => Carbon::now()->subDays(11)->addMonth(1)->format('Y-m-d')
         ]);
         $quotation2->created_at = Carbon::now()->subDays(11);
         $quotation2->updated_at = Carbon::now()->subDays(11);
-        $quotation2->validity = Carbon::now()->subDays(11)->addMonth(1)->format('Y-m-d');
         $quotation2->file = $contrat;
         $quotation2->save();
 
