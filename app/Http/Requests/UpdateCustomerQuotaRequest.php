@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCustomerQuotaRequest extends Request
+class UpdateCustomerQuotaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

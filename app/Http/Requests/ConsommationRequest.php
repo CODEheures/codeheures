@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
+use Illuminate\Foundation\Http\FormRequest;
 
-class ConsommationRequest extends Request
+class ConsommationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,7 @@ class ConsommationRequest extends Request
             'value' => 'required|numeric|min:0.01',
             'comment' => 'required|string|min:3|max:200',
             'created_at' =>'required|date',
-            'ratio_prestation' => 'numeric|max:99.99'
+            'ratio_prestation' => 'nullable|numeric|max:99.99'
         ];
     }
 }

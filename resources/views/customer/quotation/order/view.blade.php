@@ -12,9 +12,9 @@
 @if(!isset($isPdf) || !$isPdf)
 <nav class="quotation-get-pdf">
     <p>
-        <a href="{{ route('customer.quotation.showPdf', ['id' => $quotation->id]) }}"><i class="ion-archive"></i>Télécharger ce devis</a>
+        <a href="{{ route('customer.quotation.showPdf', ['id' => $quotation->id]) }}" target="_blank"><i class="ion-archive"></i>Télécharger ce devis</a>
         @if($quotation->file)
-            <br /><a href="{{ route('customer.quotation.attachment', ['hashName' => $quotation->file]) }}"><i class="ion-archive"></i>Télécharger le contrat commercial de ce devis</a>
+            <br /><a href="{{ route('customer.quotation.attachment', ['hashName' => $quotation->file]) }}" target="_blank"><i class="ion-archive"></i>Télécharger le contrat commercial de ce devis</a>
         @endif
     </p>
 </nav>

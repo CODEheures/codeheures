@@ -25,7 +25,7 @@ class HaveNewQuotation
                 ->where('isOrdered', '=', false)
                 ->where('isRefused', '=', false)
                 ->count();
-            session()->set('nbNewQuote', $nbNewQuotations);
+            session(['nbNewQuote'=> $nbNewQuotations]);
         }
 
         return $next($request);

@@ -14,7 +14,7 @@ class AddIdDemoToUser extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->boolean('isDemo')->default(false);
-            $table->string('ip')->default(null);
+            $table->string('ip')->nullable()->default(null);
         });
     }
 

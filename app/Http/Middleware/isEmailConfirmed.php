@@ -20,7 +20,7 @@ class IsEmailConfirmed
         if(auth()->user()->confirmed == true){
             return $next($request);
         } else {
-            return redirect()->back()
+            return redirect(route('home'))
                 ->with('info', 'Votre Email est en attente de confirmation');
         }
     }

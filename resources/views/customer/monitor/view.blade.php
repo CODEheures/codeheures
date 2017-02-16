@@ -15,7 +15,7 @@
     <p
             @if(auth()->user()->isDemo) data-intro="Ici la liste des temps de référence des prestations
              standards. Ce sont les temps qui servent de plafond de débit lorsque CODEheures travaille pour vous sur votre site"
-            data-step="2" data-position="top" @endif><a href="{{ route('customer.prestation.pdf') }}"><i class="ion-archive"></i>Télécharger la grille des prestations standards</a></p>
+            data-step="2" data-position="top" @endif><a href="{{ route('customer.prestation.pdf') }}" target="_blank"><i class="ion-archive"></i>Télécharger la grille des prestations standards</a></p>
 </nav>
 
 @if(!$data)
@@ -37,7 +37,7 @@
             <span class="purchase-date">@if($purchase->quotation) Devis signé le @else Achat du @endif {{ $purchase->created_at->formatLocalized('%A %e %B %Y') }}:</span> {{ $purchase->quantity }}x "{{ $purchase->product->description }}"
             <a href="{{ route('purchase.show', ['id' => $purchase->id]) }}" class="purchase-number"
                @if(auth()->user()->isDemo)data-intro="Ce lien vous donne accès au graphique de consommation de cette commande ainsi qu'à la facture" data-step="9" data-position="top" @endif>(Commande {{ $purchase->hash_key }})</a>
-            @if($purchase->quotation_id)<a href="{{ route('customer.quotation.showPdf', ['id'=>$purchase->quotation_id]) }}" class="quotation-number">(devis {{ $purchase->quotation->getPublicNumber() }})</a>@endif
+            @if($purchase->quotation_id)<a href="{{ route('customer.quotation.showPdf', ['id'=>$purchase->quotation_id]) }}" class="quotation-number" target="_blank">(devis {{ $purchase->quotation->getPublicNumber() }})</a>@endif
         </p>
         <table class="purchase-table" @if(auth()->user()->isDemo) data-intro="Le tableau synthétise les consommations CODEheures justifiées sur cette achat" data-step="7" data-position="top" @endif>
             <thead>
@@ -94,7 +94,7 @@
                         <i class="ion-minus-round"></i>
                         <span class="purchase-date">@if($purchase->quotation) Devis signé le @else Achat du @endif {{ $purchase->created_at->formatLocalized('%A %e %B %Y') }}:</span> "{{ $purchase->product->description }}"
                         <a href="{{ route('purchase.show', ['id' => $purchase->id]) }}" class="purchase-number">(Commande {{ $purchase->hash_key }})</a>
-                        @if($purchase->quotation_id)<a href="{{ route('customer.quotation.showPdf', ['id'=>$purchase->quotation_id]) }}" class="quotation-number">(devis {{ $purchase->quotation->getPublicNumber() }})</a>@endif
+                        @if($purchase->quotation_id)<a href="{{ route('customer.quotation.showPdf', ['id'=>$purchase->quotation_id]) }}" class="quotation-number" target="_blank">(devis {{ $purchase->quotation->getPublicNumber() }})</a>@endif
                     </td>
                 </tr>
             @endif

@@ -1,0 +1,1903 @@
+/*
+CSS Flexbox Mobile First
+*/
+@import "boxs-row";
+@import "boxs-column";
+@import "containers";
+
+//Variables
+@import "colors";
+$container-gutters: 1rem;
+$height_nav_shrink: 6rem;
+$pdfWidth: 110rem;
+
+$ratio_w_h_card: 1.172;
+$card_width: 27.5rem;
+$h1_height: 1.47;
+
+$font1: "Open sans", sans-serif;
+$font2 : Arvo, sans-serif;
+$font3 : Flamenco, sans-serif;
+$font4 : Lato, sans-serif;
+
+/*
+*********reset css *******
+*/
+@import "reset";
+
+.clear:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+*, *:before, *:after {
+  box-sizing: border-box;
+  outline: none;
+}
+
+::selection {
+  background: rgba(0,156,222,.15);
+  text-shadow: none;
+}
+
+/*
+****** General ******
+*/
+html {
+  font-size: 35%;
+}
+
+body {
+  scroll-behavior: smooth;
+  font-family: $font1;
+  font-size: 1.8rem;
+  line-height: 1.24;
+  background: url('images/bg3.png') repeat fixed;
+  background-color: $bg-color1;
+  color: $color3;
+  min-height: 100vh;
+  @include cnfsc;
+}
+
+a {
+  text-decoration: none;
+  color: $color3;
+}
+
+input, textarea, select, button {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+ul.circle, ul.advantage, ol {
+  list-style-position: outside;
+  padding-left: 4rem;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+ul.circle {
+  list-style-type: circle;
+  font-size: 1.6rem;
+}
+
+@import "web_styles/_checkbox";
+@import "web_styles/_table1";
+
+.introjs_class1 {
+  background-color: rgba(255,255,255,0.15);
+  border: 0.1rem white solid;
+}
+
+.container {
+  $width: 100%;
+  @include mycontainer($width, $container-gutters);
+}
+
+.rot90::before {
+  transform: rotate(90deg);
+}
+
+.alert {
+  @include cnfsfs;
+  position: fixed;
+  top: 10rem;
+  left: 0;
+  z-index: 2000;
+  border-radius: 0.5rem;
+  border: 0.1rem solid;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  width: 70%;
+  margin: 0 0 0 15%;
+  box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.2);
+
+  & .title {
+    @include rnsbfs;
+    width: 100%;
+  }
+
+  & .close_btn {
+    font-size: 3.4rem;
+    cursor: pointer;
+  }
+
+  &.alert-success {
+    background-color: $color-success;
+    border-color: darken($color-success, 20%);
+    color: darken(opacify($color-success, 1), 40%);
+  }
+
+  &.alert-info {
+    background-color: $color-info;
+    border-color: darken($color-info, 20%);
+    color: darken(opacify($color-info, 1), 40%);
+
+    &.fixe-here {
+      position: relative;
+      top: 2rem;
+      & p {
+        float: none;
+      }
+    }
+  }
+
+  &.alert-danger {
+    background-color: $color-error;
+    border-color: darken($color-error, 20%);
+    color: darken(opacify($color-error, 1), 40%);
+  }
+
+  &.alert-status {
+    background-color: $color-status;
+    border-color: darken($color-status, 20%);
+    color: darken(opacify($color-status, 1), 40%);
+  }
+
+  & p {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  & li {
+    list-style-type: circle;
+    list-style-position: inside;
+    padding-left: 4rem;
+    padding-bottom: 1rem;
+  }
+}
+
+.space-top {
+  margin-top: 3.2rem;
+}
+
+[class^="btn-"] {
+  @include rncc;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 0.8rem;
+  transition-property: all;
+  transition-duration: 0.5s;
+  line-height: 1.35;
+
+  & i {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.btn-transparent {
+  border: 0.1rem solid $color1;
+  color: $color1;
+
+  &:hover {
+    background-color: $color1;
+    color: $color2;
+  }
+}
+
+.btn-yellow {
+  border: 0.1rem solid $color1;
+  background-color: $color1;
+  color: $color2;
+
+  &:hover {
+    background-color: transparent;
+    color: $color3;
+    border-color: $color3;
+  }
+}
+
+.btn-yellow2 {
+  border: 0.1rem solid $color1;
+  background-color: $color1;
+  color: $color2;
+
+  &:hover {
+    background-color: transparent;
+    color: $color4;
+    border-color: $color4;
+  }
+}
+
+.btn-yellow2-invert {
+  border: 0.1rem solid $color4;
+  background-color: transparent;
+  color: $color4;
+  &:hover {
+    background-color: $color1;
+    color: $color2;
+    border-color: $color1;
+  }
+}
+
+.btn-disable {
+  border: 0.1rem solid $color11;
+  background-color: $color3;
+  color: $color11;
+  pointer-events: none;
+}
+
+.btn-facebook-login {
+  border: 0.1rem solid $color-facebook;
+  background-color: $color-facebook;
+  color: white;
+}
+
+.btn-google-login {
+  border: 0.1rem solid $color-google;
+  background-color: $color-google;
+  color: white;
+}
+
+.btn-twitter-login {
+  border: 0.1rem solid $color-twitter;
+  background-color: $color-twitter;
+  color: white;
+}
+
+.btn-github-login {
+  border: 0.1rem solid black;
+  background-color: black;
+  color: white;
+}
+
+.input {
+  max-width: none;
+  margin: 1.5rem;
+}
+
+@keyframes toDown {
+  0% {
+    transform: translateY(0);
+  }
+
+  70% {
+    transform: translateY(-1rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/*
+****** Navbar ******
+*/
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+
+  transition-duration: 0.8s;
+  transition-property: all;
+
+  & .container {
+    @include rwsbc;
+  }
+
+  .navbar-logo {
+    @include rnfsc;
+    padding-right: 0.5rem;
+    max-width: 75%;
+    &.hidden {
+      display: none;
+    }
+    img {
+      max-height: 8rem;
+      max-width: 75vw;
+      width: auto;
+      height: auto;
+      min-width: 0;
+      min-height: 0;
+    }
+  }
+
+  .hamburger {
+    font-size: 3rem;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .navbar-menu {
+    @include cnfsfs;
+    display: none;
+    width: calc(100% + #{2*$container-gutters});
+    background-color: $color5;
+    padding-bottom: 0.2rem;
+    margin-left: -$container-gutters;
+    margin-right: -$container-gutters;
+    & a {
+      @include rnfec;
+      width: 100%;
+      padding-right: 2.5rem;
+      font-size: 2.5rem;
+      line-height: 7rem;
+      border-bottom: solid 0.1rem black;
+      box-shadow: rgba(255, 255, 255, 0.3) 0.1rem 0 0.2rem;
+      &:hover {
+        background-color: lighten($color5, 10%);
+      }
+      & span.newQuote {
+        z-index: 2;
+        position: relative;
+
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+
+        border-radius: 50%;
+        border-color: $color3;
+        border-width: 0.2rem;
+        border-style: outset;
+
+        color: $color3;
+        font-weight: 400;
+        font-size: 1.2rem;
+        background-color: $color8;
+        margin-left: 0.3rem;
+
+      }
+    }
+  }
+
+  &.full {
+    height: 10rem;
+  }
+
+  &.shrink, &.shrink-force {
+    height: $height_nav_shrink;
+    line-height: 6rem;
+    background: $color5;
+
+    .navbar-logo {
+      img {
+        max-height: 4rem;
+      }
+
+      span {
+        line-height: 2.4rem;
+      }
+    }
+  }
+
+}
+
+a.a-invert {
+  color: $color5;
+  text-decoration: underline;
+}
+
+/*
+***** Header Home *****
+*/
+body > header {
+  height: 100vh;
+  background-image: url('images/2_low.jpg');
+  background-size: cover;
+  width: 100%;
+  transition-property: height;
+  transition-duration: 500ms;
+  .bg-cover {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+
+    height: 100%;
+
+    background-color: rgba(0, 5, 8, .75);
+    .container {
+      @include cncc;
+      height: 100%;
+    }
+    .header-content {
+      @include cncc;
+      z-index: 1;
+      font-family: $font1;
+      color: $color3;
+
+      transition-property: all;
+      transition-duration: 0.5s;
+      text-align: center;
+      h1 {
+        letter-spacing: 0.2rem;
+        text-transform: uppercase;
+        max-font-size: 5.6rem;
+        font-size: 5vw;
+        line-height: 3rem;
+        font-weight: 600;
+      }
+
+      & h2, & p {
+        &.presentation {
+          background-color: rgba(217, 112, 58, 0.63);
+          color: #FFFFFF;
+          font-size: 1.92rem;
+          border: 0.1rem solid #d9703a;
+          display: block;
+          padding: 1rem;
+          border-radius: 0.35rem;
+          margin-left: 1rem;
+          margin-right: 1rem;
+          margin-top: 1rem;
+          font-weight: 100;
+          & span.code {
+            font-family: $font2;
+            font-weight: 100;
+          }
+          & span.heures {
+            font-family: $font3;
+            font-weight: 100;
+            padding-left: 0.5rem;
+          }
+          & a:not(.a-invert) {
+            color: #FFF;
+          }
+          & strong {
+            font-weight: 500;
+            text-decoration: underline;
+          }
+        }
+      }
+
+      p, h2.important {
+        line-height: 2.4rem;
+        font-size: 1.8rem;
+        font-weight: 300;
+        & a:not(.a-invert) {
+          color: $color1;
+          text-decoration: underline;
+        }
+      }
+
+      h2.important {
+        padding-top: 2rem;
+      }
+      p {
+        padding-bottom: 2rem;
+      }
+
+      .header-btn {
+        @include rncc;
+        text-align: center;
+        margin: 1rem 0;
+      }
+
+      & div.info {
+        @include cnfsc;
+        width: auto;
+        font-family: $font1;
+        font-weight: 300;
+        background-color: rgba(255,255,255,0.1);
+        border-radius: 0.75rem;
+        border: 0.1rem solid rgba(255,255,255,0.8);
+        padding: 1rem 4rem;
+        & div.clock-down {
+          @include rncfs;
+          & div.part {
+            @include cnfsfs;
+            font-size: 4rem;
+            &:not(:last-of-type) {
+              margin-right: 2rem;
+            }
+            & span {
+              width: 100%;
+              font-size: 2rem;
+              border-top: 0.1rem solid white;
+              text-align: left;
+            }
+          }
+        }
+      }
+    }
+
+    .scroll-down {
+      position: absolute;
+      z-index: 2;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      height: 6rem;
+      line-height: 6rem;
+      font-size: 6rem;
+
+      text-align: center;
+      & a {
+        color: $color1;
+        position: absolute;
+        animation: toDown 2s infinite;
+
+        & span {
+          display: block;
+          font-size: 1rem;
+          position: relative;
+          line-height: 1rem;
+        }
+      }
+
+    }
+  }
+}
+
+/*
+********* Main *********
+*/
+.main {
+  position: relative;
+  z-index: 3;
+  padding-top: $height_nav_shrink;
+  padding-bottom: 5rem;
+  color: $color4;
+
+  & .tunnel {
+    @include cnfsfs;
+    width: 100%;
+    overflow: hidden;
+    & > section {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      position: relative;
+
+      & h2 {
+        @include rwfsbl;
+        text-transform: uppercase;
+        font-size: 3rem;
+        line-height: $h1_height;
+        margin-bottom: 1rem;
+        & span {
+          padding-right: 0.8rem;
+        }
+        & small {
+          display: flex;
+          font-size: 60%;
+        }
+        & a#visite {
+          text-transform: none;
+          padding-left: 2rem;
+        }
+      }
+
+      & h3 {
+        @include rnfsc;
+        font-size: 2.8rem;
+        padding-top: 2.5rem;
+        &.home {
+          cursor: pointer;
+          width: 100%;
+          padding: 1rem;
+          margin-top: 2.5rem;
+          margin-bottom: 2.5rem;
+        }
+      }
+
+      & p.exit {
+        & a {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+
+    & p.exit {
+      @include rwfec;
+      width: 100%;
+    }
+  }
+
+  & section {
+    @include cnfsfs;
+    padding-top: 6rem;
+    padding-bottom: 0.1rem;
+    color: $color4;
+    font-weight: 100;
+    max-width: 100%;
+    min-width: 100%;
+    width: 100%;
+    & div.collapse {
+      @include cnfsfs;
+    }
+    & h1 {
+      @include rwfsbl;
+      text-transform: uppercase;
+      font-size: 3rem;
+      line-height: $h1_height;
+      margin-bottom: 1rem;
+      & span {
+        padding-right: 0.8rem;
+      }
+      & small {
+        display: flex;
+        font-size: 60%;
+      }
+      & a#visite {
+        text-transform: none;
+        padding-left: 2rem;
+      }
+    }
+
+    & h2 {
+      @include rnfsc;
+      font-size: 2.8rem;
+      padding-top: 2.5rem;
+      &.home {
+        cursor: pointer;
+        width: 100%;
+        padding: 1rem;
+        margin-top: 2.5rem;
+        margin-bottom: 2.5rem;
+      }
+    }
+
+    & h3 {
+      font-size: 2.5rem;
+      text-decoration: underline;
+      padding-top: 2.5rem;
+      line-height: 1.2;
+      padding-bottom: 1rem;
+    }
+
+    & h4 {
+      font-size: 2rem;
+      text-decoration: underline;
+      padding-top: 2.5rem;
+      line-height: 1;
+      padding-bottom: 1rem;
+    }
+
+    & p {
+      padding-top: 2rem;
+      & strong {
+        font-weight: 600;
+      }
+      &.center  {
+        display: flex;
+        align-self: center;
+        & span.solution {
+          background-color: rgba(217, 112, 58, 1);
+          color: #FFFFFF;
+          font-size: 1.92rem;
+          border: 0.1rem solid #d9703a;
+          display: inline-block;
+          padding: 1rem;
+          border-radius: 0.35rem;
+          margin-left: 3.2rem;
+          margin-right: 3.2rem;
+          margin-top: 1.6rem;
+          font-weight: 400;
+          & strong {
+            font-weight: 500;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    & .argument {
+      & > li {
+        padding-bottom: 3rem;
+      }
+    }
+
+    & ul.advantage {
+      @include cncfs;
+      & > li {
+        @include cnfsfs;
+        & .top {
+          @include rnfsfs;
+          width: 100%;
+          & i {
+            display: flex;
+            min-width: 4rem;
+            margin-right: 2rem;
+            padding-top: 0.7rem;
+            text-align: right;
+          }
+          & p {
+            padding-top: 0;
+          }
+        }
+        & ul {
+          padding-top: 0;
+          padding-left: 9rem;
+        }
+      }
+    }
+
+    & li strong {
+      font-weight: 400;
+      color: $color-logo;
+    }
+
+    & .table {
+      overflow: auto;
+      & table {
+        &.grille-example, &.report-example {
+          width: calc(100% - 6rem);
+          margin-top: 2rem;
+          & td, th {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+          }
+        }
+        &.report-example {
+          & td {
+            &.win, &.lost {
+              font-size: 1.4rem;
+              font-weight: 900;
+            }
+            &.win {
+              color: darkgreen;
+            }
+            &.lost {
+              color: darkred;
+            }
+          }
+        }
+      }
+    }
+
+    & div.purchase-title,
+    & div.quotation-title,
+    & div.product-title,
+    & div.prestation-title,
+    & div.customer-title {
+      @include rwsbc;
+      width: 100%;
+      margin-top: 2rem;
+      line-height: 4rem;
+
+      &:not(:first-of-type) {
+        margin-top: 7rem;
+      }
+
+      & .left {
+        @include rwfsc;
+      }
+
+      & .right {
+        @include rwfec;
+      }
+
+      & h2 {
+        font-size: 2.2rem;
+        padding-top: 0;
+        & i {
+          font-size: 4rem;
+          padding-right: 0.8rem;
+        }
+      }
+
+      & div.cart-quotation,
+      & div.price-quotation,
+      & div.refuse-quotation {
+        @include rncc;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      & div.reliquat-customer-info,
+      & div.total-price-quotation-info,
+      & div.prestation-duration {
+        line-height: initial;
+        border: 0.1rem solid $color7;
+        background-color: $color7;
+        color: $color3;
+      }
+    }
+
+    & div.quotation-progress {
+      margin-top: 2rem;
+    }
+
+    & div.quotation-progress-text {
+      & p {
+        padding-top: 0.3rem;
+        font-size: 1.2rem;
+      }
+    }
+
+    & div.quotation-progress,
+    & div.quotation-progress-text {
+      @include rnsbc;
+      width: 100%;
+      margin-left: 1rem;
+      margin-right: 1rem;
+
+      &.refuse {
+        @include rnfec;
+        & div.quotation-progress-2b {
+          @include rnfec;
+          height: 1.2rem;
+          width: 33%;
+          & div.bifurcation {
+            font-size: 4.8rem;
+            color: $color10;
+            transform: rotate(72deg);
+            transform-origin: right;
+          }
+        }
+      }
+
+      & div.quotation-progress-1,
+      & div.quotation-progress-2,
+      & div.quotation-progress-3 {
+        @include rnsac;
+        height: 1.2rem;
+        width: 33%;
+        & div.bar {
+          width: 90%;
+          background-color: $color10;
+          height: 50%;
+          border-radius: 0.3rem;
+        }
+        & div.point {
+          font-size: 0.8rem;
+          color: $color10;
+        }
+      }
+
+      & div.quotation-progress-1 {
+        & div.point {
+          color: $color7;
+        }
+      }
+
+      &.published {
+        & div.quotation-progress-1 div.bar {
+          background-color: $color7;
+        }
+
+        & div.quotation-progress-2 div.point:first-of-type {
+          color: $color7;
+        }
+
+        &.viewed {
+          & div.quotation-progress-2 {
+            & div.point {
+              color: $color7;
+            }
+            & div.bar {
+              background-color: $color7;
+            }
+          }
+
+          &.purchased {
+            & div.quotation-progress-3 {
+              & div.point {
+                color: $color7;
+              }
+              & div.bar {
+                background-color: $color7;
+              }
+            }
+          }
+
+          &.refused {
+            & div.quotation-progress-2b {
+              & div.bifurcation {
+                color: $color-error;
+              }
+            }
+            & div.quotation-progress-3 {
+              & div.point {
+                color: $color-error;
+              }
+              & div.bar {
+                background-color: $color-error;
+              }
+            }
+          }
+        }
+      }
+
+    }
+
+    &#user {
+      width: 100%;
+      & a {
+        color: $color8;
+      }
+
+      & nav.monitor-return,
+      & nav.quotation-title,
+      & nav.product-title,
+      & nav.prestation-title {
+        width: 100%;
+        position: relative;
+        top: -1.8rem;
+
+        & p {
+          padding: 0;
+        }
+      }
+
+      & nav.quotation-get-pdf,
+      & nav.prestation-get-pdf,
+      & nav.purchase-get-invoice-pdf {
+        margin-left: 1.95rem;
+        & p {
+          padding: 0;
+        }
+      }
+
+      & p.order-validity {
+        @include rwsbc;
+        width: 100%;
+        & > span.signature {
+          color:$color-error;
+          float: right;
+        }
+      }
+
+      & div.graph-conso {
+        width: 100%;
+        & figure {
+          height: 50rem;
+        }
+
+        & .tooltip-graph-conso {
+          position: absolute;
+          display: none;
+          z-index: 3;
+          color: $color8;
+          background-color: $color9;
+          border-color: $color8;
+          border-radius: 0.5rem;
+          padding: 1rem;
+          box-shadow: 0  0.1rem rgba(0, 0, 0, 0.5);
+        }
+      }
+    }
+
+    &#user div.purchase,
+    &#user div.quotation,
+    &#user div.product,
+    &#user div.prestation,
+    &#user div.customer {
+      @include cnfsfs;
+      width: 100%;
+      padding-top: 2rem;
+
+      & > p {
+        padding: 0;
+        font-weight: bold;
+
+        & span.purchase-date,
+        & span.quotation-date {
+          font-weight: 100;
+        }
+
+        & a.purchase-number, & a.quotation-number {
+          font-size: 1.2rem;
+          font-weight: 400;
+        }
+
+        &.tva-info {
+          font-size: 1.2rem;
+          font-weight: 100;
+        }
+
+        &.downPercentPayment {
+          align-self: center;
+          font-style: italic;
+          padding-top: 3rem;
+          font-weight: 400;
+        }
+
+      }
+
+      & div.quotation-total {
+        align-self: flex-end;
+        @include rnfsfs;
+        & p:not(.ttc) {
+          font-weight: 100;
+        }
+
+        & p.ttc {
+          margin-top: 1rem;
+          padding-top: 0.5rem;
+        }
+
+        & div.quotation-total-title, & div.quotation-total-value {
+          text-align: right;
+        }
+
+        & div.quotation-total-value {
+          padding-left: 2rem;
+          & p.ttc {
+            border-top: 0.2rem solid $color6;
+          }
+        }
+
+        & div.quotation-total-title {
+          & p.ttc {
+            border-top: 0.2rem solid transparent;
+          }
+        }
+      }
+
+      & table {
+        margin: 0;
+        width: 100%;
+
+
+        transition-property: all;
+        transition-duration: 800ms;
+
+        & tfoot tr td {
+          text-align: center;
+          padding: 0.5rem;
+          font-family: $font1;
+          color: $color1;
+          background-color: $color6;
+          font-size: 1.2rem;
+          line-height: 1.2rem;
+          font-weight: 100;
+          text-shadow: none;
+          cursor: pointer;
+
+          & i {
+            font-size: 2rem;
+          }
+        }
+
+        & tbody tr td.admin,
+        & tbody tr td.presta-perso {
+          & i {
+            padding-right: 1rem;
+          }
+
+          & span.reliquat,
+          & span.total-price-quotation,
+          & span.product-price,
+          & span.prestation-duration {
+            float: right;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+
+            &.positive {
+              background-color: $color1;
+            }
+          }
+        }
+
+        & tbody tr td.quota {
+          @include cncc;
+          & form {
+            @include cncc;
+          }
+        }
+
+        & a.btn-danger {
+          padding-top: 0;
+          padding-bottom: 0;
+        }
+
+        &.quotation-table {
+          & td:nth-child(2), & td:nth-child(6) {
+            min-width: 8rem;
+          }
+        }
+      }
+
+      & div.quotations-list {
+        @include rwsbfs;
+        width: 100%;
+        box-shadow:  0.1rem 0.3rem rgba(0,0,0,0.3);
+
+        &:not(:first-of-type){
+          margin-top: 1.5rem;
+        }
+
+
+        & ul {
+          padding-left: 2.5rem;
+          li {
+            list-style-position: inside;
+            list-style-type: square;
+          }
+        }
+
+        & div.description {
+          @include cnfsfs;
+          padding-left: 1rem;
+          padding-bottom: 1rem;
+        }
+
+        & div.progress-icon {
+          @include cnfsfs;
+          padding: 0 2rem 1rem 2rem;
+          & p {
+            @include rnsbc;
+            font-weight: 100;
+            min-width: 11rem;
+          }
+
+          & i {
+            font-size: 2.8rem;
+          }
+
+          & i.ion-ios-checkmark-outline {
+            color: $color7;
+          }
+
+          & i.ion-ios-minus-outline {
+            color: $color11;
+          }
+        }
+
+        & div.price {
+          align-self: flex-end;
+          @include cnfsc;
+          padding-right: 1rem;
+          padding-bottom: 1rem;
+          font-size: 3rem;
+        }
+      }
+
+      & div.mentions {
+        margin-top: 2rem;
+        font-size: 0.8em;
+        & h2 {
+          font-weight: bold;
+        }
+
+        & ul {
+          padding-left: 0.6rem;
+          & li {
+            list-style-type: square;
+            list-style-position: inside;
+          }
+        }
+      }
+    }
+
+    & article {
+      @include cncc;
+      width: 100%;
+      align-self: center;
+      height: auto;
+      & .card {
+        width: 90%;
+        min-width: $card_width;
+        max-width: 50rem;
+        height: auto;
+        position: relative;
+
+        box-shadow:  0.3rem 0.3rem 2rem rgba(0, 0, 0, 0.6);
+
+        & img {
+          width: 100%;
+          vertical-align: top;
+        }
+
+        & .card_description {
+          opacity: 0;
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          background: url('images/card_bg.png');
+          background-origin: border-box;
+          background-size: cover;
+          @include  cncfe;
+          & p {
+            text-align: right;
+            padding-right: 0.5rem;
+            text-transform: capitalize;
+            line-height: 2.6;
+            font-size: 118%;
+            letter-spacing: 0.1rem;
+            color: rgba(255, 255, 255, 0.34);
+            text-shadow: rgba(16, 35, 53, 1) 0 -0.2rem 0;
+            font-weight: 600;
+          }
+
+          & a {
+            position: absolute;
+            bottom: 1rem;
+            right: 0;
+          }
+        }
+
+        &:hover {
+          box-shadow:  0.3rem 0.3rem 5rem rgba(0, 0, 0, 0.3);
+        }
+      }
+      & .digest {
+        max-width: 50rem;
+        min-width: 40rem;
+        color: $color4;
+        position: relative;
+        & ul {
+          @include cncc;
+          & li {
+            @include rnfsc;
+            width: 100%;
+            padding: 1rem;
+            &:first-of-type {
+              padding-top: 0;
+            }
+            & i {
+              font-size: 4.5rem;
+              padding-right: 3rem;
+            }
+            & hr {
+              width: 100%;
+            }
+          }
+        }
+        //& h2 {
+        //  text-transform: capitalize;
+        //  font-size: 1.8rem;
+        //  text-decoration: underline;
+        //  text-align: center;
+        //}
+      }
+      & .prices {
+        @include cncc;
+        width: 100%;
+        margin-bottom: 3rem;
+        & .price {
+          $border-radius: 0.6rem;
+          margin: 1rem;
+          border-radius: $border-radius;
+          box-shadow: 0 0 2rem 0 rgba(0,0,0,0.5);
+          width: 21%;
+          min-width: 26rem;
+          min-height: 41.5rem;
+          background-color: $color3;
+          position: relative;
+          & .header-price {
+            @include cncc;
+            height: 5rem;
+            background-color: $color-logo;
+            border-top-left-radius: $border-radius;
+            border-top-right-radius: $border-radius;
+            color: white;
+            font-size: 2.1rem;
+            font-weight: 400;
+          }
+          & .body-price {
+            @include cnfsc;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            font-size: 1.5rem;
+            & .description-price {
+              margin-bottom: 2rem;
+              & p {
+                &:first-child {
+                  @include cncc;
+                  padding-bottom: 2rem;
+                  & strong {
+                    font-size: 1.8rem;
+                  }
+                }
+              }
+              & p {
+                &:last-child {
+                  @include rnfsfs;
+                  height: 10rem;
+                  border-bottom: 0.1rem solid rgba(0,0,0,0.25);
+                  font-size: 1.45rem;
+                  font-style: italic;
+                }
+              }
+            }
+            & .price-price {
+              @include rnfsfs;
+              font-size: 4rem;
+              font-weight: 900;
+              & span.money {
+                font-size: 2rem;
+              }
+            }
+            & label {
+              @include cncc;
+              margin-bottom: 2rem;
+            }
+            & p[class^='tva'] {
+              font-size: 0.8rem;
+              padding-top: 0;
+              &:last-of-type {
+                padding-bottom: 2rem;
+              }
+            }
+          }
+          & .disable {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background-image: repeating-linear-gradient(-45deg,
+                    rgba(0,0,0,0.1) 0px,
+                    rgba(0,0,0,0.1) 5px,
+                    transparent 5px,
+                    transparent 10px);
+            border-radius: $border-radius;
+            @include rncfe;
+            & p {
+              font-weight: 900;
+              text-align: center;
+              padding-bottom: 2rem;
+              padding-left: 1rem;
+              padding-right: 1rem;
+            }
+          }
+        }
+      }
+      & .form-prices {
+        & div.form-submit {
+          justify-content: flex-end;
+          & button {
+            &[aria-disabled="true"]{
+              pointer-events: none;
+            }
+            &[aria-disabled="false"]{
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      & .check-data {
+        @include cncc;
+        width: 100%;
+        & div[class^='data-'] {
+          width: 90%;
+          min-width: 30rem;
+          background: $color3;
+          box-shadow: 0 0 5rem 0 rgba(0,0,0,0.1);
+          padding: 2rem;
+          font-size: 1.5rem;
+          margin-left:  1rem;
+          margin-right: 1rem;
+          margin-bottom: 2rem;
+          margin-top: 2rem;
+          & p {
+            margin: 0;
+            padding-top: 0;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            color: $color-info;
+            font-weight: 900;
+            border-bottom: 0.1rem solid $color-info;
+          }
+          & ul {
+            & li {
+              @include rnsbfs;
+              padding-bottom: 0.8rem;
+              text-align: right;
+              & span {
+                text-align: left;
+              }
+            }
+          }
+        }
+      }
+      & .payout {
+        @include cncfe;
+        width: 100%;
+        & a {
+          &.disable {
+            cursor: not-allowed;
+            pointer-events: none;
+          }
+          & img {
+            width: 24rem;
+            &:active {
+              transform: scale(0.95);
+            }
+          }
+        }
+        & p, ul {
+          width: 24rem;
+          font-size: 1.2rem;
+        }
+        & ul {
+          list-style-type: circle;
+          list-style-position: inside;
+        }
+      }
+      & .realisations {
+        @include cncc;
+        width: 100%;
+        margin-bottom: 3rem;
+        & .realisation {
+          $border-radius: 0.6rem;
+          margin: 1rem;
+          border-radius: $border-radius;
+          box-shadow: 0 0 2rem 0 rgba(0,0,0,0.5);
+          width: 21%;
+          min-width: 35rem;
+          min-height: 41.5rem;
+          background-color: $color3;
+          position: relative;
+          & .header-realisation {
+            @include cncc;
+            height: 5rem;
+            background-color: $color7;
+            border-top-left-radius: $border-radius;
+            border-top-right-radius: $border-radius;
+            color: white;
+            font-size: 2.1rem;
+            font-weight: 400;
+          }
+          & .body-realisation {
+            @include cnfsc;
+            font-size: 1.5rem;
+            overflow: hidden;
+            & img {
+              min-height: 20rem;
+              height: 20rem;
+            }
+            & p {
+              padding-left: 2rem;
+              padding-right: 2rem;
+              min-height: 10rem;
+              height: 10rem;
+            }
+            & .link {
+              @include rwfsc;
+            }
+          }
+        }
+      }
+    }
+
+    & footer {
+      align-self: flex-end;
+      max-width: 100rem;
+      @include cncfe;
+      color: $color4;
+      & p {
+        margin-top: 4rem;
+        margin-bottom: 2.5rem;
+        margin-right: 1.5rem;
+        text-align: right;
+        color: $color4;
+      }
+    }
+
+    & div.form-title {
+      & p {
+        font-size: 150%;
+      }
+      & h1, & a {
+        display: inline-block;
+        width: auto;
+      }
+    }
+
+    & form {
+      @include rwfsfs;
+      width: 100%;
+      margin-top: 2rem;
+      & .form-group {
+        display: flex;
+        width: 100%;
+        font-size: 150%;
+        &.password {
+          @include cnfsfs;
+            & > a {
+              font-size: 1.2rem;
+              position: relative;
+              color: $color4;
+              top: -1em;
+              margin-left: 1.5rem;
+            }
+        }
+        &.full-width {
+          width: 100%;
+        }
+      }
+    }
+
+    & div.form-submit {
+      @include rwfsc;
+      width: 100%;
+      & div.submit:not(.right) {
+        @include rwfsc;
+        width: 100%;
+      }
+      & div.submit.right {
+        @include rwfec;
+        width: 100%;
+      }
+      & div.checkbox {
+        width: 100%;
+        margin-left: 1.5rem;
+      }
+      & div.submit.social {
+        margin-top: 2rem;
+        & a {
+          margin-bottom: 1rem;
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    & div.skills {
+      width: 100%;
+      & img {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    & div.cgv {
+      & h2 {
+        @include rnfsc;
+        & i {
+          padding-right: 1rem;
+          padding-top: 0.4rem;
+        }
+      }
+      & ol {
+        & li {
+          font-size: 1.6rem;
+          letter-spacing: 0.08rem;
+          line-height: 1.5;
+          padding-top: 1.7rem;
+          & ul {
+            list-style-type: circle;
+            padding-left: 2rem;
+            & li {
+              padding-top: 0;
+            }
+          }
+        }
+      }
+    }
+
+    & div.video {
+      @include rncc;
+      width: 100%;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+  }
+
+  & a.registration {
+    @include rnfec;
+    align-self: flex-end;
+    text-align: right;
+    color: $color8;
+    padding-top: 1rem;
+  }
+
+  &.container {
+    @include cnfsc;
+  }
+}
+
+body > footer {
+  @include rnfsc;
+  width: 100%;
+  background-color: $color5;
+
+  color: $color3;
+  font-size: 1.2rem;
+  font-weight: 100;
+  padding: 2rem 4rem;
+  border-top: 0.1rem solid rgba(0, 0, 0, 0.6);
+
+  & .common_footer {
+    @include rwsbc;
+    width: 100%;
+    & .infos {
+      margin-right: 3rem;
+      & i {
+        padding-right: 0.3rem;
+      }
+      & i:not(:first-of-type){
+        padding-left: 1rem;
+      }
+    }
+
+    & .legale {
+      min-width: 33%;
+      max-width: 50%;
+      & .links {
+        @include rwsbc;
+        & a:first-of-type {
+          padding-right: 1rem;
+        }
+      }
+      & h3 {
+        font-size: 1.4rem;
+      }
+
+      & hr {
+        border-color: rgba(255, 255, 255, 0.2);
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+    }
+
+    & .copyright {
+      align-self: flex-end;
+      padding-top: 3rem;
+      & p {
+        @include rncc;
+        & img {
+          width: 3.5rem;
+        }
+      }
+
+    }
+  }
+}
+
+@media screen and(min-width: 360px) {
+  body > header {
+    .bg-cover {
+      .header-content {
+        h1 {
+          font-size: 7vw;
+          line-height: 6rem;
+        }
+      }
+    }
+  }
+
+  .main {
+    & .tunnel {
+      & p.change-section {
+        &.two {
+          @include rwsbc;
+        }
+      }
+    }
+  }
+}
+
+@media screen and(min-width: 480px) {
+  html {
+    font-size: 62.5%;
+    & body >header {
+      & .bg-cover {
+        & .header-content {
+          & h2 {
+            &.presentation {
+              margin-left: 3.2rem;
+              margin-right: 3.2rem;
+              margin-top: 1.6rem;
+            }
+          }
+          & h2.important {
+            padding-top: 5rem;
+            padding-bottom: 0.5rem;
+          }
+        }
+      }
+
+    }
+  }
+  .main {
+    & .tunnel {
+      & p.change-section {
+        &.two {
+          @include cncc;
+        }
+      }
+    }
+  }
+}
+
+@media screen and(min-width: 530px) {
+  .main {
+    & section {
+      & article {
+        & .prices {
+          @include rwsas;
+        }
+        & .check-data {
+          @include rwsas;
+          & div[class^='data-'] {
+            min-width: 45rem;
+            width: 45%;
+            font-size: 1.9rem;
+          }
+        }
+        & .realisations {
+          @include rwsas;
+        }
+      }
+    }
+  }
+}
+
+@media screen and(min-width: 610px) {
+  .main {
+    & .tunnel {
+      & p.change-section {
+        &.two {
+          @include rwsbc;
+        }
+      }
+    }
+  }
+}
+
+@media screen and(min-width: 768px) {
+  .container {
+    $width: 117rem;
+    @include mycontainer($width, $container-gutters);
+  }
+
+  body > header {
+    .bg-cover {
+      .header-content {
+        h1 {
+          font-size: 4.6rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and(min-width: 800px) {
+  .navbar {
+    @include rncc;
+
+    .navbar-logo {
+      max-width: 35%;
+    }
+
+    .hamburger {
+      display: none;
+    }
+    .navbar-menu {
+      @include rnfec;
+      padding-left: 0.5rem;
+      width: auto;
+      background-color: transparent;
+      padding-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+
+      a {
+        @include cnfsfs;
+        width: auto;
+        padding-right: 0;
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        line-height: 1.8;
+        margin: 0 0.8vw;
+        position: relative;
+        border-bottom: none;
+        box-shadow: none;
+
+        transition: background-color 0.5s;
+
+        & .activeplus {
+          height: 0.2rem;
+          width: 0%;
+          transition: width;
+          transition-duration: 800ms;
+        }
+
+        &:hover {
+          background-color: transparent;
+        }
+
+        &[aria-selected="true"] {
+          color: $color1;
+          & .activeplus {
+            background-color: $color1;
+            width: 100%;
+          }
+        }
+
+        &[aria-selected="false"], &:not([aria-selected]) {
+          & .activeplus {
+            background-color: $color3;
+          }
+          &:hover {
+            & .activeplus {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+  .main {
+    & section {
+      & article {
+        align-self: auto;
+        @include rnsbfs;
+        & .digest {
+          padding-left: 3rem;
+          max-width: none;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .main {
+    & section {
+      & ul.advantage, & ul.circle, & ol {
+        padding-left: 9rem;
+        padding-right: 9rem;
+      }
+      & form {
+        & .form-group {
+          width: 50%;
+        }
+      }
+    }
+  }
+  table {
+    & td {
+      padding: 1.8rem;
+    }
+    & th {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+
+    }
+  }
+}
+
+@media screen and (min-width: 970px) {
+  .main {
+    section {
+      & div.purchase-title,
+      & div.quotation-title,
+      & div.product-title,
+      & div.prestation-title,
+      & div.customer-title {
+        & div.cart-quotation,
+        & div.price-quotation,
+        & div.refuse-quotation {
+          margin-bottom: 0;
+          margin-top: 0;
+        }
+      }
+      &#user {
+        & nav.quotation-get-pdf,
+        & nav.prestation-get-pdf,
+        & nav.purchase-get-invoice-pdf {
+          position: relative;
+          top: -1.3rem;
+          left: 4.2rem;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}

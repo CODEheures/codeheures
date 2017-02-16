@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
+use Illuminate\Foundation\Http\FormRequest;
 
-class LineQuoteRequest extends Request
+class LineQuoteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,7 +30,7 @@ class LineQuoteRequest extends Request
             'quotation_id' => 'required|numeric|exists:quotations,id',
             'product_id' => 'required|numeric|exists:products,id',
             'quantity' => 'required|integer|min:1',
-            'discount' => 'numeric',
+            'discount' => 'nullable|numeric',
             'discount_type' =>'required'
         ];
     }

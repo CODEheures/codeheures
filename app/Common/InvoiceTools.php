@@ -266,6 +266,7 @@ class InvoiceTools
         $invoice->$fillable_origin = $this->_entity->id;
         $invoice->isPayed = $isPayed;
         $invoice->percent = $percent;
+
         if($this->_type!='isSold'){
             $invoice->amountHT = $this->_entity->totalPercent(false, $invoice->percent);
             $invoice->amountTTC = $this->_entity->totalPercent(true, $invoice->percent);
@@ -338,7 +339,7 @@ class InvoiceTools
 
     private function createPdf($content, $header, $footer, $fileName) {
         try {
-            $css = file_get_contents(asset('css/pdf.min.css'),false,stream_context_create(array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false))));
+            $css = file_get_contents(asset(mix('css/pdf.css')->toHtml()),false,stream_context_create(array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false))));
 
             $mpdf = new \mPDF();
             $mpdf->SetHTMLHeader($header);

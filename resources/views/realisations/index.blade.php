@@ -19,8 +19,8 @@
 
 @section('user.action')
     <div id="skills" class="skills">
-        <img src="./css/images/skills/logos1b.png" alt="compétences floutées">
-        <img src="./css/images/skills/logos2.png" alt="compétences floutées">
+        <img src=".//images/skills/logos1b.png" alt="compétences floutées">
+        <img src=".//images/skills/logos2.png" alt="compétences floutées">
     </div>
     <h1>Réalisations Codeheures</h1>
     <h2 class="fa fa-desktop"> Site vitrine</h2>
@@ -31,7 +31,7 @@
                     Rythme & Danses
                 </div>
                 <div class="body-realisation">
-                    <img src="./css/images/realisations/rythmedanses.jpg" alt="image du site rythme & danses">
+                    <img src=".//images/realisations/rythmedanses.jpg" alt="image du site rythme & danses">
                     <p>Réalisé sous wix (montage vidéos de présentation réalisé par <a href="{{ route('home') }}">CODEheures</a>)
                     </p>
                     <div class="link">
@@ -44,7 +44,7 @@
                     Sogeres Grand-Ouest
                 </div>
                 <div class="body-realisation">
-                    <img src="./css/images/realisations/sogeresgo.jpg" alt="image du site sogeres grand ouest">
+                    <img src=".//images/realisations/sogeresgo.jpg" alt="image du site sogeres grand ouest">
                     <p>Réalisé sous wix et maintenu par <a href="{{ route('home') }}">CODEheures</a> pour le C.E. Sogeres Grand Ouest
                     </p>
                     <div class="link">
@@ -57,7 +57,7 @@
                     Sogeres Ile de France
                 </div>
                 <div class="body-realisation">
-                    <img src="./css/images/realisations/sogeresidf.jpg" alt="image du site sogeres ile de france">
+                    <img src=".//images/realisations/sogeresidf.jpg" alt="image du site sogeres ile de france">
                     <p>Réalisé sous wix et maintenu par <a href="{{ route('home') }}">CODEheures</a> pour le C.E. Sogeres Ile de France
                     </p>
                     <div class="link">
@@ -75,7 +75,7 @@
                     P.O.E.M.
                 </div>
                 <div class="body-realisation">
-                    <img src="./css/images/realisations/poem.jpg" alt="image du site poem">
+                    <img src=".//images/realisations/poem.jpg" alt="image du site poem">
                     <p>Intégration html/css/js complete (connexion possible avec user+mot de passe vide)
                     </p>
                     <div class="link">
@@ -89,7 +89,7 @@
                     Fiche Produit + Menu Responsive
                 </div>
                 <div class="body-realisation">
-                    <img src="./css/images/realisations/ficheproduit.jpg" alt="image du site sport et nature">
+                    <img src=".//images/realisations/ficheproduit.jpg" alt="image du site sport et nature">
                     <p>Intégration d'une fiche produit et son menu en responsive design (mobile first). Technologie Flexbox.
                     </p>
                     <div class="link">
@@ -102,7 +102,7 @@
                     Edania
                 </div>
                 <div class="body-realisation">
-                    <img src="./css/images/realisations/edania.jpg" alt="image du site edania">
+                    <img src=".//images/realisations/edania.jpg" alt="image du site edania">
                     <p>Intégration d'un site pour animaux. Pictos par <a href="{{ route('home') }}">CODEheures</a>.
                     </p>
                     <div class="link">
@@ -120,7 +120,7 @@
                     FRIGO
                 </div>
                 <div class="body-realisation">
-                    <img src="./css/images/realisations/frigo.jpg" alt="image du site frigo">
+                    <img src=".//images/realisations/frigo.jpg" alt="image du site frigo">
                     <p>Développement html/css/js/php d'une application pour gérer son frigo
                     </p>
                     <div class="link">
@@ -135,7 +135,7 @@
                     Site du RIDI
                 </div>
                 <div class="body-realisation">
-                    <img src="./css/images/realisations/ridi.jpg" alt="image du site ridi">
+                    <img src=".//images/realisations/ridi.jpg" alt="image du site ridi">
                     <p>Développement d'un site avec CMS DRUPAL dans le cadre d'un travail avec l'université de strasbourg
                     </p>
                     <div class="link">

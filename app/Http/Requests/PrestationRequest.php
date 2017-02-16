@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
+use Illuminate\Foundation\Http\FormRequest;
 
-class PrestationRequest extends Request
+class PrestationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class PrestationRequest extends Request
         return [
             'name' =>'required|min:3',
             'duration' => 'required|min:0',
-            'url' => 'url'
+            'url' => 'nullable|url'
         ];
     }
 }

@@ -154,7 +154,7 @@ class PrestationController extends Controller
         $content = view('pdf.prestation.index', compact('prestations'))->__toString();
         $header = view('pdf.header.view', compact('prestations'))->__toString();
         $footer = view('pdf.footer.view')->__toString();
-        $css = file_get_contents(asset('css/pdf.min.css'),false,stream_context_create(array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false))));
+        $css = file_get_contents(asset(mix('css/pdf.css')->toHtml()),false,stream_context_create(array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false))));
 
         $mpdf = new \mPDF();
 

@@ -107,7 +107,7 @@ class QuotationController extends Controller
             $content = view('pdf.quotation.index', compact('quotation', 'isPdf'))->__toString();
             $header = view('pdf.header.view', compact('quotation'))->__toString();
             $footer = view('pdf.footer.view')->__toString();
-            $css = file_get_contents(asset('css/pdf.min.css'),false,stream_context_create(array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false))));
+            $css = file_get_contents(asset(mix('css/pdf.css')->toHtml()),false,stream_context_create(array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false))));
 
             $mpdf = new \mPDF();
 
@@ -308,7 +308,7 @@ class QuotationController extends Controller
                 $query->where('reservedForUserId', '=', 0)
                     ->orWhere('reservedForUserId', '=', $quotation->user_id);
             })
-            ->Lists('description', 'id');
+            ->pluck('description', 'id');
 
         $newLineQuote = new LineQuote();
         $listEnumDiscountType = $this->getEnumValues('line_quotes', 'discount_type');

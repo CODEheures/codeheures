@@ -23,7 +23,11 @@ class InvoiceController extends Controller
 
     public function get($type, $origin, $origin_id, $intermediateNumber=null) {
         $invoiceTools = $this->invoiceTools;
-        $invoiceTools->setEntity($type, $origin, $origin_id, $intermediateNumber);
+        try {
+            $invoiceTools->setEntity($type, $origin, $origin_id, $intermediateNumber);
+        } catch (\Exception $e) {
+            return redirect('home')->withErrors($e->getMessage());
+        }
         if($this->auth->user() == $invoiceTools->getOwnerUser() || $this->auth->user()->role == 'admin'){
             $existInvoice = $invoiceTools->setExistInvoice();
             if($existInvoice) {

@@ -64,6 +64,6 @@
 </article>
 <article>
     <p class="space-top">Les offres ci dessus permettent de bénéficier de l'accès aux prestations standards.<br />
-    <a href="{{ route('customer.prestation.pdf') }}"><i class="ion-archive"></i>Télécharger la grille des prestations standards</a>
+    <a href="{{ route('customer.prestation.pdf') }}" target="_blank"><i class="ion-archive"></i>Télécharger la grille des prestations standards</a>
     </p>
 </article>

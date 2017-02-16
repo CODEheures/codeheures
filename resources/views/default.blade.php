@@ -14,7 +14,7 @@
     <meta property="og:site_name" content="CODEheures">
     <meta property="og:title" content="Développeur WEB indépendant">
     <meta property="og:description" content="Avec CODEheures je vous propose des Devis et Tarifs intégrant une solution de report des heures non utilisées.">
-    <meta property="og:image" content="{{ asset('css/images/codeheures_thumbnail.jpg') }}">
+    <meta property="og:image" content="{{ asset('/images/codeheures_thumbnail.jpg') }}">
     <meta property="og:url" content="{{ route('home') }}">
     <meta property="og:type" content="website">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
@@ -25,7 +25,20 @@
     <meta name="theme-color" content="#ffffff">
     @yield('css')
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,800,400,600|Arvo:700|Flamenco:300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style15022017.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ mix('css/ionicons.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ mix('css/font-awesome.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ mix('css/vendor.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
+    <script>
+        window.destockShareVar={
+            'serviceWorkerScope': '/sw.js',
+        };
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register(destockShareVar.serviceWorkerScope).then(function(reg) {
+                if(reg.installing) {} else if(reg.waiting) {} else if(reg.active) {}
+            });
+        } else {}
+    </script>
 </head>
 <body>
 
@@ -53,10 +66,7 @@
         ga('send', 'pageview');
 
     </script>
-    <script src="{{ asset('js/jquery-3.1.0.min.js') }}"></script>
-    <script src="{{ asset('js/select2.min.js') }}"></script>
-    <script src="{{ asset('js/cookieconsent.min.js') }}"></script>
-    <script src="{{ asset('js/css.min.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
     @yield('script')
 </body>
 </html>

@@ -22,8 +22,8 @@
     <header id="accueil">
         <div class="bg-cover">
             <div class="container">
-                <img id="lowResBackgound" style="display: none;" src="{{ asset('css/images/2_low.jpg') }}" alt="">
-                <img id="higtResBackgound" style="display: none;" src="{{ asset('css/images/2.jpg') }}" alt="">
+                <img id="lowResBackgound" style="display: none;" src="{{ asset('/images/2_low.jpg') }}" alt="">
+                <img id="higtResBackgound" style="display: none;" src="{{ asset('/images/2.jpg') }}" alt="">
                 <div class="header-content">
                     <h1>créations de sites internet</h1>
                     {{--<div class="info">Démarrage dans:<div class="clock-down"></div></div>--}}
@@ -111,7 +111,7 @@
                 <div class="collapse">
                     <article class="cards">
                         <div class="card">
-                            <img src="{{ asset('css/images/card1.png') }}" alt="Développeur web internet avec laravel et vuejs à Tours 37">
+                            <img src="{{ asset('/images/card1.png') }}" alt="Développeur web internet avec laravel et vuejs à Tours 37">
                             <div class="card_description">
                                 <p>
                                     vitrine<br/>
@@ -200,7 +200,7 @@
                 <div class="collapse">
                     <article>
                         <div class="card">
-                            <img src="{{ asset('css/images/card2.png') }}" alt="maintenance de sites web php javascript et réseaux sociaux">
+                            <img src="{{ asset('/images/card2.png') }}" alt="maintenance de sites web php javascript et réseaux sociaux">
                             <div class="card_description">
                                 <p>
                                     mises à jour<br/>
@@ -287,8 +287,8 @@
         </section>
     </div>
     <div id="skills" class="skills">
-        <img src="./css/images/skills/logos1d.png" alt="développeur web à tours laravel vuejs">
-        <img src="./css/images/skills/logos2.png" alt="creation site internet à tours avec laravel vuejs">
+        <img src=".//images/skills/logos1d.png" alt="développeur web à tours laravel vuejs">
+        <img src=".//images/skills/logos2.png" alt="creation site internet à tours avec laravel vuejs">
     </div>
 @endsection
 

@@ -38,7 +38,7 @@
 <article>
     <div class="payout">
         <a href="{{ route('customer.sale.payment', ['id' => $product->id]) }}" class="disable" data-paypal-button="true" title="PayPal, le réflexe sécurité pour payer en ligne">
-            <img src="{{ asset('/css/images/frenchPayButton2_disable.png') }}" alt="PayPal, le réflexe sécurité pour payer en ligne" />
+            <img src="{{ asset('//images/frenchPayButton2_disable.png') }}" alt="PayPal, le réflexe sécurité pour payer en ligne" />
         </a>
     </div>
 </article>

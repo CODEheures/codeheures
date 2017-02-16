@@ -1,0 +1,12 @@
+window._ = require('lodash');
+window.$ = window.jQuery = require('jquery');
+require('./intersection-observer');
+require('./jquery.event.move');
+require('./jquery.countdown');
+require('./jquery.twentytwenty');
+require('./inputfumi.min');
+require('./cookieconsent.min');
+require('qtip2');
+require('./select2.min');
+require('./xcharts.min');
+require('./css');

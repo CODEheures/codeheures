@@ -4,14 +4,14 @@
 $(function() {
 
     //parametre application
-    var $navbarMenu = $('.navbar-menu');
-    var $hamburger = $('.hamburger');
-    var $alerts = $('.alert');
-    var $menu_links = $('.navbar-menu a');
-    var $tableaux = $('section#user div.purchase table.purchase-table, section#user div.quotation table.quotation-table');
+    let $navbarMenu = $('.navbar-menu');
+    let $hamburger = $('.hamburger');
+    let $alerts = $('.alert');
+    let $menu_links = $('.navbar-menu a');
+    let $tableaux = $('section#user div.purchase table.purchase-table, section#user div.quotation table.quotation-table');
 
     function setHeightHeader() {
-        var $height = $(window).height();
+        let $height = $(window).height();
         $('body > header').css({'height': $height})
     }
 
@@ -24,7 +24,7 @@ $(function() {
     }
 
     function setOpacityHeader($window_scrollTop) {
-        var $opacity = 1- $window_scrollTop/250;
+        let $opacity = 1- $window_scrollTop/250;
         $('.header-content').css({
             'opacity':$opacity,
             'margin-top': $window_scrollTop
@@ -32,38 +32,38 @@ $(function() {
     }
 
     function animLogo() {
-        var $logo = $('a.navbar-logo');
+        let $logo = $('a.navbar-logo');
         $logo.removeClass("hidden");
-        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        let animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
         $logo.addClass("animated bounceInLeft").one(animationEnd, function() {
             setHeightHeader();
         });
     }
 
     //Observer du menu
-    var nameMenuObserved = ['accueil', 'prestations', 'contact'];
-    var menuObserved = [];
-    for(var indice=0; indice<nameMenuObserved.length; indice++) {
+    let nameMenuObserved = ['accueil', 'prestations', 'contact'];
+    let menuObserved = [];
+    for(let indice=0; indice<nameMenuObserved.length; indice++) {
         menuObserved[indice] = document.getElementById(nameMenuObserved[indice]);
     }
 
     if(document.querySelector('#prestations') != undefined) {
-        var lastIndex = 0;
-        var newIndex;
-        var currentIndex = 0;
-        var menuObserver = new IntersectionObserver(function (entries) {
-            for(var indice=0; indice<entries.length; indice++) {
+        let lastIndex = 0;
+        let newIndex;
+        let currentIndex = 0;
+        let menuObserver = new IntersectionObserver(function (entries) {
+            for(let indice=0; indice<entries.length; indice++) {
                 if (entries[indice].intersectionRatio > 0){
                     newIndex = nameMenuObserved.indexOf(entries[indice].target.id);
                     lastIndex = currentIndex;
                     currentIndex = newIndex;
                 } else {
-                    var quitteIndex = nameMenuObserved.indexOf(entries[indice].target.id);
+                    let quitteIndex = nameMenuObserved.indexOf(entries[indice].target.id);
                     if(currentIndex == quitteIndex){
                         currentIndex = lastIndex;
                     }
                 }
-                var $target = $('.navbar-menu a[data-entrie="' + nameMenuObserved[currentIndex] + '"]');
+                let $target = $('.navbar-menu a[data-entrie="' + nameMenuObserved[currentIndex] + '"]');
                 if(!$target.hasClass('active')){
                     $target.trigger('click');
                 }
@@ -72,19 +72,19 @@ $(function() {
 
         });
 
-        for(var indice=0; indice< menuObserved.length; indice++) {
+        for(let indice=0; indice< menuObserved.length; indice++) {
             menuObserver.observe(menuObserved[indice]);
         }
     }
 
     //Observer des cards
     //animation des descriptions des cartes
-    var $cardsObserved = document.getElementsByClassName('card');
+    let $cardsObserved = document.getElementsByClassName('card');
 
     if($cardsObserved.length>0) {
-        var cardsObserver = new IntersectionObserver(function (entries) {
-            for(var indice=0; indice<entries.length; indice++) {
-                var $elem = $(entries[indice].target).children('.card_description');
+        let cardsObserver = new IntersectionObserver(function (entries) {
+            for(let indice=0; indice<entries.length; indice++) {
+                let $elem = $(entries[indice].target).children('.card_description');
                 if($elem.css('opacity') == 0) {
                     $elem.css('opacity', 1);
                 } else {
@@ -97,17 +97,17 @@ $(function() {
         });
 
 
-        for(var indice=0; indice<$cardsObserved.length; indice++) {
+        for(let indice=0; indice<$cardsObserved.length; indice++) {
             cardsObserver.observe($cardsObserved[indice]);
         }
     }
 
     //supervisor of header hight res backgound load
-    var domHightResImg = document.getElementById('higtResBackgound');
-    var domLowResImg = document.getElementById('lowResBackgound');
+    let domHightResImg = document.getElementById('higtResBackgound');
+    let domLowResImg = document.getElementById('lowResBackgound');
 
     if(domHightResImg && domLowResImg){
-        var $domHightResImg = $(domHightResImg);
+        let $domHightResImg = $(domHightResImg);
         $domHightResImg.on('load', function () {
             setHightResBackground(domHightResImg, domLowResImg);
         });
@@ -118,7 +118,7 @@ $(function() {
     }
 
     function setHightResBackground(elem_h, elem_l) {
-        var parser = document.createElement('a');
+        let parser = document.createElement('a');
         parser.href = elem_h.src;
         $('body > header').css({
             "background-image" : 'url('+parser.pathname+')'
@@ -130,7 +130,7 @@ $(function() {
 
     //GLOBAL
     $('#main').css('min-height', 'calc(100vh - ' + $('footer').outerHeight() + 'px)');
-    var $window_scrollTop = $(window).scrollTop();
+    let $window_scrollTop = $(window).scrollTop();
 
     setHeightHeader();
     animLogo();
@@ -202,9 +202,9 @@ $(function() {
 
     //Assistance au remplissage consommation client
     //En cas de modif du champ prestation standard AJAX pour récup valeur et mise à jour auto du pointage
-    var $durationRef = 0;
+    let $durationRef = 0;
     $('[data-assist="assist1"]').change(function () {
-        var $ratio = $('[data-assist="assist1b"]');
+        let $ratio = $('[data-assist="assist1b"]');
         if($ratio.val()=='') {
             $ratio.val(1);
             if($ratio.parent().is('span.input--fumi')){
@@ -216,7 +216,7 @@ $(function() {
             $.ajax('/admin/prestation/' + $(this).val())
                 .done(function (data) {
                     $durationRef = data.duration;
-                    var $assist = $('[data-isAssistBy="assist1"]');
+                    let $assist = $('[data-isAssistBy="assist1"]');
                     $assist.attr('max', Math.round($durationRef*$ratio.val()*100)/100);
                     $assist.val(Math.round($durationRef*$ratio.val()*100)/100);
                     if($assist.parent().is('span.input--fumi')){
@@ -226,7 +226,7 @@ $(function() {
                 });
         } else {
             $durationRef = 0;
-            var $assist = $('[data-isAssistBy="assist1"]');
+            let $assist = $('[data-isAssistBy="assist1"]');
             if($assist.parent().is('span.input--fumi')){
                 $assist.parent().addClass('input--filled');
                 $assist.attr('data-placeholder', '2.4h');
@@ -240,9 +240,9 @@ $(function() {
     });
 
     $('[data-assist="assist1b"]').change(function () {
-        var $ref = $('[data-assist="assist1"]');
+        let $ref = $('[data-assist="assist1"]');
         if ($ref.val() != 0) {
-            var $assist = $('[data-isAssistBy="assist1"]');
+            let $assist = $('[data-isAssistBy="assist1"]');
             $assist.attr('max', Math.round($durationRef*$(this).val()*100)/100);
             $assist.val(Math.round($durationRef*$(this).val()*100)/100);
             if($assist.parent().is('span.input--fumi')){
@@ -254,11 +254,11 @@ $(function() {
 
 
     //Assistance au slider quota admin customer
-    var $ranges = $('[data-assist="assist2"]');
+    let $ranges = $('[data-assist="assist2"]');
     $ranges.mousedown(function () {
-        var $range = $(this);
-        var $assist = $(this).parent().children('[data-isAssistBy="assist2"]');
-        var listener = function() {
+        let $range = $(this);
+        let $assist = $(this).parent().children('[data-isAssistBy="assist2"]');
+        let listener = function() {
             window.requestAnimationFrame(function() {
                 $assist.html('Nouveau quota:' + $range.val());
             });
@@ -269,16 +269,16 @@ $(function() {
     });
 
     $ranges.mouseup(function () {
-        var $range = $(this);
+        let $range = $(this);
         $range.unbind("mousemove");
 
     });
 
 
     //Gestion CSS des choix d'achats
-    var $labelsChoice = $('.body-price label');
-    var $inputsChoice = $('.body-price input[type="radio"]');
-    var $buttonChoice = $('.form-prices button[type="submit"]');
+    let $labelsChoice = $('.body-price label');
+    let $inputsChoice = $('.body-price input[type="radio"]');
+    let $buttonChoice = $('.form-prices button[type="submit"]');
 
     function choiced(elem) {
         $labelsChoice.removeClass('btn-yellow2');
@@ -302,13 +302,13 @@ $(function() {
     });
 
     //Approuve des CGV
-    var $approuve = $('#approuve');
+    let $approuve = $('#approuve');
     if($approuve.length) {
-        var $payoutLink = $('.payout a');
-        var $payoutRoute = $payoutLink.attr('href');
-        var $payoutImg = $payoutLink.children('img');
-        var $payoutImgSrcDisable = $payoutImg.attr('src');
-        var $payoutImgSrcEnable = $payoutImgSrcDisable.split('_')[0] + '.' +  $payoutImgSrcDisable.split('.')[$payoutImgSrcDisable.split('.').length-1];
+        let $payoutLink = $('.payout a');
+        let $payoutRoute = $payoutLink.attr('href');
+        let $payoutImg = $payoutLink.children('img');
+        let $payoutImgSrcDisable = $payoutImg.attr('src');
+        let $payoutImgSrcEnable = $payoutImgSrcDisable.split('_')[0] + '.' +  $payoutImgSrcDisable.split('.')[$payoutImgSrcDisable.split('.').length-1];
         $payoutLink.attr('href', '');
         $approuve.change(function (e) {
             if($(this).prop('checked')){
@@ -324,9 +324,9 @@ $(function() {
     }
 
     //retur to poster at the end of video
-    var $videos=document.getElementsByTagName('video');
+    let $videos=document.getElementsByTagName('video');
     if($videos.length) {
-        for(var $i = 0; $i < $videos.length ; $i++) {
+        for(let $i = 0; $i < $videos.length ; $i++) {
             $videos[$i].addEventListener("ended", resetVideo, false);
             function resetVideo() {
                 this.load();
@@ -348,7 +348,7 @@ $(function() {
     if (!String.prototype.trim) {
         (function() {
             // Make sure we trim BOM and NBSP
-            var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+            let rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
             String.prototype.trim = function() {
                 return this.replace(rtrim, '');
             };
@@ -430,7 +430,7 @@ $(function() {
     /*****************************************************************************************************/
     $('#visite').click(function (e) {
         e.preventDefault();
-        var $introJs = new introJs();
+        let $introJs = new introJs();
         $introJs.setOptions({
             'nextLabel': 'suivant',
             'prevLabel': 'précédent',

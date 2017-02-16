@@ -9,8 +9,8 @@
 
     <div class="form-group">
         <span class="input input--fumi">
-            {!! Form::text('name', null, ['class' => 'input__field input__field--fumi', 'placeholder' => 'jacksp24@bl.pl']) !!}
-            <label for="name" class="input__label input__label--fumi">
+            {!! Form::text('email', null, ['class' => 'input__field input__field--fumi', 'placeholder' => 'jacksp24@bl.pl']) !!}
+            <label for="email" class="input__label input__label--fumi">
                 <i class="fa fa-fw fa-user icon icon--fumi"></i>
                 <span class="input__label-content input__label-content--fumi">email</span>
             </label>
@@ -20,7 +20,7 @@
     <div class="form-group password">
         <span class="input input--fumi">
             {!! Form::password('password', ['class' => 'input__field input__field--fumi', 'placeholder' => '********']) !!}
-            <label for="name" class="input__label input__label--fumi">
+            <label for="password" class="input__label input__label--fumi">
                 <i class="fa fa-fw fa-user icon icon--fumi"></i>
                 <span class="input__label-content input__label-content--fumi">Mot de passe</span>
             </label>

@@ -1,10 +1,14 @@
-/vendor
 /node_modules
+/public/storage
+/vendor
 Homestead.yaml
 Homestead.json
 .env
 .env.prod
-/.idea
+/.idea/*
+/storage/debugbar
+/storage/framework
+/storage/logs
 /storage/pdf
 /public/video/*.mp4
 /public/css/images/old/*

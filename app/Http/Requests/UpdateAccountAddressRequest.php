@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAccountAddressRequest extends Request
+class UpdateAccountAddressRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class UpdateAccountAddressRequest extends Request
     {
         return [
             'address' => "min:3|max:38",
-            'complement' => "min:3|max:38",
+            'complement' => "nullable|min:3|max:38",
             'zipCode' => 'max:99999|numeric',
             'town' => "min:3|max:32",
             'type' => "in:shipping,invoice"

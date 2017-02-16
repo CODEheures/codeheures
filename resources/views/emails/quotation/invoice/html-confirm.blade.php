@@ -1,4 +1,4 @@
-<img src="{{  asset('css/images/codeheures.svg') }}" width="300px" height="auto">
+<img src="{{  asset('/images/codeheures.svg') }}" width="300px" height="auto">
 @if(!$isAdmin)
     @if($type == 'isDown')
     <h3>Merci pour votre achat sur CODEheures :-)</h3>

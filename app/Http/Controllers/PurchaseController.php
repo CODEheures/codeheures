@@ -90,7 +90,7 @@ class PurchaseController extends Controller
                 }
 
                 $prestations[0] = 'Aucun';
-                $prestationsDatas= Prestation::where('isObsolete', '=', 'false')->orderBy('name')->Lists('name', 'id');
+                $prestationsDatas= Prestation::where('isObsolete', '=', 'false')->orderBy('name')->pluck('name', 'id');
                 $prestations = $prestations + $prestationsDatas->toArray();
 
             } else {

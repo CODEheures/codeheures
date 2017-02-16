@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAccountRequest extends Request
+class UpdateAccountRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -32,8 +32,8 @@ class UpdateAccountRequest extends Request
             'firstName' => 'max:255',
             'lastName' => 'max:255',
             'address' => 'max:38',
-            'enterprise' => 'max:100|string',
-            'siret' => 'size:14|alpha_num'
+            'enterprise' => 'nullable|max:100|string',
+            'siret' => 'nullable|size:14|alpha_num'
         ];
     }
 }

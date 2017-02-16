@@ -1,7 +1,7 @@
 <div class="pdfHeader">
     <div class="logo">
         <a href="{{ route('home') }}" class="navbar-logo ">
-            <img src="./css/images/codeheures.svg"/>
+            <img src=".//images/codeheures.svg"/>
         </a>
     </div>
 

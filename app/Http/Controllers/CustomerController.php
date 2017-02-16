@@ -7,6 +7,7 @@ use App\Common\DataGraph;
 use App\Common\FormatManager;
 use App\Common\InvoiceTools;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Requests\PhoneAccountRequest;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
@@ -96,7 +97,7 @@ class CustomerController extends Controller
 
         if($user->email != $updates['email']) {
             $user->update($updates);
-            AuthController::setNewToken($user, $this->mailer);
+            RegisterController::setNewToken($user);
             return redirect()->back()->with('success', 'merci de valider votre nouvel email par le lien reçu');
         } else {
             $user->update($updates);

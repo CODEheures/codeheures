@@ -3,7 +3,7 @@
 @section('form')
 <div class="form-title">
     <h1>Réinitialisation du mot de passe</h1>
-    <p>Un nouveau mot de passe vous sera renvoyé sur votre email</p>
+    <p>Un lien vous permettant de renouveller votre mot de passe vous sera renvoyé sur votre email</p>
 </div>
 
 {!! Form::open(['class' => 'form-horizontal', 'url' => route('reset.post')]) !!}

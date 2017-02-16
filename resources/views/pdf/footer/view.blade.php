@@ -9,7 +9,7 @@
             <span class="htmlentity">&copy;</span>2015 CODEheures<span class="logo"></span>
         </div>
         <div class="logo">
-            <img src="./css/images/codeheures-court.svg" />
+            <img src=".//images/codeheures-court.svg" />
         </div>
     </div>
 </div>

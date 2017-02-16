@@ -1,1 +1,0 @@
-<script type="text/javascript" src="{{ asset('js/intersection-observer.min.js') }}"></script>

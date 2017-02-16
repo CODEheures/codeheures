@@ -1,4 +1,4 @@
-<img src="{{  asset('css/images/codeheures.svg') }}" width="300px" height="auto">
+<img src="{{  asset('/images/codeheures.svg') }}" width="300px" height="auto">
 @if(!$isAdmin)
     @if(!$isCreate)
         <h3>Vous avez signé votre devis et CODEheures vous en remercie :-)</h3>

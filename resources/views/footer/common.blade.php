@@ -14,6 +14,6 @@
         <p>8h-12h | 14h-18h</p>
     </div>
     <div class="copyright">
-        <p><img src="{{ asset('css/images/codeheures-court.svg') }}" /><span class="htmlentity">&copy;</span>2015 CODEheures<span class="logo"></span></p>
+        <p><img src="{{ asset('/images/codeheures-court.svg') }}" /><span class="htmlentity">&copy;</span>2015 CODEheures<span class="logo"></span></p>
     </div>
 </div>

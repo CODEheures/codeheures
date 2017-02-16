@@ -5,20 +5,20 @@
         </div>
         @if($purchase->havePaypalInvoice())
         <nav class="purchase-get-invoice-pdf">
-            <p><a href="{{ route('invoice.get', ['type' => 'isSold', 'origin' => 'purchase','origin_id' => $purchase->id]) }}"><i class="ion-archive"></i>Télécharger la facture</a></p>
+            <p><a href="{{ route('invoice.get', ['type' => 'isSold', 'origin' => 'purchase','origin_id' => $purchase->id]) }}" target="_blank"><i class="ion-archive"></i>Télécharger la facture</a></p>
         </nav>
         @else
             @if($purchase->quotation && count($purchase->quotation->invoices)>0)
                 <nav class="purchase-get-invoice-pdf"><p>
                 @foreach($purchase->quotation->invoices as $invoice)
                     @if($invoice->isDown)
-                        <a href="{{ route('invoice.get', ['type' => 'isDown', 'origin' => 'quotation','origin_id' => $purchase->quotation_id]) }}"><i class="ion-archive"></i>Télécharger la facture d'acompte</a>
+                        <a href="{{ route('invoice.get', ['type' => 'isDown', 'origin' => 'quotation','origin_id' => $purchase->quotation_id]) }}" target="_blank"><i class="ion-archive"></i>Télécharger la facture d'acompte</a>
                     @endif
                     @if($invoice->isIntermediate)
-                        <br /><a href="{{ route('invoice.get', ['type' => 'isIntermediate', 'origin' => 'quotation','origin_id' => $purchase->quotation_id, 'intermediateNumber' => $invoice->intermediateNumber]) }}"><i class="ion-archive"></i>Télécharger la facture intermédiaire {{ $invoice->intermediateNumber }}</a>
+                        <br /><a href="{{ route('invoice.get', ['type' => 'isIntermediate', 'origin' => 'quotation','origin_id' => $purchase->quotation_id, 'intermediateNumber' => $invoice->intermediateNumber]) }}" target="_blank"><i class="ion-archive"></i>Télécharger la facture intermédiaire {{ $invoice->intermediateNumber }}</a>
                     @endif
                     @if($invoice->isSold)
-                        <br /><a href="{{ route('invoice.get', ['type' => 'isSold', 'origin' => 'quotation','origin_id' => $purchase->quotation_id]) }}"><i class="ion-archive"></i>Télécharger la facture de solde</a>
+                        <br /><a href="{{ route('invoice.get', ['type' => 'isSold', 'origin' => 'quotation','origin_id' => $purchase->quotation_id]) }}" target="_blank"><i class="ion-archive"></i>Télécharger la facture de solde</a>
                     @endif
                 @endforeach
                 </p></nav>
@@ -28,7 +28,7 @@
             <span class="purchase-date">Achat du {{ $purchase->created_at->formatLocalized('%A %e %B %Y') }}
                 @if(auth()->user()->role == 'admin')par {{ $purchase->user->name }} ({{ $purchase->user->email }})@endif
                 :</span> {{ $purchase->quantity }}x "{{ $purchase->product->description }}"
-                @if($purchase->quotation_id)<a href="{{ route('customer.quotation.showPdf', ['id'=>$purchase->quotation_id]) }}" class="quotation-number">(devis {{ $purchase->quotation->getPublicNumber() }})</a>@endif
+                @if($purchase->quotation_id)<a href="{{ route('customer.quotation.showPdf', ['id'=>$purchase->quotation_id]) }}" class="quotation-number" target="_blank">(devis {{ $purchase->quotation->getPublicNumber() }})</a>@endif
         </p>
         <table class="purchase-table">
             <thead>
@@ -109,7 +109,7 @@
                     <td class="presta-perso">
                         <i class="ion-minus-round"></i>
                         <span class="purchase-date">Achat du {{ $purchase->created_at->formatLocalized('%A %e %B %Y') }}:</span> "{{ $purchase->product->description }}"
-                        @if($purchase->quotation_id)<a href="{{ route('customer.quotation.showPdf', ['id'=>$purchase->quotation_id]) }}" class="quotation-number">(devis {{ $purchase->quotation->getPublicNumber() }})</a>@endif
+                        @if($purchase->quotation_id)<a href="{{ route('customer.quotation.showPdf', ['id'=>$purchase->quotation_id]) }}" class="quotation-number" target="_blank">(devis {{ $purchase->quotation->getPublicNumber() }})</a>@endif
                     </td>
                 </tr>
             </tbody>
