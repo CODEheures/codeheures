@@ -19,8 +19,8 @@ class CreateLinequotesTable extends Migration
             $table->foreign('quotation_id')->references('id')->on('quotations')->onDelete('cascade');
             $table->integer('product_id')->unsigned()->index();
             $table->integer('quantity')->unsigned();
-            $table->integer('discount')->unsigned();
-            $table->enum('discount_type', ['devise', 'percent']);
+            $table->integer('discount')->unsigned()->default(0);
+            $table->enum('discount_type', ['devise', 'percent'])->default('percent');
         });
     }
 
