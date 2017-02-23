@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCommentToConsommation extends Migration
+class AddNewCreateByAdminToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddCommentToConsommation extends Migration
      */
     public function up()
     {
-        Schema::table('consommations', function (Blueprint $table) {
-            $table->string('comment')->nullable()->default(null);
+        Schema::table('users', function (Blueprint $table) {
+            $table->boolean('new_create_by_admin')->default(false);
         });
     }
 
@@ -25,8 +25,8 @@ class AddCommentToConsommation extends Migration
      */
     public function down()
     {
-        Schema::table('consommations', function (Blueprint $table) {
-            $table->dropColumn(['comment']);
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn(['new_create_by_admin']);
         });
     }
 }

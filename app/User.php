@@ -42,8 +42,11 @@ class User extends Authenticatable
         'quota',
         'is_admin_valid',
         'isDemo',
-        'ip'
+        'ip',
+        'new_create_by_admin'
     ];
+
+    protected $appends = ['invoice_address', 'shipping_address'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -54,6 +57,20 @@ class User extends Authenticatable
 
     public function addresses() {
         return $this->hasMany('App\Address');
+    }
+
+    public function getInvoiceAddressAttribute() {
+        foreach ($this->addresses as $address){
+            if($address->type == 'invoice') { return $address; };
+        }
+        return null;
+    }
+
+    public function getShippingAddressAttribute() {
+        foreach ($this->addresses as $address){
+            if($address->type == 'shipping') { return $address; };
+        }
+        return null;
     }
 
     public function purchases() {

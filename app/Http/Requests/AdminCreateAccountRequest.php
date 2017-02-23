@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAccountRequest extends FormRequest
+class AdminCreateAccountRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class UpdateAccountRequest extends FormRequest
      */
     public function authorize(Guard $auth)
     {
-        return $auth->check();
+        return $auth->check() && $auth->user()->role=='admin';
     }
 
     /**
@@ -35,7 +35,8 @@ class UpdateAccountRequest extends FormRequest
             'address' => 'required|min:3|max:38',
             'complement' => 'nullable|min:3|max:38',
             'zipCode' => 'required|max:99999|numeric',
-            'town' => 'required|min:3|max:32'
+            'town' => 'required|min:3|max:32',
+            'password' => 'required|same:password_confirmation',
         ];
     }
 }

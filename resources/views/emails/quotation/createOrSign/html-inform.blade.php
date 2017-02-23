@@ -19,6 +19,12 @@
         @endif
         @endforeach
 
+    @elseif($isCreate && $user->new_create_by_admin)
+        <h3>Vous avez un nouveau devis disponible sur CODEheures :-)</h3>
+
+        <p>CODEheures vous à mis à disposition un nouveau devis (n°{{ $quotation->getPublicNumber() }}) sur votre nouvel espace client dédié</p>
+        <p>Rendez-vous à l'adresse suivante pour en prendre connaissance:
+            <a href="{{ route('process2.accountConfirm', ['userId' => $user->id, 'token' => $user->confirmation_token]) }}" style="color: #3880aa;">Vos devis CODEHeures sur votre espace client</a></p>
     @else
         <h3>Vous avez un nouveau devis disponible sur CODEheures :-)</h3>
 

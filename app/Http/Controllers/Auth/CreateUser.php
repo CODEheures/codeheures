@@ -60,6 +60,20 @@ trait CreateUser {
         }
     }
 
+    public function accountConfirmTwo($userId, $token){
+        try {
+            $user = User::findOrFail($userId);
+            if ($token == $user->confirmation_token) {
+                $isProcessTwo = true;
+                return view('auth.reset', compact('userId', 'token', 'isProcessTwo'));
+            } else {
+                throw new ModelNotFoundException('');
+            }
+        } catch(ModelNotFoundException $e) {
+            return redirect(route('home'))->with('error', trans('Le lien de confirmation est invalide'));
+        }
+    }
+
     protected function create(array $data)
     {
         $user = User::create([

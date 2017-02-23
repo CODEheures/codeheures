@@ -7,10 +7,9 @@
     <div class="seller">
         <div class="from-seller">Designation du vendeur</div>
         <div class="infos">
-            Sylvain Gagnot - CODEheures<br />
-            Entreprise individuelle<br />
+            Sylvain Gagnot - CODEheures EIRL<br />
             1 rue Milhaud, 37300 Joué-les-Tours<br />
-            Siret: 1234567891234
+            Siret: 827 753 864 00012
         </div>
     </div>
     <div class="clear"></div>

@@ -41,6 +41,9 @@
 
 <div class="customer-title">
     <h2><i class="ion-ios-people-outline"></i>Liste clients</h2>
+    <nav class="product-title">
+        <p><a href="{{ route('admin.customer.create') }}"><i class="ion-ios-plus-outline"></i>Ajouter un client</a></p>
+    </nav>
 </div>
 <div class="product">
     @if(count($customersList)>0)

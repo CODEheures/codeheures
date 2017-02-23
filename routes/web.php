@@ -50,6 +50,9 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/customer/desactive/{id}', ['as' => 'admin.customer.desactive', 'uses' => 'AdminController@customerDesactive'])->where(['id'=>'[0-9]+']);
     Route::put('/customer/updateQuota/{id}', ['as' => 'admin.customer.updateQuota', 'uses' => 'AdminController@updateCustomerQuota'])->where(['id'=>'[0-9]+']);
 
+    Route::get('/customer/register', 'AdminController@customerRegisterView')->name('admin.customer.create');
+    Route::post('/customer/register', 'AdminController@customerRegisterPost')->name('admin.customer.register');
+
     //consommations
     Route::post('/consommation', ['as' => 'admin.consommation.store', 'uses' => 'ConsommationController@store']);
     Route::get('/consommation/{id}/delete', ['as' => 'admin.consommation.delete', 'uses' => 'ConsommationController@destroy'])->where(['id'=>'[0-9]+']);
@@ -148,6 +151,9 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function() {
     //Account confirmation
     Route::get('account-confirm/{id}/{token}', ['as' => 'account.confirm', 'uses' => 'RegisterController@accountConfirm']);
 
+    //Process type 2 (confirm->force new password -> view quotation id)
+    Route::get('/process2/account-confirm/{userId}/{token}', ['as' => 'process2.accountConfirm', 'uses' => 'RegisterController@accountConfirmTwo'])->where(['userId'=>'[0-9]+']);
+
     //Email resend confirmation
     Route::get('email/resendToken', ['as' => 'email.resendToken', 'uses' => 'RegisterController@resendToken']);
 });
@@ -158,6 +164,7 @@ Route::group(['prefix' => 'password', 'namespace' => 'Auth'], function(){
     Route::post('/email', 'ForgotPasswordController@sendResetLinkEmail')->name('reset.post');
     Route::get('/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
     Route::post('/reset', 'ResetPasswordController@reset')->name('reset.finish');
+    Route::post('/process2/reset', 'ResetPasswordController@resetTwo')->name('process2.reset.finish');
 });
 
 //Redirection permanente

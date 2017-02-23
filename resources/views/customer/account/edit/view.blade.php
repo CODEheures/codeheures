@@ -8,6 +8,7 @@
 </div>
 {!! Form::model($user, ['method' => 'PUT', 'url' => route('customer.account.update'), 'class' => 'form-horizontal']) !!}
 
+    {!! Form::hidden('type', null) !!}
     <div class="form-group">
             <span class="input input--fumi">
                 {!! Form::email('email', null, ['class' => 'input__field input__field--fumi']) !!}
@@ -79,8 +80,54 @@
             </label>
         </span>
     </div>
+    <div class="form-group"></div>
 
     <div class="clear"></div>
+
+    <div class="form-title">
+        <p>Adresse de facturation</p>
+    </div>
+    <div class="form-group">
+    </div>
+    <div class="form-group">
+        <span class="input input--fumi">
+            {!! Form::text('address', $user->invoice_address->address, ['class' => 'input__field input__field--fumi', 'placeholder' => 'Ex.: 1 avenue des champs elysées']) !!}
+            <label for="address" class="input__label input__label--fumi">
+                <i class="fa fa-fw fa-street-view icon icon--fumi"></i>
+                <span class="input__label-content input__label-content--fumi">Adresse</span>
+            </label>
+        </span>
+    </div>
+
+    <div class="form-group">
+        <span class="input input--fumi">
+            {!! Form::text('complement', $user->invoice_address->complement, ['class' => 'input__field input__field--fumi', 'placeholder' => 'Ex.: BP 75006']) !!}
+            <label for="complement" class="input__label input__label--fumi">
+                <i class="fa fa-fw fa-plus icon icon--fumi"></i>
+                <span class="input__label-content input__label-content--fumi">Complément</span>
+            </label>
+        </span>
+    </div>
+
+    <div class="form-group">
+        <span class="input input--fumi">
+            {!! Form::text('zipCode', $user->invoice_address->zipCode, ['class' => 'input__field input__field--fumi', 'placeholder' => 'Ex.: 75006']) !!}
+            <label for="zipCode" class="input__label input__label--fumi">
+                <i class="fa fa-fw fa-map-marker icon icon--fumi"></i>
+                <span class="input__label-content input__label-content--fumi">Code postal</span>
+            </label>
+        </span>
+    </div>
+
+    <div class="form-group">
+        <span class="input input--fumi">
+            {!! Form::text('town', $user->invoice_address->town, ['class' => 'input__field input__field--fumi', 'placeholder' => 'Ex.: Paris cedex 09']) !!}
+            <label for="town" class="input__label input__label--fumi">
+                <i class="fa fa-fw fa-map-signs icon icon--fumi"></i>
+                <span class="input__label-content input__label-content--fumi">Ville</span>
+            </label>
+        </span>
+    </div>
 
     <div class="form-submit">
         <div class="submit">
@@ -89,62 +136,3 @@
     </div>
 
 {!! Form::close() !!}
-
-
-@foreach($addresses as $address)
-    @if($address->type == 'invoice')
-        <div class="form-title">
-            <p>Adresse de facturation</p>
-        </div>
-        {!! Form::model($address, ['method' => 'PUT', 'url' => route('customer.account.addressUpdate'), 'class' => 'form-horizontal', 'name']) !!}
-
-        {!! Form::hidden('type', null) !!}
-
-        <div class="form-group">
-            <span class="input input--fumi">
-                {!! Form::text('address', null, ['class' => 'input__field input__field--fumi', 'placeholder' => 'Ex.: 1 avenue des champs elysées']) !!}
-                <label for="address" class="input__label input__label--fumi">
-                    <i class="fa fa-fw fa-street-view icon icon--fumi"></i>
-                    <span class="input__label-content input__label-content--fumi">Adresse</span>
-                </label>
-            </span>
-        </div>
-
-        <div class="form-group">
-            <span class="input input--fumi">
-                {!! Form::text('complement', null, ['class' => 'input__field input__field--fumi', 'placeholder' => 'Ex.: BP 75006']) !!}
-                <label for="complement" class="input__label input__label--fumi">
-                    <i class="fa fa-fw fa-plus icon icon--fumi"></i>
-                    <span class="input__label-content input__label-content--fumi">Complément</span>
-                </label>
-            </span>
-        </div>
-
-        <div class="form-group">
-            <span class="input input--fumi">
-                {!! Form::text('zipCode', null, ['class' => 'input__field input__field--fumi', 'placeholder' => 'Ex.: 75006']) !!}
-                <label for="zipCode" class="input__label input__label--fumi">
-                    <i class="fa fa-fw fa-map-marker icon icon--fumi"></i>
-                    <span class="input__label-content input__label-content--fumi">Code postal</span>
-                </label>
-            </span>
-        </div>
-
-        <div class="form-group">
-            <span class="input input--fumi">
-                {!! Form::text('town', null, ['class' => 'input__field input__field--fumi', 'placeholder' => 'Ex.: Paris cedex 09']) !!}
-                <label for="town" class="input__label input__label--fumi">
-                    <i class="fa fa-fw fa-map-signs icon icon--fumi"></i>
-                    <span class="input__label-content input__label-content--fumi">Ville</span>
-                </label>
-            </span>
-        </div>
-
-        <div class="form-submit">
-            <div class="submit">
-                <input type="submit" class="btn-yellow2" value="Valider" />
-            </div>
-        </div>
-        {!! Form::close() !!}
-    @endif
-@endforeach

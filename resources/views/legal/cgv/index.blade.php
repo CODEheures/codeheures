@@ -26,7 +26,7 @@
         <h2 class="fa"><i class="fa fa-square-o"></i> Article 1: Contrat de vente</h2>
         <ol>
             <li>
-                Le prestataire CODEheures (GAGNOT Sylvain) désigne la personne physique qui propose ses services au
+                Le prestataire CODEheures (Sylvain Gagnot - CODEheures EIRL) désigne la personne physique qui propose ses services au
                 client contre rémunérations.<br/>
                 Le client désigne la personne physique et morale qui bénéficie des services du prestataire.
             </li>

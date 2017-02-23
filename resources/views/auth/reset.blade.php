@@ -2,12 +2,20 @@
 
 @section('form')
 <div class="form-title">
-    <h1>Réinitialisation de votre mot de passe</h1>
+    @if(!isset($isProcessTwo))
+        <h1>Réinitialisation de votre mot de passe</h1>
+    @else
+        <h1>Définir votre mot de passe</h1>
+    @endif
 </div>
-{!! Form::open(['class' => 'form-horizontal', 'url' => route('reset.finish')]) !!}
+{!! Form::open(['class' => 'form-horizontal', 'url' => isset($isProcessTwo)  ? route('process2.reset.finish') : route('reset.finish')]) !!}
 
     <input type="hidden" name="token" value="{{ $token }}">
+    @if(isset($isProcessTwo))
+        <input type="hidden" name="userId" value="{{ $userId }}">
+    @endif
 
+    @if(!isset($isProcessTwo))
     <div class="form-group">
             <span class="input input--fumi">
                 {!! Form::email('email', null, ['class' => 'input__field input__field--fumi', 'placeholder' => 'jack.sparrow@pearl.bl']) !!}
@@ -17,7 +25,7 @@
                 </label>
             </span>
     </div>
-
+    @endif
     <div class="form-group">
             <span class="input input--fumi">
                 {!! Form::password('password', ['class' => 'input__field input__field--fumi','placeholder' => '********']) !!}
@@ -40,7 +48,11 @@
 
     <div class="form-submit">
         <div class="submit">
-            <input type="submit" class="btn-yellow2" value="Réinitialiser" />
+            @if(!isset($isProcessTwo))
+                <input type="submit" class="btn-yellow2" value="Réinitialiser" />
+            @else
+                <input type="submit" class="btn-yellow2" value="Initialiser" />
+            @endif
         </div>
     </div>
 {!! Form::close() !!}

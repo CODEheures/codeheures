@@ -131,7 +131,7 @@ class QuotationController extends Controller
 
     private function sendMail($quotation, $fileName=null, $isCreate=false) {
         //Envoi du mail
-        $user = $this->auth->user();
+        $user = $quotation->user;
         $isAdmin = false;
         $this->mailer->send(['text' => 'emails.quotation.createOrSign.text-inform', 'html' => 'emails.quotation.createOrSign.html-inform'], compact('user', 'quotation', 'isAdmin', 'isCreate'), function($message) use($user, $quotation, $fileName, $isCreate){
             $message->to($user->email);
@@ -512,4 +512,6 @@ class QuotationController extends Controller
             return Response::view('errors.404', array(), 404);
         }
     }
+
+
 }

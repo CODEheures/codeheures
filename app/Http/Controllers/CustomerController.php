@@ -4,16 +4,11 @@ namespace App\Http\Controllers;
 
 
 use App\Common\DataGraph;
-use App\Common\FormatManager;
 use App\Common\InvoiceTools;
-use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Requests\PhoneAccountRequest;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Requests\ContactRequest;
-use App\Http\Controllers\Controller;
 use Illuminate\Mail\Mailer;
 use App\Address as CodeheuresAddress;
 use App\Http\Requests\UpdateAccountRequest;
@@ -21,15 +16,11 @@ use App\Http\Requests\UpdateAccountAddressRequest;
 use App\Http\Requests\SaleChoiceRequest;
 use App\Purchase;
 use App\Product;
-use Illuminate\Support\Facades\Auth;
-use PayPal\Api\CreditCard;
-use PayPal\Api\FundingInstrument;
 use PayPal\Api\PayerInfo;
 use PayPal\Api\ShippingAddress;
 use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Api\Amount;
-use PayPal\Api\Details;
 use PayPal\Api\Item;
 use PayPal\Api\ItemList;
 use PayPal\Api\Payer;
@@ -38,8 +29,6 @@ use PayPal\Api\RedirectUrls;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
 use PayPal\Exception\PayPalConnectionException;
-use PhpSpec\Exception\Exception;
-use PayPal\Api\Address as PaypalAddress;
 use App\Common\Credit;
 
 class CustomerController extends Controller
@@ -77,18 +66,25 @@ class CustomerController extends Controller
     public function edit() {
         $user = $this->auth->user();
         $addresses = CodeheuresAddress::where('user_id', '=', $user->id)->get();
+        //dd($user->invoice_address->address);
         return view('customer.account.edit', compact('user', 'addresses'));
 
     }
 
     public function update(UpdateAccountRequest $request){
         $updates = $request->only(['email', 'name', 'phone', 'firstName', 'lastName', 'enterprise', 'siret']);
+
         $updates['phone'] = (str_replace('+33','0',str_replace('-','',filter_var($updates['phone'],FILTER_SANITIZE_NUMBER_INT))));
         if ($request->get('phone') == ""){
             $updates['phone']=null;
         }
         $user = $this->auth->user();
 
+        //1 UPDATE ADDRESS
+        $address = CodeheuresAddress::where('user_id', '=', $user->id)->where('type', '=', 'invoice')->first();
+        $address->update($request->only(['address', 'complement', 'zipCode', 'town']));
+
+        //2 UPDATE USER
         $withInfoPlus = '';
         if($user->email != $updates['email'] && $user->isDemo) {
             $updates['email'] = $user->email;

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PasswordRequest;
+use App\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 
@@ -42,5 +45,25 @@ class ResetPasswordController extends Controller
     {
         return redirect(route('home'))
             ->with('success', 'Votre mot de passe est réinitialisé');
+    }
+
+    public function resetTwo(PasswordRequest $request)
+    {
+        try {
+            $user = User::findOrFail($request->userId);
+            if ($user && $request->token == $user->confirmation_token) {
+                $user->confirmed = true;
+                $user->confirmation_token = '';
+                $user->new_create_by_admin = false;
+                $user->password = bcrypt($request->password);
+                $user->save();
+                auth()->login($user);
+                return redirect(route('customer.quotation.index'))->with('success', 'Bienvenue sur CODEheures! Votre devis est disponible ci-dessous.');
+            } else {
+                throw new ModelNotFoundException('');
+            }
+        } catch(ModelNotFoundException $e) {
+            return redirect(route('home'))->with('error', trans('Le lien de confirmation est invalide'));
+        }
     }
 }

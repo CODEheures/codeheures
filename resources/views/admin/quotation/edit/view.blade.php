@@ -37,7 +37,7 @@
             </span>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="position: relative">
             <span class="input input--fumi">
                 {!! Form::input('file', 'upload', null, ['accept' => 'application/pdf', 'class' => 'input__field input__field--fumi'. ($quotation->canEdit() == false ? ' form-disable':'')]) !!}
                 <label for="file" class="input__label input__label--fumi">
@@ -45,6 +45,9 @@
                     <span class="input__label-content input__label-content--fumi">Un fichier</span>
                 </label>
             </span>
+            @if($quotation->file)
+                <a href="{{ route('customer.quotation.attachment', ['hashName' => $quotation->file]) }}" style="position: absolute; bottom:-1.8rem; right: 3.8rem;" target="_blank">fichier uploadé</a>
+            @endif
         </div>
 
         <div class="form-submit">
