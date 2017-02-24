@@ -52,6 +52,8 @@ Route::group(['prefix' => 'admin'], function() {
 
     Route::get('/customer/register', 'AdminController@customerRegisterView')->name('admin.customer.create');
     Route::post('/customer/register', 'AdminController@customerRegisterPost')->name('admin.customer.register');
+    Route::get('/customer/edit/{id}', 'AdminController@customerEditView')->name('admin.customer.edit');
+    Route::put('/customer/edit/{id}', 'AdminController@customerUpdate')->name('admin.customer.update');
 
     //consommations
     Route::post('/consommation', ['as' => 'admin.consommation.store', 'uses' => 'ConsommationController@store']);

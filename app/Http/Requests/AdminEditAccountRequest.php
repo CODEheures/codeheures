@@ -4,8 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
-class AdminCreateAccountRequest extends FormRequest
+class AdminEditAccountRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +23,10 @@ class AdminCreateAccountRequest extends FormRequest
      *
      * @return array
      */
-    public function rules(Guard $auth)
+    public function rules(Guard $auth, Request $request)
     {
         return [
-            'email' => "email|max:255|unique:users,email",
+            'email' => "email|max:255|unique:users,email, {$request->id}",
             'name' => array('required', 'regex:/^[A-Za-z0-9_[:space:]]{3,255}$/'),
             'phone' => array('nullable','regex:/^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$/'),
             'lastName' => 'required_without:enterprise,siret|max:255',
@@ -36,7 +37,6 @@ class AdminCreateAccountRequest extends FormRequest
             'complement' => 'nullable|min:3|max:38',
             'zipCode' => 'required|max:99999|numeric',
             'town' => 'required|min:3|max:32',
-            'password' => 'required|same:password_confirmation',
         ];
     }
 }

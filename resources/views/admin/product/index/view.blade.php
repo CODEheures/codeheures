@@ -7,7 +7,7 @@
                     <th>Utilisé</th>
                     <th>Obsolète</th>
                     <th>Réserve à</th>
-                    <th>Prix</th>
+                    <th style="min-width: 11rem;">Prix</th>
                 </tr>
             </thead>
             <tbody>

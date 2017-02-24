@@ -89,6 +89,9 @@
                         {{ $customer->quota }}
                     </td>
                     <td class="quota">
+                        <a href="{{ route('admin.customer.edit', ['id'=> $customer->id]) }}" class="btn-danger">
+                            <i class="ion-edit"></i> Editer
+                        </a>
                         @if(!$customer->is_admin_valid)
                         <a href="{{ route('admin.customer.active', ['id'=> $customer->id]) }}" class="btn-danger">
                             <i class="ion-ios-close-outline"></i> Activer

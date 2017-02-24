@@ -125,7 +125,7 @@ class AdminController extends Controller
         $request->has('lastName') ? $user->lastName = $request->lastName : null;
         $request->has('enterprise') ? $user->enterprise = $request->enterprise : null;
         $request->has('siret') ? $user->siret = $request->siret : null;
-        $request->has('phone') ? $user->phone = $request->phone : null;
+        $request->has('phone') ? $user->phone = (str_replace('+33','0',str_replace('-','',filter_var($request->phone,FILTER_SANITIZE_NUMBER_INT)))) : null;
 
         $invoiceAddress = new Address();
         $invoiceAddress->type = 'invoice';
@@ -143,6 +143,38 @@ class AdminController extends Controller
         DB::commit();
 
         return redirect(route('admin.monitor.index'));
+
+    }
+
+    public function customerEditView($id) {
+        $user = User::find($id);
+        if($user){
+            return view('admin.cutomer.edit', compact('user'));
+        } else {
+            return back()->withErrors('Id utilisateur invalide');
+        }
+    }
+
+    public function customerUpdate($id, Requests\AdminEditAccountRequest $request) {
+        $user = User::find($id);
+        if($user){
+            $address = Address::where('user_id', '=', $user->id)->where('type', '=', 'invoice')->first();
+
+            $updates = $request->only(['email', 'name', 'phone', 'firstName', 'lastName', 'enterprise', 'siret']);
+            $updates['phone'] = (str_replace('+33','0',str_replace('-','',filter_var($updates['phone'],FILTER_SANITIZE_NUMBER_INT))));
+            if ($request->get('phone') == ""){
+                $updates['phone']=null;
+            }
+
+            DB::beginTransaction();
+            $user->update($updates);
+            $address->update($request->only(['address', 'complement', 'zipCode', 'town']));
+            DB::commit();
+
+            return redirect(route('admin.monitor.index'))->with('success', 'utilisateur modifié');
+        } else {
+            return redirect(route('admin.monitor.index'))->withErrors('Probleme dans la mise à jour');
+        }
 
     }
 }

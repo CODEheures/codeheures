@@ -50,18 +50,14 @@
             </li>
             <li>
                 Les prestations sur devis: <br/>
-                Si votre besoin ne correspond à aucune des prestations standards, CODEheure établi un devis en 2
-                parties.
+                Si votre besoin ne correspond à aucune des prestations standards, CODEheure établi un devis. Ce devis mentionnera:
                 <ul>
                     <li>
-                        Une partie comportant un credit horaire consommé pour la prestation. Si ce crédit est inférieur
-                        au solde de votre compte, alors CODEheures pourra vous proposer de chiffrer cette partie
-                        du devis à 0€ et debitera directement le solde de votre compte si vous acceptez le-dit devis.
+                        La désignation de la prestation et son tarif.
                     </li>
                     <li>
-                        Une partie comportant les achats logiciels externes (thèmes, plugins, modules etc...)
-                        ou les achats de services (location de serveur, nom de domaine etc...) ou la sous traitance
-                        (graphiste etc...)
+                        Un document de référence joint détaillant la prestation, les achats effectués par CODEheures au nom du client, les achats
+                        que le client doit faire lui-même, les délais, les technologies choisies, et tout autre information jugées utile
                     </li>
                 </ul>
             </li>
@@ -79,7 +75,7 @@
                         Chaque compte indique aussi la liste des achats logiciels externes (thèmes, plugins, modules
                         etc...)
                         ou les achats de services (location de serveur, nom de domaine etc...) ou la sous-traitance
-                        (graphiste etc...)
+                        (graphiste etc...) payé sur devis par le client à CODEheures
                     </li>
                 </ul>
             </li>
@@ -98,10 +94,9 @@
                 Le solde client peut évoluer à la baisse de 2 manières:
                 <ul>
                     <li>
-                        CODEheures utilise le crédit pour répondre aux besoins validés sur devis. Dans ce cas, CODEheures
-                        ne débitera jamais plus qu'indiqué sur le devis. Si CODEheures ne consomme pas toutes les heures
-                        prévues au devis pour réaliser complètement celui-ci le client possèdera alors un solde qu'il
-                        pourra utiliser ultèrieurement pour d'autres projets ou prestations standards.
+                        CODEheures utilise le crédit pour réaliser la liste des prestations indiquées dans le devis. Dans ce cas, CODEheures
+                        ne débitera jamais plus que les heures indiquées dans le devis. Si un solde positif advient à l’émission de la facture
+                        finale le client possèdera alors un solde qu'il pourra utiliser ultèrieurement pour d'autres projets ou prestations standards.
                     </li>
                     <li>
                         CODEheures utilise le credit pour répondre à une prestation standard. Dans ce cas, CODEheures
@@ -184,10 +179,8 @@
         <h2 class="fa"><i class="fa fa-square-o"></i> Article 8: Délai de livraison</h2>
         <ol>
             <li>
-                Le prestataire se réserve le droit de rallonger le délai de livraison fixé, d'un maximum de deux
-                semaines, pour le cas où le prestataire rencontrerait des problèmes (techniques ou autres) et ne
-                pourrait livrer le projet à temps. Dans le cas d'un dépassement du délai supplémentaire, le prestataire
-                fera une remise sur le montant de la prestation.
+                Les délais de réalisations dépendant de l’efficacité des organismes sollicités ainsi que de la bonne volonté
+                du client ne sont donnés qu’à titre indicatif. Aucune pénalité de retard ne peut être exigée par le client.
             </li>
         </ol>
         <h2 class="fa"><i class="fa fa-square-o"></i> Article 9: Modification de commande</h2>
@@ -240,7 +233,7 @@
         <h2 class="fa"><i class="fa fa-square-o"></i> Article 13: Litiges</h2>
         <ol>
             <li>
-                La responsabilité du prestataire ne pourra être mise en cause si la non-exécution ou le retard de la
+                La responsabilité du prestataire ne pourra être mise en cause si la non-exécution de la
                 prestation découle d'un cas de force majeure.
             </li>
             <li>
