@@ -63,6 +63,9 @@ trait CreateUser {
     public function accountConfirmTwo($userId, $token){
         try {
             $user = User::findOrFail($userId);
+            if($user->confirmed){
+                return redirect(route('customer.quotation.index'));
+            }
             if ($token == $user->confirmation_token) {
                 $isProcessTwo = true;
                 return view('auth.reset', compact('userId', 'token', 'isProcessTwo'));

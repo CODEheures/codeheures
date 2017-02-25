@@ -129,7 +129,7 @@ Route::group(['prefix' => 'invoice'], function () {
 });
 
 // Authentication routes...
-Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function() {
+Route::group(['namespace' => 'Auth'], function() {
 
     //login routes
     Route::get('login', 'LoginController@showLoginForm')->name('login');
@@ -145,19 +145,21 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function() {
 
 
     //Oauth Routes
-    Route::get('social/{provider}', ['as' => 'social.login', 'uses' => 'SocialiteController@redirectToProvider'])
-        ->where(['provider'=>'[a-zA-Z]+']);
-    Route::get('social/callback/{provider}', ['as' => 'social.callback', 'uses' => 'SocialiteController@handleProviderCallback'])
-        ->where(['provider'=>'[a-zA-Z]+']);
+    Route::group(['prefix' => 'auth'], function() {
+        Route::get('social/{provider}', ['as' => 'social.login', 'uses' => 'SocialiteController@redirectToProvider'])
+            ->where(['provider' => '[a-zA-Z]+']);
+        Route::get('social/callback/{provider}', ['as' => 'social.callback', 'uses' => 'SocialiteController@handleProviderCallback'])
+            ->where(['provider' => '[a-zA-Z]+']);
 
-    //Account confirmation
-    Route::get('account-confirm/{id}/{token}', ['as' => 'account.confirm', 'uses' => 'RegisterController@accountConfirm']);
+        //Account confirmation
+        Route::get('account-confirm/{id}/{token}', ['as' => 'account.confirm', 'uses' => 'RegisterController@accountConfirm']);
 
-    //Process type 2 (confirm->force new password -> view quotation id)
-    Route::get('/process2/account-confirm/{userId}/{token}', ['as' => 'process2.accountConfirm', 'uses' => 'RegisterController@accountConfirmTwo'])->where(['userId'=>'[0-9]+']);
+        //Process type 2 (confirm->force new password -> view quotation id)
+        Route::get('/process2/account-confirm/{userId}/{token}', ['as' => 'process2.accountConfirm', 'uses' => 'RegisterController@accountConfirmTwo'])->where(['userId'=>'[0-9]+']);
 
-    //Email resend confirmation
-    Route::get('email/resendToken', ['as' => 'email.resendToken', 'uses' => 'RegisterController@resendToken']);
+        //Email resend confirmation
+        Route::get('email/resendToken', ['as' => 'email.resendToken', 'uses' => 'RegisterController@resendToken']);
+    });
 });
 
 // Password reset link request routes...
