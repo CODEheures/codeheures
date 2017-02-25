@@ -2,12 +2,12 @@
     <thead>
     <tr>
         <th>Produit</th>
-        <th>Prix HT</th>
+        <th style="min-width: 11rem;">Prix HT</th>
         <th>Quantité</th>
         <th>Remise</th>
-        <th>Total Ht</th>
+        <th style="min-width: 11rem;">Total Ht</th>
         <th>TVA</th>
-        <th>Total TTC ligne</th>
+        <th style="min-width: 11rem;">Total TTC ligne</th>
     </tr>
     </thead>
     @if(!isset($isPdf) || !$isPdf)
