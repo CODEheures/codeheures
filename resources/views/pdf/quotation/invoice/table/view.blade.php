@@ -2,11 +2,11 @@
     <thead>
     <tr>
         <th>Produit</th>
-        <th style="min-width: 11rem;">Prix HT</th>
+        <th>Prix HT</th>
         <th>Quantité</th>
-        <th style="min-width: 11rem;">Remise</th>
+        <th>Remise</th>
         <th>TVA</th>
-        <th style="min-width: 11rem;">Total TTC ligne</th>
+        <th>Total TTC ligne</th>
     </tr>
     </thead>
     <tbody>

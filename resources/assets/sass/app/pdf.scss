@@ -201,6 +201,9 @@ div.quotation, div.prestation, div.purchase {
       & td:nth-child(3), & td:nth-child(4) {
         text-align: center;
       }
+      & th.pdfprice {
+        width: 110px;
+      }
     }
 
     & td {
