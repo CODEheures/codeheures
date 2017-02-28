@@ -61,6 +61,7 @@ trait CreateUser {
     }
 
     public function accountConfirmTwo($userId, $token){
+
         try {
             $user = User::findOrFail($userId);
             if($user->confirmed){
