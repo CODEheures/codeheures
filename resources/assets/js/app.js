@@ -9,4 +9,5 @@ require('./cookieconsent.min');
 require('qtip2');
 require('./select2.min');
 require('./xcharts.min');
+require('intro.js');
 require('./css');

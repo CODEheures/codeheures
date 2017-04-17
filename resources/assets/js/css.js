@@ -1,6 +1,7 @@
 /**
  * Created by Papoun on 13/10/2015.
  */
+import {introJs} from "intro.js/intro";
 $(function() {
 
     //parametre application

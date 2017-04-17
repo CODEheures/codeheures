@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Common\InvoiceTools;
 use App\Common\SmsSender;
-use App\Common\SmsFreeMobile;
 use App\Http\Requests\QuotationRequest;
 use App\LineQuote;
 use App\Product;
@@ -12,14 +11,11 @@ use App\Purchase;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Quotation;
 use App\Common\ListEnum;
 use App\Common\UserList;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Storage;
-use PhpSpec\Util\Filesystem;
+use Mpdf\Mpdf;
 use Illuminate\Contracts\Mail\Mailer;
 
 class QuotationController extends Controller
@@ -109,7 +105,7 @@ class QuotationController extends Controller
             $footer = view('pdf.footer.view')->__toString();
             $css = file_get_contents(asset(mix('css/pdf.css')->toHtml()),false,stream_context_create(array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false))));
 
-            $mpdf = new \mPDF();
+            $mpdf = new mPDF();
 
             $mpdf->SetHTMLHeader($header);
             $mpdf->SetHTMLFooter($footer);

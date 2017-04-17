@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Common\UserList;
-use App\Common\ListEnum;
 use App\Http\Requests\PrestationRequest;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Prestation;
+use Mpdf\Mpdf;
 
 class PrestationController extends Controller
 {
@@ -156,7 +152,7 @@ class PrestationController extends Controller
         $footer = view('pdf.footer.view')->__toString();
         $css = file_get_contents(asset(mix('css/pdf.css')->toHtml()),false,stream_context_create(array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false))));
 
-        $mpdf = new \mPDF();
+        $mpdf = new mPDF();
 
         $mpdf->SetHTMLHeader($header);
         $mpdf->SetHTMLFooter($footer);

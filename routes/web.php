@@ -110,6 +110,9 @@ Route::group(['prefix' => 'admin'], function() {
 
     //reset DemoUser
     Route::get('/resetDemo', ['as' => 'admin.resetDemo', 'uses'=>'AdminController@resetDemo']);
+
+    //test PDF
+    Route::get('/testPdf', ['as' => 'admin.testPdf', 'uses'=>'AdminController@testPdf']);
 });
 
 //Purchases routes

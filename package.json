@@ -16,6 +16,7 @@
     "vue-resource": "^1.0.3"
   },
   "dependencies": {
+    "intro.js": "^2.5.0",
     "moment": "^2.15.1",
     "qtip2": "^3.0.3"
   }

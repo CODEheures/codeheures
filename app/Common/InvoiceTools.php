@@ -3,12 +3,10 @@
 namespace App\Common;
 
 use App\Invoice;
-use App\LineQuote;
-use App\Product;
 use App\Purchase;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use App\Quotation;
+use Mpdf\Mpdf;
 use PayPal\Api\Payment;
 use Illuminate\Contracts\Mail\Mailer;
 
@@ -341,7 +339,7 @@ class InvoiceTools
         try {
             $css = file_get_contents(asset(mix('css/pdf.css')->toHtml()),false,stream_context_create(array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false))));
 
-            $mpdf = new \mPDF();
+            $mpdf = new mPDF();
             $mpdf->SetHTMLHeader($header);
             $mpdf->SetHTMLFooter($footer);
             $mpdf->AddPageByArray([

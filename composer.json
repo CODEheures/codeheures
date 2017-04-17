@@ -11,7 +11,7 @@
         "Laravel/socialite": "^3.0",
         "laravelcollective/html": "5.4.*",
         "intervention/image" : "~2.3",
-        "mpdf/mpdf": "dev-master",
+        "mpdf/mpdf": "dev-master#d495e4ca230297ea8ae044ea664f6bd5c8805a90",
         "paypal/rest-api-sdk-php": "*",
         "smsapi.com/php-client": "1.4.*",
         "ovh/ovh": "dev-master"
