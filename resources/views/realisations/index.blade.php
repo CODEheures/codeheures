@@ -23,6 +23,25 @@
         <img src=".//images/skills/logos2.png" alt="compétences floutées">
     </div>
     <h1>Réalisations Codeheures</h1>
+    <h2 class="fa fa-cogs"> Application Web Personnalisée</h2>
+    <article>
+        <div class="realisations">
+            <div class="realisation">
+                <div class="header-realisation">
+                    Destockeurope.com
+                </div>
+                <div class="body-realisation">
+                    <img src=".//images/realisations/destockeurope.jpg" alt="image du site destockeurope.com">
+                    <p>Cette application, compatible sur support mobile,  permet la mise en ligne d'annonces de destockage entre professionnels.
+                        <br />Réalisée avec <a href="https://laravel.com">Laravel</a>, <a href="https://vuejs.org/">VueJS</a> et <a href="https://semantic-ui.com/">SemanticUI</a>
+                    </p>
+                    <div class="link">
+                        <a target="_blank" href="https://destockeurope.com" class="btn-yellow2-invert">Voir le site</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
     <h2 class="fa fa-desktop"> Site vitrine</h2>
     <article>
         <div class="realisations">
