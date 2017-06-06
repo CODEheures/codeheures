@@ -16,8 +16,6 @@ mix//.js('resources/assets/js/sw.js', 'public')
     .sass('resources/assets/sass/fa-icons/font-awesome.scss', 'public/css')
     .sass('resources/assets/sass/ionicons/ionicons.scss', 'public/css')
     .combine([
-        'public/css/ionicons.css',
-        'public/css/font-awesome.css',
         'resources/assets/css/animate.css',
         'resources/assets/css/cookiesconcent.min.css',
         'resources/assets/css/inputfumi.css',

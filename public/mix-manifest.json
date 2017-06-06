@@ -1,8 +1,11 @@
 {
-  "/js/app.js": "/js/app.f5fc6d849e1f1f0b1f0b.js",
-  "/css/font-awesome.css": "/css/font-awesome.cf53a65969f2fdee5bf9.css",
-  "/css/ionicons.css": "/css/ionicons.cf53a65969f2fdee5bf9.css",
-  "/css/pdf.css": "/css/pdf.cf53a65969f2fdee5bf9.css",
-  "/css/app.css": "/css/app.cf53a65969f2fdee5bf9.css",
-  "/css/vendor.css": "/css/vendor.c0d278ea4f798a523cd2f84762e2091f.css"
+  "/js/app.js": "/js/app.864825cb1d7e09ac72f1.js",
+  "/css/font-awesome.css": "/css/font-awesome.4edc96b9332a0f2309dc3b698377584c.css",
+  "/css/ionicons.css": "/css/ionicons.1baef00bba754362ab5f331f2eb53d38.css",
+  "/css/pdf.css": "/css/pdf.4de4b6d262ae56acbc455e7d732104fa.css",
+  "/css/app.css": "/css/app.6f1b0aaa7353db1e60263882f1fcc31c.css",
+  "/css/vendor.css": "/css/vendor.c0d278ea4f798a523cd2f84762e2091f.css",
+  "/resources/assets/css/fa-icons/font-awesome.css": "/resources/assets/css/fa-icons/font-awesome.css",
+  "/resources/assets/css/ionicons/ionicons.css": "/resources/assets/css/ionicons/ionicons.css",
+  "/mix.js": "/mix.js"
 }

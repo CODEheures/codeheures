@@ -84,14 +84,16 @@ $(function() {
 
     if($cardsObserved.length>0) {
         let cardsObserver = new IntersectionObserver(function (entries) {
+            console.log('oberve', entries);
             for(let indice=0; indice<entries.length; indice++) {
-                let $elem = $(entries[indice].target).children('.card_description');
-                if($elem.css('opacity') == 0) {
+                if (entries[indice].intersectionRatio > 0){
+                    let $elem = $(entries[indice].target).children('.card_description');
                     $elem.css('opacity', 1);
+                    $elem.toggleClass('animated slideInRight');
                 } else {
+                    let $elem = $(entries[indice].target).children('.card_description');
                     $elem.css('opacity', 0);
                 }
-                $elem.toggleClass('animated slideInRight');
             }
         }, {
             threshold: 0.5
