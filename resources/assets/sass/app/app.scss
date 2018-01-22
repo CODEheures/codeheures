@@ -87,11 +87,6 @@ ul.circle {
 @import "web_styles/_checkbox";
 @import "web_styles/_table1";
 
-.introjs_class1 {
-  background-color: rgba(255,255,255,0.15);
-  border: 0.1rem white solid;
-}
-
 .container {
   $width: 100%;
   @include mycontainer($width, $container-gutters);
@@ -240,30 +235,6 @@ ul.circle {
   background-color: $color3;
   color: $color11;
   pointer-events: none;
-}
-
-.btn-facebook-login {
-  border: 0.1rem solid $color-facebook;
-  background-color: $color-facebook;
-  color: white;
-}
-
-.btn-google-login {
-  border: 0.1rem solid $color-google;
-  background-color: $color-google;
-  color: white;
-}
-
-.btn-twitter-login {
-  border: 0.1rem solid $color-twitter;
-  background-color: $color-twitter;
-  color: white;
-}
-
-.btn-github-login {
-  border: 0.1rem solid black;
-  background-color: black;
-  color: white;
 }
 
 .input {
@@ -436,38 +407,6 @@ body > header {
         font-weight: 600;
       }
 
-      & h2, & p {
-        &.presentation {
-          background-color: rgba(217, 112, 58, 0.63);
-          color: #FFFFFF;
-          font-size: 1.92rem;
-          border: 0.1rem solid #d9703a;
-          display: block;
-          padding: 1rem;
-          border-radius: 0.35rem;
-          margin-left: 1rem;
-          margin-right: 1rem;
-          margin-top: 1rem;
-          font-weight: 100;
-          & span.code {
-            font-family: $font2;
-            font-weight: 100;
-          }
-          & span.heures {
-            font-family: $font3;
-            font-weight: 100;
-            padding-left: 0.5rem;
-          }
-          & a:not(.a-invert) {
-            color: #FFF;
-          }
-          & strong {
-            font-weight: 500;
-            text-decoration: underline;
-          }
-        }
-      }
-
       p, h2.important {
         line-height: 2.4rem;
         font-size: 1.8rem;
@@ -491,35 +430,12 @@ body > header {
         margin: 1rem 0;
       }
 
-      & div.info {
-        @include cnfsc;
-        width: auto;
-        font-family: $font1;
-        font-weight: 300;
-        background-color: rgba(255,255,255,0.1);
-        border-radius: 0.75rem;
-        border: 0.1rem solid rgba(255,255,255,0.8);
-        padding: 1rem 4rem;
-        & div.clock-down {
-          @include rncfs;
-          & div.part {
-            @include cnfsfs;
-            font-size: 4rem;
-            &:not(:last-of-type) {
-              margin-right: 2rem;
-            }
-            & span {
-              width: 100%;
-              font-size: 2rem;
-              border-top: 0.1rem solid white;
-              text-align: left;
-            }
-          }
-        }
-      }
     }
 
     .scroll-down {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
       position: absolute;
       z-index: 2;
       left: 0;
@@ -530,10 +446,12 @@ body > header {
       line-height: 6rem;
       font-size: 6rem;
 
-      text-align: center;
+      // text-align: center;
       & a {
         color: $color1;
-        position: absolute;
+        display: flex;
+        flex-flow: column;
+        // position: absolute;
         animation: toDown 2s infinite;
 
         & span {
@@ -764,419 +682,10 @@ body > header {
       }
     }
 
-    & div.purchase-title,
-    & div.quotation-title,
-    & div.product-title,
-    & div.prestation-title,
-    & div.customer-title {
-      @include rwsbc;
-      width: 100%;
-      margin-top: 2rem;
-      line-height: 4rem;
-
-      &:not(:first-of-type) {
-        margin-top: 7rem;
-      }
-
-      & .left {
-        @include rwfsc;
-      }
-
-      & .right {
-        @include rwfec;
-      }
-
-      & h2 {
-        font-size: 2.2rem;
-        padding-top: 0;
-        & i {
-          font-size: 4rem;
-          padding-right: 0.8rem;
-        }
-      }
-
-      & div.cart-quotation,
-      & div.price-quotation,
-      & div.refuse-quotation {
-        @include rncc;
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
-      }
-
-      & div.reliquat-customer-info,
-      & div.total-price-quotation-info,
-      & div.prestation-duration {
-        line-height: initial;
-        border: 0.1rem solid $color7;
-        background-color: $color7;
-        color: $color3;
-      }
-    }
-
-    & div.quotation-progress {
-      margin-top: 2rem;
-    }
-
-    & div.quotation-progress-text {
-      & p {
-        padding-top: 0.3rem;
-        font-size: 1.2rem;
-      }
-    }
-
-    & div.quotation-progress,
-    & div.quotation-progress-text {
-      @include rnsbc;
-      width: 100%;
-      margin-left: 1rem;
-      margin-right: 1rem;
-
-      &.refuse {
-        @include rnfec;
-        & div.quotation-progress-2b {
-          @include rnfec;
-          height: 1.2rem;
-          width: 33%;
-          & div.bifurcation {
-            font-size: 4.8rem;
-            color: $color10;
-            transform: rotate(72deg);
-            transform-origin: right;
-          }
-        }
-      }
-
-      & div.quotation-progress-1,
-      & div.quotation-progress-2,
-      & div.quotation-progress-3 {
-        @include rnsac;
-        height: 1.2rem;
-        width: 33%;
-        & div.bar {
-          width: 90%;
-          background-color: $color10;
-          height: 50%;
-          border-radius: 0.3rem;
-        }
-        & div.point {
-          font-size: 0.8rem;
-          color: $color10;
-        }
-      }
-
-      & div.quotation-progress-1 {
-        & div.point {
-          color: $color7;
-        }
-      }
-
-      &.published {
-        & div.quotation-progress-1 div.bar {
-          background-color: $color7;
-        }
-
-        & div.quotation-progress-2 div.point:first-of-type {
-          color: $color7;
-        }
-
-        &.viewed {
-          & div.quotation-progress-2 {
-            & div.point {
-              color: $color7;
-            }
-            & div.bar {
-              background-color: $color7;
-            }
-          }
-
-          &.purchased {
-            & div.quotation-progress-3 {
-              & div.point {
-                color: $color7;
-              }
-              & div.bar {
-                background-color: $color7;
-              }
-            }
-          }
-
-          &.refused {
-            & div.quotation-progress-2b {
-              & div.bifurcation {
-                color: $color-error;
-              }
-            }
-            & div.quotation-progress-3 {
-              & div.point {
-                color: $color-error;
-              }
-              & div.bar {
-                background-color: $color-error;
-              }
-            }
-          }
-        }
-      }
-
-    }
-
     &#user {
       width: 100%;
       & a {
         color: $color8;
-      }
-
-      & nav.monitor-return,
-      & nav.quotation-title,
-      & nav.product-title,
-      & nav.prestation-title {
-        width: 100%;
-        position: relative;
-        top: -1.8rem;
-
-        & p {
-          padding: 0;
-        }
-      }
-
-      & nav.quotation-get-pdf,
-      & nav.prestation-get-pdf,
-      & nav.purchase-get-invoice-pdf {
-        margin-left: 1.95rem;
-        & p {
-          padding: 0;
-        }
-      }
-
-      & p.order-validity {
-        @include rwsbc;
-        width: 100%;
-        & > span.signature {
-          color:$color-error;
-          float: right;
-        }
-      }
-
-      & div.graph-conso {
-        width: 100%;
-        & figure {
-          height: 50rem;
-        }
-
-        & .tooltip-graph-conso {
-          position: absolute;
-          display: none;
-          z-index: 3;
-          color: $color8;
-          background-color: $color9;
-          border-color: $color8;
-          border-radius: 0.5rem;
-          padding: 1rem;
-          box-shadow: 0  0.1rem rgba(0, 0, 0, 0.5);
-        }
-      }
-    }
-
-    &#user div.purchase,
-    &#user div.quotation,
-    &#user div.product,
-    &#user div.prestation,
-    &#user div.customer {
-      @include cnfsfs;
-      width: 100%;
-      padding-top: 2rem;
-
-      & > p {
-        padding: 0;
-        font-weight: bold;
-
-        & span.purchase-date,
-        & span.quotation-date {
-          font-weight: 100;
-        }
-
-        & a.purchase-number, & a.quotation-number {
-          font-size: 1.2rem;
-          font-weight: 400;
-        }
-
-        &.tva-info {
-          font-size: 1.2rem;
-          font-weight: 100;
-        }
-
-        &.downPercentPayment {
-          align-self: center;
-          font-style: italic;
-          padding-top: 3rem;
-          font-weight: 400;
-        }
-
-      }
-
-      & div.quotation-total {
-        align-self: flex-end;
-        @include rnfsfs;
-        & p:not(.ttc) {
-          font-weight: 100;
-        }
-
-        & p.ttc {
-          margin-top: 1rem;
-          padding-top: 0.5rem;
-        }
-
-        & div.quotation-total-title, & div.quotation-total-value {
-          text-align: right;
-        }
-
-        & div.quotation-total-value {
-          padding-left: 2rem;
-          & p.ttc {
-            border-top: 0.2rem solid $color6;
-          }
-        }
-
-        & div.quotation-total-title {
-          & p.ttc {
-            border-top: 0.2rem solid transparent;
-          }
-        }
-      }
-
-      & table {
-        margin: 0;
-        width: 100%;
-
-
-        transition-property: all;
-        transition-duration: 800ms;
-
-        & tfoot tr td {
-          text-align: center;
-          padding: 0.5rem;
-          font-family: $font1;
-          color: $color1;
-          background-color: $color6;
-          font-size: 1.2rem;
-          line-height: 1.2rem;
-          font-weight: 100;
-          text-shadow: none;
-          cursor: pointer;
-
-          & i {
-            font-size: 2rem;
-          }
-        }
-
-        & tbody tr td.admin,
-        & tbody tr td.presta-perso {
-          & i {
-            padding-right: 1rem;
-          }
-
-          & span.reliquat,
-          & span.total-price-quotation,
-          & span.product-price,
-          & span.prestation-duration {
-            float: right;
-            padding-left: 0.5rem;
-            padding-right: 0.5rem;
-
-            &.positive {
-              background-color: $color1;
-            }
-          }
-        }
-
-        & tbody tr td.quota {
-          @include cncc;
-          & form {
-            @include cncc;
-          }
-        }
-
-        & a.btn-danger {
-          padding-top: 0;
-          padding-bottom: 0;
-        }
-
-        &.quotation-table {
-          & td:nth-child(2), & td:nth-child(6) {
-            min-width: 8rem;
-          }
-        }
-      }
-
-      & div.quotations-list {
-        @include rwsbfs;
-        width: 100%;
-        box-shadow:  0.1rem 0.3rem rgba(0,0,0,0.3);
-
-        &:not(:first-of-type){
-          margin-top: 1.5rem;
-        }
-
-
-        & ul {
-          padding-left: 2.5rem;
-          li {
-            list-style-position: inside;
-            list-style-type: square;
-          }
-        }
-
-        & div.description {
-          @include cnfsfs;
-          padding-left: 1rem;
-          padding-bottom: 1rem;
-        }
-
-        & div.progress-icon {
-          @include cnfsfs;
-          padding: 0 2rem 1rem 2rem;
-          & p {
-            @include rnsbc;
-            font-weight: 100;
-            min-width: 11rem;
-          }
-
-          & i {
-            font-size: 2.8rem;
-          }
-
-          & i.ion-ios-checkmark-outline {
-            color: $color7;
-          }
-
-          & i.ion-ios-minus-outline {
-            color: $color11;
-          }
-        }
-
-        & div.price {
-          align-self: flex-end;
-          @include cnfsc;
-          padding-right: 1rem;
-          padding-bottom: 1rem;
-          font-size: 3rem;
-        }
-      }
-
-      & div.mentions {
-        margin-top: 2rem;
-        font-size: 0.8em;
-        & h2 {
-          font-weight: bold;
-        }
-
-        & ul {
-          padding-left: 0.6rem;
-          & li {
-            list-style-type: square;
-            list-style-position: inside;
-          }
-        }
       }
     }
 
@@ -1263,171 +772,7 @@ body > header {
         //  text-align: center;
         //}
       }
-      & .prices {
-        @include cncc;
-        width: 100%;
-        margin-bottom: 3rem;
-        & .price {
-          $border-radius: 0.6rem;
-          margin: 1rem;
-          border-radius: $border-radius;
-          box-shadow: 0 0 2rem 0 rgba(0,0,0,0.5);
-          width: 21%;
-          min-width: 26rem;
-          min-height: 41.5rem;
-          background-color: $color3;
-          position: relative;
-          & .header-price {
-            @include cncc;
-            height: 5rem;
-            background-color: $color-logo;
-            border-top-left-radius: $border-radius;
-            border-top-right-radius: $border-radius;
-            color: white;
-            font-size: 2.1rem;
-            font-weight: 400;
-          }
-          & .body-price {
-            @include cnfsc;
-            padding-left: 2rem;
-            padding-right: 2rem;
-            font-size: 1.5rem;
-            & .description-price {
-              margin-bottom: 2rem;
-              & p {
-                &:first-child {
-                  @include cncc;
-                  padding-bottom: 2rem;
-                  & strong {
-                    font-size: 1.8rem;
-                  }
-                }
-              }
-              & p {
-                &:last-child {
-                  @include rnfsfs;
-                  height: 10rem;
-                  border-bottom: 0.1rem solid rgba(0,0,0,0.25);
-                  font-size: 1.45rem;
-                  font-style: italic;
-                }
-              }
-            }
-            & .price-price {
-              @include rnfsfs;
-              font-size: 4rem;
-              font-weight: 900;
-              & span.money {
-                font-size: 2rem;
-              }
-            }
-            & label {
-              @include cncc;
-              margin-bottom: 2rem;
-            }
-            & p[class^='tva'] {
-              font-size: 0.8rem;
-              padding-top: 0;
-              &:last-of-type {
-                padding-bottom: 2rem;
-              }
-            }
-          }
-          & .disable {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            background-image: repeating-linear-gradient(-45deg,
-                    rgba(0,0,0,0.1) 0px,
-                    rgba(0,0,0,0.1) 5px,
-                    transparent 5px,
-                    transparent 10px);
-            border-radius: $border-radius;
-            @include rncfe;
-            & p {
-              font-weight: 900;
-              text-align: center;
-              padding-bottom: 2rem;
-              padding-left: 1rem;
-              padding-right: 1rem;
-            }
-          }
-        }
-      }
-      & .form-prices {
-        & div.form-submit {
-          justify-content: flex-end;
-          & button {
-            &[aria-disabled="true"]{
-              pointer-events: none;
-            }
-            &[aria-disabled="false"]{
-              cursor: pointer;
-            }
-          }
-        }
-      }
-      & .check-data {
-        @include cncc;
-        width: 100%;
-        & div[class^='data-'] {
-          width: 90%;
-          min-width: 30rem;
-          background: $color3;
-          box-shadow: 0 0 5rem 0 rgba(0,0,0,0.1);
-          padding: 2rem;
-          font-size: 1.5rem;
-          margin-left:  1rem;
-          margin-right: 1rem;
-          margin-bottom: 2rem;
-          margin-top: 2rem;
-          & p {
-            margin: 0;
-            padding-top: 0;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
-            color: $color-info;
-            font-weight: 900;
-            border-bottom: 0.1rem solid $color-info;
-          }
-          & ul {
-            & li {
-              @include rnsbfs;
-              padding-bottom: 0.8rem;
-              text-align: right;
-              & span {
-                text-align: left;
-              }
-            }
-          }
-        }
-      }
-      & .payout {
-        @include cncfe;
-        width: 100%;
-        & a {
-          &.disable {
-            cursor: not-allowed;
-            pointer-events: none;
-          }
-          & img {
-            width: 24rem;
-            &:active {
-              transform: scale(0.95);
-            }
-          }
-        }
-        & p, ul {
-          width: 24rem;
-          font-size: 1.2rem;
-        }
-        & ul {
-          list-style-type: circle;
-          list-style-position: inside;
-        }
-      }
+
       & .realisations {
         @include cncc;
         width: 100%;
@@ -1485,16 +830,6 @@ body > header {
         margin-right: 1.5rem;
         text-align: right;
         color: $color4;
-      }
-    }
-
-    & div.form-title {
-      & p {
-        font-size: 150%;
-      }
-      & h1, & a {
-        display: inline-block;
-        width: auto;
       }
     }
 
@@ -1586,14 +921,6 @@ body > header {
       padding-top: 3rem;
       padding-bottom: 3rem;
     }
-  }
-
-  & a.registration {
-    @include rnfec;
-    align-self: flex-end;
-    text-align: right;
-    color: $color8;
-    padding-top: 1rem;
   }
 
   &.container {
@@ -1869,35 +1196,6 @@ body > footer {
       padding-left: 2.5rem;
       padding-right: 2.5rem;
 
-    }
-  }
-}
-
-@media screen and (min-width: 970px) {
-  .main {
-    section {
-      & div.purchase-title,
-      & div.quotation-title,
-      & div.product-title,
-      & div.prestation-title,
-      & div.customer-title {
-        & div.cart-quotation,
-        & div.price-quotation,
-        & div.refuse-quotation {
-          margin-bottom: 0;
-          margin-top: 0;
-        }
-      }
-      &#user {
-        & nav.quotation-get-pdf,
-        & nav.prestation-get-pdf,
-        & nav.purchase-get-invoice-pdf {
-          position: relative;
-          top: -1.3rem;
-          left: 4.2rem;
-          margin-left: 0;
-        }
-      }
     }
   }
 }

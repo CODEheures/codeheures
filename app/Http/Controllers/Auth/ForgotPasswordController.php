@@ -28,11 +28,5 @@ class ForgotPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-        $this->middleware('isNotOauth', ['only' => ['sendResetLinkEmail']]);
-    }
-
-    public function showLinkRequestForm()
-    {
-        return view('auth.password');
     }
 }

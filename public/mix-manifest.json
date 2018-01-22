@@ -1,11 +1,8 @@
 {
-  "/js/app.js": "/js/app.864825cb1d7e09ac72f1.js",
-  "/css/font-awesome.css": "/css/font-awesome.4edc96b9332a0f2309dc3b698377584c.css",
-  "/css/ionicons.css": "/css/ionicons.1baef00bba754362ab5f331f2eb53d38.css",
-  "/css/pdf.css": "/css/pdf.4de4b6d262ae56acbc455e7d732104fa.css",
-  "/css/app.css": "/css/app.6f1b0aaa7353db1e60263882f1fcc31c.css",
-  "/css/vendor.css": "/css/vendor.c0d278ea4f798a523cd2f84762e2091f.css",
-  "/resources/assets/css/fa-icons/font-awesome.css": "/resources/assets/css/fa-icons/font-awesome.css",
-  "/resources/assets/css/ionicons/ionicons.css": "/resources/assets/css/ionicons/ionicons.css",
-  "/mix.js": "/mix.js"
+    "/js/app.js": "/js/app.js?id=450a9653e75d297c1aef",
+    "/css/font-awesome.css": "/css/font-awesome.css?id=259075f5058a235314be",
+    "/css/ionicons.css": "/css/ionicons.css?id=78752ce5b7a9999e9d68",
+    "/css/pdf.css": "/css/pdf.css?id=3da0307ffb0f137bc219",
+    "/css/app.css": "/css/app.css?id=6a996c795d2b86fce7b4",
+    "/css/vendor.css": "/css/vendor.css?id=70a6a34117a8fd750d31"
 }

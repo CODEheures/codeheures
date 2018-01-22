@@ -3,13 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Common\DemoManager;
-use App\User;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Http\Requests\ContactRequest;
-use App\Http\Controllers\Controller;
 use Illuminate\Mail\Mailer;
 use Illuminate\Support\Facades\URL;
 
@@ -26,7 +20,7 @@ class MainController extends Controller
     }
 
     public function index() {
-        return view('Index.index');
+        return view('index');
     }
 
     public function contact_post(ContactRequest $request) {
@@ -40,27 +34,15 @@ class MainController extends Controller
         return redirect()->to(URL::previous() . "#contact")->with('success', 'Merci, votre mail est envoyé. Nous vous répondrons dans les plus brefs délais');
     }
 
-    public function demoCustomerSpace(Request $request) {
-        $demoManager = new DemoManager($request->ip());
-        $user = $demoManager->getUser();
-        auth()->login($user);
-
-        $diff = env('DEMO_VALIDITY')-Carbon::now()->diffInMinutes($user->created_at);
-
-        return redirect(route('customer.monitor.index'))
-            ->with('info', 'Bienvenue dans l\'espace client de démonstration. Toutes les actions sont sans engagement et
-                ce compte fictif sera détruit dans '. $diff . 'minute(s)');
-    }
-
     public function realisations() {
-        return view('realisations.index');
+        return view('realisations');
     }
 
     public function cgv() {
-        return view('legal.cgv.index');
+        return view('cgv');
     }
 
     public function mentions() {
-        return view('legal.mentions.index');
+        return view('mentionsLegales');
     }
 }
