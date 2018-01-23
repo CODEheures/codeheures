@@ -41,7 +41,7 @@
         <ol>
             <li>
                 Les prestations sur devis: <br/>
-                Si votre besoin ne correspond à aucune des prestations standards, CODEheure établi un devis. Ce devis mentionnera:
+                CODEheure établi un devis pour toute prestation. Ce devis mentionnera:
                 <ul>
                     <li>
                         La désignation de la prestation et son tarif.
@@ -53,50 +53,7 @@
                 </ul>
             </li>
         </ol>
-        <h2 class="fa"><i class="fa fa-square-o"></i> Article 3: Fonctionnement des comptes clients</h2>
-        <ol>
-            <li>
-                Tous les clients possedent un compte personnel sur CODEheure.fr.
-                <ul>
-                    <li>
-                        Chaque compte indique le solde au crédit du client dont l'unité est en heures (h) et dont la
-                        décimale la plus fine est le centième d'heure (0,01h).
-                    </li>
-                    <li>
-                        Chaque compte indique aussi la liste des achats logiciels externes (thèmes, plugins, modules
-                        etc...)
-                        ou les achats de services (location de serveur, nom de domaine etc...) ou la sous-traitance
-                        (graphiste etc...) payé sur devis par le client à CODEheures
-                    </li>
-                </ul>
-            </li>
-            <li>
-                Le solde client peut évoluer à la hausse par 2 moyens:
-                <ul>
-                    <li>
-                        Un achat volontaire d'heures à l'unité ou par lot. Cet achat est directement à faire en ligne,
-                        à partir d'un lien nommé "Recharger mon compte" fournit dans le compte client à la rubrique
-                        "Mon suivi".
-                    </li>
-                    <li>La signature d'un devis mentionnant un crédit d'heures</li>
-                </ul>
-            </li>
-            <li>
-                Le solde client peut évoluer à la baisse de 2 manières:
-                <ul>
-                    <li>
-                        CODEheures utilise le crédit pour réaliser la liste des prestations indiquées dans le devis. Dans ce cas, CODEheures
-                        ne débitera jamais plus que les heures indiquées dans le devis. Si un solde positif advient à l’émission de la facture
-                        finale le client possèdera alors un solde qu'il pourra utiliser ultèrieurement pour d'autres projets ou prestations standards.
-                    </li>
-                    <li>
-                        CODEheures utilise le credit pour répondre à une prestation standard. Dans ce cas, CODEheures
-                        ne débitera jamais plus qu'indiqué sur la grille des prestations standards (voir 2.1).
-                    </li>
-                </ul>
-            </li>
-        </ol>
-        <h2 class="fa"><i class="fa fa-square-o"></i> Article 4: Cahier des charges</h2>
+        <h2 class="fa"><i class="fa fa-square-o"></i> Article 3: Cahier des charges</h2>
         <ol>
             <li>
                 Si le client fournit un cahier des charges pour la prestation de service, le devis sera effectué en
@@ -112,28 +69,17 @@
                 effectuée sera due par le client et toute nouvelle prestation fera l'objet d'un nouveau devis.
             </li>
         </ol>
-        <h2 class="fa"><i class="fa fa-square-o"></i> Article 6: Tarifs et prestations</h2>
+        <h2 class="fa"><i class="fa fa-square-o"></i> Article 4: Tarifs et prestations</h2>
         <ol>
-            <li>
-                CODEheures se réserve le droit de modifier les prix de ses tarifs de crédit d'heure à l'unité ou par lot
-                disponible en achat direct par un lien nommé "Recharger mon compte" dans la rubrique "Mon suivi" de
-                l'espace client. Un prix obtenu à un jour donné par un client donné ne peut être exigé un autre jour
-                et/ou par un client différent.
-            </li>
-            <li>
-                CODEheures se réserve le droit de modifier les prix des crédits d'heures émis dans ses devis,
-                en fonction du projet de chaque client. Un prix effectué pour un crédit d'heures sur un précédent devis
-                aux mêmes clients ou à un client différent ne peut être exigé.
-            </li>
             <li>
                 Les prix stipulés sur le devis sont valables un mois à partir de la date d'émission de celui-ci. Ceux-ci
                 restent fermes et non révisables à la commande si celle-ci intervient durant ce délai.
             </li>
             <li>
-                Toute prestation non standard ne figurant pas sur la commande fera l'objet d'un nouveau devis.
+                Toute prestation ne figurant pas sur la commande fera l'objet d'un nouveau devis.
             </li>
         </ol>
-        <h2 class="fa"><i class="fa fa-square-o"></i> Article 7: Délai de paiement</h2>
+        <h2 class="fa"><i class="fa fa-square-o"></i> Article 5: Délai de paiement</h2>
         <ol>
             <li>
                 Sauf modification du délai de livraison en commun accord entre les deux parties, le solde du règlement
@@ -150,14 +96,14 @@
                 Le paiement sera effectué par chèque ou virement bancaire à l'adresse énoncée sur la facture.
             </li>
         </ol>
-        <h2 class="fa"><i class="fa fa-square-o"></i> Article 8: Délai de livraison</h2>
+        <h2 class="fa"><i class="fa fa-square-o"></i> Article 6: Délai de livraison</h2>
         <ol>
             <li>
                 Les délais de réalisations dépendant de l’efficacité des organismes sollicités ainsi que de la bonne volonté
                 du client ne sont donnés qu’à titre indicatif. Aucune pénalité de retard ne peut être exigée par le client.
             </li>
         </ol>
-        <h2 class="fa"><i class="fa fa-square-o"></i> Article 9: Modification de commande</h2>
+        <h2 class="fa"><i class="fa fa-square-o"></i> Article 7: Modification de commande</h2>
         <ol>
             <li>
                 Si le client souhaite une modification de sa commande, celui-ci s'engage à indiquer de façon claire et
@@ -168,7 +114,7 @@
                 un devis initial.
             </li>
         </ol>
-        <h2 class="fa"><i class="fa fa-square-o"></i> Article 10: Propriété intellectuelle</h2>
+        <h2 class="fa"><i class="fa fa-square-o"></i> Article 8: Propriété intellectuelle</h2>
         <ol>
             <li>
                 Toutes créations et réalisations demeure la propriété entière et exclusive du prestataire CODEheures
@@ -180,7 +126,7 @@
                 droits de diffusions cédés par le prestataire et pour la durée illimitée.
             </li>
         </ol>
-        <h2 class="fa"><i class="fa fa-square-o"></i> Article 11: Cessions de droits</h2>
+        <h2 class="fa"><i class="fa fa-square-o"></i> Article 9: Cessions de droits</h2>
         <ol>
             <li>
                 Selon l'article L.121-1 à L.121-9 du Code français de la propriété intellectuelle, il est défini que le
@@ -198,13 +144,13 @@
                 quelconque.
             </li>
         </ol>
-        <h2 class="fa"><i class="fa fa-square-o"></i> Article 12: Mentions commerciales et droit de publicité</h2>
+        <h2 class="fa"><i class="fa fa-square-o"></i> Article 10: Mentions commerciales et droit de publicité</h2>
         <ol>
             <li>
                 Le prestataire se réserve le droit d'ajouter un lien commercial CODEheures sur les sites web créés.
             </li>
         </ol>
-        <h2 class="fa"><i class="fa fa-square-o"></i> Article 13: Litiges</h2>
+        <h2 class="fa"><i class="fa fa-square-o"></i> Article 11: Litiges</h2>
         <ol>
             <li>
                 La responsabilité du prestataire ne pourra être mise en cause si la non-exécution de la
