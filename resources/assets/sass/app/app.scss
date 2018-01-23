@@ -451,6 +451,7 @@ body > header {
         color: $color1;
         display: flex;
         flex-flow: column;
+        align-items: center;
         // position: absolute;
         animation: toDown 2s infinite;
 
