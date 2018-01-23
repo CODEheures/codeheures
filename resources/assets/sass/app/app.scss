@@ -749,7 +749,7 @@ body > header {
       }
       & .digest {
         max-width: 50rem;
-        min-width: 40rem;
+        // min-width: 40rem;
         color: $color4;
         position: relative;
         & ul {
@@ -1170,9 +1170,13 @@ body > footer {
       & article {
         align-self: auto;
         @include rnsbfs;
+        & .card {
+          min-width: $card_width;
+        }
         & .digest {
           padding-left: 3rem;
           max-width: none;
+          min-width: 40rem;
         }
       }
     }
