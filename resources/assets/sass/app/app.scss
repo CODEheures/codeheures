@@ -486,6 +486,10 @@ body > header {
       padding-right: 1rem;
       position: relative;
 
+      & div.collapse {
+        width: 100%;
+      }
+
       & h2 {
         @include rwfsbl;
         text-transform: uppercase;
@@ -697,7 +701,7 @@ body > header {
       height: auto;
       & .card {
         width: 90%;
-        min-width: $card_width;
+        // min-width: $card_width;
         max-width: 50rem;
         height: auto;
         position: relative;
