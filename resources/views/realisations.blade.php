@@ -40,6 +40,20 @@
                     </div>
                 </div>
             </div>
+            <div class="realisation">
+                <div class="header-realisation">
+                    A Venir: SelfJob
+                </div>
+                <div class="body-realisation">
+                    <img src=".//images/realisations/selfjob.jpg" alt="image du site destockeurope.com">
+                    <p style="border-top: 1px solid rgba(0,0,0,0.2);">Cette future application, au format android et windows,  permet un recrutement sans CV basé sur l'affinité des personnalités.
+                        <br />Réalisée avec <a href="http://quasar-framework.org">Quasar</a> et <a href="https://laravel.com">Laravel</a>
+                    </p>
+                    <div class="link">
+                        <a target="_blank" href="https://youtu.be/ZklNr5oyn4A" class="btn-yellow2-invert">Voir la vidéo</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </article>
     <h2 class="fa fa-desktop"> Site vitrine</h2>
